@@ -1,0 +1,38 @@
+instalando: frontier sfaR npsf deaR 
+also installing the dependencies ‘iterators’, ‘RcppParallel’, ‘lazyeval’, ‘later’, ‘otel’, ‘minpack.lm’, ‘fitdistrplus’, ‘doParallel’, ‘foreach’, ‘Rcpp’, ‘hpa’, ‘rngWELL’, ‘crosstalk’, ‘promises’, ‘shapes’, ‘cccp’, ‘micEcon’, ‘moments’, ‘fastGHQuad’, ‘marqLevAlg’, ‘mnorm’, ‘randtoolbox’, ‘texreg’, ‘trustOptim’, ‘plotly’, ‘writexl’, ‘optiSolve’
+
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/iterators_1.0.14.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/RcppParallel_6.2.1.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/lazyeval_0.2.3.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/later_1.4.8.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/otel_0.2.0.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/minpack.lm_1.2-4.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fitdistrplus_1.2-6.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/doParallel_1.0.17.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/foreach_1.5.2.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/Rcpp_1.1.2.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/hpa_1.3.4.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/rngWELL_0.10-10.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/crosstalk_1.2.2.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/promises_1.5.0.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/shapes_1.2.8.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/cccp_0.3-3.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/micEcon_0.6-20.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/moments_0.14.1.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastGHQuad_1.0.1.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/marqLevAlg_2.0.8.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/mnorm_1.2.3.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/randtoolbox_2.0.5.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/texreg_1.40.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/trustOptim_0.8.7.4.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/plotly_4.12.1.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/writexl_2.0.1.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/optiSolve_1.0.1.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/frontier_1.1-8.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/sfaR_1.0.1.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/npsf_0.8.0.tgz'
+trying URL 'https://cloud.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/deaR_1.5.4.tgz'
+
+The downloaded binary packages are in
+	/var/folders/b9/fj7gn9gd28g_s_55659v_r600000gn/T//RtmphdtFzH/downloaded_packages
+FIM instalacao

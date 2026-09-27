@@ -1,0 +1,2643 @@
+country,field,disclosed_investment,estimated_investment
+Argentina,All,131,1057
+Argentina,Data and analytics,97,1019
+Argentina,Software,91,1014
+Argentina,Professional services,81,436
+Argentina,Information Technology,92,452
+Argentina,General purpose,97,1017
+Australia,Hardware,6132,6657
+Australia,Sports,30,54
+Australia,Consumer goods,107,218
+Australia,Manufacturing,135,568
+Australia,General purpose,8731,11883
+Australia,Cyber Security,118,201
+Australia,Transportation,104,616
+Australia,Healthcare and Life Sciences,208,349
+Australia,Software,9296,13195
+Australia,Privacy and Security,137,236
+Australia,Computer Vision,34,140
+Australia,Finance,557,1287
+Australia,Information Technology,7149,10213
+Australia,Navigation and mapping,90,131
+Australia,Gaming,37,81
+Australia,Biotechnology,59,84
+Australia,"Sales, retail, commerce, marketing",240,606
+Australia,Agriculture,109,170
+Australia,"Military, public safety and government",59,79
+Australia,Real estate,89,332
+Australia,Telecommunications,142,338
+Australia,Data and analytics,8798,12620
+Australia,Robotics,49,84
+Australia,Energy and natural resources,130,432
+Australia,Professional services,932,2117
+Australia,Media and Entertainment,1209,1510
+Australia,Community and Lifestyle,105,168
+Australia,All,20703,25250
+Australia,Other,91,432
+Australia,"Mobile, platforms & Internet services",6352,7414
+Austria,"Sales, retail, commerce, marketing",30,90
+Austria,Hardware,53,198
+Austria,Information Technology,143,1198
+Austria,All,1662,3639
+Austria,Data and analytics,493,2228
+Austria,Professional services,29,242
+Austria,Education,135,140
+Austria,Finance,45,222
+Austria,"Mobile, platforms & Internet services",24,677
+Austria,Energy and natural resources,30,206
+Austria,General purpose,483,2107
+Austria,Computer Vision,37,78
+Austria,Biotechnology,74,196
+Austria,Transportation,38,233
+Austria,Software,502,2400
+Austria,Healthcare and Life Sciences,144,379
+Belgium,Community and Lifestyle,63,196
+Belgium,Hardware,78,478
+Belgium,Energy and natural resources,1222,1319
+Belgium,Information Technology,1796,3621
+Belgium,Computer Vision,1122,1253
+Belgium,Privacy and Security,323,494
+Belgium,Transportation,58,59
+Belgium,Other,133,651
+Belgium,Software,2972,6382
+Belgium,"Sales, retail, commerce, marketing",814,1097
+Belgium,General purpose,1772,3936
+Belgium,All,5017,8461
+Belgium,Cyber Security,318,487
+Belgium,Finance,1811,1946
+Belgium,Manufacturing,232,363
+Belgium,"Mobile, platforms & Internet services",871,1203
+Belgium,Professional services,948,1588
+Belgium,Healthcare and Life Sciences,24,180
+Belgium,Real estate,228,229
+Belgium,Data and analytics,2893,5350
+Brazil,Professional services,790,1446
+Brazil,Data and analytics,1293,4566
+Brazil,Education,159,214
+Brazil,All,5419,9717
+Brazil,Cyber Security,32,32
+Brazil,Hardware,438,548
+Brazil,Navigation and mapping,26,27
+Brazil,NLP,180,537
+Brazil,General purpose,1247,4222
+Brazil,Media and Entertainment,37,100
+Brazil,Community and Lifestyle,393,436
+Brazil,"Sales, retail, commerce, marketing",577,1212
+Brazil,Healthcare and Life Sciences,43,161
+Brazil,Agriculture,47,62
+Brazil,Finance,605,1368
+Brazil,Telecommunications,162,1062
+Brazil,Real estate,350,941
+Brazil,Privacy and Security,259,266
+Brazil,"Mobile, platforms & Internet services",520,1707
+Brazil,Transportation,41,343
+Brazil,Other,110,381
+Brazil,Information Technology,1675,3440
+Brazil,Software,2380,6069
+Bulgaria,Data and analytics,76,180
+Bulgaria,Hardware,60,88
+Bulgaria,Software,82,190
+Bulgaria,General purpose,77,182
+Bulgaria,Manufacturing,60,88
+Bulgaria,All,213,321
+Canada,Speech Recognition,33,63
+Canada,Agriculture,205,295
+Canada,Privacy and Security,443,1252
+Canada,Software,15225,40089
+Canada,Hardware,8448,13183
+Canada,Data and analytics,7639,33230
+Canada,NLP,685,1010
+Canada,Finance,3360,8073
+Canada,Information Technology,11532,23421
+Canada,"Mobile, platforms & Internet services",5261,8560
+Canada,All,34544,67807
+Canada,Community and Lifestyle,317,1864
+Canada,General purpose,7935,28217
+Canada,Manufacturing,8837,10912
+Canada,Other,1315,2903
+Canada,Real estate,226,1399
+Canada,Professional services,5179,10566
+Canada,Computer Vision,217,1374
+Canada,Biotechnology,343,2598
+Canada,Consumer goods,256,1461
+Canada,Navigation and mapping,76,114
+Canada,Healthcare and Life Sciences,5277,9879
+Canada,Transportation,446,1933
+Canada,Media and Entertainment,2795,6554
+Canada,Lending and Investments,74,1200
+Canada,Telecommunications,2476,2798
+Canada,"Sales, retail, commerce, marketing",2223,4757
+Canada,Energy and natural resources,400,4636
+Canada,Semiconductor,182,400
+Canada,Robotics,205,1728
+Canada,Cyber Security,64,484
+Canada,"Military, public safety and government",71,276
+Canada,Education,2476,2730
+Chile,Software,96,338
+Chile,All,548,795
+Chile,General purpose,91,292
+Chile,Data and analytics,94,336
+Chile,Community and Lifestyle,50,54
+China,Transportation,9290,15620
+China,Other,4032,5627
+China,Lending and Investments,337,499
+China,Information Technology,14413,23213
+China,Real estate,520,1499
+China,All,118577,178057
+China,NLP,820,994
+China,Gaming,122,287
+China,Consumer goods,1339,3854
+China,Navigation and mapping,152,501
+China,Professional services,905,1967
+China,Data and analytics,35115,66330
+China,Computer Vision,1567,2880
+China,"Mobile, platforms & Internet services",10826,15318
+China,Education,1988,3640
+China,Community and Lifestyle,1018,1912
+China,Agriculture,273,1158
+China,Sports,84,265
+China,General purpose,36405,69465
+China,Semiconductor,1324,3942
+China,Biotechnology,990,1904
+China,Energy and natural resources,627,1468
+China,Software,35670,67762
+China,Robotics,5289,11780
+China,"Sales, retail, commerce, marketing",1142,2712
+China,Media and Entertainment,4354,6651
+China,Facial Recognition,473,613
+China,Hardware,10234,26208
+China,Speech Recognition,284,372
+China,Manufacturing,7070,14144
+China,Simulation,33,69
+China,Privacy and Security,787,2272
+China,Telecommunications,53,98
+China,Cyber Security,305,404
+China,Healthcare and Life Sciences,2824,6196
+China,Finance,1257,2846
+Colombia,Data and analytics,889,915
+Colombia,Energy and natural resources,846,854
+Colombia,General purpose,882,905
+Colombia,All,991,1045
+Colombia,Software,893,925
+Croatia,Software,273,804
+Croatia,General purpose,267,795
+Croatia,Data and analytics,267,795
+Croatia,All,363,898
+Croatia,Transportation,249,249
+Cyprus,Speech Recognition,87,87
+Cyprus,Professional services,88,88
+Cyprus,Data and analytics,176,219
+Cyprus,All,253,307
+Cyprus,Finance,61,63
+Cyprus,Software,182,228
+Cyprus,General purpose,178,221
+Czechia,Information Technology,134,587
+Czechia,General purpose,224,983
+Czechia,Cyber Security,41,45
+Czechia,Lending and Investments,52,62
+Czechia,All,587,1610
+Czechia,Media and Entertainment,45,64
+Czechia,Hardware,29,72
+Czechia,"Mobile, platforms & Internet services",35,150
+Czechia,Privacy and Security,43,65
+Czechia,Data and analytics,212,1141
+Czechia,Finance,92,128
+Czechia,"Sales, retail, commerce, marketing",72,226
+Czechia,Software,282,1241
+Denmark,Professional services,87,1046
+Denmark,Robotics,80,184
+Denmark,Media and Entertainment,108,623
+Denmark,Consumer goods,28,121
+Denmark,Sports,25,25
+Denmark,Data and analytics,578,3295
+Denmark,Healthcare and Life Sciences,54,192
+Denmark,Speech Recognition,25,115
+Denmark,"Mobile, platforms & Internet services",187,751
+Denmark,Other,31,217
+Denmark,Lending and Investments,102,122
+Denmark,Manufacturing,251,422
+Denmark,Finance,132,349
+Denmark,All,2024,5747
+Denmark,General purpose,725,3146
+Denmark,"Sales, retail, commerce, marketing",117,694
+Denmark,Software,591,3478
+Denmark,Information Technology,112,1696
+Denmark,Energy and natural resources,30,134
+Denmark,Hardware,293,507
+Egypt,All,92,178
+Egypt,Software,28,102
+Estonia,Cyber Security,60,63
+Estonia,Manufacturing,162,162
+Estonia,Professional services,30,43
+Estonia,Transportation,134,154
+Estonia,Information Technology,239,265
+Estonia,All,966,1096
+Estonia,Energy and natural resources,141,165
+Estonia,Finance,49,68
+Estonia,Privacy and Security,103,116
+Estonia,Software,234,335
+Estonia,General purpose,213,307
+Estonia,"Military, public safety and government",33,33
+Estonia,Hardware,169,178
+Estonia,Data and analytics,210,315
+Finland,"Sales, retail, commerce, marketing",1167,2775
+Finland,Professional services,40,1423
+Finland,Information Technology,1344,6018
+Finland,"Mobile, platforms & Internet services",131,1635
+Finland,Real estate,163,192
+Finland,Transportation,831,845
+Finland,Other,25,1618
+Finland,Hardware,822,1422
+Finland,Software,2121,10362
+Finland,Computer Vision,30,153
+Finland,Manufacturing,345,452
+Finland,Media and Entertainment,36,426
+Finland,Data and analytics,2095,10201
+Finland,All,3345,12563
+Finland,Biotechnology,47,47
+Finland,Education,44,552
+Finland,General purpose,2059,9717
+Finland,Healthcare and Life Sciences,80,134
+France,Data and analytics,6516,28365
+France,Media and Entertainment,214,1962
+France,Other,218,2283
+France,Biotechnology,171,343
+France,Agriculture,34,55
+France,Healthcare and Life Sciences,1406,2845
+France,Transportation,374,1875
+France,Cyber Security,152,430
+France,Lending and Investments,45,57
+France,Hardware,1229,5921
+France,All,23362,51273
+France,Navigation and mapping,28,103
+France,"Military, public safety and government",102,891
+France,Professional services,1193,4878
+France,General purpose,6468,26314
+France,Privacy and Security,562,1661
+France,Real estate,360,933
+France,Semiconductor,134,456
+France,Information Technology,2699,12592
+France,Telecommunications,242,1130
+France,Community and Lifestyle,36,600
+France,Computer Vision,440,1755
+France,Robotics,262,1008
+France,Education,223,1675
+France,Energy and natural resources,159,1043
+France,Sports,75,433
+France,Simulation,42,390
+France,"Mobile, platforms & Internet services",1579,7594
+France,"Sales, retail, commerce, marketing",1004,6320
+France,Manufacturing,590,1500
+France,Consumer goods,220,2113
+France,NLP,544,1837
+France,Software,7128,31153
+France,Finance,888,2311
+Germany,Real estate,193,1795
+Germany,Privacy and Security,394,4023
+Germany,Biotechnology,189,1929
+Germany,"Sales, retail, commerce, marketing",782,8604
+Germany,Other,1361,3923
+Germany,Hardware,2169,10560
+Germany,Healthcare and Life Sciences,509,2269
+Germany,NLP,98,856
+Germany,Information Technology,4824,24017
+Germany,Professional services,2158,10293
+Germany,Lending and Investments,366,1436
+Germany,General purpose,7725,38133
+Germany,Navigation and mapping,487,855
+Germany,Consumer goods,197,2087
+Germany,"Military, public safety and government",1119,1568
+Germany,Cyber Security,98,1200
+Germany,Data and analytics,7391,39294
+Germany,Manufacturing,2420,6830
+Germany,Energy and natural resources,268,4058
+Germany,Finance,845,6309
+Germany,Computer Vision,99,3888
+Germany,Media and Entertainment,276,2577
+Germany,Semiconductor,307,1178
+Germany,"Mobile, platforms & Internet services",1077,12203
+Germany,Agriculture,333,492
+Germany,Robotics,1202,2188
+Germany,Transportation,1914,12183
+Germany,All,30255,79056
+Germany,Software,8971,48082
+Germany,Community and Lifestyle,466,1350
+Germany,Education,278,1345
+Ghana,All,76,108
+Greece,Software,153,714
+Greece,Hardware,118,604
+Greece,Data and analytics,153,653
+Greece,All,291,1166
+Greece,Computer Vision,116,490
+Greece,General purpose,135,679
+Greece,Transportation,24,238
+Greece,Agriculture,115,225
+Hungary,Finance,34,34
+Hungary,Software,115,147
+Hungary,Data and analytics,114,146
+Hungary,General purpose,94,126
+Hungary,All,228,271
+Iceland,Information Technology,1617,3222
+Iceland,Hardware,1622,3223
+Iceland,Data and analytics,50,1695
+Iceland,General purpose,34,78
+Iceland,All,1747,5002
+Iceland,Other,1607,3208
+Iceland,Software,59,1709
+India,General purpose,5360,10453
+India,Data and analytics,6105,16155
+India,Agriculture,98,545
+India,Simulation,165,167
+India,Media and Entertainment,433,615
+India,"Military, public safety and government",36,114
+India,Software,23646,34532
+India,Healthcare and Life Sciences,2231,3363
+India,Privacy and Security,528,816
+India,Semiconductor,305,322
+India,Sports,28,121
+India,All,40494,55659
+India,"Sales, retail, commerce, marketing",15523,16611
+India,Transportation,568,822
+India,Community and Lifestyle,885,1016
+India,Hardware,16903,17514
+India,NLP,68,223
+India,Education,578,1123
+India,Other,742,1135
+India,Consumer goods,14907,15204
+India,Navigation and mapping,387,394
+India,Finance,768,1357
+India,Gaming,54,68
+India,Information Technology,19214,22456
+India,Lending and Investments,172,402
+India,Professional services,4109,5349
+India,Manufacturing,220,552
+India,Speech Recognition,80,127
+India,Real estate,106,229
+India,Energy and natural resources,880,1345
+India,Cyber Security,425,563
+India,Telecommunications,14779,19541
+India,"Mobile, platforms & Internet services",16366,17498
+India,Computer Vision,79,240
+India,Robotics,95,154
+Indonesia,Software,133,569
+Indonesia,All,325,857
+Indonesia,"Mobile, platforms & Internet services",81,162
+Indonesia,General purpose,132,536
+Indonesia,Biotechnology,25,26
+Indonesia,Data and analytics,133,339
+Indonesia,Information Technology,81,477
+Ireland,Biotechnology,60,62
+Ireland,Professional services,444,633
+Ireland,All,2625,4729
+Ireland,Education,368,521
+Ireland,Privacy and Security,108,234
+Ireland,Software,1161,3021
+Ireland,Hardware,137,306
+Ireland,Data and analytics,1362,3145
+Ireland,"Mobile, platforms & Internet services",250,685
+Ireland,Other,211,419
+Ireland,Media and Entertainment,152,310
+Ireland,Healthcare and Life Sciences,60,162
+Ireland,Community and Lifestyle,208,436
+Ireland,Finance,537,639
+Ireland,General purpose,1206,2740
+Ireland,Sports,42,59
+Ireland,Cyber Security,67,116
+Ireland,Information Technology,349,1039
+Ireland,"Sales, retail, commerce, marketing",349,931
+Ireland,NLP,33,285
+Ireland,Transportation,378,399
+Israel,"Mobile, platforms & Internet services",4276,11326
+Israel,Healthcare and Life Sciences,1112,4212
+Israel,Hardware,6696,13690
+Israel,NLP,370,2508
+Israel,Other,332,1650
+Israel,Energy and natural resources,164,593
+Israel,Consumer goods,204,2015
+Israel,Sports,192,863
+Israel,Media and Entertainment,2336,5862
+Israel,Data and analytics,13836,38366
+Israel,Manufacturing,1730,2754
+Israel,Privacy and Security,1860,4663
+Israel,All,30986,61477
+Israel,Semiconductor,785,1686
+Israel,Real estate,254,906
+Israel,"Military, public safety and government",136,315
+Israel,Agriculture,449,1195
+Israel,Professional services,464,2949
+Israel,Computer Vision,1014,3412
+Israel,"Sales, retail, commerce, marketing",554,6622
+Israel,Cyber Security,1173,2808
+Israel,Navigation and mapping,120,280
+Israel,Robotics,1023,1689
+Israel,Community and Lifestyle,591,1271
+Israel,Telecommunications,1811,3959
+Israel,Transportation,1003,2586
+Israel,General purpose,13572,35244
+Israel,Information Technology,11714,25014
+Israel,Gaming,134,244
+Israel,Finance,2669,3659
+Israel,Biotechnology,141,681
+Israel,Software,15303,42055
+Italy,Data and analytics,634,5073
+Italy,Robotics,25,30
+Italy,Manufacturing,29,44
+Italy,Consumer goods,34,186
+Italy,General purpose,625,4827
+Italy,Healthcare and Life Sciences,51,69
+Italy,Finance,56,81
+Italy,"Mobile, platforms & Internet services",133,898
+Italy,All,1514,6395
+Italy,Community and Lifestyle,39,200
+Italy,Energy and natural resources,169,174
+Italy,NLP,36,38
+Italy,Cyber Security,59,3298
+Italy,Transportation,36,46
+Italy,Media and Entertainment,33,49
+Italy,Hardware,263,516
+Italy,Information Technology,381,4187
+Italy,"Sales, retail, commerce, marketing",82,333
+Italy,Other,169,2663
+Italy,Real estate,38,282
+Italy,Software,671,5139
+Italy,Privacy and Security,74,3316
+Italy,Professional services,80,187
+Jamaica,Data and analytics,50,50
+Jamaica,All,56,57
+Jamaica,Media and Entertainment,50,50
+Jamaica,General purpose,50,50
+Jamaica,Software,52,53
+Japan,Finance,272,331
+Japan,Privacy and Security,214,564
+Japan,General purpose,3814,17290
+Japan,Professional services,478,3691
+Japan,Community and Lifestyle,86,261
+Japan,Energy and natural resources,117,157
+Japan,Semiconductor,53,55
+Japan,Transportation,1871,3933
+Japan,Data and analytics,3828,17345
+Japan,Biotechnology,233,284
+Japan,Real estate,63,1820
+Japan,All,9871,24716
+Japan,Healthcare and Life Sciences,279,626
+Japan,Robotics,1983,4043
+Japan,Consumer goods,311,384
+Japan,Other,165,1979
+Japan,Software,4021,17894
+Japan,Lending and Investments,87,96
+Japan,Hardware,2485,6965
+Japan,Media and Entertainment,615,1542
+Japan,Computer Vision,171,595
+Japan,Telecommunications,40,114
+Japan,"Mobile, platforms & Internet services",771,2061
+Japan,"Sales, retail, commerce, marketing",280,1124
+Japan,Information Technology,2641,8255
+Japan,Manufacturing,663,1010
+Japan,Education,72,788
+Japan,NLP,103,107
+Kenya,Agriculture,31,45
+Kenya,Information Technology,32,58
+Kenya,All,107,214
+Kenya,Finance,31,64
+Kenya,Software,35,85
+Kenya,Data and analytics,33,74
+Latvia,All,24,31
+Lithuania,Information Technology,240,248
+Lithuania,"Mobile, platforms & Internet services",132,137
+Lithuania,Software,166,199
+Lithuania,Finance,100,101
+Lithuania,General purpose,163,186
+Lithuania,All,572,607
+Lithuania,Data and analytics,163,190
+Lithuania,Lending and Investments,100,100
+Luxembourg,Software,59,342
+Luxembourg,Robotics,109,110
+Luxembourg,"Mobile, platforms & Internet services",26,305
+Luxembourg,Energy and natural resources,118,119
+Luxembourg,Hardware,109,110
+Luxembourg,Real estate,109,110
+Luxembourg,Information Technology,143,416
+Luxembourg,Transportation,111,113
+Luxembourg,Data and analytics,49,333
+Luxembourg,General purpose,159,444
+Luxembourg,Manufacturing,118,119
+Luxembourg,All,251,540
+Malaysia,Software,320,575
+Malaysia,Hardware,35,80
+Malaysia,Lending and Investments,50,50
+Malaysia,"Sales, retail, commerce, marketing",165,169
+Malaysia,Finance,53,58
+Malaysia,All,472,781
+Malaysia,Information Technology,95,243
+Malaysia,Data and analytics,285,522
+Malaysia,Professional services,146,232
+Malaysia,Telecommunications,42,42
+Malaysia,"Mobile, platforms & Internet services",62,106
+Malaysia,General purpose,282,534
+Mauritius,Lending and Investments,35,49
+Mauritius,All,68,144
+Mauritius,Finance,35,49
+Mexico,Real estate,29,33
+Mexico,"Sales, retail, commerce, marketing",43,124
+Mexico,Software,462,1363
+Mexico,Computer Vision,58,58
+Mexico,Transportation,35,63
+Mexico,All,1196,2131
+Mexico,General purpose,206,1052
+Mexico,"Mobile, platforms & Internet services",45,132
+Mexico,Finance,521,555
+Mexico,Information Technology,240,445
+Mexico,Lending and Investments,107,112
+Mexico,Education,72,74
+Mexico,Data and analytics,375,1258
+Netherlands,Facial Recognition,101,105
+Netherlands,"Mobile, platforms & Internet services",608,2858
+Netherlands,Education,43,308
+Netherlands,Agriculture,33,44
+Netherlands,Computer Vision,149,1003
+Netherlands,Cyber Security,155,270
+Netherlands,Consumer goods,53,476
+Netherlands,Privacy and Security,324,713
+Netherlands,Semiconductor,151,155
+Netherlands,Software,2740,10922
+Netherlands,"Sales, retail, commerce, marketing",556,2675
+Netherlands,Robotics,127,284
+Netherlands,Real estate,446,584
+Netherlands,Lending and Investments,339,362
+Netherlands,Media and Entertainment,318,1013
+Netherlands,Biotechnology,139,149
+Netherlands,Finance,664,1351
+Netherlands,"Military, public safety and government",87,90
+Netherlands,Information Technology,1179,5548
+Netherlands,Energy and natural resources,96,695
+Netherlands,Other,50,395
+Netherlands,Data and analytics,2394,10309
+Netherlands,Telecommunications,235,356
+Netherlands,Healthcare and Life Sciences,143,1031
+Netherlands,Professional services,216,1341
+Netherlands,Hardware,604,2091
+Netherlands,All,5830,15560
+Netherlands,Community and Lifestyle,340,459
+Netherlands,Transportation,35,563
+Netherlands,Manufacturing,89,109
+Netherlands,General purpose,2235,8918
+New Zealand,Hardware,1064,1321
+New Zealand,General purpose,1195,2219
+New Zealand,Energy and natural resources,1051,1088
+New Zealand,Information Technology,1120,1356
+New Zealand,All,1493,2658
+New Zealand,Data and analytics,1203,2251
+New Zealand,Navigation and mapping,1051,1081
+New Zealand,"Mobile, platforms & Internet services",46,199
+New Zealand,Software,1212,2337
+Nigeria,Transportation,207,211
+Nigeria,Data and analytics,36,126
+Nigeria,Software,43,135
+Nigeria,All,825,927
+Nigeria,General purpose,34,124
+Nigeria,Finance,232,243
+Norway,Real estate,676,680
+Norway,Hardware,252,412
+Norway,Information Technology,3960,7796
+Norway,Agriculture,32,133
+Norway,Telecommunications,30,66
+Norway,Education,37,212
+Norway,Healthcare and Life Sciences,41,3407
+Norway,Other,42,50
+Norway,Robotics,166,266
+Norway,"Sales, retail, commerce, marketing",33,35
+Norway,"Mobile, platforms & Internet services",131,439
+Norway,Data and analytics,4638,6110
+Norway,Simulation,34,39
+Norway,Consumer goods,31,33
+Norway,Finance,51,397
+Norway,Energy and natural resources,81,119
+Norway,General purpose,4638,6108
+Norway,Software,4692,6294
+Norway,All,5278,13518
+Norway,Professional services,71,365
+Norway,Manufacturing,3554,3676
+Norway,Gaming,35,39
+Philippines,"Mobile, platforms & Internet services",137,157
+Philippines,Data and analytics,150,234
+Philippines,Finance,137,155
+Philippines,All,232,345
+Philippines,General purpose,143,204
+Philippines,Software,151,247
+Poland,Robotics,35,469
+Poland,"Mobile, platforms & Internet services",65,563
+Poland,"Sales, retail, commerce, marketing",128,287
+Poland,All,626,1744
+Poland,General purpose,257,1174
+Poland,Information Technology,88,763
+Poland,Transportation,37,493
+Poland,Healthcare and Life Sciences,52,115
+Poland,Hardware,58,536
+Poland,Data and analytics,330,1281
+Poland,Software,341,1336
+Poland,Finance,42,112
+Portugal,Hardware,152,188
+Portugal,Other,47,52
+Portugal,Professional services,150,177
+Portugal,Data and analytics,376,840
+Portugal,"Military, public safety and government",130,130
+Portugal,"Sales, retail, commerce, marketing",67,211
+Portugal,Media and Entertainment,41,178
+Portugal,Information Technology,272,434
+Portugal,Biotechnology,25,37
+Portugal,Privacy and Security,101,107
+Portugal,Software,389,864
+Portugal,All,1605,2120
+Portugal,General purpose,382,707
+Portugal,Transportation,32,44
+Portugal,Finance,92,97
+Qatar,All,24,56
+Romania,All,240,270
+Romania,Information Technology,33,47
+Romania,General purpose,67,89
+Romania,Data and analytics,73,96
+Romania,Software,88,115
+Romania,"Mobile, platforms & Internet services",24,31
+Russia,General purpose,54,331
+Russia,Data and analytics,59,352
+Russia,All,102,398
+Russia,Software,55,348
+Saudi Arabia,Speech Recognition,1210,1465
+Saudi Arabia,Professional services,26,805
+Saudi Arabia,Information Technology,4464,21472
+Saudi Arabia,Lending and Investments,61,111
+Saudi Arabia,Telecommunications,39,47
+Saudi Arabia,Community and Lifestyle,1044,1229
+Saudi Arabia,Other,48,125
+Saudi Arabia,Cyber Security,43,45
+Saudi Arabia,Real estate,45,57
+Saudi Arabia,Data and analytics,7657,40989
+Saudi Arabia,Hardware,2994,17861
+Saudi Arabia,Facial Recognition,1200,1455
+Saudi Arabia,Finance,2185,3883
+Saudi Arabia,"Mobile, platforms & Internet services",210,474
+Saudi Arabia,All,11475,45113
+Saudi Arabia,Privacy and Security,54,72
+Saudi Arabia,General purpose,6490,8607
+Saudi Arabia,Transportation,24,151
+Saudi Arabia,Software,7651,40995
+Saudi Arabia,Computer Vision,1207,16272
+Saudi Arabia,"Sales, retail, commerce, marketing",4002,4280
+Saudi Arabia,Consumer goods,2951,2953
+Serbia,"Mobile, platforms & Internet services",44,44
+Serbia,All,60,55147
+Serbia,Information Technology,44,131
+Serbia,Hardware,44,44
+Serbia,Transportation,43,43
+Serbia,Software,47,55134
+Serbia,General purpose,46,55090
+Singapore,Transportation,208,1795
+Singapore,General purpose,13560,22394
+Singapore,Professional services,2414,2828
+Singapore,All,31159,46616
+Singapore,Robotics,201,370
+Singapore,Consumer goods,26,324
+Singapore,Lending and Investments,186,244
+Singapore,Information Technology,12967,18317
+Singapore,Software,19494,32511
+Singapore,Other,216,741
+Singapore,Education,80,1093
+Singapore,Navigation and mapping,59,1075
+Singapore,Manufacturing,1677,1870
+Singapore,Biotechnology,180,383
+Singapore,Gaming,45,109
+Singapore,Telecommunications,859,1360
+Singapore,Cyber Security,62,215
+Singapore,Data and analytics,13468,26226
+Singapore,Healthcare and Life Sciences,225,2435
+Singapore,Finance,1812,2371
+Singapore,Semiconductor,1488,1491
+Singapore,Media and Entertainment,1854,1996
+Singapore,Agriculture,33,2063
+Singapore,Real estate,35,187
+Singapore,Privacy and Security,504,876
+Singapore,"Mobile, platforms & Internet services",4386,10944
+Singapore,Computer Vision,418,978
+Singapore,Energy and natural resources,149,894
+Singapore,"Sales, retail, commerce, marketing",1740,4052
+Singapore,Hardware,11502,14843
+Singapore,Community and Lifestyle,91,553
+Slovakia,Data and analytics,50,61
+Slovakia,Information Technology,33,65
+Slovakia,All,133,174
+Slovakia,Software,61,100
+Slovakia,General purpose,54,65
+Slovenia,General purpose,28,38
+Slovenia,Data and analytics,28,38
+Slovenia,All,46,56
+South Africa,Finance,102,187
+South Africa,All,687,1504
+South Africa,"Sales, retail, commerce, marketing",105,207
+South Africa,General purpose,187,630
+South Africa,Lending and Investments,92,99
+South Africa,Software,292,940
+South Africa,"Mobile, platforms & Internet services",104,192
+South Africa,Information Technology,149,413
+South Africa,Data and analytics,279,929
+South Africa,Hardware,25,80
+South Africa,Professional services,114,181
+South Korea,Consumer goods,257,519
+South Korea,General purpose,7914,11210
+South Korea,Computer Vision,77,331
+South Korea,All,16796,23464
+South Korea,Energy and natural resources,88,185
+South Korea,NLP,187,227
+South Korea,"Mobile, platforms & Internet services",3938,4814
+South Korea,Gaming,146,154
+South Korea,Navigation and mapping,63,1847
+South Korea,Finance,326,582
+South Korea,Data and analytics,7133,12289
+South Korea,Healthcare and Life Sciences,1220,1666
+South Korea,Media and Entertainment,2192,2869
+South Korea,Education,376,776
+South Korea,Telecommunications,93,255
+South Korea,Lending and Investments,34,69
+South Korea,Information Technology,2622,5950
+South Korea,Hardware,1146,3586
+South Korea,Professional services,674,965
+South Korea,Agriculture,43,116
+South Korea,Semiconductor,396,429
+South Korea,Robotics,239,424
+South Korea,Real estate,98,207
+South Korea,Cyber Security,24,38
+South Korea,Transportation,1177,3047
+South Korea,Community and Lifestyle,2299,2463
+South Korea,"Sales, retail, commerce, marketing",218,437
+South Korea,Software,7735,13261
+South Korea,Privacy and Security,89,267
+South Korea,Manufacturing,435,656
+South Korea,Other,309,509
+South Korea,Biotechnology,860,1042
+Spain,Biotechnology,81,1131
+Spain,Robotics,26,52
+Spain,Hardware,246,421
+Spain,"Mobile, platforms & Internet services",1210,2272
+Spain,Software,2898,12792
+Spain,Finance,596,1203
+Spain,"Sales, retail, commerce, marketing",507,3001
+Spain,Transportation,272,360
+Spain,Computer Vision,33,256
+Spain,Data and analytics,2835,13768
+Spain,Healthcare and Life Sciences,233,1528
+Spain,Navigation and mapping,72,169
+Spain,General purpose,1801,10361
+Spain,Consumer goods,26,78
+Spain,Real estate,36,274
+Spain,Community and Lifestyle,31,1263
+Spain,Media and Entertainment,46,291
+Spain,Information Technology,541,4115
+Spain,Professional services,1095,3995
+Spain,All,5995,18459
+Spain,Manufacturing,50,211
+Spain,NLP,1047,2366
+Spain,Privacy and Security,76,1544
+Spain,Other,312,534
+Spain,Energy and natural resources,73,197
+Sri Lanka,All,26,34
+Sweden,All,21185,45020
+Sweden,Energy and natural resources,4782,9528
+Sweden,Education,54,2431
+Sweden,Professional services,1312,5403
+Sweden,"Sales, retail, commerce, marketing",344,1274
+Sweden,Community and Lifestyle,32,54
+Sweden,Other,3489,8251
+Sweden,Robotics,48,2424
+Sweden,Real estate,1375,1390
+Sweden,Data and analytics,5669,23425
+Sweden,General purpose,5623,22751
+Sweden,Hardware,4658,9567
+Sweden,Software,5793,23660
+Sweden,Finance,3487,12295
+Sweden,Transportation,56,3491
+Sweden,Manufacturing,4595,4634
+Sweden,Gaming,40,42
+Sweden,Information Technology,3716,13525
+Sweden,Healthcare and Life Sciences,188,2631
+Sweden,Media and Entertainment,275,2674
+Sweden,"Mobile, platforms & Internet services",155,859
+Switzerland,Software,3078,11577
+Switzerland,Hardware,605,2388
+Switzerland,Simulation,24,26
+Switzerland,Privacy and Security,427,1182
+Switzerland,Community and Lifestyle,56,171
+Switzerland,Healthcare and Life Sciences,184,956
+Switzerland,Data and analytics,2921,9699
+Switzerland,Finance,186,1112
+Switzerland,Consumer goods,64,941
+Switzerland,Robotics,128,810
+Switzerland,Semiconductor,219,491
+Switzerland,Information Technology,2052,6143
+Switzerland,Other,84,916
+Switzerland,Real estate,40,70
+Switzerland,"Mobile, platforms & Internet services",818,2693
+Switzerland,Biotechnology,68,721
+Switzerland,Energy and natural resources,48,154
+Switzerland,Manufacturing,221,937
+Switzerland,Agriculture,39,46
+Switzerland,Media and Entertainment,92,447
+Switzerland,Professional services,86,440
+Switzerland,Transportation,466,1078
+Switzerland,"Sales, retail, commerce, marketing",142,1186
+Switzerland,General purpose,2129,9254
+Switzerland,Cyber Security,399,996
+Switzerland,"Military, public safety and government",26,41
+Switzerland,Computer Vision,352,1222
+Switzerland,All,7079,16235
+Taiwan,Hardware,172,281
+Taiwan,All,1103,8821
+Taiwan,Semiconductor,96,114
+Taiwan,NLP,97,108
+Taiwan,Healthcare and Life Sciences,177,311
+Taiwan,Other,73,100
+Taiwan,Information Technology,209,390
+Taiwan,"Sales, retail, commerce, marketing",50,717
+Taiwan,General purpose,443,8048
+Taiwan,"Mobile, platforms & Internet services",125,240
+Taiwan,Professional services,37,702
+Taiwan,Software,450,8090
+Taiwan,Transportation,35,46
+Taiwan,Manufacturing,31,40
+Taiwan,Data and analytics,431,8052
+Thailand,Software,104,189
+Thailand,"Mobile, platforms & Internet services",35,43
+Thailand,General purpose,75,144
+Thailand,Information Technology,44,101
+Thailand,Data and analytics,75,144
+Thailand,All,315,431
+Thailand,Media and Entertainment,29,36
+Thailand,Gaming,29,29
+Trinidad and Tobago,All,40,45
+Turkey,"Sales, retail, commerce, marketing",574,606
+Turkey,All,1148,1655
+Turkey,General purpose,206,336
+Turkey,Data and analytics,188,656
+Turkey,Software,770,1249
+Turkey,"Mobile, platforms & Internet services",637,671
+Turkey,Professional services,26,38
+Turkey,Information Technology,151,517
+Turkey,Hardware,67,88
+Turkey,Privacy and Security,62,66
+Ukraine,Software,41,554
+Ukraine,"Mobile, platforms & Internet services",26,50
+Ukraine,Data and analytics,31,541
+Ukraine,General purpose,31,543
+Ukraine,All,75,615
+United Arab Emirates,Energy and natural resources,58,164
+United Arab Emirates,Other,63,237
+United Arab Emirates,Community and Lifestyle,25,128
+United Arab Emirates,Transportation,212,292
+United Arab Emirates,"Sales, retail, commerce, marketing",109,185
+United Arab Emirates,Software,3770,6115
+United Arab Emirates,General purpose,3666,5822
+United Arab Emirates,Professional services,162,517
+United Arab Emirates,Finance,617,1857
+United Arab Emirates,Telecommunications,32,142
+United Arab Emirates,All,5104,7829
+United Arab Emirates,Consumer goods,301,301
+United Arab Emirates,Information Technology,2877,4490
+United Arab Emirates,Data and analytics,3657,5904
+United Arab Emirates,Hardware,329,343
+United Arab Emirates,"Mobile, platforms & Internet services",2444,3495
+United Kingdom,All,64791,102633
+United Kingdom,Robotics,510,3316
+United Kingdom,Simulation,99,132
+United Kingdom,Other,4258,6851
+United Kingdom,Education,2499,4573
+United Kingdom,Energy and natural resources,813,1973
+United Kingdom,Biotechnology,1042,1864
+United Kingdom,Lending and Investments,913,2135
+United Kingdom,Real estate,806,1347
+United Kingdom,Telecommunications,2137,2699
+United Kingdom,Hardware,6830,15560
+United Kingdom,Agriculture,128,465
+United Kingdom,Speech Recognition,43,50
+United Kingdom,Manufacturing,1222,3089
+United Kingdom,Media and Entertainment,2927,5962
+United Kingdom,Computer Vision,791,4091
+United Kingdom,Consumer goods,3637,6177
+United Kingdom,Community and Lifestyle,791,2508
+United Kingdom,Navigation and mapping,115,230
+United Kingdom,Software,24739,58225
+United Kingdom,Privacy and Security,796,2275
+United Kingdom,Data and analytics,22790,51119
+United Kingdom,Sports,58,380
+United Kingdom,Information Technology,16943,30362
+United Kingdom,General purpose,23441,49125
+United Kingdom,NLP,195,2331
+United Kingdom,Transportation,1622,2799
+United Kingdom,Professional services,7287,15945
+United Kingdom,Finance,6638,11581
+United Kingdom,Healthcare and Life Sciences,4966,7155
+United Kingdom,"Sales, retail, commerce, marketing",8299,14298
+United Kingdom,"Mobile, platforms & Internet services",5842,11928
+United Kingdom,Semiconductor,2026,2212
+United Kingdom,Gaming,422,545
+United Kingdom,"Military, public safety and government",190,281
+United Kingdom,Cyber Security,352,1217
+United States,Other,26960,76506
+United States,Navigation and mapping,3547,10323
+United States,Privacy and Security,41895,94243
+United States,Real estate,12631,29051
+United States,Data and analytics,449137,950240
+United States,Healthcare and Life Sciences,46020,129004
+United States,"Military, public safety and government",16397,25597
+United States,Software,451311,1017810
+United States,Media and Entertainment,12725,50825
+United States,Gaming,1119,3441
+United States,Simulation,357,7544
+United States,Cyber Security,26182,54005
+United States,Manufacturing,26886,52262
+United States,Professional services,40454,140808
+United States,Hardware,89979,194397
+United States,NLP,26980,48338
+United States,"Sales, retail, commerce, marketing",39843,135120
+United States,Education,4719,23208
+United States,"Mobile, platforms & Internet services",90918,207862
+United States,Transportation,67502,114314
+United States,All,1263710,1944991
+United States,Finance,44496,106456
+United States,Telecommunications,5300,22210
+United States,Energy and natural resources,14960,40979
+United States,Biotechnology,27586,49426
+United States,Community and Lifestyle,4499,19600
+United States,General purpose,429073,850053
+United States,Consumer goods,16267,40536
+United States,Sports,1686,11011
+United States,Semiconductor,17301,25640
+United States,Facial Recognition,1050,1821
+United States,Computer Vision,22654,46574
+United States,Speech Recognition,1734,4968
+United States,Information Technology,201345,466142
+United States,Lending and Investments,10250,20933
+United States,Agriculture,3700,7547
+United States,Robotics,20131,33382
+Uruguay,All,25,301
+Vietnam,Information Technology,83,116
+Vietnam,Software,116,356
+Vietnam,General purpose,115,347
+Vietnam,Data and analytics,115,353
+Vietnam,Real estate,81,93
+Vietnam,All,184,714
+Vietnam,Finance,91,97
+missing,Professional services,71,583
+missing,All,65265,73043
+missing,General purpose,62056,68027
+missing,NLP,26,26
+missing,Healthcare and Life Sciences,50,757
+missing,Finance,459,1108
+missing,Hardware,5393,6011
+missing,Biotechnology,55010,55127
+missing,Energy and natural resources,164,261
+missing,Transportation,2505,2581
+missing,Privacy and Security,55059,55229
+missing,Gaming,55005,55029
+missing,Software,56375,62849
+missing,Data and analytics,56777,62665
+missing,Information Technology,55766,57433
+missing,"Mobile, platforms & Internet services",55078,56141
+missing,Cyber Security,55007,55007
+missing,Other,64,326
+Albania,Software,0,0
+Albania,Data and analytics,0,0
+Albania,Hardware,0,0
+Albania,General purpose,0,0
+Algeria,Education,0,0
+Algeria,"Military, public safety and government",0,0
+Argentina,NLP,0,345
+Argentina,Energy and natural resources,0,1
+Argentina,Telecommunications,0,344
+Armenia,Computer Vision,0,4
+Armenia,Hardware,0,0
+Armenia,Information Technology,0,4
+Armenia,Agriculture,0,0
+Armenia,"Mobile, platforms & Internet services",0,0
+Armenia,Media and Entertainment,0,0
+Armenia,"Sales, retail, commerce, marketing",0,0
+Armenia,Consumer goods,0,0
+Austria,Agriculture,0,1
+Azerbaijan,Hardware,0,0
+Bahrain,Professional services,0,198
+Bahrain,Software,0,195
+Bahrain,Facial Recognition,0,0
+Bahrain,Finance,0,3
+Bahrain,Privacy and Security,0,0
+Bahrain,Cyber Security,0,0
+Barbados,Software,0,18
+Barbados,Data and analytics,0,18
+Barbados,All,0,18
+Belarus,"Mobile, platforms & Internet services",0,4
+Belarus,Other,0,0
+Belarus,Hardware,0,2
+Belarus,Information Technology,0,2
+Belarus,Navigation and mapping,0,4
+Belgium,Telecommunications,0,0
+Belgium,Simulation,0,1
+Bolivia,Navigation and mapping,0,1
+Bolivia,General purpose,0,1
+Bolivia,Data and analytics,0,1
+Bolivia,"Mobile, platforms & Internet services",0,1
+Bosnia and Herzegovina,"Mobile, platforms & Internet services",0,0
+Bosnia and Herzegovina,Hardware,0,0
+Bosnia and Herzegovina,Agriculture,0,0
+Bosnia and Herzegovina,Computer Vision,0,0
+Bosnia and Herzegovina,Professional services,0,0
+Bosnia and Herzegovina,Manufacturing,0,0
+Bulgaria,Gaming,0,0
+Chile,Sports,0,0
+Colombia,Privacy and Security,0,1
+Colombia,Sports,0,0
+Costa Rica,"Sales, retail, commerce, marketing",0,0
+Croatia,Media and Entertainment,0,167
+Cyprus,Telecommunications,0,1
+Denmark,Telecommunications,0,89
+Ecuador,Finance,0,5
+Ecuador,"Sales, retail, commerce, marketing",0,5
+Egypt,Computer Vision,0,0
+El Salvador,Professional services,0,0
+Estonia,NLP,0,5
+Ethiopia,All,0,0
+Ethiopia,Data and analytics,0,0
+Ethiopia,Healthcare and Life Sciences,0,0
+Ethiopia,General purpose,0,0
+Ethiopia,Software,0,0
+Ethiopia,Community and Lifestyle,0,0
+Georgia,Finance,0,0
+Georgia,Healthcare and Life Sciences,0,2
+Georgia,Other,0,3
+Georgia,Transportation,0,1
+Greece,Consumer goods,0,0
+Greece,Biotechnology,0,0
+Greece,NLP,0,3
+Greece,Telecommunications,0,58
+Greece,Real estate,0,0
+Grenada,Finance,0,6
+Grenada,General purpose,0,6
+Grenada,Data and analytics,0,6
+Grenada,All,0,6
+Grenada,Software,0,6
+Guatemala,"Mobile, platforms & Internet services",0,6
+Guatemala,Finance,0,6
+Guatemala,Lending and Investments,0,6
+Guatemala,All,0,6
+Iceland,Sports,0,42
+Iceland,"Sales, retail, commerce, marketing",0,0
+Iceland,Navigation and mapping,0,0
+Iceland,Media and Entertainment,0,0
+Indonesia,Consumer goods,0,2
+Indonesia,Robotics,0,220
+Indonesia,Education,0,8
+Iran,NLP,0,0
+Iran,Professional services,0,0
+Iran,"Sales, retail, commerce, marketing",0,0
+Iraq,Agriculture,0,3
+Ireland,Facial Recognition,0,55
+Jordan,Gaming,0,0
+Jordan,Professional services,0,5
+Jordan,Hardware,0,0
+Jordan,Manufacturing,0,0
+Kuwait,"Sales, retail, commerce, marketing",0,1
+Kuwait,Information Technology,0,7
+Kuwait,Other,0,1
+Kyrgyzstan,Healthcare and Life Sciences,0,1
+Kyrgyzstan,Data and analytics,0,1
+Kyrgyzstan,All,0,1
+Kyrgyzstan,Software,0,1
+Kyrgyzstan,General purpose,0,1
+Latvia,NLP,0,0
+Latvia,Computer Vision,0,0
+Latvia,Professional services,0,0
+Lebanon,Energy and natural resources,0,2
+Lebanon,Manufacturing,0,1
+Lebanon,Information Technology,0,0
+Lebanon,Lending and Investments,0,0
+Lebanon,Transportation,0,2
+Lebanon,Community and Lifestyle,0,1
+Lithuania,Transportation,0,4
+Lithuania,Gaming,0,2
+Lithuania,Sports,0,2
+Luxembourg,Education,0,272
+Luxembourg,Consumer goods,0,2
+Madagascar,General purpose,0,6
+Madagascar,All,0,6
+Malaysia,Gaming,0,3
+Malaysia,Navigation and mapping,0,3
+Malaysia,Energy and natural resources,0,15
+Malta,Healthcare and Life Sciences,0,37
+Mauritius,Other,0,50
+Mexico,Cyber Security,0,20
+Morocco,Telecommunications,0,0
+Morocco,Finance,0,1
+Morocco,"Mobile, platforms & Internet services",0,2
+Morocco,Other,0,0
+Morocco,Hardware,0,2
+Morocco,Manufacturing,0,0
+New Zealand,NLP,0,1
+Nigeria,Gaming,0,2
+Oman,Information Technology,0,0
+Oman,Professional services,0,15
+Pakistan,Telecommunications,0,0
+Pakistan,Computer Vision,0,0
+Pakistan,Transportation,0,3
+Paraguay,Community and Lifestyle,0,0
+Paraguay,Sports,0,0
+Paraguay,Healthcare and Life Sciences,0,0
+Peru,Energy and natural resources,0,0
+Peru,Lending and Investments,0,0
+Peru,Finance,0,1
+Philippines,Community and Lifestyle,0,6
+Philippines,Telecommunications,0,6
+Philippines,Agriculture,0,22
+Philippines,Education,0,18
+Philippines,"Sales, retail, commerce, marketing",0,6
+Philippines,NLP,0,1
+Qatar,Media and Entertainment,0,1
+Qatar,"Mobile, platforms & Internet services",0,27
+Qatar,Telecommunications,0,0
+Romania,Agriculture,0,0
+Romania,Biotechnology,0,1
+Romania,Lending and Investments,0,1
+Russia,Agriculture,0,0
+Rwanda,Hardware,0,0
+Rwanda,Education,0,0
+Rwanda,"Mobile, platforms & Internet services",0,0
+Rwanda,Other,0,0
+Rwanda,Community and Lifestyle,0,0
+Saint Kitts and Nevis,Healthcare and Life Sciences,0,4
+Saudi Arabia,Robotics,0,1
+Senegal,Software,0,5
+Senegal,General purpose,0,5
+Senegal,Data and analytics,0,5
+Senegal,Information Technology,0,5
+Senegal,Consumer goods,0,5
+Senegal,All,0,5
+Serbia,Sports,0,43
+Seychelles,"Mobile, platforms & Internet services",0,35
+Slovakia,Robotics,0,0
+Slovakia,Education,0,1
+Slovenia,"Sales, retail, commerce, marketing",0,0
+Slovenia,Consumer goods,0,0
+Slovenia,NLP,0,0
+Slovenia,Professional services,0,1
+Slovenia,Manufacturing,0,0
+South Africa,Telecommunications,0,1
+Swaziland,All,0,4
+Swaziland,Software,0,4
+Swaziland,General purpose,0,4
+Swaziland,Education,0,4
+Swaziland,Data and analytics,0,4
+Switzerland,Facial Recognition,0,42
+Taiwan,"Military, public safety and government",0,11
+Taiwan,Facial Recognition,0,11
+Thailand,Education,0,7
+Thailand,NLP,0,3
+Trinidad and Tobago,Transportation,0,4
+Trinidad and Tobago,Information Technology,0,1
+Trinidad and Tobago,Professional services,0,1
+Trinidad and Tobago,Computer Vision,0,4
+Tunisia,Computer Vision,0,0
+Tunisia,Manufacturing,0,0
+Tunisia,Sports,0,0
+Ukraine,"Military, public safety and government",0,0
+Ukraine,NLP,0,0
+Ukraine,Simulation,0,0
+Ukraine,Computer Vision,0,0
+Ukraine,Gaming,0,0
+Ukraine,Semiconductor,0,0
+United Arab Emirates,Biotechnology,0,3
+Uruguay,Media and Entertainment,0,0
+Uruguay,Computer Vision,0,168
+Uruguay,NLP,0,1
+Uzbekistan,Information Technology,0,0
+Uzbekistan,General purpose,0,0
+Venezuela,General purpose,0,0
+Venezuela,NLP,0,0
+Vietnam,Computer Vision,0,253
+Vietnam,Agriculture,0,2
+Vietnam,Gaming,0,0
+missing,Semiconductor,0,67
+missing,Telecommunications,0,62
+Algeria,Information Technology,0,0
+Algeria,Agriculture,0,0
+Algeria,Data and analytics,0,0
+Algeria,All,0,0
+Algeria,General purpose,0,0
+Algeria,Professional services,0,0
+Algeria,Software,0,0
+Argentina,Finance,0,1
+Argentina,Navigation and mapping,0,0
+Argentina,Consumer goods,0,0
+Argentina,Media and Entertainment,0,1
+Argentina,Manufacturing,0,0
+Argentina,"Sales, retail, commerce, marketing",0,1
+Argentina,Real estate,0,0
+Argentina,Transportation,0,0
+Argentina,"Military, public safety and government",0,0
+Argentina,Cyber Security,0,0
+Argentina,Computer Vision,0,0
+Argentina,Community and Lifestyle,0,2
+Armenia,General purpose,0,3
+Armenia,Data and analytics,0,3
+Armenia,Professional services,0,0
+Armenia,Finance,0,0
+Armenia,Biotechnology,0,3
+Austria,Navigation and mapping,0,9
+Austria,"Military, public safety and government",0,1
+Azerbaijan,Data and analytics,0,0
+Azerbaijan,Information Technology,0,0
+Azerbaijan,Software,0,0
+Azerbaijan,All,0,0
+Azerbaijan,Education,0,0
+Azerbaijan,Professional services,0,0
+Azerbaijan,"Mobile, platforms & Internet services",0,0
+Azerbaijan,Simulation,0,0
+Azerbaijan,General purpose,0,0
+Bahrain,Biotechnology,0,0
+Bahrain,Hardware,0,0
+Bahrain,"Mobile, platforms & Internet services",0,0
+Bahrain,"Sales, retail, commerce, marketing",0,0
+Bahrain,All,0,198
+Bahrain,Healthcare and Life Sciences,0,0
+Bahrain,General purpose,0,198
+Bahrain,Data and analytics,0,198
+Bahrain,Information Technology,0,0
+Bahrain,Transportation,0,0
+Bangladesh,"Military, public safety and government",0,0
+Bangladesh,Cyber Security,0,0
+Bangladesh,Media and Entertainment,0,0
+Bangladesh,"Sales, retail, commerce, marketing",0,0
+Bangladesh,Privacy and Security,0,0
+Bangladesh,Computer Vision,0,0
+Bangladesh,Community and Lifestyle,0,0
+Bangladesh,Telecommunications,0,0
+Bangladesh,Information Technology,0,0
+Bangladesh,Agriculture,0,0
+Bangladesh,Transportation,0,4
+Bangladesh,Hardware,0,0
+Bangladesh,Professional services,0,0
+Bangladesh,Healthcare and Life Sciences,0,0
+Belgium,Sports,0,0
+Belize,Healthcare and Life Sciences,0,10
+Belize,"Mobile, platforms & Internet services",0,10
+Bolivia,Software,0,1
+Bolivia,Finance,0,0
+Bolivia,Other,0,0
+Bolivia,"Sales, retail, commerce, marketing",0,0
+Bolivia,All,0,1
+Bosnia and Herzegovina,Transportation,0,0
+Bosnia and Herzegovina,Software,0,0
+Bosnia and Herzegovina,Other,0,0
+Bosnia and Herzegovina,General purpose,0,0
+Bosnia and Herzegovina,Information Technology,0,0
+Bosnia and Herzegovina,Data and analytics,0,0
+Bosnia and Herzegovina,Finance,0,0
+Bosnia and Herzegovina,"Sales, retail, commerce, marketing",0,0
+Bosnia and Herzegovina,All,0,1
+Bulgaria,Lending and Investments,0,0
+Bulgaria,Sports,0,0
+Bulgaria,Community and Lifestyle,0,29
+Bulgaria,Real estate,0,0
+Bulgaria,Education,0,0
+Bulgaria,Computer Vision,0,0
+Burkina Faso,All,0,0
+Burkina Faso,Lending and Investments,0,0
+Burkina Faso,Transportation,0,0
+Burkina Faso,"Sales, retail, commerce, marketing",0,0
+Burkina Faso,Education,0,0
+Burkina Faso,Finance,0,0
+Cambodia,NLP,0,0
+Cambodia,Software,0,0
+Cambodia,Data and analytics,0,0
+Cambodia,Finance,0,0
+Cambodia,"Sales, retail, commerce, marketing",0,0
+Cambodia,All,0,0
+Cambodia,Lending and Investments,0,0
+Chile,Privacy and Security,0,0
+Chile,Cyber Security,0,0
+Chile,Navigation and mapping,0,0
+Chile,Robotics,0,1
+Chile,Media and Entertainment,0,1
+Colombia,Real estate,0,0
+Colombia,Computer Vision,0,0
+Colombia,"Military, public safety and government",0,0
+Colombia,Agriculture,0,0
+Colombia,Media and Entertainment,0,0
+Costa Rica,Lending and Investments,0,0
+Costa Rica,Hardware,0,0
+Costa Rica,Education,0,0
+Croatia,Real estate,0,359
+Croatia,Professional services,0,1
+Croatia,Lending and Investments,0,0
+Croatia,Healthcare and Life Sciences,0,0
+Croatia,NLP,0,0
+Croatia,Finance,0,168
+Croatia,Sports,0,0
+Croatia,Robotics,0,0
+Czechia,Biotechnology,0,20
+Côte d'Ivoire,General purpose,0,0
+Côte d'Ivoire,Information Technology,0,0
+Côte d'Ivoire,Community and Lifestyle,0,0
+Côte d'Ivoire,Data and analytics,0,0
+Côte d'Ivoire,Software,0,0
+Côte d'Ivoire,Other,0,0
+Côte d'Ivoire,Healthcare and Life Sciences,0,0
+Côte d'Ivoire,Media and Entertainment,0,0
+Côte d'Ivoire,Privacy and Security,0,0
+Côte d'Ivoire,"Mobile, platforms & Internet services",0,0
+Denmark,Semiconductor,0,0
+Dominican Republic,Software,0,0
+Dominican Republic,Information Technology,0,0
+Dominican Republic,Data and analytics,0,0
+Dominican Republic,NLP,0,0
+Dominican Republic,Professional services,0,0
+Dominican Republic,General purpose,0,0
+Ecuador,Transportation,0,0
+Ecuador,Manufacturing,0,0
+Ecuador,Professional services,0,0
+Egypt,Real estate,0,18
+Egypt,Manufacturing,0,1
+Egypt,Lending and Investments,0,0
+Egypt,Agriculture,0,1
+Egypt,Telecommunications,0,0
+Egypt,Robotics,0,2
+Egypt,Energy and natural resources,0,0
+Egypt,NLP,0,0
+Egypt,Media and Entertainment,0,0
+El Salvador,Finance,0,0
+Estonia,Semiconductor,0,0
+Estonia,Lending and Investments,0,1
+Estonia,Biotechnology,0,9
+Estonia,Speech Recognition,0,1
+Finland,Simulation,0,0
+Finland,Community and Lifestyle,0,1
+Finland,Sports,0,0
+Finland,Speech Recognition,0,0
+Georgia,Telecommunications,0,0
+Georgia,"Mobile, platforms & Internet services",0,0
+Georgia,Information Technology,0,3
+Georgia,Hardware,0,3
+Ghana,Other,0,9
+Ghana,"Mobile, platforms & Internet services",0,16
+Ghana,Hardware,0,1
+Ghana,Transportation,0,3
+Ghana,Consumer goods,0,1
+Ghana,"Sales, retail, commerce, marketing",0,1
+Ghana,Education,0,3
+Ghana,Information Technology,0,1
+Ghana,Energy and natural resources,0,3
+Greece,Healthcare and Life Sciences,0,3
+Greece,Professional services,0,0
+Greece,Community and Lifestyle,0,1
+Greece,Finance,0,54
+Honduras,Media and Entertainment,0,0
+Honduras,General purpose,0,0
+Honduras,Data and analytics,0,0
+Honduras,Software,0,0
+Honduras,"Mobile, platforms & Internet services",0,0
+Hungary,Energy and natural resources,0,0
+Iceland,Transportation,0,4
+Iceland,Energy and natural resources,0,2
+Iceland,Agriculture,0,2
+Iceland,"Military, public safety and government",0,4
+India,Facial Recognition,0,5
+Indonesia,Navigation and mapping,0,0
+Indonesia,Healthcare and Life Sciences,0,4
+Indonesia,Privacy and Security,0,7
+Indonesia,Computer Vision,0,5
+Indonesia,Agriculture,0,20
+Indonesia,Hardware,0,233
+Iran,Other,0,0
+Iran,Data and analytics,0,0
+Iran,Information Technology,0,0
+Iran,All,0,0
+Iran,General purpose,0,0
+Iran,Software,0,0
+Iraq,Education,0,2
+Jamaica,Lending and Investments,0,0
+Jamaica,Other,0,0
+Jamaica,Finance,0,0
+Japan,Speech Recognition,0,1
+Jordan,"Mobile, platforms & Internet services",0,1
+Jordan,"Sales, retail, commerce, marketing",0,0
+Jordan,Telecommunications,0,0
+Jordan,Other,0,0
+Jordan,Finance,0,5
+Jordan,Real estate,0,0
+Jordan,Information Technology,0,1
+Jordan,Lending and Investments,0,0
+Jordan,Transportation,0,0
+Jordan,Education,0,0
+Jordan,Media and Entertainment,0,3
+Kazakhstan,Community and Lifestyle,0,0
+Kazakhstan,"Sales, retail, commerce, marketing",0,0
+Kazakhstan,Lending and Investments,0,0
+Kazakhstan,Agriculture,0,0
+Kazakhstan,Other,0,0
+Kazakhstan,Education,0,0
+Kazakhstan,Media and Entertainment,0,0
+Kenya,Privacy and Security,0,0
+Kenya,Energy and natural resources,0,0
+Kenya,Media and Entertainment,0,0
+Kenya,Professional services,0,0
+Kenya,Transportation,0,0
+Kenya,Telecommunications,0,1
+Kenya,Computer Vision,0,5
+Kenya,Cyber Security,0,0
+Kenya,NLP,0,14
+Kenya,Manufacturing,0,0
+Latvia,Real estate,0,0
+Latvia,Media and Entertainment,0,1
+Latvia,Manufacturing,0,0
+Latvia,Energy and natural resources,0,0
+Lebanon,"Sales, retail, commerce, marketing",0,1
+Lebanon,Finance,0,2
+Lebanon,Media and Entertainment,0,1
+Lebanon,Hardware,0,0
+Lebanon,NLP,0,0
+Lebanon,Robotics,0,0
+Lebanon,Real estate,0,0
+Lithuania,"Military, public safety and government",0,0
+Lithuania,Real estate,0,3
+Lithuania,Speech Recognition,0,0
+Luxembourg,Facial Recognition,0,0
+Luxembourg,NLP,0,0
+Malaysia,Agriculture,0,1
+Malaysia,Speech Recognition,0,0
+Malaysia,Biotechnology,0,1
+Malaysia,Privacy and Security,0,1
+Malaysia,Education,0,8
+Malta,Professional services,0,5
+Mauritius,Information Technology,0,52
+Mauritius,"Sales, retail, commerce, marketing",0,2
+Mauritius,Education,0,2
+Mexico,Navigation and mapping,0,0
+Mexico,Agriculture,0,0
+Mexico,Manufacturing,0,0
+Mexico,Energy and natural resources,0,1
+Mexico,"Military, public safety and government",0,4
+Mexico,Sports,0,0
+Mexico,Telecommunications,0,41
+Moldova,Software,0,0
+Moldova,All,0,0
+Moldova,Real estate,0,0
+Moldova,"Sales, retail, commerce, marketing",0,0
+Mongolia,Finance,0,0
+Mongolia,"Mobile, platforms & Internet services",0,0
+Mongolia,Healthcare and Life Sciences,0,0
+Mongolia,Education,0,0
+Mongolia,NLP,0,0
+Morocco,Healthcare and Life Sciences,0,0
+Morocco,Data and analytics,0,3
+Morocco,Information Technology,0,2
+Morocco,Software,0,3
+Morocco,Transportation,0,0
+Nigeria,Manufacturing,0,0
+Nigeria,Computer Vision,0,0
+Nigeria,Agriculture,0,1
+Nigeria,Community and Lifestyle,0,0
+Nigeria,NLP,0,0
+Nigeria,Other,0,0
+Nigeria,Telecommunications,0,0
+North Macedonia,"Sales, retail, commerce, marketing",0,0
+North Macedonia,NLP,0,0
+North Macedonia,Media and Entertainment,0,0
+North Macedonia,Education,0,0
+Oman,"Mobile, platforms & Internet services",0,0
+Oman,General purpose,0,15
+Oman,Data and analytics,0,15
+Oman,"Sales, retail, commerce, marketing",0,0
+Pakistan,Professional services,0,0
+Pakistan,"Mobile, platforms & Internet services",0,2
+Pakistan,Healthcare and Life Sciences,0,2
+Pakistan,Community and Lifestyle,0,1
+Pakistan,Other,0,0
+Pakistan,Finance,0,2
+Pakistan,Agriculture,0,0
+Panama,"Sales, retail, commerce, marketing",0,0
+Panama,Other,0,0
+Panama,"Mobile, platforms & Internet services",0,0
+Panama,Gaming,0,0
+Panama,Media and Entertainment,0,0
+Paraguay,General purpose,0,0
+Paraguay,Software,0,0
+Paraguay,Data and analytics,0,0
+Paraguay,All,0,0
+Paraguay,Agriculture,0,0
+Peru,Robotics,0,0
+Peru,Professional services,0,1
+Peru,Computer Vision,0,0
+Peru,Transportation,0,0
+Peru,Consumer goods,0,0
+Peru,"Sales, retail, commerce, marketing",0,0
+Peru,Healthcare and Life Sciences,0,1
+Peru,Biotechnology,0,0
+Peru,Information Technology,0,3
+Peru,Media and Entertainment,0,0
+Peru,"Mobile, platforms & Internet services",0,3
+Peru,Hardware,0,1
+Philippines,Real estate,0,2
+Philippines,Healthcare and Life Sciences,0,7
+Philippines,Energy and natural resources,0,0
+Philippines,Privacy and Security,0,6
+Poland,Lending and Investments,0,18
+Poland,Facial Recognition,0,0
+Poland,Speech Recognition,0,0
+Portugal,Speech Recognition,0,2
+Portugal,Agriculture,0,1
+Portugal,Robotics,0,5
+Qatar,Hardware,0,28
+Qatar,Cyber Security,0,0
+Qatar,NLP,0,0
+Qatar,Robotics,0,0
+Qatar,Privacy and Security,0,0
+Romania,Consumer goods,0,0
+Romania,Transportation,0,0
+Romania,Manufacturing,0,0
+Romania,Navigation and mapping,0,0
+Russia,Privacy and Security,0,0
+Russia,Media and Entertainment,0,16
+Russia,Robotics,0,4
+Russia,Biotechnology,0,1
+Russia,Sports,0,1
+Saint Kitts and Nevis,Consumer goods,0,0
+Saint Kitts and Nevis,Media and Entertainment,0,0
+Saint Kitts and Nevis,Hardware,0,0
+Saint Kitts and Nevis,Gaming,0,0
+Saudi Arabia,Navigation and mapping,0,18
+Serbia,Privacy and Security,0,0
+Serbia,Finance,0,0
+Serbia,NLP,0,0
+Serbia,Professional services,0,55000
+Serbia,Speech Recognition,0,0
+Serbia,Navigation and mapping,0,0
+Seychelles,Media and Entertainment,0,0
+Seychelles,Gaming,0,0
+Slovakia,Community and Lifestyle,0,0
+Slovakia,Simulation,0,0
+Slovakia,Real estate,0,1
+Slovenia,Biotechnology,0,0
+Slovenia,Other,0,9
+Slovenia,Simulation,0,1
+Slovenia,Finance,0,9
+Slovenia,Transportation,0,1
+Slovenia,Privacy and Security,0,0
+South Africa,Media and Entertainment,0,1
+South Africa,"Military, public safety and government",0,1
+South Africa,Consumer goods,0,0
+South Korea,Speech Recognition,0,1
+South Korea,Simulation,0,3
+Spain,Semiconductor,0,0
+Sri Lanka,Telecommunications,0,0
+Sri Lanka,Computer Vision,0,0
+Sri Lanka,Agriculture,0,0
+Sri Lanka,Community and Lifestyle,0,0
+Sri Lanka,Energy and natural resources,0,0
+Sri Lanka,Biotechnology,0,0
+Sri Lanka,Finance,0,0
+Sweden,Simulation,0,0
+Taiwan,Gaming,0,2
+Taiwan,Telecommunications,0,1
+Taiwan,Speech Recognition,0,0
+Tanzania,Information Technology,0,0
+Tanzania,Education,0,0
+Tanzania,"Sales, retail, commerce, marketing",0,0
+Tanzania,Healthcare and Life Sciences,0,0
+Thailand,"Sales, retail, commerce, marketing",0,16
+Thailand,Lending and Investments,0,0
+Thailand,Energy and natural resources,0,0
+Thailand,Real estate,0,1
+Tunisia,Navigation and mapping,0,0
+Tunisia,Finance,0,1
+Tunisia,Privacy and Security,0,0
+Tunisia,NLP,0,0
+Tunisia,Healthcare and Life Sciences,0,1
+Tunisia,Community and Lifestyle,0,1
+Tunisia,Education,0,0
+Tunisia,Professional services,0,1
+Tunisia,Transportation,0,0
+Tunisia,Energy and natural resources,0,0
+Tunisia,Agriculture,0,1
+Turkey,Simulation,0,5
+Uganda,"Mobile, platforms & Internet services",0,0
+Uganda,Information Technology,0,0
+Uganda,Finance,0,0
+Uganda,Healthcare and Life Sciences,0,0
+Uganda,All,0,0
+Uganda,Software,0,0
+Uganda,Agriculture,0,0
+Uganda,General purpose,0,0
+Uganda,Data and analytics,0,0
+Ukraine,Agriculture,0,0
+Ukraine,Consumer goods,0,1
+Ukraine,Lending and Investments,0,0
+Ukraine,Education,0,0
+Ukraine,Sports,0,0
+Ukraine,Other,0,0
+Ukraine,Healthcare and Life Sciences,0,0
+United Arab Emirates,"Military, public safety and government",0,1
+United Arab Emirates,Agriculture,0,0
+Uruguay,Community and Lifestyle,0,1
+Uruguay,Professional services,0,103
+Uruguay,Consumer goods,0,0
+Uruguay,Hardware,0,167
+Uruguay,"Mobile, platforms & Internet services",0,268
+Uruguay,Lending and Investments,0,100
+Uruguay,Finance,0,100
+Uzbekistan,Other,0,0
+Uzbekistan,"Sales, retail, commerce, marketing",0,0
+Uzbekistan,Data and analytics,0,0
+Uzbekistan,Transportation,0,0
+Uzbekistan,"Mobile, platforms & Internet services",0,0
+Vietnam,Media and Entertainment,0,1
+Vietnam,Energy and natural resources,0,0
+Vietnam,Consumer goods,0,11
+Vietnam,Healthcare and Life Sciences,0,1
+Vietnam,Sports,0,0
+Zambia,Software,0,2
+Zambia,"Military, public safety and government",0,0
+Zambia,Data and analytics,0,2
+Zambia,General purpose,0,2
+Zambia,Healthcare and Life Sciences,0,1
+Zambia,Agriculture,0,1
+Zambia,Information Technology,0,0
+Zambia,Hardware,0,0
+Zambia,Finance,0,0
+Zambia,Other,0,0
+Zambia,"Mobile, platforms & Internet services",0,0
+Zimbabwe,Software,0,0
+Zimbabwe,All,0,0
+Zimbabwe,Data and analytics,0,0
+Zimbabwe,Energy and natural resources,0,0
+Zimbabwe,Healthcare and Life Sciences,0,0
+Zimbabwe,General purpose,0,0
+missing,Navigation and mapping,0,3
+Argentina,Education,1,553
+Argentina,Hardware,1,1
+Argentina,Robotics,1,1
+Argentina,Sports,1,1
+Armenia,Software,1,7
+Armenia,All,1,8
+Austria,Cyber Security,1,1
+Austria,Sports,1,3
+Austria,Community and Lifestyle,1,3
+Belarus,General purpose,1,6
+Belarus,Data and analytics,1,8
+Belarus,Software,1,6
+Belarus,Computer Vision,1,3
+Belgium,Navigation and mapping,1,132
+Belgium,Speech Recognition,1,1
+Botswana,Software,1,1
+Botswana,All,1,2
+Botswana,Data and analytics,1,1
+Botswana,Finance,1,1
+Botswana,General purpose,1,1
+Brazil,Gaming,1,4
+Bulgaria,Cyber Security,1,1
+Bulgaria,Biotechnology,1,1
+Bulgaria,Privacy and Security,1,1
+Bulgaria,Media and Entertainment,1,1
+Chile,Facial Recognition,1,1
+Chile,Computer Vision,1,2
+Chile,Consumer goods,1,74
+Chile,Manufacturing,1,1
+Chile,Gaming,1,2
+Chile,Biotechnology,1,4
+Colombia,Healthcare and Life Sciences,1,1
+Colombia,NLP,1,1
+Costa Rica,Information Technology,1,1
+Costa Rica,General purpose,1,1
+Costa Rica,"Mobile, platforms & Internet services",1,1
+Costa Rica,Software,1,1
+Costa Rica,Finance,1,1
+Costa Rica,Data and analytics,1,1
+Croatia,Privacy and Security,1,2
+Croatia,Manufacturing,1,2
+Cyprus,NLP,1,2
+Cyprus,Privacy and Security,1,1
+Cyprus,Cyber Security,1,1
+Czechia,"Military, public safety and government",1,1
+Czechia,Energy and natural resources,1,3
+Côte d'Ivoire,All,1,1
+Côte d'Ivoire,Finance,1,1
+Egypt,Healthcare and Life Sciences,1,5
+El Salvador,Data and analytics,1,1
+El Salvador,Software,1,1
+El Salvador,General purpose,1,1
+El Salvador,All,1,1
+Estonia,Navigation and mapping,1,1
+Finland,Lending and Investments,1,993
+Finland,Facial Recognition,1,1
+France,Facial Recognition,1,4
+Georgia,"Sales, retail, commerce, marketing",1,2
+Georgia,Software,1,7
+Georgia,Data and analytics,1,7
+Georgia,General purpose,1,7
+Greece,Manufacturing,1,1
+Honduras,All,1,1
+Hungary,Telecommunications,1,1
+Hungary,Gaming,1,2
+Hungary,Manufacturing,1,1
+Hungary,Community and Lifestyle,1,1
+Iceland,Biotechnology,1,1
+Iceland,"Mobile, platforms & Internet services",1,4
+Iceland,Computer Vision,1,1
+Iceland,NLP,1,1
+Iceland,Community and Lifestyle,1,1
+Iceland,Gaming,1,1
+Indonesia,Community and Lifestyle,1,23
+Indonesia,Transportation,1,1
+Ireland,Gaming,1,4
+Israel,Simulation,1,95
+Italy,Semiconductor,1,1
+Japan,"Military, public safety and government",1,3
+Jordan,Community and Lifestyle,1,1
+Kazakhstan,Hardware,1,1
+Kazakhstan,Finance,1,1
+Kazakhstan,Privacy and Security,1,1
+Kenya,Lending and Investments,1,1
+Kenya,Community and Lifestyle,1,1
+Kenya,Real estate,1,1
+Kenya,Hardware,1,4
+Kenya,Education,1,6
+Kenya,Semiconductor,1,1
+Kenya,Consumer goods,1,1
+Latvia,"Sales, retail, commerce, marketing",1,1
+Latvia,"Mobile, platforms & Internet services",1,1
+Latvia,Other,1,2
+Latvia,Transportation,1,1
+Lebanon,Professional services,1,3
+Lebanon,Education,1,2
+Lebanon,Other,1,2
+Lithuania,Manufacturing,1,1
+Lithuania,Media and Entertainment,1,6
+Lithuania,Education,1,1
+Lithuania,Consumer goods,1,5
+Lithuania,Energy and natural resources,1,1
+Lithuania,Professional services,1,1
+Luxembourg,Sports,1,1
+Luxembourg,Other,1,1
+Malta,"Mobile, platforms & Internet services",1,1
+Malta,Finance,1,1
+Malta,Information Technology,1,37
+Malta,"Sales, retail, commerce, marketing",1,1
+Mexico,Community and Lifestyle,1,1
+Mexico,NLP,1,1
+Mexico,Robotics,1,3
+Mexico,Biotechnology,1,2
+Morocco,General purpose,1,5
+New Zealand,Biotechnology,1,260
+New Zealand,Robotics,1,1
+New Zealand,Telecommunications,1,1
+New Zealand,Real estate,1,199
+Nigeria,Healthcare and Life Sciences,1,6
+Nigeria,Sports,1,1
+North Macedonia,Information Technology,1,1
+North Macedonia,Data and analytics,1,1
+North Macedonia,"Mobile, platforms & Internet services",1,1
+North Macedonia,All,1,1
+North Macedonia,Software,1,1
+North Macedonia,General purpose,1,1
+Pakistan,Education,1,1
+Pakistan,NLP,1,1
+Panama,Robotics,1,1
+Panama,"Military, public safety and government",1,1
+Panama,Hardware,1,1
+Peru,Agriculture,1,1
+Poland,Navigation and mapping,1,21
+Poland,Agriculture,1,6
+Poland,Simulation,1,2
+Portugal,Education,1,3
+Portugal,Telecommunications,1,5
+Portugal,Lending and Investments,1,1
+Qatar,Healthcare and Life Sciences,1,2
+Qatar,Information Technology,1,28
+Romania,NLP,1,1
+Romania,Telecommunications,1,2
+Romania,Computer Vision,1,1
+Romania,Gaming,1,2
+Romania,Real estate,1,2
+Romania,Speech Recognition,1,3
+Romania,Community and Lifestyle,1,2
+Romania,Sports,1,1
+Russia,Lending and Investments,1,1
+Russia,Real estate,1,2
+Russia,Consumer goods,1,1
+Russia,Other,1,2
+Russia,Speech Recognition,1,1
+Russia,NLP,1,1
+Rwanda,Professional services,1,1
+Rwanda,Finance,1,1
+Rwanda,Information Technology,1,1
+Rwanda,Data and analytics,1,1
+Rwanda,All,1,1
+Rwanda,General purpose,1,1
+Rwanda,Software,1,1
+Saint Kitts and Nevis,Data and analytics,1,5
+Saint Kitts and Nevis,General purpose,1,5
+Saint Kitts and Nevis,"Sales, retail, commerce, marketing",1,5
+Saint Kitts and Nevis,Software,1,5
+Saudi Arabia,"Military, public safety and government",1,1
+Saudi Arabia,Manufacturing,1,14803
+Serbia,Computer Vision,1,1
+Serbia,Agriculture,1,1
+Seychelles,Privacy and Security,1,1
+Seychelles,Lending and Investments,1,1
+Seychelles,Information Technology,1,36
+Slovakia,Semiconductor,1,1
+Slovakia,Healthcare and Life Sciences,1,1
+Slovakia,Media and Entertainment,1,1
+Slovenia,Media and Entertainment,1,1
+South Africa,NLP,1,204
+South Africa,Speech Recognition,1,1
+South Korea,Facial Recognition,1,2
+Sri Lanka,Privacy and Security,1,8
+Sri Lanka,Cyber Security,1,8
+Sri Lanka,Other,1,1
+Sri Lanka,Professional services,1,1
+Sri Lanka,Manufacturing,1,1
+Sri Lanka,Sports,1,1
+Sri Lanka,Real estate,1,1
+Sri Lanka,Healthcare and Life Sciences,1,1
+Sri Lanka,Consumer goods,1,1
+Sweden,Semiconductor,1,1
+Switzerland,Sports,1,29
+Taiwan,Real estate,1,1
+Taiwan,Sports,1,1
+Taiwan,Lending and Investments,1,8
+Tanzania,Data and analytics,1,1
+Tanzania,Software,1,1
+Tanzania,General purpose,1,1
+Tanzania,Agriculture,1,1
+Thailand,Speech Recognition,1,1
+Thailand,Agriculture,1,4
+Thailand,Privacy and Security,1,1
+Thailand,Computer Vision,1,1
+Turkey,"Military, public safety and government",1,2
+Turkey,Navigation and mapping,1,1
+Turkey,NLP,1,1
+Ukraine,Professional services,1,3
+United Arab Emirates,Speech Recognition,1,1
+United Arab Emirates,Navigation and mapping,1,1
+Uruguay,Information Technology,1,270
+Uzbekistan,Software,1,3
+Uzbekistan,Lending and Investments,1,1
+Uzbekistan,Finance,1,2
+Venezuela,Transportation,1,1
+Venezuela,Real estate,1,1
+Venezuela,Software,1,1
+Venezuela,Data and analytics,1,1
+Venezuela,Information Technology,1,1
+Venezuela,All,1,1
+Venezuela,"Mobile, platforms & Internet services",1,1
+Vietnam,Telecommunications,1,1
+Vietnam,Professional services,1,273
+Zambia,All,1,2
+missing,Robotics,1,116
+missing,Agriculture,1,96
+missing,"Military, public safety and government",1,19
+Argentina,Other,2,347
+Australia,Semiconductor,2,45
+Bangladesh,"Mobile, platforms & Internet services",2,3
+Belarus,All,2,10
+Belgium,Facial Recognition,2,2
+Belgium,"Military, public safety and government",2,30
+Bulgaria,Finance,2,3
+Bulgaria,Healthcare and Life Sciences,2,3
+Chile,Real estate,2,5
+Chile,Agriculture,2,4
+Colombia,Community and Lifestyle,2,8
+Colombia,Speech Recognition,2,4
+Colombia,Telecommunications,2,3
+Costa Rica,All,2,2
+Croatia,Other,2,2
+Cyprus,Transportation,2,2
+Cyprus,Other,2,4
+Cyprus,Facial Recognition,2,2
+Cyprus,Real estate,2,2
+Cyprus,Media and Entertainment,2,4
+Czechia,Real estate,2,4
+Czechia,Simulation,2,19
+Denmark,NLP,2,99
+Denmark,Gaming,2,2
+Denmark,Real estate,2,95
+Dominican Republic,Transportation,2,2
+Dominican Republic,All,2,2
+Egypt,Transportation,2,5
+Estonia,Consumer goods,2,3
+Estonia,Gaming,2,8
+Estonia,Community and Lifestyle,2,2
+Finland,Robotics,2,81
+Finland,Privacy and Security,2,2
+Finland,Consumer goods,2,512
+Georgia,All,2,9
+Germany,Speech Recognition,2,362
+Ghana,Biotechnology,2,2
+Ghana,Healthcare and Life Sciences,2,2
+Ghana,General purpose,2,18
+Ghana,Data and analytics,2,18
+Greece,Robotics,2,2
+Greece,Semiconductor,2,263
+Hungary,Agriculture,2,8
+Hungary,Sports,2,3
+Hungary,Other,2,3
+Indonesia,Real estate,2,6
+Indonesia,NLP,2,38
+Ireland,Agriculture,2,68
+Ireland,Lending and Investments,2,96
+Jamaica,Information Technology,2,3
+Jordan,General purpose,2,10
+Jordan,Data and analytics,2,10
+Jordan,Software,2,11
+Kazakhstan,Healthcare and Life Sciences,2,3
+Kazakhstan,Professional services,2,2
+Kazakhstan,"Mobile, platforms & Internet services",2,3
+Kenya,"Sales, retail, commerce, marketing",2,19
+Lebanon,Data and analytics,2,8
+Lebanon,General purpose,2,6
+Lebanon,"Mobile, platforms & Internet services",2,2
+Lithuania,Biotechnology,2,2
+Lithuania,Hardware,2,7
+Luxembourg,Professional services,2,274
+Luxembourg,Healthcare and Life Sciences,2,3
+Luxembourg,"Sales, retail, commerce, marketing",2,274
+Luxembourg,Navigation and mapping,2,2
+Malaysia,Media and Entertainment,2,6
+Malta,Education,2,2
+Malta,Software,2,2737
+Malta,Community and Lifestyle,2,2
+Malta,Data and analytics,2,2736
+Malta,Hardware,2,2
+Malta,General purpose,2,2736
+Malta,Media and Entertainment,2,2
+Mexico,Consumer goods,2,9
+Mexico,Privacy and Security,2,31
+Mexico,Professional services,2,236
+Morocco,All,2,6
+Netherlands,Simulation,2,2
+New Zealand,Agriculture,2,7
+New Zealand,Sports,2,70
+New Zealand,Education,2,18
+Nigeria,Education,2,5
+Nigeria,Facial Recognition,2,2
+Norway,Sports,2,9
+Qatar,Lending and Investments,2,3
+Romania,Education,2,6
+Romania,Media and Entertainment,2,3
+Romania,Professional services,2,2
+Russia,Manufacturing,2,28
+Russia,Computer Vision,2,4
+Saudi Arabia,Sports,2,41
+Serbia,Energy and natural resources,2,2
+Seychelles,Data and analytics,2,37
+Seychelles,General purpose,2,37
+Slovakia,"Military, public safety and government",2,3
+Slovakia,Computer Vision,2,8
+Slovakia,NLP,2,3
+Slovakia,Navigation and mapping,2,3
+Slovakia,Other,2,7
+Slovakia,Professional services,2,3
+Slovenia,Hardware,2,3
+Slovenia,Robotics,2,2
+South Africa,Real estate,2,125
+South Africa,Navigation and mapping,2,54
+Sri Lanka,Education,2,2
+Taiwan,Agriculture,2,19
+Tunisia,Information Technology,2,3
+Tunisia,"Mobile, platforms & Internet services",2,2
+Turkey,Other,2,5
+Turkey,Consumer goods,2,3
+Turkey,Community and Lifestyle,2,7
+Turkey,Sports,2,2
+Ukraine,Robotics,2,15
+Ukraine,Transportation,2,15
+Ukraine,Manufacturing,2,14
+United Arab Emirates,NLP,2,85
+Uruguay,Healthcare and Life Sciences,2,5
+Uruguay,Energy and natural resources,2,2
+Uruguay,Biotechnology,2,3
+Argentina,"Mobile, platforms & Internet services",3,356
+Argentina,Agriculture,3,3
+Brazil,Sports,3,6
+Chile,Energy and natural resources,3,58
+Colombia,Education,3,3
+Colombia,Other,3,5
+Croatia,Information Technology,3,364
+Cyprus,Computer Vision,3,6
+Cyprus,Education,3,3
+Czechia,NLP,3,174
+Czechia,Education,3,3
+Czechia,Sports,3,3
+Czechia,Telecommunications,3,38
+Denmark,Privacy and Security,3,618
+Denmark,Simulation,3,3
+Denmark,Cyber Security,3,113
+Ecuador,Data and analytics,3,8
+Ecuador,Information Technology,3,3
+Ecuador,Software,3,9
+Ecuador,General purpose,3,8
+Egypt,Semiconductor,3,35
+Estonia,Media and Entertainment,3,5
+Finland,Navigation and mapping,3,499
+France,Gaming,3,12
+Ghana,Software,3,22
+Greece,Cyber Security,3,3
+Iceland,Professional services,3,1645
+Iceland,Education,3,3
+Iceland,Lending and Investments,3,1603
+Indonesia,Media and Entertainment,3,7
+Ireland,Energy and natural resources,3,75
+Japan,Navigation and mapping,3,31
+Kenya,Sports,3,24
+Kenya,General purpose,3,36
+Lebanon,Software,3,10
+Lithuania,Other,3,4
+Lithuania,Privacy and Security,3,4
+Lithuania,Cyber Security,3,3
+Lithuania,Computer Vision,3,8
+Malaysia,Facial Recognition,3,3
+Malaysia,NLP,3,10
+Malta,Gaming,3,3
+New Zealand,Consumer goods,3,211
+New Zealand,Manufacturing,3,80
+Nigeria,"Military, public safety and government",3,5
+Nigeria,Energy and natural resources,3,3
+Nigeria,Cyber Security,3,5
+Norway,Lending and Investments,3,3
+Norway,Community and Lifestyle,3,5
+Oman,Software,3,18
+Oman,Community and Lifestyle,3,3
+Oman,Transportation,3,3
+Pakistan,Robotics,3,3
+Pakistan,Media and Entertainment,3,3
+Poland,Community and Lifestyle,3,5
+Romania,Robotics,3,3
+Romania,"Military, public safety and government",3,3
+Romania,Energy and natural resources,3,3
+Romania,Privacy and Security,3,3
+Russia,Community and Lifestyle,3,3
+Russia,Professional services,3,4
+Saudi Arabia,Biotechnology,3,3
+Seychelles,Finance,3,38
+Seychelles,Software,3,38
+South Africa,Community and Lifestyle,3,62
+Spain,Speech Recognition,3,1044
+Sri Lanka,Gaming,3,3
+Sri Lanka,Robotics,3,3
+Sweden,Telecommunications,3,3
+Tanzania,All,3,3
+Tunisia,"Sales, retail, commerce, marketing",3,3
+Turkey,Lending and Investments,3,6
+Ukraine,Finance,3,4
+United Kingdom,Facial Recognition,3,63
+Uzbekistan,All,3,4
+Vietnam,Biotechnology,3,3
+Vietnam,Robotics,3,3
+Vietnam,Privacy and Security,3,5
+missing,Simulation,3,3
+missing,Sports,3,161
+missing,Computer Vision,3,130
+Australia,Lending and Investments,4,425
+Austria,Simulation,4,62
+Bangladesh,Education,4,4
+Belgium,Robotics,4,4
+Brazil,Facial Recognition,4,29
+Brazil,"Military, public safety and government",4,4
+Bulgaria,"Sales, retail, commerce, marketing",4,7
+Chile,NLP,4,5
+Czechia,Gaming,4,7
+Egypt,Community and Lifestyle,4,7
+Egypt,Education,4,17
+Egypt,Hardware,4,39
+Greece,"Mobile, platforms & Internet services",4,325
+Hungary,Privacy and Security,4,4
+Hungary,Cyber Security,4,4
+Hungary,NLP,4,5
+Ireland,Speech Recognition,4,73
+Ireland,Navigation and mapping,4,46
+Japan,Simulation,4,4
+Jordan,All,4,12
+Kenya,"Mobile, platforms & Internet services",4,47
+Kuwait,Robotics,4,4
+Kuwait,Hardware,4,4
+Kuwait,Software,4,11
+Kuwait,Data and analytics,4,11
+Kuwait,General purpose,4,11
+Kuwait,Professional services,4,4
+Kuwait,Transportation,4,4
+Latvia,General purpose,4,7
+Latvia,Data and analytics,4,7
+Malaysia,Consumer goods,4,4
+Malaysia,Transportation,4,12
+Mongolia,Data and analytics,4,4
+Mongolia,Information Technology,4,4
+Mongolia,Hardware,4,4
+Mongolia,Software,4,4
+Mongolia,All,4,4
+Mongolia,General purpose,4,4
+Netherlands,Sports,4,279
+Netherlands,Gaming,4,569
+New Zealand,Media and Entertainment,4,14
+New Zealand,Computer Vision,4,9
+Norway,Cyber Security,4,117
+Oman,All,4,24
+Pakistan,"Sales, retail, commerce, marketing",4,7
+Pakistan,Information Technology,4,6
+Pakistan,Hardware,4,4
+Peru,Education,4,4
+Poland,Other,4,46
+Qatar,"Sales, retail, commerce, marketing",4,5
+Romania,Finance,4,7
+Romania,"Sales, retail, commerce, marketing",4,8
+Saint Kitts and Nevis,All,4,8
+Serbia,Data and analytics,4,91
+Slovakia,Hardware,4,10
+South Africa,Transportation,4,63
+South Africa,Robotics,4,56
+Spain,Sports,4,49
+Spain,Simulation,4,4
+Sri Lanka,Media and Entertainment,4,4
+Sweden,NLP,4,17
+Sweden,Cyber Security,4,4
+Thailand,Hardware,4,7
+Thailand,Professional services,4,9
+Thailand,Robotics,4,7
+Tunisia,Software,4,6
+Tunisia,General purpose,4,5
+Tunisia,Data and analytics,4,6
+Turkey,Media and Entertainment,4,15
+Turkey,Robotics,4,4
+Ukraine,Information Technology,4,334
+Vietnam,Education,4,261
+Vietnam,Lending and Investments,4,6
+Vietnam,Hardware,4,16
+missing,Real estate,4,45
+Austria,Other,5,176
+Bangladesh,Software,5,11
+Bangladesh,General purpose,5,11
+Bangladesh,Data and analytics,5,11
+Bulgaria,"Mobile, platforms & Internet services",5,8
+Chile,Hardware,5,83
+Chile,Telecommunications,5,5
+Cyprus,Biotechnology,5,7
+Cyprus,Manufacturing,5,5
+Czechia,Consumer goods,5,23
+Denmark,Community and Lifestyle,5,10
+Egypt,Professional services,5,9
+Estonia,Other,5,7
+Estonia,Healthcare and Life Sciences,5,10
+Finland,Gaming,5,5
+Finland,Telecommunications,5,51
+Hungary,Education,5,7
+Iceland,Healthcare and Life Sciences,5,5
+Italy,Lending and Investments,5,6
+Kazakhstan,General purpose,5,7
+Malaysia,Robotics,5,6
+Malta,All,5,2739
+Netherlands,Navigation and mapping,5,43
+Panama,Information Technology,5,5
+Peru,Data and analytics,5,9
+Peru,General purpose,5,9
+Peru,Software,5,9
+Poland,Energy and natural resources,5,34
+Portugal,Gaming,5,14
+Qatar,Other,5,6
+Romania,Other,5,7
+Russia,Transportation,5,30
+Russia,Telecommunications,5,5
+Saudi Arabia,Education,5,86
+Serbia,Media and Entertainment,5,5
+Serbia,"Sales, retail, commerce, marketing",5,5
+Seychelles,All,5,65
+Singapore,"Military, public safety and government",5,29
+Slovenia,"Mobile, platforms & Internet services",5,5
+Slovenia,Agriculture,5,5
+Slovenia,Computer Vision,5,5
+Slovenia,Information Technology,5,6
+South Africa,Education,5,25
+South Africa,Energy and natural resources,5,129
+Spain,"Military, public safety and government",5,46
+Sri Lanka,"Mobile, platforms & Internet services",5,12
+Sri Lanka,Hardware,5,5
+Sri Lanka,"Sales, retail, commerce, marketing",5,5
+Sweden,"Military, public safety and government",5,12
+Sweden,Sports,5,2373
+Taiwan,Community and Lifestyle,5,21
+Tajikistan,Data and analytics,5,7
+Tajikistan,Software,5,7
+Tajikistan,General purpose,5,7
+Ukraine,"Sales, retail, commerce, marketing",5,7
+United Arab Emirates,Computer Vision,5,9
+missing,Education,5,255
+Australia,Facial Recognition,6,40
+Belgium,Biotechnology,6,267
+Belgium,Semiconductor,6,6
+Brazil,Robotics,6,18
+Brazil,Biotechnology,6,50
+Bulgaria,Transportation,6,6
+Bulgaria,Other,6,6
+Bulgaria,Professional services,6,38
+Chile,Professional services,6,10
+Chile,Education,6,8
+Chile,Transportation,6,10
+Colombia,Hardware,6,8
+Colombia,Professional services,6,11
+Croatia,Consumer goods,6,7
+Croatia,"Mobile, platforms & Internet services",6,7
+Czechia,Community and Lifestyle,6,24
+Denmark,Computer Vision,6,12
+Egypt,"Mobile, platforms & Internet services",6,8
+Egypt,Other,6,9
+Finland,NLP,6,44
+Greece,Media and Entertainment,6,6
+Hungary,Professional services,6,6
+Hungary,Robotics,6,9
+Iceland,Privacy and Security,6,10
+Indonesia,Other,6,11
+Indonesia,"Sales, retail, commerce, marketing",6,37
+Ireland,Robotics,6,114
+Italy,Simulation,6,8
+Italy,Agriculture,6,13
+Japan,Cyber Security,6,7
+Lebanon,All,6,15
+Luxembourg,Community and Lifestyle,6,6
+Luxembourg,Privacy and Security,6,6
+Luxembourg,Finance,6,13
+Malaysia,Community and Lifestyle,6,10
+Malaysia,Real estate,6,6
+Mexico,Other,6,28
+Mexico,Hardware,6,14
+Norway,Privacy and Security,6,119
+Norway,"Military, public safety and government",6,6
+Peru,All,6,10
+Philippines,Computer Vision,6,6
+Philippines,Transportation,6,16
+Philippines,Robotics,6,6
+Philippines,Hardware,6,6
+Poland,Telecommunications,6,9
+Poland,Media and Entertainment,6,28
+Poland,Real estate,6,55
+Portugal,Sports,6,16
+Qatar,Finance,6,8
+Qatar,General purpose,6,7
+Qatar,Data and analytics,6,7
+Romania,Hardware,6,15
+Saudi Arabia,Energy and natural resources,6,11
+Sweden,Lending and Investments,6,11
+Taiwan,Education,6,39
+Taiwan,Robotics,6,11
+Turkey,Agriculture,6,9
+Turkey,Gaming,6,9
+United Arab Emirates,Education,6,32
+Vietnam,Other,6,7
+Australia,Speech Recognition,7,7
+Belgium,NLP,7,141
+Bulgaria,Information Technology,7,55
+Chile,Healthcare and Life Sciences,7,7
+Croatia,Hardware,7,8
+Czechia,Manufacturing,7,14
+Estonia,Agriculture,7,14
+Germany,Simulation,7,290
+Greece,"Sales, retail, commerce, marketing",7,9
+Italy,Gaming,7,7
+Japan,Sports,7,18
+Kenya,Healthcare and Life Sciences,7,29
+Kuwait,All,7,16
+Lithuania,"Sales, retail, commerce, marketing",7,21
+Malaysia,Healthcare and Life Sciences,7,10
+New Zealand,Professional services,7,147
+Nigeria,Media and Entertainment,7,7
+Nigeria,"Sales, retail, commerce, marketing",7,36
+Norway,Biotechnology,7,247
+Norway,Navigation and mapping,7,7
+Philippines,Professional services,7,27
+Russia,Energy and natural resources,7,7
+South Africa,Healthcare and Life Sciences,7,20
+South Africa,Other,7,13
+Thailand,Manufacturing,7,22
+Thailand,Biotechnology,7,7
+Turkey,Telecommunications,7,7
+Ukraine,Hardware,7,26
+Uruguay,"Sales, retail, commerce, marketing",7,8
+Uruguay,Data and analytics,7,115
+Vietnam,Community and Lifestyle,7,11
+Vietnam,Transportation,7,23
+missing,Consumer goods,7,27
+Argentina,Privacy and Security,8,9
+Chile,"Sales, retail, commerce, marketing",8,14
+Colombia,"Mobile, platforms & Internet services",8,13
+Croatia,Facial Recognition,8,8
+Egypt,Finance,8,16
+Estonia,Education,8,21
+Estonia,"Sales, retail, commerce, marketing",8,10
+Finland,Agriculture,8,8
+Finland,Semiconductor,8,11
+France,Speech Recognition,8,68
+Kazakhstan,Data and analytics,8,11
+Nigeria,Professional services,8,12
+Nigeria,Lending and Investments,8,9
+Norway,Media and Entertainment,8,18
+Philippines,Information Technology,8,34
+Poland,Cyber Security,8,53
+Poland,"Military, public safety and government",8,10
+Portugal,Consumer goods,8,25
+Russia,Hardware,8,14
+South Africa,Privacy and Security,8,64
+South Africa,Facial Recognition,8,11
+South Africa,Biotechnology,8,8
+South Africa,Computer Vision,8,66
+South Africa,Cyber Security,8,8
+Switzerland,Telecommunications,8,62
+Switzerland,Lending and Investments,8,155
+Uruguay,General purpose,8,282
+Uruguay,Software,8,282
+Argentina,Biotechnology,9,11
+Argentina,Healthcare and Life Sciences,9,11
+Austria,Privacy and Security,9,437
+Belgium,Education,9,166
+Belgium,Agriculture,9,140
+Brazil,Manufacturing,9,63
+Brazil,Energy and natural resources,9,287
+Czechia,Other,9,11
+Czechia,Healthcare and Life Sciences,9,56
+Denmark,Transportation,9,279
+Egypt,"Sales, retail, commerce, marketing",9,11
+Hungary,Real estate,9,9
+Iceland,Finance,9,1609
+Italy,Navigation and mapping,9,103
+Italy,Sports,9,12
+Lithuania,Healthcare and Life Sciences,9,21
+Mexico,Media and Entertainment,9,9
+New Zealand,Transportation,9,9
+Norway,NLP,9,63
+Pakistan,General purpose,9,16
+Pakistan,Software,9,16
+Pakistan,Data and analytics,9,16
+Poland,Gaming,9,29
+Poland,Consumer goods,9,30
+Slovakia,Manufacturing,9,10
+Turkey,Healthcare and Life Sciences,9,18
+Austria,Lending and Investments,10,10
+Croatia,"Sales, retail, commerce, marketing",10,11
+Ecuador,All,10,20
+Egypt,Information Technology,10,58
+Estonia,Computer Vision,10,12
+Greece,Privacy and Security,10,10
+Hungary,Media and Entertainment,10,12
+New Zealand,Privacy and Security,10,12
+Nigeria,Privacy and Security,10,12
+Nigeria,Hardware,10,12
+Nigeria,"Mobile, platforms & Internet services",10,11
+Panama,Finance,10,11
+Portugal,Energy and natural resources,10,22
+Qatar,Transportation,10,11
+Saudi Arabia,Gaming,10,44
+Singapore,Speech Recognition,10,26
+Slovakia,Transportation,10,12
+Switzerland,NLP,10,12
+Tunisia,All,10,12
+Turkey,Real estate,10,11
+Turkey,Education,10,12
+United Arab Emirates,Lending and Investments,10,626
+United Arab Emirates,Cyber Security,10,10
+Vietnam,NLP,10,10
+Vietnam,"Mobile, platforms & Internet services",10,26
+missing,Manufacturing,10,101
+Austria,Robotics,11,19
+Belgium,Media and Entertainment,11,454
+Chile,Other,11,13
+Colombia,Information Technology,11,18
+Ireland,Real estate,11,73
+Kazakhstan,Software,11,13
+Netherlands,Speech Recognition,11,15
+Portugal,Computer Vision,11,29
+Russia,Facial Recognition,11,11
+Russia,"Mobile, platforms & Internet services",11,12
+Slovakia,Telecommunications,11,38
+Spain,Gaming,11,17
+Spain,Agriculture,11,1043
+Tajikistan,All,11,15
+United Arab Emirates,Gaming,11,19
+United Arab Emirates,Real estate,11,60
+Austria,Consumer goods,12,45
+Chile,"Mobile, platforms & Internet services",12,14
+Colombia,Finance,12,15
+Colombia,Consumer goods,12,12
+Germany,Gaming,12,17
+Germany,Sports,12,19
+Ireland,Consumer goods,12,130
+Kazakhstan,Information Technology,12,13
+New Zealand,Other,12,20
+Pakistan,All,12,23
+Portugal,NLP,12,14
+Portugal,Real estate,12,17
+Saudi Arabia,Agriculture,12,14
+Singapore,Sports,12,17
+Singapore,Simulation,12,112
+Slovakia,"Mobile, platforms & Internet services",12,41
+South Africa,Agriculture,12,12
+Switzerland,Gaming,12,16
+Taiwan,Biotechnology,12,68
+Australia,NLP,13,20
+Brazil,Consumer goods,13,39
+Canada,Sports,13,64
+Colombia,"Sales, retail, commerce, marketing",13,19
+Indonesia,Professional services,13,275
+Israel,Facial Recognition,13,15
+New Zealand,Finance,13,24
+New Zealand,Gaming,13,163
+Poland,Privacy and Security,13,59
+Russia,"Sales, retail, commerce, marketing",13,31
+South Africa,Manufacturing,13,144
+South Korea,"Military, public safety and government",13,163
+Trinidad and Tobago,"Military, public safety and government",13,13
+Trinidad and Tobago,General purpose,13,18
+Trinidad and Tobago,Data and analytics,13,18
+Trinidad and Tobago,Software,13,18
+Turkey,Manufacturing,13,20
+United Arab Emirates,Sports,13,15
+Albania,All,14,20
+Albania,Information Technology,14,20
+Albania,"Mobile, platforms & Internet services",14,20
+Albania,Media and Entertainment,14,20
+Albania,"Sales, retail, commerce, marketing",14,20
+Austria,Telecommunications,14,15
+Belgium,Consumer goods,14,278
+Belgium,Lending and Investments,14,16
+Canada,Simulation,14,956
+Latvia,Hardware,14,14
+New Zealand,Healthcare and Life Sciences,14,342
+Poland,Sports,14,15
+Portugal,Cyber Security,14,16
+Qatar,Software,14,17
+Slovakia,"Sales, retail, commerce, marketing",14,40
+Sri Lanka,Information Technology,14,21
+Switzerland,Navigation and mapping,14,68
+Thailand,Healthcare and Life Sciences,14,20
+Thailand,Finance,14,18
+United Arab Emirates,Media and Entertainment,14,35
+Vietnam,"Sales, retail, commerce, marketing",14,28
+Hungary,Consumer goods,15,15
+Iraq,Lending and Investments,15,15
+Iraq,Finance,15,15
+Iraq,General purpose,15,18
+Iraq,Data and analytics,15,18
+Latvia,Information Technology,15,17
+Panama,General purpose,15,16
+Panama,Data and analytics,15,16
+Panama,Software,15,16
+Poland,Computer Vision,15,39
+Slovakia,Finance,15,15
+Spain,Facial Recognition,15,36
+Taiwan,Computer Vision,15,50
+Turkey,Transportation,15,19
+United Arab Emirates,Manufacturing,15,35
+missing,Lending and Investments,15,24
+Ghana,Lending and Investments,16,16
+Greece,Information Technology,16,332
+Indonesia,Finance,16,30
+Iraq,Software,16,20
+Nigeria,Information Technology,16,25
+Panama,All,16,17
+Poland,Manufacturing,16,90
+Portugal,Manufacturing,16,27
+Saudi Arabia,Healthcare and Life Sciences,16,303
+Sweden,Navigation and mapping,16,23
+Taiwan,Energy and natural resources,16,24
+Turkey,Computer Vision,16,24
+Turkey,Biotechnology,16,21
+Bangladesh,All,17,24
+Brazil,Computer Vision,17,132
+Canada,Facial Recognition,17,19
+Chile,Finance,17,19
+Chile,Information Technology,17,125
+China,"Military, public safety and government",17,191
+Finland,Finance,17,2000
+Iceland,Manufacturing,17,17
+Iraq,All,17,23
+Italy,Education,17,120
+New Zealand,"Sales, retail, commerce, marketing",17,84
+Russia,Healthcare and Life Sciences,17,133
+Russia,Information Technology,17,151
+Slovakia,Energy and natural resources,17,17
+Spain,Lending and Investments,17,82
+Turkey,Cyber Security,17,17
+missing,Community and Lifestyle,17,17
+missing,"Sales, retail, commerce, marketing",17,1053
+Czechia,Computer Vision,18,36
+Denmark,Agriculture,18,24
+Denmark,Education,18,102
+Egypt,General purpose,18,89
+Estonia,Robotics,18,18
+Ghana,Finance,18,37
+Hungary,Biotechnology,18,26
+Ireland,"Military, public safety and government",18,33
+Italy,Biotechnology,18,27
+Italy,"Military, public safety and government",18,19
+Latvia,Software,18,25
+Poland,NLP,18,58
+Russia,Finance,18,18
+Spain,Education,18,2087
+Sri Lanka,Data and analytics,18,26
+Sri Lanka,Software,18,26
+Sweden,Agriculture,18,35
+Austria,NLP,19,26
+Colombia,Transportation,19,22
+Denmark,Biotechnology,19,60
+Egypt,Data and analytics,19,92
+Finland,Energy and natural resources,19,31
+Hungary,Healthcare and Life Sciences,19,24
+Italy,Telecommunications,19,21
+Japan,Gaming,19,38
+Japan,Facial Recognition,19,27
+Poland,Education,19,40
+Saudi Arabia,Media and Entertainment,19,38
+Singapore,NLP,19,152
+Sri Lanka,General purpose,19,26
+Turkey,Energy and natural resources,19,23
+Austria,Manufacturing,20,139
+Austria,Real estate,20,61
+Belize,Finance,20,20
+Belize,Software,20,30
+Belize,Data and analytics,20,30
+Belize,All,20,30
+Belize,Agriculture,20,20
+Belize,General purpose,20,30
+Brazil,Lending and Investments,20,163
+Cyprus,Gaming,20,21
+Cyprus,Healthcare and Life Sciences,20,23
+Cyprus,Sports,20,21
+Cyprus,Community and Lifestyle,20,22
+Hungary,"Sales, retail, commerce, marketing",20,20
+Malaysia,Manufacturing,20,63
+Malaysia,Computer Vision,20,43
+New Zealand,Community and Lifestyle,20,215
+Philippines,Lending and Investments,20,29
+Slovenia,Healthcare and Life Sciences,20,20
+South Korea,Sports,20,103
+Spain,Telecommunications,20,374
+Sweden,Privacy and Security,20,26
+Taiwan,Media and Entertainment,20,6664
+Taiwan,Cyber Security,20,30
+Australia,Education,21,86
+Austria,Media and Entertainment,21,75
+Estonia,Real estate,21,22
+Hungary,Hardware,21,26
+Hungary,"Mobile, platforms & Internet services",21,27
+Israel,Speech Recognition,21,47
+Italy,Computer Vision,21,26
+Mexico,Healthcare and Life Sciences,21,25
+Norway,Transportation,21,22
+Poland,Professional services,21,208
+Poland,Biotechnology,21,27
+Portugal,Community and Lifestyle,21,38
+Spain,Cyber Security,21,178
+Sweden,Computer Vision,21,152
+Switzerland,Education,21,82
+Cyprus,"Sales, retail, commerce, marketing",22,57
+Czechia,Transportation,22,36
+Czechia,Robotics,22,22
+Hungary,Transportation,22,25
+Hungary,Information Technology,22,42
+India,Biotechnology,22,47
+Israel,Lending and Investments,22,620
+Israel,Education,22,29
+Kazakhstan,All,22,25
+Mauritius,General purpose,22,86
+Mauritius,Software,22,86
+Mauritius,Real estate,22,34
+Mauritius,Data and analytics,22,86
+Netherlands,NLP,22,38
+Saudi Arabia,NLP,22,35
+Sweden,Biotechnology,22,25
+Taiwan,Consumer goods,22,45
+Taiwan,Privacy and Security,22,50
+Cyprus,Information Technology,23,26
+Cyprus,Hardware,23,24
+Germany,Telecommunications,23,985
+Ireland,Computer Vision,23,86
+Ireland,Telecommunications,23,81
+Japan,Agriculture,23,44
+Luxembourg,Media and Entertainment,23,295
+Malaysia,Other,23,86
+Norway,Computer Vision,23,59
+Sweden,Consumer goods,23,119
+United Arab Emirates,Healthcare and Life Sciences,23,222
+United Arab Emirates,Privacy and Security,23,43
+missing,Media and Entertainment,23,1069
+Canada,Gaming,27,2070
+Cyprus,"Mobile, platforms & Internet services",27,35
+Czechia,Professional services,27,325
+Estonia,"Mobile, platforms & Internet services",27,34
+Hungary,Computer Vision,27,34
+Ireland,Manufacturing,27,143
+Portugal,"Mobile, platforms & Internet services",27,171
+Portugal,Healthcare and Life Sciences,27,110
+Romania,Healthcare and Life Sciences,27,27
+Slovenia,Software,27,37
+Taiwan,Finance,27,61
+Turkey,Finance,27,34
+Ukraine,Media and Entertainment,27,197

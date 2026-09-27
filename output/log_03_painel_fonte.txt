@@ -1,0 +1,139 @@
+15:06:47 obs. no segundo estágio: 217 | com pesquisadores: 180 
+15:06:47 bootstrap dos canais... 
+15:07:17 Simar-Wilson algoritmo 2 (L1 = 50 , L2 = 500 )... 
+15:07:17 obs. no Simar-Wilson alg. 2: 152 
+15:07:20 dea.env.robust: componentes delta_hat, beta_hat, sigma_hat, bias, delta_hat_hat, delta_ci_low, delta_ci_high, delta_ci_kneip_low, delta_ci_kneip_high, delta_hat_hat_used, beta_hat_hat, sigma_hat_hat, Zbeta_hat_hat, beta_hat_hat_star, sigma_hat_hat_star, beta_ci, sigma_ci 
+15:07:20 faixa de delta corrigido: 1.165 a 11.588 
+                                  modelo               termo coeficiente       ic_inf       ic_sup
+1  H5 Simar-Wilson alg. 2 (rDEA, pooled)         (Intercept)  2.72681463 -4.042975438  9.540999859
+2  H5 Simar-Wilson alg. 2 (rDEA, pooled) efetividade_governo  2.83272332  0.664783015  4.943551072
+3  H5 Simar-Wilson alg. 2 (rDEA, pooled)     alta_tec_export -0.16168938 -0.254187712 -0.065479194
+4  H5 Simar-Wilson alg. 2 (rDEA, pooled)        log_comercio  0.32288302 -1.155379088  1.830927473
+5  H5 Simar-Wilson alg. 2 (rDEA, pooled)          market_cap  0.02661004  0.008215988  0.043868996
+6  H5 Simar-Wilson alg. 2 (rDEA, pooled)     credito_privado -0.04598222 -0.078322285 -0.009309146
+7  H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2018 -0.43964563 -2.835242333  1.843344773
+8  H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2019 -0.59394127 -3.018435187  1.683034856
+9  H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2020 -2.57406533 -5.057087909  0.220582900
+10 H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2021 -3.33519757 -5.957812613 -0.139754370
+   significativo_5pct
+1               FALSE
+2                TRUE
+3                TRUE
+4               FALSE
+5                TRUE
+6                TRUE
+7               FALSE
+8               FALSE
+9               FALSE
+10               TRUE
+                                       modelo               termo    coeficiente        ic_inf
+1                 H5 truncada (escore_bc, M2)         (Intercept)  0.45389952673 -0.0155968418
+2                 H5 truncada (escore_bc, M2) efetividade_governo -0.11144085048 -0.2355077936
+3                 H5 truncada (escore_bc, M2)     alta_tec_export  0.00324301689 -0.0026301052
+4                 H5 truncada (escore_bc, M2)        log_comercio -0.00434998083 -0.1088906270
+5                 H5 truncada (escore_bc, M2)          market_cap -0.00078376071 -0.0018163339
+6                 H5 truncada (escore_bc, M2)     credito_privado  0.00165170321 -0.0006385837
+11                H5 truncada (escore_bc, M2)               sigma  0.19140862411  0.1469208000
+12          H5 truncada sem valores-piso (M2)         (Intercept)  0.49480644657 -0.0140894400
+13          H5 truncada sem valores-piso (M2) efetividade_governo -0.11096904502 -0.2311392632
+14          H5 truncada sem valores-piso (M2)     alta_tec_export  0.00413217042 -0.0018952806
+15          H5 truncada sem valores-piso (M2)        log_comercio -0.01671212935 -0.1393581401
+16          H5 truncada sem valores-piso (M2)          market_cap -0.00082766241 -0.0018042586
+17          H5 truncada sem valores-piso (M2)     credito_privado  0.00154072802 -0.0007575070
+22          H5 truncada sem valores-piso (M2)               sigma  0.18823678191  0.1458212788
+23 H5 truncada com pesquisadores (subamostra)         (Intercept)  0.17632219306 -0.4315519163
+24 H5 truncada com pesquisadores (subamostra) efetividade_governo -0.19545879111 -0.2873530160
+25 H5 truncada com pesquisadores (subamostra)     alta_tec_export  0.00571621863  0.0023735577
+26 H5 truncada com pesquisadores (subamostra)        log_comercio -0.08494244805 -0.1923450198
+27 H5 truncada com pesquisadores (subamostra)   log_pesquisadores  0.09575591983  0.0157729110
+32 H5 truncada com pesquisadores (subamostra)               sigma  0.17927688423  0.1458346485
+33 H5 truncada com talento em IA (subamostra)         (Intercept)  1.04094138080  0.6383254802
+34 H5 truncada com talento em IA (subamostra) efetividade_governo -0.15571211818 -0.2317966391
+35 H5 truncada com talento em IA (subamostra)     alta_tec_export  0.00327510063 -0.0033647905
+36 H5 truncada com talento em IA (subamostra)        log_comercio -0.07809547378 -0.2021678351
+37 H5 truncada com talento em IA (subamostra)         log_talento  0.16972548553  0.0833184987
+42 H5 truncada com talento em IA (subamostra)               sigma  0.16482612813  0.1305403583
+43               H6 truncada (canal patentes)         (Intercept)  0.30801913471 -0.1341879715
+44               H6 truncada (canal patentes)          market_cap -0.00004260251 -0.0016159699
+45               H6 truncada (canal patentes)     credito_privado  0.00087328709 -0.0023604636
+46               H6 truncada (canal patentes)                 npl -0.00273486214 -0.0090013348
+47               H6 truncada (canal patentes) efetividade_governo -0.02694536259 -0.1825278194
+52               H6 truncada (canal patentes)               sigma  0.24765940664  0.1907100194
+53           H6 contraste (canal publicações)         (Intercept)  0.35448088518  0.0641255739
+54           H6 contraste (canal publicações)          market_cap -0.00089804414 -0.0020833528
+55           H6 contraste (canal publicações)     credito_privado  0.00255119973  0.0008988371
+56           H6 contraste (canal publicações)                 npl  0.00445182147 -0.0005477798
+57           H6 contraste (canal publicações) efetividade_governo -0.16212442785 -0.2631919539
+62           H6 contraste (canal publicações)               sigma  0.18486286744  0.1394041108
+63                          H7 canal patentes         (Intercept)  0.68125282472 -0.0361637161
+64                          H7 canal patentes          log_pib_pc -0.03175966371 -0.1222726019
+65                          H7 canal patentes     alta_tec_export  0.00206676416 -0.0021835344
+66                          H7 canal patentes        log_comercio -0.02242543263 -0.1566073974
+71                          H7 canal patentes               sigma  0.21596308107  0.1744934876
+72                       H7 canal publicações         (Intercept)  1.47785686329  0.8802431312
+73                       H7 canal publicações          log_pib_pc -0.09262017642 -0.1627444467
+74                       H7 canal publicações     alta_tec_export  0.00130178779 -0.0031763903
+75                       H7 canal publicações        log_comercio -0.04985981591 -0.1254227718
+80                       H7 canal publicações               sigma  0.18548848010  0.1481633148
+         ic_sup significativo_5pct
+1   0.975620476              FALSE
+2  -0.027593194               TRUE
+3   0.009821899              FALSE
+4   0.097756538              FALSE
+5   0.002222886              FALSE
+6   0.003489111              FALSE
+11  0.198338671               TRUE
+12  1.070872562              FALSE
+13 -0.027258080               TRUE
+14  0.010177117              FALSE
+15  0.104236948              FALSE
+16  0.002130023              FALSE
+17  0.003161106              FALSE
+22  0.196336374               TRUE
+23  0.854012362              FALSE
+24 -0.102652187               TRUE
+25  0.009520550               TRUE
+26  0.036771243              FALSE
+27  0.168237504               TRUE
+32  0.195584330               TRUE
+33  1.682247494               TRUE
+34 -0.077784855               TRUE
+35  0.008037376              FALSE
+36  0.014693674              FALSE
+37  0.303685255               TRUE
+42  0.178201399               TRUE
+43  0.489586295              FALSE
+44  0.003253975              FALSE
+45  0.003762161              FALSE
+46  0.073272678              FALSE
+47  0.117173629              FALSE
+52  0.256737442               TRUE
+53  0.459171370               TRUE
+54  0.001601600              FALSE
+55  0.004452640               TRUE
+56  0.057768901              FALSE
+57 -0.067939924               TRUE
+62  0.193796068               TRUE
+63  1.460847488              FALSE
+64  0.051512628              FALSE
+65  0.009839564              FALSE
+66  0.118654783              FALSE
+71  0.229959796               TRUE
+72  2.159811391               TRUE
+73 -0.030518496               TRUE
+74  0.006205857              FALSE
+75  0.031741871              FALSE
+80  0.205838274               TRUE
+                  escore     p_kruskal p_mann_whitney media_alta media_media_alta media_media_baixa
+1       conjunto M2 (bc) 0.02459219582    0.251923051  0.4454297        0.4674009         0.7071290
+2 canal publicações (bc) 0.00142969946    0.006931992  0.3646532        0.4429366         0.7036095
+3    canal patentes (bc) 0.00001995352    0.042297136  0.2875508        0.2118375         0.7158972
+                       z           rho      ic_inf       ic_sup
+rho  efetividade_governo -0.3165422976 -0.43449742 -0.181484353
+rho1     alta_tec_export  0.1081830037 -0.03718104  0.244593382
+rho2        log_comercio -0.1844200536 -0.31138133 -0.050501184
+rho3          market_cap -0.0004606172 -0.15704998  0.169217742
+rho4     credito_privado -0.1144601797 -0.27747396  0.010525409
+rho5          log_pib_pc -0.2952739743 -0.41702390 -0.156106676
+rho6          pd_pct_pib -0.1256422618 -0.26038471  0.001819985
+15:08:04 FIM segundo estágio Fase A 

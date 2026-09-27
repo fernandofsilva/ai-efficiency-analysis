@@ -1,0 +1,26 @@
+12:12:14 populacao              SP.POP.TOTL           3900 linhas 
+12:12:14 pesquisadores_pm       SP.POP.SCIE.RD.P6     3900 linhas 
+12:12:15 pd_pct_pib             GB.XPD.RSDV.GD.ZS     3900 linhas 
+12:12:16 pib_const_2015         NY.GDP.MKTP.KD        3900 linhas 
+12:12:17 pib_pc_const_2015      NY.GDP.PCAP.KD        3900 linhas 
+12:12:18 pib_ppc_const          NY.GDP.MKTP.PP.KD     3900 linhas 
+12:12:19 fator_ppc              PA.NUS.PPP            3900 linhas 
+12:12:19 artigos_ct             IP.JRN.ARTC.SC        3900 linhas 
+12:12:20 matricula_terciaria    SE.TER.ENRR           3900 linhas 
+12:12:21 internet_pct           IT.NET.USER.ZS        3900 linhas 
+12:13:58 banda_larga_p100       IT.NET.BBND.P2        3900 linhas 
+12:13:59 alta_tec_export_pct    TX.VAL.TECH.MF.ZS     3900 linhas 
+12:14:00 credito_privado_pct    FS.AST.PRVT.GD.ZS     3900 linhas 
+12:14:01 market_cap_pct         CM.MKT.LCAP.GD.ZS     3900 linhas 
+12:14:02 npl_pct                FB.AST.NPER.ZS        3900 linhas 
+12:14:02 zscore_bancos          GFDD.SI.01            2496 linhas 
+12:14:03 patentes_residentes    IP.PAT.RESD           3900 linhas 
+12:14:04 patentes_nao_resid     IP.PAT.NRES           3900 linhas 
+12:14:04 comercio_pct_pib       NE.TRD.GNFS.ZS        3900 linhas 
+12:14:05 cpi                    FP.CPI.TOTL           3900 linhas 
+12:14:06 GOV_WGI_GE.EST          3105 linhas 
+12:14:06 GOV_WGI_CC.EST          3105 linhas 
+12:14:07 GOV_WGI_RL.EST          3105 linhas 
+12:14:07 GOV_WGI_RQ.EST          3105 linhas 
+12:14:08 wgidataset.xlsx baixado: 2106620 bytes 
+12:14:08 FIM downloads World Bank 

@@ -1,0 +1,81 @@
+14:41:38 amostra: 204 obs.; réplicas: 1000 
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 182:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+14:47:38 M2 crs S = 0.5771 p = 0 | 6 min 
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+14:52:01 M2 drs S = 0.9787 p = 0.445 | 4.4 min 
+Error in solving for unit 165:  Status =5
+Error in solving for unit 21:  Status =5
+Error in solving for unit 147:  Status =5
+Error in solving for unit 151:  Status =5
+Error in solving for unit 165:  Status =5
+Error in solving for unit 151:  Status =5
+Error in solving for unit 151:  Status =5
+Error in solving for unit 165:  Status =5
+Error in solving for unit 165:  Status =5
+Error in solving for unit 24:  Status =1
+Error in solving for unit 5:  Status =5
+Error in solving for unit 182:  Status =5
+Error in solving for unit 124:  Status =5
+14:52:28 M1 crs S = 0.3466 p = 0 | 0.4 min 
+  modelo  h0   n    B replicas_validas estatistica p_valor rejeita_h0_5pct s_boot_q05
+1     M2 crs 204 1000             1000   0.5770844   0.000            TRUE  0.8544767
+2     M2 drs 204 1000             1000   0.9786856   0.445           FALSE  0.9666865
+3     M1 crs 204 1000             1000   0.3466378   0.000            TRUE  0.8434438
+  s_boot_mediana   minutos
+1      0.8914961 6.0100598
+2      0.9797759 4.3845285
+3      0.8972537 0.4428039
+14:52:28 FIM teste de RTS 

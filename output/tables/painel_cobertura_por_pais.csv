@@ -1,0 +1,48 @@
+"iso3c","pais_cset","grupo_renda","subamostra_original","anos","anos_conjunto"
+"ARG","Argentina","Renda média-alta",TRUE,9,5
+"AUS","Australia","Alta renda",TRUE,9,5
+"AUT","Austria","Alta renda",TRUE,9,5
+"BEL","Belgium","Alta renda",TRUE,9,5
+"BGR","Bulgaria","Alta renda",TRUE,9,4
+"BRA","Brazil","Renda média-alta",TRUE,9,5
+"CAN","Canada","Alta renda",FALSE,9,5
+"CHE","Switzerland","Alta renda",TRUE,9,5
+"CHL","Chile","Alta renda",TRUE,9,4
+"CHN","China","Renda média-alta",TRUE,9,5
+"COL","Colombia","Renda média-alta",TRUE,9,2
+"CZE","Czechia","Alta renda",FALSE,9,5
+"DEU","Germany","Alta renda",FALSE,9,5
+"DNK","Denmark","Alta renda",FALSE,9,5
+"ESP","Spain","Alta renda",TRUE,9,5
+"FIN","Finland","Alta renda",FALSE,9,5
+"FRA","France","Alta renda",TRUE,9,5
+"GBR","United Kingdom","Alta renda",TRUE,9,5
+"GRC","Greece","Alta renda",TRUE,9,5
+"HRV","Croatia","Alta renda",TRUE,9,2
+"HUN","Hungary","Alta renda",TRUE,9,5
+"IND","India","Renda média-baixa",TRUE,9,2
+"IRL","Ireland","Alta renda",TRUE,9,2
+"ISR","Israel","Alta renda",TRUE,9,5
+"ITA","Italy","Alta renda",TRUE,9,5
+"JPN","Japan","Alta renda",TRUE,9,5
+"KOR","South Korea","Alta renda",FALSE,9,5
+"LUX","Luxembourg","Alta renda",TRUE,9,4
+"MEX","Mexico","Renda média-alta",TRUE,9,5
+"MYS","Malaysia","Renda média-alta",TRUE,9,5
+"NLD","Netherlands","Alta renda",TRUE,9,5
+"NOR","Norway","Alta renda",TRUE,9,5
+"NZL","New Zealand","Alta renda",FALSE,9,5
+"PHL","Philippines","Renda média-alta",TRUE,9,4
+"POL","Poland","Alta renda",TRUE,9,5
+"PRT","Portugal","Alta renda",TRUE,9,5
+"ROU","Romania","Alta renda",TRUE,9,4
+"RUS","Russia","Alta renda",FALSE,9,5
+"SAU","Saudi Arabia","Alta renda",FALSE,9,3
+"SGP","Singapore","Alta renda",TRUE,9,5
+"SRB","Serbia","Renda média-alta",FALSE,9,1
+"SVN","Slovenia","Alta renda",TRUE,9,1
+"SWE","Sweden","Alta renda",FALSE,9,5
+"TUR","Turkey","Renda média-alta",FALSE,9,5
+"UKR","Ukraine","Renda média-alta",TRUE,9,1
+"USA","United States","Alta renda",TRUE,9,5
+"ZAF","South Africa","Renda média-alta",TRUE,9,5

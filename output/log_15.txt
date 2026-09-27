@@ -1,0 +1,13 @@
+15:53:39 Eurostat: acrescentados 3 países: BGR, HRV, SRB 
+15:53:39 MSTI: 584 linhas, 48 economias, 1995 - 2024 | com HERD e GOVERD: 583 
+15:53:39 países do painel cobertos: 41 de 47 | faltam: BRA, IND, MYS, PHL, SAU, UKR 
+    iso3c                         pais  ano gerd_msti_pct_pib goverd_pct_pib herd_pct_pib
+90    CHN China (People’s Republic of) 2021          2.432597     0.37170354    0.1897340
+275   ISR                       Israel 2021          5.556752     0.06142778    0.3969827
+311   KOR                        Korea 2021          4.930121     0.48172218    0.4503936
+528   USA                United States 2021          3.457046     0.28662993    0.3604319
+    pd_publico_pct_pib baixado_em fonte
+90           0.5614375 2026-09-27  MSTI
+275          0.4584104 2026-09-27  MSTI
+311          0.9321158 2026-09-27  MSTI
+528          0.6470619 2026-09-27  MSTI

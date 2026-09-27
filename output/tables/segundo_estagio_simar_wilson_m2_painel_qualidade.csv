@@ -1,0 +1,9 @@
+"modelo","termo","coeficiente","ic_inf","ic_sup","significativo_5pct"
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","(Intercept)",7.74158296294202,0.240671920725259,14.23033010984,TRUE
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","efetividade_governo",1.15277502385363,-0.797382590482634,2.73365239616125,FALSE
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","alta_tec_export",0.00172298856091732,-0.0547424541452656,0.0659778834377948,FALSE
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","log_comercio",-1.16856787514384,-2.62075379989347,0.921268819147698,FALSE
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","market_cap",0.0175348142252195,0.000868285031188569,0.0354650837675496,TRUE
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","credito_privado",-0.0536770570403835,-0.0876188045122993,-0.0158020866229685,TRUE
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2018",0.368537307946963,-1.58686477780647,2.3877667934812,FALSE
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2019",0.0298289057088584,-1.90508938207334,2.10482459616607,FALSE

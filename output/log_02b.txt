@@ -1,0 +1,15 @@
+14:41:38 amostra: 191 obs.; réplicas: 1000 
+Error in solving for unit 49:  Status =5
+14:41:59 M2 crs S = 0.666 p = 0 | 0.4 min 
+14:42:22 M2 drs S = 0.9888 p = 0.598 | 0.4 min 
+Error in solving for unit 1:  Status =1
+14:42:49 M1 crs S = 0.2019 p = 0 | 0.5 min 
+  modelo  h0   n    B replicas_validas estatistica p_valor rejeita_h0_5pct s_boot_q05
+1     M2 crs 191 1000             1000   0.6660349   0.000            TRUE  0.8646260
+2     M2 drs 191 1000             1000   0.9888332   0.598           FALSE  0.9754962
+3     M1 crs 191 1000             1000   0.2018932   0.000            TRUE  0.9106890
+  s_boot_mediana   minutos
+1      0.9039282 0.3633670
+2      0.9873757 0.3794845
+3      0.9454091 0.4505040
+14:42:49 FIM teste de RTS 

@@ -47,3 +47,7 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Arquivos do sistema e imagens de gráficos do AI Index (não são dados)
+.DS_Store
+data/ai_index/*/Charts/
