@@ -13,15 +13,15 @@ Gerado por `R/13_build_painel.R` em 2026-09-27. Janela 2016-2024; 47 países; cr
 | `subamostra_original` | país presente no dataset original | construída |
 | `publicacoes` | artigos de IA (campo All), apenas anos completos | CSET (Zenodo v1.12.0, 15/09/2026) |
 | `citacoes_ok` | citações recebidas por artigos de IA, apenas até 2020 | CSET (Zenodo v1.12.0, 15/09/2026) |
-| `patentes` | pedidos de patente de IA por escritório de depósito, anos completos (<= 2021), Índia NA a partir de 2019 | CSET (Zenodo v1.12.0, 15/09/2026) |
-| `patentes_concedidas_ok` | patentes de IA concedidas, anos completos (<= 2019) | CSET (Zenodo v1.12.0, 15/09/2026) |
+| `patentes` | famílias de patentes de IA atribuídas ao país de prioridade (primeira jurisdição de depósito), pelo ano do primeiro depósito; anos completos (<= 2021); Índia NA a partir de 2019 | CSET (Zenodo v1.12.0, 15/09/2026) |
+| `patentes_concedidas_ok` | famílias de patentes de IA depositadas no ano e posteriormente concedidas (não é contagem por ano de concessão); anos completos (<= 2019) | CSET (Zenodo v1.12.0, 15/09/2026) |
 | `patentes_suspeitas` | flag: série de patentes suspeita (Índia >= 2019) | CSET (Zenodo v1.12.0, 15/09/2026) |
-| `investimento` | investimento estimado em empresas privadas de IA, US$ constantes de 2021 (CPI-EUA) | CSET + CPI-EUA (WDI FP.CPI.TOTL) |
+| `investimento` | investimento em ações de empresas privadas de IA (VC + private equity + fusões e aquisições; exclui dívida, subsídios e empresas listadas), estimado com imputação de negócios não divulgados, US$ de 2021 | CSET + CPI-EUA (WDI FP.CPI.TOTL) |
 | `investimento_divulgado` | investimento divulgado, US$ constantes de 2021 | CSET + CPI-EUA (WDI FP.CPI.TOTL) |
 | `investimento_l1` | investimento no ano anterior | construída |
 | `investimento_mm3` | soma do investimento em t, t-1 e t-2 | construída |
 | `inv_zero` | flag: investimento igual a zero (sem negócio registrado) | construída |
-| `gerd` | P&D total em US$ constantes de 2015 (P&D % PIB x PIB) | construída (WDI GB.XPD.RSDV.GD.ZS x NY.GDP.MKTP.KD) |
+| `gerd` | GERD: P&D interno total executado no país (todos os setores, inclusive empresas), US$ constantes de 2015 | construída (WDI GB.XPD.RSDV.GD.ZS x NY.GDP.MKTP.KD) |
 | `gerd_l1` | GERD no ano anterior | construída (WDI GB.XPD.RSDV.GD.ZS x NY.GDP.MKTP.KD) |
 | `pd_pct_pib` | P&D % PIB (interpolado quando faltante) | WDI GB.XPD.RSDV.GD.ZS |
 | `pd_pct_pib_imputado` | flag: P&D % PIB imputado por interpolação | construída |
@@ -54,7 +54,7 @@ Gerado por `R/13_build_painel.R` em 2026-09-27. Janela 2016-2024; 47 países; cr
 | `log_pib_pc` | log do PIB per capita | construída |
 | `log_comercio` | log do comércio (% PIB) | construída |
 | `obs_modelo_conjunto` | flag: observação usável no modelo conjunto (insumos em t-1 > 0, dois produtos) | construída |
-| `talento_ia_pct` | concentração de talento em IA (% dos membros do LinkedIn), média simples de mulheres e homens | AI Index 2025 (LinkedIn), fig. 4.2.19 |
+| `talento_ia_media_genero_pct` | média NÃO ponderada das taxas de concentração de talento em IA de mulheres e homens (% dos membros do LinkedIn); não é a concentração total do país | AI Index 2025 (LinkedIn), fig. 4.2.19 |
 | `talento_ia_fem_pct` | concentração de talento em IA, mulheres (%) | AI Index 2025 (LinkedIn), fig. 4.2.19 |
 | `talento_ia_masc_pct` | concentração de talento em IA, homens (%) | AI Index 2025 (LinkedIn), fig. 4.2.19 |
 | `contratacao_ia_rel_pct` | taxa relativa de contratação em IA, variação anual (%), média dos meses | AI Index 2025 (LinkedIn), fig. 4.2.14 |
@@ -68,11 +68,11 @@ Gerado por `R/13_build_painel.R` em 2026-09-27. Janela 2016-2024; 47 países; cr
 | `patentes_inventor` | famílias de patentes de IA (IP5) por país de residência do inventor, contagem fracionária, data de prioridade; último ano da fonte excluído por defasagem | OECD Data Explorer, DSD_PATENTS@DF_PATENTS_OECDSPECIFIC, tecnologia AI |
 | `patentes_triadicas` | famílias triádicas de patentes de IA por país do inventor | OECD Data Explorer, DSD_PATENTS@DF_PATENTS_OECDSPECIFIC, tecnologia AI |
 | `patentes_inventor_pm` | famílias IP5 de IA por milhão de habitantes | construída |
-| `investimento_preqin` | VC em IA por país (Preqin via OECD.AI), US$ constantes de 2021 (CPI-EUA); todas as indústrias, estágio VC | OECD.AI (Preqin), gráfico VC investments in AI by country |
+| `investimento_preqin` | VC em IA por país (Preqin via OECD.AI), US$ constantes de 2021; apenas estágio VC, todas as indústrias — universo de transações mais estreito que o do CSET | OECD.AI (Preqin), gráfico VC investments in AI by country |
 | `investimento_preqin_l1` | VC Preqin no ano anterior | construída |
 | `herd_pct_pib` | HERD: P&D executado pelo ensino superior (% PIB) | OECD MSTI (DSD_MSTI@DF_MSTI), medidas H e GV |
 | `goverd_pct_pib` | GOVERD: P&D executado pelo governo (% PIB) | OECD MSTI (DSD_MSTI@DF_MSTI), medidas H e GV |
-| `pd_publico_pct_pib` | P&D público = HERD + GOVERD (% PIB), interpolado por país | construída (MSTI) |
+| `pd_publico_pct_pib` | P&D executado pelo ensino superior e pelo governo (HERD + GOVERD, % PIB), interpolado por país; setor de execução, não fonte de financiamento | construída (MSTI) |
 | `pd_publico_pct_pib_imputado` | flag: P&D público imputado por interpolação | construída (MSTI) |
-| `pd_publico` | P&D público em US$ constantes de 2015 (% PIB x PIB) | construída (MSTI) |
-| `pd_publico_l1` | P&D público no ano anterior | construída (MSTI) |
+| `pd_publico` | P&D executado por ensino superior e governo em US$ constantes de 2015 (% PIB x PIB) | construída (MSTI) |
+| `pd_publico_l1` | P&D de ensino superior e governo no ano anterior | construída (MSTI) |

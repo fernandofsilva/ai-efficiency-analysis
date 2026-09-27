@@ -1,0 +1,4 @@
+"dgp","escala","n_sim","n_dmu","B","rejeicao_5pct","rejeicao_10pct","p_mediano"
+"CRS verdadeiro (tamanho)",1,100,40,100,0.2,0.34,0.165
+"DRS verdadeiro (poder)",0.6,100,40,100,0.84,0.94,0
+"DRS moderado (poder)",0.8,100,40,100,0.49,0.59,0.05

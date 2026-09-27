@@ -1,0 +1,8 @@
+18:42:18 CRS verdadeiro (tamanho) : rejeição a 5% = 0.167 
+18:42:24 DRS verdadeiro (poder) : rejeição a 5% = 0.9 
+18:42:30 DRS moderado (poder) : rejeição a 5% = 0.533 
+                       dgp escala n_sim n_dmu   B rejeicao_5pct rejeicao_10pct p_mediano
+1 CRS verdadeiro (tamanho)    1.0    30    40 100     0.1666667      0.3333333     0.205
+2   DRS verdadeiro (poder)    0.6    30    40 100     0.9000000      0.9333333     0.000
+3     DRS moderado (poder)    0.8    30    40 100     0.5333333      0.6333333     0.030
+18:42:30 FIM validação do teste de RTS 

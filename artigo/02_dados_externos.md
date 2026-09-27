@@ -21,12 +21,12 @@ Consequências: (i) patentes precisam voltar a contagem com a população; (ii) 
 - **Arquivos usados** (filtrar `field == "All"`; ignorar os `*_summary.csv`, que são totais acumulados):
   - `publications_yearly_articles.csv` — artigos de IA por país e ano (204 países), coluna `complete`.
   - `publications_yearly_citations.csv` — citações recebidas (sem flag de completude; forte viés de janela nos anos recentes).
-  - `patents_yearly_applications.csv` — pedidos de patente de IA por **escritório de depósito** (70 países), coluna `complete`.
-  - `patents_yearly_granted.csv` — patentes concedidas (65 países), coluna `complete`.
-  - `companies_yearly_estimated.csv` — investimento estimado (inclui imputação de negócios não divulgados), **milhões de US$ nominais**.
+  - `patents_yearly_applications.csv` — **famílias** de patentes de IA atribuídas ao **país de prioridade** (primeira jurisdição em que o inventor depositou), pelo ano do primeiro depósito (70 países), coluna `complete`.
+  - `patents_yearly_granted.csv` — famílias depositadas no ano e **posteriormente concedidas** em qualquer jurisdição (não é contagem por ano de concessão), 65 países, coluna `complete`.
+  - `companies_yearly_estimated.csv` — investimento em ações de empresas fechadas de IA (**VC + private equity + fusões e aquisições**; exclui dívida, subsídios, crowdfunding e empresas listadas), com imputação de negócios não divulgados pela mediana por estágio, país e ano; **milhões de US$ nominais**.
   - `companies_yearly_disclosed.csv` — investimento divulgado, milhões de US$ nominais.
 - **Cobertura:** 2016–2026. Anos completos: artigos até 2024; pedidos de patente até 2021; concedidas até 2019; investimento até 2025.
-- **Uso:** painel reconstruído 2016–2024 (modelo conjunto 2017–2021 com insumos defasados); produtos ajustados por qualidade (citações apenas 2016–2020; concedidas até 2019); investimento deflacionado para US$ de 2021 com o CPI dos EUA, para manter comparabilidade com o dataset original.
+- **Uso:** painel reconstruído 2016–2024 (modelo conjunto 2017–2021 com insumos defasados); variante de "produtos alternativos" (citações totais até 2020; famílias posteriormente concedidas até 2019), que não isola qualidade de volume e maturação; investimento deflacionado para US$ de 2021 com o CPI dos EUA, para manter comparabilidade com o dataset original.
 - **Caveats a declarar no artigo:** patentes atribuídas ao escritório de depósito e não ao país do inventor (cerca de metade dos depósitos nos EUA vem do exterior); omite publicações apenas em chinês; cobertura do Crunchbase é menor para empresas de baixo perfil; defasagem de 18 meses na publicação de pedidos de patente; série de patentes da Índia quebrada a partir de 2019 (270 pedidos em 2018 contra 12 em 2019).
 
 ## 3. World Bank — `data/wdi/` e `data/wgi/` (script `R/10_download_wdi.R`)

@@ -32,15 +32,13 @@ cores_renda <- c("Alta renda" = "#1f77b4", "Renda média-alta" = "#ff7f0e",
 # 1. Ranking por país: média dos escores corrigidos (M2, VRS) com IC ---------
 boot_m2 <- LerTabela("boot_ano_m2")
 periodo <- paste(range(boot_m2$ano), collapse = "-")
-ranking <- boot_m2 |>
-  dplyr::group_by(pais, grupo_renda) |>
-  dplyr::summarise(n_anos = dplyr::n(), escore_bc = mean(escore_bc),
-                   ic_inf = mean(ic_inf), ic_sup = mean(ic_sup),
-                   escore = mean(escore), .groups = "drop") |>
-  dplyr::arrange(dplyr::desc(escore_bc))
+# Ranking com IC 95% bootstrap da média anual (réplicas por ano), gerado no
+# script 02; o rótulo inclui o número de anos de cada país.
+ranking <- LerTabela("ranking_paises_boot")
+ranking$rotulo <- paste0(ranking$pais, " (", ranking$n_anos, ")")
 SalvarTabela(ranking, paste0("ranking_paises_m2", sufixo))
 fig1 <- ggplot2::ggplot(
-  ranking, ggplot2::aes(x = escore_bc, y = stats::reorder(pais, escore_bc),
+  ranking, ggplot2::aes(x = escore_bc, y = stats::reorder(rotulo, escore_bc),
                         colour = grupo_renda)) +
   ggplot2::geom_errorbarh(ggplot2::aes(xmin = ic_inf, xmax = ic_sup),
                           height = 0.3, alpha = 0.7) +
@@ -52,9 +50,10 @@ fig1 <- ggplot2::ggplot(
                 y = NULL,
                 title = paste("Ranking de eficiência na conversão de",
                               "investimento em IA e P&D"),
-                subtitle = paste("Média", periodo, "dos escores corrigidos",
-                                 "de viés (ponto cheio) e originais",
-                                 "(vazado), com IC 95%")) +
+                subtitle = paste("Média", periodo, "dos escores anuais",
+                                 "corrigidos (cheio) e originais (vazado);",
+                                 "barras: IC 95% bootstrap da média anual;",
+                                 "entre parênteses, anos por país")) +
   tema
 SalvarFigura(fig1, "fig1_ranking_m2", 9, 9)
 
@@ -114,6 +113,7 @@ SalvarFigura(fig3, "fig3_canais", 8, 8)
 # 4. Segundo estágio: coeficientes com IC do bootstrap agrupado --------------
 seg <- LerTabela("segundo_estagio_truncada")
 seg <- seg[!grepl("^ano_f|Intercept|sigma", seg$termo), ]
+if ("dependente" %in% names(seg)) seg <- seg[seg$dependente == "escore", ]
 rotulos <- c(efetividade_governo = "Efetividade governamental",
              alta_tec_export = "Exportações de alta tecnologia (%)",
              log_comercio = "log(comércio/PIB)",
@@ -138,8 +138,8 @@ fig4 <- ggplot2::ggplot(seg, ggplot2::aes(x = coeficiente, y = termo_rotulo,
   ggplot2::labs(x = paste("Coeficiente (dependente: eficiência corrigida",
                           "em (0,1]; positivo = mais eficiente)"),
                 y = NULL,
-                title = paste("Segundo estágio: regressão truncada com",
-                              "bootstrap agrupado por país")) +
+                title = paste("Segundo estágio: truncada, escores fixos,",
+                              "bootstrap por país (dependente em (0,1])")) +
   tema + ggplot2::theme(strip.text = ggplot2::element_text(size = 9))
 SalvarFigura(fig4, "fig4_segundo_estagio", 12, 9)
 

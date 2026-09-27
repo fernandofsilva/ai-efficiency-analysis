@@ -1,4 +1,4 @@
-"iso3c","ano","talento_ia_pct","talento_ia_fem_pct","talento_ia_masc_pct","contratacao_ia_rel_pct","meses_contratacao","migracao_talento_10k","vagas_ia_pct"
+"iso3c","ano","talento_ia_media_genero_pct","talento_ia_fem_pct","talento_ia_masc_pct","contratacao_ia_rel_pct","meses_contratacao","migracao_talento_10k","vagas_ia_pct"
 "ARE",2016,0.21,0.2,0.22,NA,NA,NA,NA
 "ARE",2017,0.23,0.22,0.24,NA,NA,NA,NA
 "ARE",2018,0.255,0.25,0.26,42.39,12,NA,NA

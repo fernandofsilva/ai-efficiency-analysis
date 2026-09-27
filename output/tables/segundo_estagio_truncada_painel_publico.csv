@@ -1,81 +1,120 @@
-"modelo","termo","coeficiente","ep_boot","ic_inf","ic_sup","n_obs","n_paises","replicas_validas","significativo_5pct"
-"H5 truncada (escore_bc, M2)","(Intercept)",0.441111806402892,0.258927963737662,0.0857682949013134,1.08891444924276,184,41,300,TRUE
-"H5 truncada (escore_bc, M2)","efetividade_governo",-0.14343910991561,0.0514003809534492,-0.244915593078906,-0.0477838043820034,184,41,300,TRUE
-"H5 truncada (escore_bc, M2)","alta_tec_export",0.00694200445560524,0.00470659277275755,-0.00526394057532809,0.011475747310047,184,41,300,FALSE
-"H5 truncada (escore_bc, M2)","log_comercio",0.0093370878487358,0.0538985447473975,-0.108607298539456,0.10884219012324,184,41,300,FALSE
-"H5 truncada (escore_bc, M2)","market_cap",-0.00117078712430225,0.0014464015205571,-0.00202781244407171,0.00289922583351203,184,41,300,FALSE
-"H5 truncada (escore_bc, M2)","credito_privado",0.00165919024927733,0.000879168804962914,-0.000212469979202968,0.00307083726097366,184,41,300,FALSE
-"H5 truncada (escore_bc, M2)","ano_f2018",0.102727886987061,0.0463203249367776,0.0317372471303495,0.204492888439311,184,41,300,TRUE
-"H5 truncada (escore_bc, M2)","ano_f2019",0.0502170418282775,0.0389124209235854,-0.0168063301147162,0.135918359276968,184,41,300,FALSE
-"H5 truncada (escore_bc, M2)","ano_f2020",0.0975569458208046,0.0412214215103564,0.0270365835547263,0.186851331284337,184,41,300,TRUE
-"H5 truncada (escore_bc, M2)","ano_f2021",0.0555309529173332,0.0295389412600346,0.0055194218815605,0.113477947152556,184,41,300,TRUE
-"H5 truncada (escore_bc, M2)","sigma",0.169145969526446,0.0150953345787159,0.119029664180525,0.180033678027942,184,41,300,TRUE
-"H5 truncada sem valores-piso (M2)","(Intercept)",0.32068253116782,0.283005297121101,-0.0379024320671216,1.05665723559568,177,41,300,FALSE
-"H5 truncada sem valores-piso (M2)","efetividade_governo",-0.147306414416737,0.0562802780468648,-0.256158283158664,-0.0442059769744775,177,41,300,TRUE
-"H5 truncada sem valores-piso (M2)","alta_tec_export",0.00631411871940722,0.00465956692510042,-0.00640846957984149,0.0111210570731212,177,41,300,FALSE
-"H5 truncada sem valores-piso (M2)","log_comercio",0.0356820210457439,0.0583234281249549,-0.103598447224839,0.130212131609405,177,41,300,FALSE
-"H5 truncada sem valores-piso (M2)","market_cap",-0.00124653551499137,0.00145140464824293,-0.00206473770023261,0.00293417750757361,177,41,300,FALSE
-"H5 truncada sem valores-piso (M2)","credito_privado",0.00207207518156378,0.000947463949277461,-0.00022491666121166,0.00348657413418837,177,41,300,FALSE
-"H5 truncada sem valores-piso (M2)","ano_f2018",0.0848879880487224,0.0453426482085053,0.0186533720013733,0.188561582797701,177,41,300,TRUE
-"H5 truncada sem valores-piso (M2)","ano_f2019",0.0411294837466906,0.0366578035007504,-0.0190919823040993,0.119897762789797,177,41,300,FALSE
-"H5 truncada sem valores-piso (M2)","ano_f2020",0.0704024436982045,0.04266684541225,0.00511119743722894,0.158933010850795,177,41,300,TRUE
-"H5 truncada sem valores-piso (M2)","ano_f2021",0.0447664168615972,0.0327171784384963,-0.0166590341198078,0.111896543167652,177,41,300,FALSE
-"H5 truncada sem valores-piso (M2)","sigma",0.168507947995373,0.0154255835021033,0.118347197295345,0.179185151678858,177,41,300,TRUE
-"H5 truncada com pesquisadores (subamostra)","(Intercept)",-0.115229975087716,0.405075178602772,-0.755042048234928,0.72139167728461,165,39,300,FALSE
-"H5 truncada com pesquisadores (subamostra)","efetividade_governo",-0.223002948885168,0.0447598663137449,-0.305859516263387,-0.13715525285911,165,39,300,TRUE
-"H5 truncada com pesquisadores (subamostra)","alta_tec_export",0.00690981835947892,0.0034128146758166,-0.0021398336047445,0.0112729918364519,165,39,300,FALSE
-"H5 truncada com pesquisadores (subamostra)","log_comercio",-0.0388256674871982,0.0456520356712577,-0.14125086526456,0.0382684571951045,165,39,300,FALSE
-"H5 truncada com pesquisadores (subamostra)","log_pesquisadores",0.117042903365083,0.0501075800743312,0.0209133023875268,0.197516198712856,165,39,300,TRUE
-"H5 truncada com pesquisadores (subamostra)","ano_f2018",0.0590995604257936,0.0291407565838702,0.000212801841122428,0.116334032842791,165,39,300,TRUE
-"H5 truncada com pesquisadores (subamostra)","ano_f2019",0.0417205315054938,0.0281314258940301,-0.0133633063453138,0.0962683636559058,165,39,300,FALSE
-"H5 truncada com pesquisadores (subamostra)","ano_f2020",0.0537220347392791,0.0328378475049356,-0.0116179163657758,0.121097993061965,165,39,300,FALSE
-"H5 truncada com pesquisadores (subamostra)","ano_f2021",0.036859969012863,0.0255405976631366,-0.0132082144017732,0.0884741817046091,165,39,300,FALSE
-"H5 truncada com pesquisadores (subamostra)","sigma",0.163885742387267,0.0142975723248231,0.127926642035971,0.185828875493751,165,39,300,TRUE
-"H5 truncada com talento em IA (subamostra)","(Intercept)",0.699250992243515,0.328415850703494,0.31953897036694,1.50889538905271,151,32,300,TRUE
-"H5 truncada com talento em IA (subamostra)","efetividade_governo",-0.155225160585649,0.0439792743112268,-0.235813922005272,-0.0640681791852015,151,32,300,TRUE
-"H5 truncada com talento em IA (subamostra)","alta_tec_export",0.00477380887627709,0.00482153052294209,-0.00796146410781237,0.00941266159377414,151,32,300,FALSE
-"H5 truncada com talento em IA (subamostra)","log_comercio",-0.0043315502399759,0.0511184470934547,-0.114879456161205,0.0870746337060994,151,32,300,FALSE
-"H5 truncada com talento em IA (subamostra)","log_talento",0.0882624844048136,0.0855130511029271,-0.0548440393355191,0.273513987956076,151,32,300,FALSE
-"H5 truncada com talento em IA (subamostra)","ano_f2018",0.0561830473870285,0.0240570187310046,0.00714870503832927,0.0995013128733472,151,32,300,TRUE
-"H5 truncada com talento em IA (subamostra)","ano_f2019",0.0329399107856925,0.0389918868056799,-0.0576066711531021,0.101883039118414,151,32,300,FALSE
-"H5 truncada com talento em IA (subamostra)","ano_f2020",0.0461880150064916,0.0481207655346386,-0.0587675568092015,0.115450986981002,151,32,300,FALSE
-"H5 truncada com talento em IA (subamostra)","ano_f2021",0.0181071740719301,0.0498140719943876,-0.083993005056168,0.0987643647884572,151,32,300,FALSE
-"H5 truncada com talento em IA (subamostra)","sigma",0.169055627543626,0.0181883171353336,0.115710898388759,0.188603842065682,151,32,300,TRUE
-"H6 truncada (canal patentes)","(Intercept)",0.249966111269379,0.0986520155743937,-0.0233085942519651,0.358648754857394,184,41,300,FALSE
-"H6 truncada (canal patentes)","market_cap",-0.00125976271907727,0.000792268124702406,-0.00212356113620279,0.000819626698818469,184,41,300,FALSE
-"H6 truncada (canal patentes)","credito_privado",0.00263227622259367,0.000914508351623324,0.000745332529997515,0.00415692681624514,184,41,300,TRUE
-"H6 truncada (canal patentes)","npl",-0.00708869647059638,0.0142755816694707,-0.0118850626916919,0.0445070684925928,184,41,300,FALSE
-"H6 truncada (canal patentes)","efetividade_governo",-0.163629195759754,0.0589499727843157,-0.26867362240513,-0.0374355302409445,184,41,300,TRUE
-"H6 truncada (canal patentes)","ano_f2018",-0.0573258991382849,0.0391675735357539,-0.120847497250718,0.0249190502651377,184,41,300,FALSE
-"H6 truncada (canal patentes)","ano_f2019",-0.0532210529750964,0.0417085762705787,-0.130266848953547,0.0343085426537256,184,41,300,FALSE
-"H6 truncada (canal patentes)","ano_f2020",-0.0340545919408501,0.0565324654277022,-0.141519668018391,0.0855417197524857,184,41,300,FALSE
-"H6 truncada (canal patentes)","ano_f2021",-0.0838059480889367,0.0494096623942375,-0.172643239446334,0.025045710343381,184,41,300,FALSE
-"H6 truncada (canal patentes)","sigma",0.176032353841234,0.0176318506960401,0.129517060993097,0.194936258897652,184,41,300,TRUE
-"H6 contraste (canal publicações)","(Intercept)",0.503891856710784,0.113911528262079,0.205533876432727,0.639558080282077,184,41,300,TRUE
-"H6 contraste (canal publicações)","market_cap",-0.00122653041276021,0.00141972051686729,-0.00228170910150841,0.0021609058040783,184,41,300,FALSE
-"H6 contraste (canal publicações)","credito_privado",0.00219448494375675,0.00108193379206576,-0.0000969328989651038,0.00401496612992137,184,41,300,FALSE
-"H6 contraste (canal publicações)","npl",0.00160501235796034,0.016404861077904,-0.00257612084909434,0.0545964616203943,184,41,300,FALSE
-"H6 contraste (canal publicações)","efetividade_governo",-0.107117035984651,0.0741181482956275,-0.244306100572827,0.0548353721806615,184,41,300,FALSE
-"H6 contraste (canal publicações)","ano_f2018",0.0894527032425353,0.0504928169355386,0.0138178093882265,0.197960595932323,184,41,300,TRUE
-"H6 contraste (canal publicações)","ano_f2019",0.0374943390489069,0.0383076335025747,-0.0264478452142014,0.119988736616304,184,41,300,FALSE
-"H6 contraste (canal publicações)","ano_f2020",0.0685891979676409,0.042924902793465,0.00166047659614808,0.172312584598137,184,41,300,TRUE
-"H6 contraste (canal publicações)","ano_f2021",0.050644547090774,0.0339358293092263,0.000861929730294144,0.128387030552379,184,41,300,TRUE
-"H6 contraste (canal publicações)","sigma",0.180589703278812,0.0185493070432958,0.127322854201301,0.197044714352607,184,41,300,TRUE
-"H7 canal patentes","(Intercept)",1.24112090914934,0.454035265771562,0.451896720562843,2.13121587661052,184,41,300,TRUE
-"H7 canal patentes","log_pib_pc",-0.094479556360705,0.0394918736020274,-0.181347533084295,-0.0298370394376518,184,41,300,TRUE
-"H7 canal patentes","alta_tec_export",0.005080607867682,0.00401469759715757,-0.00195086454020602,0.0138837701530027,184,41,300,FALSE
-"H7 canal patentes","log_comercio",-0.0481104354355645,0.0592721950269854,-0.14639710735577,0.0690280634874537,184,41,300,FALSE
-"H7 canal patentes","ano_f2018",-0.014236795202525,0.0229182995648824,-0.0612791643801786,0.0233176686297795,184,41,300,FALSE
-"H7 canal patentes","ano_f2019",-0.0248363312545034,0.0247696554794512,-0.0763018888274014,0.0146012890629746,184,41,300,FALSE
-"H7 canal patentes","ano_f2020",-0.0244620403939712,0.0329224959892992,-0.095112370316663,0.02903633367236,184,41,300,FALSE
-"H7 canal patentes","ano_f2021",-0.0409448107865281,0.0273780812905463,-0.0960006899658546,0.00851298858943351,184,41,300,FALSE
-"H7 canal patentes","sigma",0.161396329712883,0.017245739120535,0.111642954973015,0.178587608445301,184,41,300,TRUE
-"H7 canal publicações","(Intercept)",1.42610348097284,0.435012229354633,0.638669709426776,2.25162036123197,184,41,300,TRUE
-"H7 canal publicações","log_pib_pc",-0.087574129918159,0.0415438656515868,-0.162367961335332,-0.00413271056321922,184,41,300,TRUE
-"H7 canal publicações","alta_tec_export",0.00638277681169153,0.00324272844579602,-0.00236394519227369,0.010019775951513,184,41,300,FALSE
-"H7 canal publicações","log_comercio",-0.0335641080297592,0.0502435569962584,-0.12654639424049,0.076223061770556,184,41,300,FALSE
-"H7 canal publicações","ano_f2018",0.0979631387699646,0.0256016919228033,0.0478755775706127,0.146039250734114,184,41,300,TRUE
-"H7 canal publicações","ano_f2019",0.0480044545267074,0.0210475037395543,0.00700718979136045,0.0907319610381193,184,41,300,TRUE
-"H7 canal publicações","ano_f2020",0.0743001938646054,0.0277027853386815,0.0264892054396067,0.128460423562699,184,41,300,TRUE
-"H7 canal publicações","ano_f2021",0.0694219828431297,0.0219320524966827,0.0213605214913145,0.107461353775742,184,41,300,TRUE
-"H7 canal publicações","sigma",0.180793478653615,0.0165823173288941,0.140953816798138,0.203071595364292,184,41,300,TRUE
+"modelo","dependente","termo","coeficiente","ep_boot","ic_inf","ic_sup","n_obs","n_paises","replicas_validas","inferencia","significativo_5pct"
+"H5 truncada (M2)","escore","(Intercept)",0.441111806402892,0.237897034341732,0.0983378467438857,1.01102377688454,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","escore","efetividade_governo",-0.14343910991561,0.0492129019731123,-0.238588801030822,-0.052696993740316,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","escore","alta_tec_export",0.00694200445560524,0.005028785967225,-0.00675505327149579,0.011742099066213,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","escore","log_comercio",0.0093370878487358,0.0500072233087625,-0.10937666483075,0.101882496254045,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","escore","market_cap",-0.00117078712430225,0.00138979020219612,-0.00207601184903229,0.00283625117633395,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","escore","credito_privado",0.00165919024927733,0.00083390596329372,-0.000258385794217032,0.00313879598559117,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","escore","ano_f2018",0.102727886987061,0.0476815411270244,0.0316200385254977,0.210636832182436,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","escore","ano_f2019",0.0502170418282775,0.0385726794969269,-0.00833828748056445,0.144345181597674,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","escore","ano_f2020",0.0975569458208046,0.0380568685913309,0.0259814177100525,0.169861622524252,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","escore","ano_f2021",0.0555309529173332,0.0280964197270031,0.00998456025647552,0.116093439932429,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","escore","sigma",0.169145969526446,0.0157432487735796,0.123432366726772,0.181926682476238,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","farrell","(Intercept)",1.99488146357788,2.96321962490582,-4.19050934380595,6.11118459477706,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","farrell","efetividade_governo",2.05485021092114,0.76090812458171,0.458934281739184,3.51649487140917,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","farrell","alta_tec_export",-0.127580452637175,0.0611659511647552,-0.183128612619935,0.04028008250461,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","farrell","log_comercio",-0.0388851542172141,0.60264995776481,-1.05424378242054,1.15117201637253,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","farrell","market_cap",0.0187348204366971,0.0148119172394686,-0.0249705680038061,0.0274503760979392,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","farrell","credito_privado",-0.022539253803252,0.0117133112261836,-0.0374635650216456,0.00624826746052798,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","farrell","ano_f2018",-1.32998542521058,0.533772598195921,-2.46441846522925,-0.373153492079522,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","farrell","ano_f2019",-0.343380695972579,0.407320667421164,-1.16640012273389,0.288356035846871,128,34,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada (M2)","farrell","ano_f2020",-1.76583565853766,0.725693453728039,-3.00682049395026,-0.330435268327239,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","farrell","ano_f2021",-1.06064825243015,0.422069877165994,-1.89772070043224,-0.266789199802017,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada (M2)","farrell","sigma",1.40422189471053,0.25971021067577,0.644243416238962,1.72016562255307,128,34,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada sem valores-piso (M2)","escore","(Intercept)",0.284754261956715,0.36646054477019,-0.135682652823198,1.41793997284532,113,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada sem valores-piso (M2)","escore","efetividade_governo",-0.144289384856007,0.053358002199508,-0.252752140292516,-0.043059155911105,113,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada sem valores-piso (M2)","escore","alta_tec_export",0.006117914202449,0.00516515427439794,-0.00789578435114451,0.0120296235834092,113,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada sem valores-piso (M2)","escore","log_comercio",0.0521271457313646,0.0726270360322,-0.144772697883562,0.140980370088891,113,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada sem valores-piso (M2)","escore","market_cap",-0.0011974544666823,0.00144012227947815,-0.00211705271813064,0.00301329064363341,113,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada sem valores-piso (M2)","escore","credito_privado",0.00199129182242763,0.00105670370512912,-0.00083644733713468,0.0034173272400456,113,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada sem valores-piso (M2)","escore","ano_f2018",0.0306621098780946,0.0338133491907309,-0.0174686606589846,0.108627676068814,113,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada sem valores-piso (M2)","escore","ano_f2019",0.0752783088038367,0.0345156721705926,0.0128989484692794,0.158929940228518,113,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada sem valores-piso (M2)","escore","ano_f2020",0.015064790906066,0.0339020335401224,-0.065629304890442,0.0836830318281614,113,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada sem valores-piso (M2)","escore","ano_f2021",0.0271635093200996,0.0373721668181466,-0.0591724755720763,0.0962624227616053,113,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada sem valores-piso (M2)","escore","sigma",0.157144426602073,0.0152102423409712,0.110571210639758,0.166168737798237,113,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada com pesquisadores (subamostra)","escore","(Intercept)",-0.115229975087716,0.441561214178395,-0.804266989680583,0.691108252351939,164,38,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com pesquisadores (subamostra)","escore","efetividade_governo",-0.223002948885168,0.0474447111427239,-0.328533977283964,-0.134669544392634,164,38,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada com pesquisadores (subamostra)","escore","alta_tec_export",0.00690981835947892,0.00325610159350743,-0.00182278380113714,0.0106868081779784,164,38,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com pesquisadores (subamostra)","escore","log_comercio",-0.0388256674871982,0.0476350276728653,-0.142041111135628,0.0490147874552463,164,38,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com pesquisadores (subamostra)","escore","log_pesquisadores",0.117042903365083,0.0525347392246295,0.0235131543630661,0.201138187004109,164,38,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada com pesquisadores (subamostra)","escore","ano_f2018",0.0590995604257936,0.0314251851873426,0.00208666528353216,0.118174707250314,164,38,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada com pesquisadores (subamostra)","escore","ano_f2019",0.0417205315054938,0.0288565698503338,-0.0220970977788506,0.0962133705929533,164,38,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com pesquisadores (subamostra)","escore","ano_f2020",0.0537220347392791,0.035294828426944,-0.0139791731251985,0.133394811955128,164,38,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com pesquisadores (subamostra)","escore","ano_f2021",0.036859969012863,0.0262688034151813,-0.012928337243384,0.0889481223693428,164,38,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com pesquisadores (subamostra)","escore","sigma",0.163885742387267,0.0142890416665959,0.128148435385994,0.183829315684159,164,38,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","(Intercept)",0.699250992243515,0.328415850703494,0.31953897036694,1.50889538905271,151,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","efetividade_governo",-0.155225160585649,0.0439792743112268,-0.235813922005272,-0.0640681791852015,151,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","alta_tec_export",0.00477380887627709,0.00482153052294209,-0.00796146410781237,0.00941266159377414,151,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","log_comercio",-0.0043315502399759,0.0511184470934547,-0.114879456161205,0.0870746337060994,151,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","log_talento",0.0882624844048136,0.0855130511029271,-0.0548440393355191,0.273513987956076,151,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","ano_f2018",0.0561830473870285,0.0240570187310046,0.00714870503832927,0.0995013128733472,151,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","ano_f2019",0.0329399107856925,0.0389918868056799,-0.0576066711531021,0.101883039118414,151,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","ano_f2020",0.0461880150064916,0.0481207655346386,-0.0587675568092015,0.115450986981002,151,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","ano_f2021",0.0181071740719301,0.0498140719943876,-0.083993005056168,0.0987643647884572,151,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H5 truncada com talento em IA (média por gênero, subamostra)","escore","sigma",0.169055627543626,0.0181883171353336,0.115710898388759,0.188603842065682,151,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 truncada (canal patentes)","escore","(Intercept)",0.249966111269379,0.087032810395937,0.0264071898078203,0.370523114426997,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 truncada (canal patentes)","escore","market_cap",-0.00125976271907727,0.000807578924638722,-0.002039468525271,0.000860038964483805,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","escore","credito_privado",0.00263227622259367,0.000863781776703192,0.000668631726008131,0.00425047312289039,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 truncada (canal patentes)","escore","npl",-0.00708869647059638,0.0127059882703794,-0.013907973845761,0.0344781233427171,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","escore","efetividade_governo",-0.163629195759754,0.0563177797055668,-0.282765822141594,-0.0582981154720218,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 truncada (canal patentes)","escore","ano_f2018",-0.0573258991382849,0.0339743931234871,-0.123133877136839,0.006595941602757,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","escore","ano_f2019",-0.0532210529750964,0.0405457485480978,-0.136224939363688,0.0264169487467974,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","escore","ano_f2020",-0.0340545919408501,0.0495093915555417,-0.128177311368046,0.0653141446325478,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","escore","ano_f2021",-0.0838059480889367,0.0443390744719194,-0.165658436386328,0.0177988085639319,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","escore","sigma",0.176032353841234,0.0171161159469125,0.130432329323836,0.194675644909264,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 truncada (canal patentes)","farrell","(Intercept)",-22.2225767256511,244.304933821327,-452.106875895694,185.219522368619,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","farrell","market_cap",13.3150085010908,20.2725277682912,-50.0975090356028,39.0703556818847,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","farrell","credito_privado",-38.4801654895239,23.3451836161861,-88.6320382035417,16.0239813758513,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","farrell","npl",-358.313752262867,240.906552729865,-914.298013570327,8.42950372104111,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","farrell","efetividade_governo",178.471227790147,251.104673954622,7.09096087370882,810.129394219521,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 truncada (canal patentes)","farrell","ano_f2018",32.3526489647296,60.9064873988313,-62.1636536976868,169.047525288749,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","farrell","ano_f2019",70.6292015767253,110.769306558806,-79.9980294042078,301.62161825184,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","farrell","ano_f2020",-79.1805793126257,108.342674157891,-382.904919160853,26.9625057522514,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","farrell","ano_f2021",-4.98244312838075,139.800454745654,-183.635298259319,147.236788563488,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 truncada (canal patentes)","farrell","sigma",534.734609202365,152.500894586642,133.958258967717,740.967334172661,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 contraste (canal publicações)","escore","(Intercept)",0.503891856710784,0.103939915251304,0.247797126066855,0.626206348989055,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 contraste (canal publicações)","escore","market_cap",-0.00122653041276021,0.00141678256861719,-0.0025188893482331,0.00238116187944241,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 contraste (canal publicações)","escore","credito_privado",0.00219448494375675,0.00114943389689002,0.0000735403774481383,0.00462969657077799,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 contraste (canal publicações)","escore","npl",0.00160501235796034,0.0149648230732926,-0.00235188716274422,0.0471917609538591,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 contraste (canal publicações)","escore","efetividade_governo",-0.107117035984651,0.0722111518221298,-0.240635391097364,0.0263704557787117,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 contraste (canal publicações)","escore","ano_f2018",0.0894527032425353,0.0461868040444598,0.0159640572718414,0.186018124385251,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 contraste (canal publicações)","escore","ano_f2019",0.0374943390489069,0.0381039013337091,-0.0200433449475936,0.122683008789207,117,32,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H6 contraste (canal publicações)","escore","ano_f2020",0.0685891979676409,0.0360922629968613,0.00921359978837689,0.150279073754507,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 contraste (canal publicações)","escore","ano_f2021",0.050644547090774,0.0312858642382496,0.0126563740160139,0.133440535720099,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H6 contraste (canal publicações)","escore","sigma",0.180589703278812,0.0183385602809126,0.125763821796921,0.196347341860329,117,32,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal patentes","escore","(Intercept)",1.24112090914934,0.450328983397722,0.437594202358772,2.20597298418321,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal patentes","escore","log_pib_pc",-0.094479556360705,0.0398369664961686,-0.178204176007994,-0.0248263027034231,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal patentes","escore","alta_tec_export",0.005080607867682,0.00419674557925112,-0.0021013506791339,0.0135437858270521,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","escore","log_comercio",-0.0481104354355645,0.0567719737271028,-0.147644382779306,0.0701876506598607,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","escore","ano_f2018",-0.014236795202525,0.022937063643079,-0.0658948714826965,0.0243851879626546,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","escore","ano_f2019",-0.0248363312545034,0.0243155934570638,-0.0783747388854596,0.0192977934002954,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","escore","ano_f2020",-0.0244620403939712,0.0312941309197044,-0.0879658773519098,0.038402470294061,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","escore","ano_f2021",-0.0409448107865281,0.0261417628020636,-0.0986387946287677,-0.000506224968423308,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal patentes","escore","sigma",0.161396329712883,0.0175796619687526,0.114279973582631,0.179945019189777,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal patentes","farrell","(Intercept)",-2327.22045762452,1256.49668061254,-5134.85120446822,-350.953579858883,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal patentes","farrell","log_pib_pc",-1255.31807485554,710.469657881046,-2532.54572317098,258.802173557094,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","farrell","alta_tec_export",153.507385618783,309.979468635622,-896.726049912961,357.971536129426,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","farrell","log_comercio",81.9095500183347,535.331101314308,-717.243392406265,1406.66606083239,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","farrell","ano_f2018",-436.929024033657,299.90434850562,-1041.51233576383,-45.683936498101,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal patentes","farrell","ano_f2019",281.230974988021,222.453837850778,-15.5681137432178,813.843557516657,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","farrell","ano_f2020",54.9583418479129,134.784979532333,-168.484053737854,319.16819694421,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","farrell","ano_f2021",389.531366280305,298.797928173632,-80.9120119298072,1136.04260807631,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal patentes","farrell","sigma",1473.27334973652,514.69378786436,420.025959527461,2345.93903751154,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","escore","(Intercept)",1.42610348097284,0.453517188009999,0.587339450089714,2.30610858201888,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","escore","log_pib_pc",-0.087574129918159,0.0427748719950458,-0.178289672652718,-0.0137909632166825,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","escore","alta_tec_export",0.00638277681169153,0.00348716159472476,-0.00436620523523431,0.0101013353239952,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal publicações","escore","log_comercio",-0.0335641080297592,0.0474739461402611,-0.138234228077821,0.0588253723875831,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal publicações","escore","ano_f2018",0.0979631387699646,0.0261865041695514,0.0498655305929478,0.154346066890837,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","escore","ano_f2019",0.0480044545267074,0.0232768533160803,-0.00186921183677433,0.0874977209754681,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal publicações","escore","ano_f2020",0.0743001938646054,0.027506542527136,0.0264377805361346,0.130475383993237,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","escore","ano_f2021",0.0694219828431297,0.0216971049763903,0.0275728587402397,0.11240704966033,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","escore","sigma",0.180793478653615,0.0168532569615626,0.138519230966646,0.201704883000369,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","farrell","(Intercept)",-11.001289698232,10.0896215270167,-29.9377822599662,6.35309860787562,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal publicações","farrell","log_pib_pc",1.22157862964074,1.00959492817654,-0.54016361804188,3.21450773022285,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal publicações","farrell","alta_tec_export",-0.169775505436321,0.120609566155959,-0.435815000337349,0.00510547805778034,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal publicações","farrell","log_comercio",0.440339473055553,0.935774502944157,-1.79213617566569,1.72103564909906,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal publicações","farrell","ano_f2018",-1.68058710061377,0.798778681427387,-3.83985957978384,-0.552213067561433,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","farrell","ano_f2019",-0.535099070485914,0.465413390828191,-1.65427661541289,0.298978198894658,183,40,300,"truncada, escores fixos, bootstrap por país",FALSE
+"H7 canal publicações","farrell","ano_f2020",-2.00024216774865,1.36851130704929,-5.5000651302599,-0.493159152631641,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","farrell","ano_f2021",-1.43153578935294,0.767851752742537,-3.42033136720357,-0.413150092885978,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE
+"H7 canal publicações","farrell","sigma",1.88413923838632,0.546646853334576,0.850983152215874,3.05094471595211,183,40,300,"truncada, escores fixos, bootstrap por país",TRUE

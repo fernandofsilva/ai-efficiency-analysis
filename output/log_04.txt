@@ -2,13 +2,13 @@ Warning message:
 `geom_errorbarh()` was deprecated in ggplot2 4.0.0.
 ℹ Please use the `orientation` argument of `geom_errorbar()` instead. 
 `height` was translated to `width`.
-12:50:13 figura gravada: fig1_ranking_m2 
-12:50:13 figura gravada: fig2_malmquist_decomposicao 
-12:50:13 figura gravada: fig3_canais 
+18:44:35 figura gravada: fig1_ranking_m2 
+18:44:35 figura gravada: fig2_malmquist_decomposicao 
+18:44:36 figura gravada: fig3_canais 
 `height` was translated to `width`.
-12:50:14 figura gravada: fig4_segundo_estagio 
-12:50:14 figura gravada: fig5_renda_ano 
+18:44:36 figura gravada: fig4_segundo_estagio 
+18:44:36 figura gravada: fig5_renda_ano 
 `height` was translated to `width`.
-12:50:14 figura gravada: fig6_estimadores 
-12:50:14 figura gravada: fig7_metafronteira 
-12:50:14 FIM figuras Fase A 
+18:44:36 figura gravada: fig6_estimadores 
+18:44:36 figura gravada: fig7_metafronteira 
+18:44:36 FIM figuras Fase A 

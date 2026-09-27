@@ -25,7 +25,7 @@
 | Item | Valor |
 |---|---|
 | Observações | 208 país-ano |
-| Países | 37 (Argentina a Estados Unidos; sem Alemanha, Coreia, Canadá, nórdicos) |
+| Países | 37 na base bruta, 36 na DEA (Eslovênia só tem uma observação, com investimento zero); sem Alemanha, Coreia, Canadá, Suécia, Finlândia e Dinamarca |
 | Período | 2013–2021, painel desbalanceado (1 a 9 anos por país) |
 | Insumos | investimento privado em IA (US$ constantes de 2021); GERD = P&D % PIB × PIB |
 | Produtos | publicações de IA (contagem); pedidos de patente de IA (contagem) |
@@ -36,7 +36,7 @@
 
 ## Slide 4 — Três problemas de medida que condicionam tudo
 
-- **Zeros e piso**: 17 país-ano com investimento zero e 22 no piso de 1–2 milhões de dólares (granularidade de 1 milhão): 39 das 208 observações. As unidades "além da fronteira" são exatamente essas (China 2013, Austrália 2013, México 2013, Peru 2019–2020, Índia 2019–2020).
+- **Zeros e piso**: 17 país-ano com investimento zero e 22 no piso de 1–2 milhões de dólares (granularidade de 1 milhão): 39 das 208 observações. Das 19 unidades "além da fronteira" agrupada, 7 estão no piso (Austrália e México 2013, Peru 2019, Ucrânia 2018, Romênia 2016); as outras 12 (China 2013, Índia 2019–2020, México 2018) são pontos extremos ou revisões de safra, não granularidade.
 - **Publicações não nascem de capital de risco**: Ucrânia 2013–2017 tem investimento zero e 134–359 publicações por ano. Por isso o modelo base adiciona o GERD como segundo insumo.
 - **Volume, não qualidade**: contagens favorecem sistemas grandes; China 2021 domina os Estados Unidos nos dois produtos com um sexto do insumo.
 - Nota: "o diagnóstico começa reconhecendo o que os dados podem e não podem dizer".
@@ -68,19 +68,19 @@
 
 | Modelo | H0 | S | p-valor | Decisão |
 |---|---|---|---|---|
-| M2 | retornos constantes | 0,666 | < 0,001 | rejeita |
-| M2 | retornos não crescentes | 0,989 | 0,60 | não rejeita |
+| M2 | retornos constantes | 0,666 | 0,025 | rejeita (teste liberal: tamanho 0,20 sob CRS) |
+| M2 | retornos não crescentes | 0,989 | 0,89 | não rejeita |
 | M1 | retornos constantes | 0,202 | < 0,001 | rejeita |
 
 - Eficiência média VRS por ano (M2): 0,64 a 0,82; eficiência de escala média: 0,54 a 0,76.
-- A maioria dos países opera sob retornos decrescentes (2018: 20 DRS, 3 IRS, 4 CRS); Estados Unidos e China sempre em DRS.
-- Nota: "a tecnologia tem retornos variáveis, e a região relevante é a de retornos decrescentes: dobrar o dinheiro não dobra os produtos".
+- 15 dos 36 países operam sob retornos decrescentes em todos os anos (Estados Unidos, Japão, Reino Unido); a **China está em CRS, com eficiência de escala 1, em todos os anos**; a Índia alterna.
+- Nota: "a tecnologia parece ter retornos variáveis, mas o teste é liberal e a China contradiz a leitura simples de que os grandes investidores estão em retornos decrescentes: H1 é só parcialmente apoiada".
 
 ## Slide 8 — Ranking com inferência
 
-- Figura: `output/figures/fig1_ranking_m2.png` (página inteira).
-- Viés médio do bootstrap 0,15 (escore médio 0,72 → 0,57 corrigido); largura média do intervalo 0,24: só há diferença ordinal defensável entre grupos com intervalos disjuntos.
-- Topo: Itália 0,79, Grécia 0,77, Malásia 0,76, Indonésia 0,75, Bulgária 0,75, Índia 0,75; base: Suíça 0,15, Israel 0,19, Irlanda 0,22, Noruega 0,24, África do Sul 0,25.
+- Figura: `output/figures/fig1_ranking_m2.png` (página inteira; barras = IC 95% bootstrap da média anual; anos por país entre parênteses).
+- Viés médio do bootstrap 0,15 (escore médio 0,72 → 0,57 corrigido). Intervalos largos no topo (países sobre a fronteira) e estreitos na base: só a separação entre a base (Israel, Suíça, Noruega, Irlanda, África do Sul) e o restante é ordinalmente defensável; a ordem dentro do topo não.
+- Topo: Itália (2 anos) 0,79 [0,42; 0,89], Grécia (7) 0,77 [0,36; 0,78], Malásia (4) 0,76, Indonésia (2) 0,75, Bulgária (3) 0,75, Índia (8) 0,75; base: Suíça (1) 0,15, Israel (9) 0,18 [0,14; 0,19], Irlanda (2) 0,21, Noruega (6) 0,23, África do Sul (5) 0,25.
 - Nota: explicar por que Israel e Suíça ficam na base: GERD total alto (muito P&D empresarial) e produtos de IA em contagem pequenos; "eficiência" aqui mede em parte a intensidade de IA do sistema de pesquisa.
 
 ## Slide 9 — Robustez entre estimadores (R1)
@@ -92,9 +92,9 @@
 ## Slide 10 — Dois canais, duas histórias (H3)
 
 - Figura: `output/figures/fig3_canais.png` (meia página) e `output/figures/fig7_metafronteira.png` (meia página).
-- Spearman entre eficiência acadêmica e tecnológica: 0,52 [0,40; 0,63] (0,56 sem valores-piso): correlação moderada.
-- Metafronteira: razão de gap tecnológico 0,62 (alta renda) contra 0,94 (renda média), p < 0,001. Resultado **oposto** ao previsto: com contagens, o grupo de renda média define a fronteira (China, Índia, México, Peru).
-- Kruskal-Wallis: o canal de patentes difere por renda (p < 0,001; 0,34 na renda média-alta contra 0,17 na alta renda); publicações e modelo conjunto não.
+- Spearman entre eficiência acadêmica e tecnológica: 0,52 [0,31; 0,69] com bootstrap por país; p unilateral de ρ ≥ 0,5 = 0,59: correlação moderada, H3a inconclusiva.
+- Metafronteira: razão de gap tecnológico 0,62 (alta renda) contra 0,95 (renda média); H3b (renda média abaixo da alta) tem p = 1,0. Resultado **oposto** ao previsto: com contagens, o grupo de renda média define a fronteira (China, Índia, México, Peru).
+- Kruskal-Wallis: o canal de patentes difere por renda (p = 0,001 em país-ano, 0,020 em médias por país; 0,34 na renda média-alta contra 0,17 na alta renda); publicações e modelo conjunto não.
 - Nota: ligar ao problema volume × qualidade do slide 4.
 
 ## Slide 11 — Dinâmica 2016–2019 (H4)
@@ -103,12 +103,12 @@
 
 | Grupo | n | Malmquist | Mudança técnica | Mudança de eficiência |
 |---|---|---|---|---|
-| Alta renda | 10 | 0,996 | 0,898 | 1,109 |
-| Renda média | 6 | 1,000 | 0,931 | 1,074 |
-| Todos | 16 | 0,997 | 0,910 | 1,096 |
+| Alta renda | 10 | 0,996 | 0,898 | 1,109 [1,007; 1,230] |
+| Renda média | 6 | 1,000 | 0,931 | 1,074 [0,958; 1,262] |
+| Todos | 16 | 0,997 | 0,910 | 1,096 [1,010; 1,197] |
 
-- Mudança técnica explica 58% da variância do índice: a fronteira domina (H4a), mas recua em produtos por dólar durante o boom de investimento.
-- Catch-up: 1,11 na alta renda contra 1,07 na renda média: sem convergência (H4b não apoiada). Maiores ganhos: Brasil 1,45, Áustria 1,27, Polônia 1,25; maiores perdas: China 0,65, Hungria 0,81, Japão 0,82.
+- Parcela da mudança técnica na variância de log M (covariância rateada simetricamente): 0,60. A fronteira domina (H4a), mas recua em produtos por dólar durante o boom de investimento.
+- Catch-up da renda média: 1,07 com IC [0,96; 1,26], que inclui 1; β-convergência nula (p = 0,47): H4b não apoiada. Maiores ganhos: Brasil 1,45, Áustria 1,27, Polônia 1,25; maiores perdas: China 0,65, Hungria 0,81, Japão 0,82.
 - Em palavras simples: a produtividade sobe porque "os campeões avançaram" (todos aprenderam a fazer IA melhor) ou porque "o país se aproximou dos campeões"; o Malmquist separa os dois pedaços.
 
 ## Slide 12 — Segundo estágio (H5, H6, H7)
@@ -117,14 +117,14 @@
 
 | Modelo | Variável | Coeficiente | IC 95% |
 |---|---|---|---|
-| H5 conjunto | efetividade governamental | −0,137 | [−0,329; −0,000] |
-| H5 sem piso | efetividade governamental | −0,120 | [−0,362; 0,013] |
+| H5 conjunto (191 obs., 36 países) | efetividade governamental | −0,137 | [−0,329; −0,000] |
+| H5 sem piso (169/34) | efetividade governamental | −0,121 | [−0,363; 0,012] |
 | H6 patentes | capitalização de mercado | 0,000 | [−0,001; 0,002] |
 | H7 patentes | log PIB per capita | −0,045 | [−0,154; 0,013] |
 | H7 publicações | log PIB per capita | −0,093 | [−0,153; −0,014] |
 
-- Dependente: eficiência corrigida em (0, 1]; positivo = mais eficiente. Simar-Wilson algoritmo 2 e Tobit concordam nos sinais.
-- Leitura: H5 não confirmada (sinal negativo das instituições), H6 não confirmada, H7 contrariada. Com produtos em volume, "eficiência" cresce com o tamanho relativo do sistema de IA, não com a qualidade institucional.
+- Dependente: eficiência corrigida em (0, 1]; positivo = mais eficiente; escores fixos e bootstrap por país (não é o algoritmo 2). O algoritmo 2 de Simar-Wilson (fronteira agrupada) e o Tobit dão o mesmo sinal; nenhum testa separabilidade, então a leitura é exploratória.
+- Leitura: H5 não confirmada (sinal negativo das instituições, não robusto ao piso), H6 não confirmada, H7 contrariada. Com produtos em volume, "eficiência" cresce com o tamanho relativo do sistema de IA, não com a qualidade institucional.
 
 ## Slide 13 — Eficiência por grupo de renda e ano
 
@@ -135,10 +135,10 @@
 
 | Hipótese | Evidência | Status |
 |---|---|---|
-| H1 escala | CRS rejeitado, NIRS não rejeitado; maioria DRS | apoiada |
+| H1 escala | CRS rejeitado (p = 0,025, teste liberal); EUA em DRS, China em CRS | parcialmente apoiada |
 | H2 insumos por canal | GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82) | a testar com SFA |
-| H3 canais | ρ = 0,52; gap tecnológico maior na alta renda | parcial / contrariada |
-| H4 dinâmica | fronteira domina; sem convergência | H4a sim, H4b não |
+| H3 canais | ρ = 0,52, p(ρ ≥ 0,5) = 0,59; gap tecnológico maior na alta renda | H3a inconclusiva; H3b não apoiada |
+| H4 dinâmica | fronteira domina (0,60); EC média 1,07 [0,96; 1,26] | H4a sim, H4b não |
 | H5 instituições | sinal negativo em três métodos | não apoiada |
 | H6 finanças | coeficientes nulos | não apoiada |
 | H7 desenvolvimento | PIB pc negativo em publicações | contrariada |
@@ -146,17 +146,17 @@
 
 ## Slide 15 — O que muda na versão artigo (painel reconstruído)
 
-- Painel CSET + World Bank: 47 países (com Alemanha, Coreia, Canadá, nórdicos, Rússia), 2016–2024; modelo conjunto 2017–2021 com insumos defasados; 37 a 44 países por ano; teste de RTS confirma retornos variáveis (S = 0,577, p < 0,001; NIRS p = 0,45).
-- Resultados preservados: instituições com sinal negativo (−0,18 [−0,30; −0,06]), sem convergência, canal de patentes mais eficiente na renda média-alta.
-- **Ajuste por qualidade (citações e patentes concedidas) muda a história**: a metafronteira inverte (renda média abaixo da fronteira, TGR 0,84 contra 0,94), a associação negativa com instituições desaparece e Estados Unidos, Reino Unido, Austrália e Singapura sobem ao topo (ρ = 0,80 entre rankings).
-- P&D público (HERD + GOVERD) como insumo corrige Israel (0,16 → 0,47) e Irlanda (0,20 → 0,46) e faz pesquisadores por milhão aparecerem com sinal positivo.
+- Painel CSET + World Bank: 47 países (com Alemanha, Coreia, Canadá, nórdicos, Rússia), 2016–2024; modelo conjunto 2017–2021 com insumos defasados; 37 a 44 países por ano. Teste de RTS no painel **não rejeita** retornos constantes (S = 0,577, p = 0,10); China, Coreia e Índia em CRS.
+- Resultados preservados: instituições com sinal negativo (−0,18 [−0,31; −0,06], 144 casos completos), sem convergência, canal de patentes mais eficiente na renda média-alta.
+- **Produtos alternativos (citações e famílias posteriormente concedidas)**: a metafronteira inverte por especificação, confirmado na amostra comum (0,59/0,87 em volume contra 0,94/0,83); Estados Unidos, Reino Unido, Austrália e Singapura sobem ao topo (ρ = 0,80 entre rankings). A associação com instituições deixa de ser distinguível de zero, mas a diferença de coeficientes não é significativa (0,07 [−0,03; 0,18]).
+- P&D executado por ensino superior e governo como insumo corrige Israel (0,16 → 0,47) e Irlanda (0,20 → 0,46); a inversão da metafronteira nessa variante é efeito da composição da amostra (saem seis países de renda média), não do insumo.
 - Nota: apresentar como "próximos passos já executados".
 
 ## Slide 16 — Robustez à fonte dos dados
 
-- Checagens entre fornecedores: investimento CSET × Quid (AI Index) ρ = 0,93 (84 países); CSET × Preqin (OECD.AI) ρ = 0,83 (513 país-ano); publicações CSET × OECD.AI ρ = 0,95; patentes CSET (escritório) × OCDE (inventor) ρ = 0,75.
-- Trocar a fonte do insumo (Preqin) ou das patentes (inventor) mantém a ordem geral dos rankings (ρ = 0,89 e 0,85) e os sinais do segundo estágio; muda posições específicas (China, Estados Unidos, Japão, Suíça, Irlanda).
-- Nota: "o que altera os resultados é a qualidade dos produtos, não o fornecedor".
+- Checagens entre fornecedores (bootstrap por país): investimento CSET × Quid ρ = 0,93 (84 países); CSET (VC + PE + fusões) × Preqin (só VC) ρ = 0,83 [0,76; 0,89]; publicações CSET × OECD.AI ρ = 0,95; patentes CSET (país de prioridade) × OCDE (país do inventor) ρ = 0,75 [0,61; 0,85].
+- Trocar a fonte do insumo (Preqin) ou das patentes (inventor) mantém a ordem geral dos rankings (ρ = 0,89 e 0,85) e o sinal das instituições; muda posições específicas (China passa a DRS com patentes por inventor; Estados Unidos e Japão sobem) e a correlação entre canais (0,30 com patentes por inventor).
+- Nota: "os fornecedores preservam a ordem geral; a atribuição das patentes e a escolha dos produtos mudam resultados específicos".
 
 ## Slide 17 — Limitações
 

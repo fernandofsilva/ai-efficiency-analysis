@@ -26,13 +26,13 @@ A tecnologia de produção de conhecimento em IA exibe retornos variáveis de es
 
 *Teste.* Teste de retornos de escala com bootstrap (Simar e Wilson, 2002) — H0 de retornos constantes e, em seguida, H0 de retornos não crescentes; eficiência de escala como razão entre escores CRS e VRS; direção dos retornos comparando modelos DRS e IRS.
 
-*Critério.* Rejeição de retornos constantes ao nível de 5% e eficiência de escala inferior a 0,8 para os grandes investidores.
+*Critério.* Rejeição de retornos constantes ao nível de 5% (teste global, com tamanho conhecido por simulação) **e** eficiência de escala média inferior a 0,8 para cada grande investidor, avaliada país a país (`rts_por_pais`). Os dois critérios são reportados separadamente: o teste global não demonstra o comportamento individual.
 
 ### H2 — Especificidade dos insumos por canal de produção
 
-Controlando pelo gasto público em P&D (GERD em dólares constantes, ou pesquisadores por milhão de habitantes), o investimento privado em IA tem produto marginal significativo para pedidos de patente, mas não para publicações.
+Controlando pelo P&D executado fora das empresas (GERD total ou, preferencialmente, P&D executado pelo ensino superior e pelo governo, HERD + GOVERD), o investimento privado em IA tem produto marginal significativo para famílias de patentes, mas não para publicações.
 
-*Fundamentação.* Publicações são produzidas majoritariamente por universidades e institutos financiados por recursos públicos; patentes, por empresas financiadas por capital privado. Uma função de produção com insumos público e privado separa os dois canais.
+*Fundamentação.* Publicações são produzidas majoritariamente em universidades e institutos; patentes, em empresas. Os insumos medem setor de execução do P&D e captação de capital privado, não fontes de financiamento mutuamente exclusivas (Manual de Frascati, cap. 4): a hipótese trata da complementaridade entre os dois insumos, não de "dinheiro público" versus "dinheiro privado".
 
 *Teste.* Fronteira estocástica (SFA) com dois insumos por canal, com elasticidades e testes de razão de verossimilhança; DEA com e sem GERD, comparando escores e pares de referência.
 
@@ -40,13 +40,13 @@ Controlando pelo gasto público em P&D (GERD em dólares constantes, ou pesquisa
 
 ### H3 — Divergência entre canais e heterogeneidade tecnológica
 
-A eficiência no canal acadêmico (publicações) e no canal tecnológico (patentes) são fracamente correlacionadas. Países de renda média operam sob uma tecnologia distinta da dos países de alta renda: a razão de gap tecnológico (TGR) do grupo de renda média é inferior a um em uma metafronteira por grupo de renda (O'Donnell, Rao e Battese, 2008).
+A eficiência no canal acadêmico (publicações) e no canal tecnológico (patentes) são fracamente correlacionadas (H3a: ρ < 0,5). Países de renda média operam sob uma tecnologia menos favorável que a dos países de alta renda: a razão de gap tecnológico (TGR) média do grupo de renda média é inferior à do grupo de alta renda em uma metafronteira por grupo de renda (H3b; O'Donnell, Rao e Battese, 2008). Como TGR ≤ 1 vale por construção, "TGR < 1" não é uma hipótese testável e foi substituída pela comparação entre grupos.
 
 *Fundamentação.* Sistemas nacionais de inovação orientados à ciência e sistemas orientados à comercialização convertem os mesmos recursos em produtos diferentes. A correlação bruta entre publicações e patentes no dataset é de apenas 0,47.
 
-*Teste.* DEA por canal e correlação de Spearman entre os escores com intervalo de confiança bootstrap; metafronteira por grupo de renda com cálculo da TGR e teste de Mann-Whitney; modelo de classes latentes em SFA (duas classes) como robustez.
+*Teste.* DEA por canal e correlação de Spearman entre os escores com bootstrap em blocos de país e p-valor unilateral de H0: ρ ≥ 0,5; metafronteira por grupo de renda com TGR e Mann-Whitney unilateral (país-ano e médias por país); decomposição amostra × especificação em amostra comum ao comparar variantes; classes latentes em SFA como robustez.
 
-*Critério.* Correlação de Spearman inferior a 0,5 e TGR média do grupo de renda média significativamente inferior a um.
+*Critério.* H3a: p-valor unilateral de ρ ≥ 0,5 inferior a 0,05. H3b: TGR média do grupo de renda média inferior à do grupo de alta renda com p unilateral inferior a 0,05 nas duas versões do teste.
 
 ### H4 — Dinâmica: a fronteira domina e a renda média converge
 
@@ -60,7 +60,7 @@ No período analisado, a variação de produtividade medida pelo índice de Malm
 
 *Teste.* Índice de Malmquist com decomposição em mudança de eficiência e mudança técnica no painel balanceado (2016–2019 no dataset original; 2016–2021 no painel reconstruído, e até 2024 no canal de publicações); intervalos por bootstrap em blocos de país; regressão da mudança de eficiência no escore inicial (β-convergência).
 
-*Critério.* A mudança técnica explica mais da metade da variância do índice; a mudança de eficiência média dos países de renda média é superior a um, com intervalo de confiança que exclui um.
+*Critério.* H4a: parcela da mudança técnica na variância de log M superior a 0,5, com a covariância entre componentes rateada simetricamente (Var log M = Var log TC + Var log EC + 2 Cov). H4b: média geométrica da mudança de eficiência do grupo de renda média superior a um, com IC 95% por bootstrap em blocos de país excluindo um; a comparação com a alta renda e a β-convergência (log EC contra eficiência inicial) são reportadas em separado.
 
 ### H5 — Instituições e capacidade de absorção
 

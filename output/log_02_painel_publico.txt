@@ -1,17 +1,19 @@
-15:54:28 amostra (insumos investimento_l1+pd_publico_l1 ): 184 obs., 41 países 
-15:54:31 outlier.ap: componentes ratio, imat, r0 
-15:54:31 supereficientes (F < 1) no pooled M2: 19 
-          id        pais  ano farrell_super
-150 ROU-2019     Romania 2019     0.5066597
-42  CHN-2020       China 2020     0.6644838
-164 SVN-2018    Slovenia 2018     0.6878367
-43  CHN-2021       China 2021     0.7733513
-153 RUS-2017      Russia 2017     0.7886236
-111 KOR-2018 South Korea 2018     0.8034763
-101 ITA-2018       Italy 2018     0.8064763
-87  HRV-2021     Croatia 2021     0.8105516
-112 KOR-2019 South Korea 2019     0.8302766
-3   ARG-2019   Argentina 2019     0.8433056
+18:45:36 valores-piso no insumo usado (<= 2,5 M): 16 
+18:45:36 amostra (insumos investimento_l1+pd_publico_l1 ): 184 obs., 41 países 
+18:45:39 outlier.ap: componentes ratio, imat, r0 
+18:45:39 supereficientes: 19 | destes no piso: 4 
+18:45:39 supereficientes (F < 1) no pooled M2: 19 
+         id        pais  ano farrell_super       inv_mi inv_piso supereficiente
+1  ROU-2019     Romania 2019     0.5066597     1.079101     TRUE           TRUE
+2  CHN-2020       China 2020     0.6644838  7777.501828    FALSE           TRUE
+3  SVN-2018    Slovenia 2018     0.6878367     1.105459     TRUE           TRUE
+4  CHN-2021       China 2021     0.7733513 15792.625031    FALSE           TRUE
+5  RUS-2017      Russia 2017     0.7886236     9.032055    FALSE           TRUE
+6  KOR-2018 South Korea 2018     0.8034763   190.139019    FALSE           TRUE
+7  ITA-2018       Italy 2018     0.8064763    15.476432    FALSE           TRUE
+8  HRV-2021     Croatia 2021     0.8105516     1.046979     TRUE           TRUE
+9  KOR-2019 South Korea 2019     0.8302766   377.685510    FALSE           TRUE
+10 ARG-2019   Argentina 2019     0.8433056     1.079101     TRUE           TRUE
     ano  n media_vrs eficientes_vrs media_crs  media_se drs irs crs modelo
 1  2017 35 0.4422525              6 0.1609040 0.2967439  31   0   4     M1
 2  2018 37 0.4605651              5 0.2136387 0.4076980  27   7   3     M1
@@ -23,34 +25,50 @@
 8  2019 37 0.6767577             10 0.3396142 0.4829271  30   4   3     M2
 9  2020 36 0.6902036             11 0.3895805 0.5108187  28   4   4     M2
 10 2021 39 0.6751592             10 0.3919867 0.5442287  33   0   6     M2
-15:54:31 bootstrap M2 por ano... 
-15:54:36 bootstrap M1 por ano... 
-15:54:39 faixas: fdh 1-3.64545454545455 | orderm 0.275-2.619 | orderalfa 0.274-11.802 
-              a             b       rho    ic_inf    ic_sup   n
-rho  escore_vrs     escore_bc 0.9523788 0.9203745 0.9725626 184
-rho1 escore_vrs        orderm 0.5096790 0.3816460 0.6282699 184
-rho2 escore_vrs     orderalfa 0.5807949 0.4764989 0.6639403 184
-rho3 escore_vrs           fdh 0.6083660 0.5110248 0.6912839 184
-rho4 escore_vrs escore_vrs_m1 0.7891563 0.7111211 0.8534457 184
-rho5     orderm     orderalfa 0.8778109 0.8260824 0.9166888 184
-15:54:40 Spearman entre canais: 0.546 0.429 0.651 184 
-        grupo   n tgr_media tgr_mediana escore_meta_medio escore_grupo_medio p_mann_whitney
-1  Alta renda 156 0.9148048   0.9830450         0.5613208          0.6250350    0.003472967
-2 Renda média  28 0.8147483   0.7967174         0.5532308          0.6556056    0.003472967
-15:54:40 Malmquist: países balanceados 32 
+18:45:40 bootstrap M2 por ano... 
+18:45:45 bootstrap M1 por ano... 
+18:45:47 faixas: fdh 1-3.64545454545455 | orderm 0.275-2.619 | orderalfa 0.274-11.802 
+              a             b       rho    ic_inf    ic_sup   n n_paises
+rho  escore_vrs     escore_bc 0.9523788 0.8878856 0.9815540 184       41
+rho1 escore_vrs        orderm 0.5096790 0.2783232 0.6799168 184       41
+rho2 escore_vrs     orderalfa 0.5807949 0.3850267 0.7160728 184       41
+rho3 escore_vrs           fdh 0.6083660 0.4280404 0.7352318 184       41
+rho4 escore_vrs escore_vrs_m1 0.7891563 0.6569173 0.8819409 184       41
+rho5     orderm     orderalfa 0.8778109 0.7778081 0.9371440 184       41
+18:45:49 Spearman entre canais: 0.546 0.327 0.7 184 41 0.668 
+Warning message:
+In wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...) :
+  cannot compute exact p-value with ties
+        grupo   n tgr_media tgr_mediana escore_meta_medio escore_grupo_medio
+1  Alta renda 156 0.9148048   0.9830450         0.5613208          0.6250350
+2 Renda média  28 0.8147483   0.7967174         0.5532308          0.6556056
+  p_mann_whitney_unilateral p_mann_whitney_medias_pais n_paises
+1               0.001736483                   0.018016       34
+2               0.001736483                   0.018016        7
+18:45:49 Malmquist: países balanceados 32 
 Period  2 
 Period  3 
 Period  4 
 Period  5 
-15:54:40 malmquist: componentes m, tc, ec, id, time, e00, e10, e11, e01 
-  grupo_renda2 n_paises malmquist mudanca_tecnica mudanca_eficiencia parcela_var_tc
-1   Alta renda       27 0.9216757       0.9483306          0.9718929      0.2155337
-2  Renda média        5 0.8701829       0.9495510          0.9164151      0.2155337
-3        Todos       32 0.9134336       0.9485212          0.9630081      0.2155337
-15:54:40 amostra sem valores-piso: 177 obs., 41 países 
-Error in solving for unit 9:  Status =5
-15:54:44 Spearman entre canais (sem piso): 0.597 0.486 0.694 177 
-        grupo   n tgr_media tgr_mediana escore_meta_medio escore_grupo_medio p_mann_whitney
-1  Alta renda 151 0.9131417   0.9833029         0.5647270          0.6300104    0.002504265
-2 Renda média  26 0.8107857   0.7967174         0.5516697          0.6597312    0.002504265
-15:54:44 FIM fronteiras Fase A 
+18:45:49 malmquist: componentes m, tc, ec, id, time, e00, e10, e11, e01 
+  grupo_renda2 n_paises malmquist mudanca_tecnica mudanca_eficiencia parcela_tc_rateio_simetrico
+1   Alta renda       27 0.9216757       0.9483306          0.9718929                   0.1603139
+2  Renda média        5 0.8701829       0.9495510          0.9164151                   0.1603139
+3        Todos       32 0.9134336       0.9485212          0.9630081                   0.1603139
+  malmquist_ic_inf malmquist_ic_sup mudanca_tecnica_ic_inf mudanca_tecnica_ic_sup
+1        0.8924550        0.9541813              0.9297614              0.9695308
+2        0.7661843        1.0179530              0.8662831              1.0011323
+3        0.8831833        0.9465411              0.9286490              0.9678636
+  mudanca_eficiencia_ic_inf mudanca_eficiencia_ic_sup
+1                 0.9430457                 1.0054984
+2                 0.8014642                 1.0429884
+3                 0.9301066                 0.9974428
+18:45:49 amostra sem valores-piso: 168 obs., 38 países 
+18:45:54 Spearman entre canais (sem piso): 0.628 0.46 0.743 168 38 0.934 
+        grupo   n tgr_media tgr_mediana escore_meta_medio escore_grupo_medio
+1  Alta renda 145 0.9087409   0.9794134         0.5583808          0.6267355
+2 Renda média  23 0.8673659   0.8070633         0.5824149          0.6457474
+  p_mann_whitney_unilateral
+1                0.09816456
+2                0.09816456
+18:45:54 FIM fronteiras Fase A 

@@ -1,0 +1,25 @@
+   variante     amostra especificacao  tgr_alta tgr_media   n inversao
+1      base    original          base 0.6064770 0.9316435 204    FALSE
+2   publico da variante          base 0.9271085 0.7975012 184     TRUE
+3   publico da variante      variante 0.9148048 0.8147483 184     TRUE
+4 qualidade da variante          base 0.5930181 0.8674636 117    FALSE
+5 qualidade da variante      variante 0.9437703 0.8349273 117     TRUE
+6     fonte da variante          base 0.6103115 0.9266631 203    FALSE
+7     fonte da variante      variante 0.7030516 0.8815488 203    FALSE
+8    preqin da variante          base 0.6060901 0.9579060 194    FALSE
+9    preqin da variante      variante 0.7785933 0.8448075 194    FALSE
+18:56:31 publico : efetividade base -0.207 variante -0.143 diferença IC [ -0.004 ; 0.127 ] 
+18:56:40 qualidade : efetividade base -0.15 variante -0.076 diferença IC [ -0.026 ; 0.181 ] 
+18:56:50 fonte : efetividade base -0.18 variante -0.136 diferença IC [ -0.047 ; 0.15 ] 
+18:57:00 preqin : efetividade base -0.18 variante -0.217 diferença IC [ -0.152 ; 0.088 ] 
+           variante n_obs n_paises  coef_base coef_variante   diferenca  dif_ic_inf dif_ic_sup
+publico     publico   128       34 -0.2072382   -0.14343911  0.06379906 -0.00398356 0.12725439
+qualidade qualidade    85       35 -0.1499360   -0.07606062  0.07387535 -0.02556465 0.18128812
+fonte         fonte   144       38 -0.1795499   -0.13605801  0.04349184 -0.04727301 0.14950210
+preqin       preqin   133       37 -0.1795170   -0.21721818 -0.03770115 -0.15234358 0.08808878
+          replicas_validas
+publico                300
+qualidade              300
+fonte                  300
+preqin                 300
+18:57:00 FIM comparações em amostra comum 

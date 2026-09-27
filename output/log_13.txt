@@ -1,9 +1,9 @@
-15:54:28 países elegíveis: 47 | candidatos excluídos: United Arab Emirates, Bangladesh, Cyprus, Algeria, Ecuador, Egypt, Indonesia, Iran, Iraq, Jordan, Lebanon, Sri Lanka, Morocco, Nigeria, Pakistan, Qatar, Slovakia, Thailand, Tunisia, Taiwan, Vietnam 
-15:54:28 AI Index (talento) juntado: 315 obs. com concentração 
-15:54:28 patentes OCDE (inventor) juntadas: 276 obs. 
-15:54:28 VC Preqin juntado: 404 obs. 
-15:54:28 MSTI (P&D público) juntado: 369 obs., 41 países 
-15:54:28 gravado data/processed/painel_ia.csv: 423 linhas, 47 países 
+17:21:51 países elegíveis: 47 | candidatos excluídos: United Arab Emirates, Bangladesh, Cyprus, Algeria, Ecuador, Egypt, Indonesia, Iran, Iraq, Jordan, Lebanon, Sri Lanka, Morocco, Nigeria, Pakistan, Qatar, Slovakia, Thailand, Tunisia, Taiwan, Vietnam 
+17:21:51 AI Index (talento) juntado: 315 obs. com concentração 
+17:21:51 patentes OCDE (inventor) juntadas: 276 obs. 
+17:21:51 VC Preqin juntado: 404 obs. 
+17:21:51 MSTI (P&D público) juntado: 369 obs., 41 países 
+17:21:52 gravado data/processed/painel_ia.csv: 423 linhas, 47 países 
    ano paises n_publicacoes n_patentes n_concedidas n_citacoes n_investimento n_inv_zero n_gerd
 1 2016     47            47         41           39         47             45          3     47
 2 2017     47            47         44           42         47             45          3     47
@@ -24,5 +24,5 @@
 7                 0
 8                 0
 9                 0
-15:54:28 grupos de renda: Alta renda 35; Renda média-alta 11; Renda média-baixa 1 
-15:54:28 codebook gravado em artigo/03_codebook.md 
+17:21:52 grupos de renda: Alta renda 35; Renda média-alta 11; Renda média-baixa 1 
+17:21:52 codebook gravado em artigo/03_codebook.md 

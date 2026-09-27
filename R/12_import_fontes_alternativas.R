@@ -54,7 +54,10 @@ talento <- talento |>
   dplyr::filter(!is.na(iso3c)) |>
   dplyr::group_by(iso3c, ano) |>
   dplyr::summarise(
-    talento_ia_pct = mean(valor, na.rm = TRUE),   # média simples F/M
+    # Média NÃO ponderada das taxas feminina e masculina: não equivale à
+    # concentração total (que exige os pesos dos denominadores); ver
+    # talento_ia_2024_pct (total publicado) na tabela transversal.
+    talento_ia_media_genero_pct = mean(valor, na.rm = TRUE),
     talento_ia_fem_pct = valor[genero == "Female"][1],
     talento_ia_masc_pct = valor[genero == "Male"][1],
     .groups = "drop")
@@ -254,7 +257,8 @@ checagem_pub <- oecd |>
   dplyr::inner_join(share_cset, by = c("iso3c", "ano")) |>
   dplyr::arrange(iso3c, ano)
 rho_pub <- SpearmanComIc(checagem_pub$share_pub_cset,
-                         checagem_pub$share_pub_oecd)
+                         checagem_pub$share_pub_oecd,
+                         grupo = checagem_pub$iso3c)
 pearson_pub <- stats::cor(checagem_pub$share_pub_cset,
                           checagem_pub$share_pub_oecd)
 Registrar("Publicações CSET x OECD.AI: Spearman",
@@ -280,7 +284,8 @@ if (!is.null(oecd_pat)) {
     dplyr::inner_join(cset_pat, by = c("iso3c", "ano")) |>
     dplyr::filter(patentes_cset > 0 | patentes_inventor > 0)
   rho_pat <- SpearmanComIc(checagem_pat$patentes_cset,
-                           checagem_pat$patentes_inventor)
+                           checagem_pat$patentes_inventor,
+                           grupo = checagem_pat$iso3c)
   Registrar("Patentes CSET x OCDE (país-ano):",
             paste(round(rho_pat, 3), collapse = " "))
   SalvarTabela(checagem_pat, "checagem_patentes_cset_vs_oecd")
@@ -326,7 +331,8 @@ if (!is.null(oecd_vc)) {
     dplyr::inner_join(cset_inv, by = c("iso3c", "ano")) |>
     dplyr::filter(investimento_cset > 0 | investimento_preqin > 0)
   rho_vc <- SpearmanComIc(checagem_vc$investimento_cset,
-                          checagem_vc$investimento_preqin)
+                          checagem_vc$investimento_preqin,
+                          grupo = checagem_vc$iso3c)
   Registrar("Investimento CSET x Preqin (país-ano):",
             paste(round(rho_vc, 3), collapse = " "))
   SalvarTabela(checagem_vc, "checagem_investimento_cset_vs_preqin")

@@ -132,24 +132,126 @@ BootstrapDea <- function(x, y, id, rts = "vrs", n_rep = 2000, alpha = 0.05) {
     ic_sup = ParaEscala01(as.numeric(boot$conf.int[, 1])),
     vies = as.numeric(boot$bias),
     stringsAsFactors = FALSE)
+  # Réplicas (Farrell) por DMU, para agregações posteriores (ex.: média
+  # por país ao longo dos anos com incerteza de bootstrap).
+  attr(saida, "replicas") <- boot$boot
   return(saida)
 }
 
-SpearmanComIc <- function(a, b, n_boot = 2000, semente = 2026) {
-  # Correlação de Spearman com IC percentílico por bootstrap.
+SpearmanComIc <- function(a, b, n_boot = 2000, semente = 2026, grupo = NULL,
+                          limiar = NULL) {
+  # Correlação de Spearman com IC percentílico por bootstrap. Se `grupo`
+  # (ex.: país) for informado, a reamostragem é por bloco (trajetórias
+  # completas), respeitando a repetição de observações por unidade. Se
+  # `limiar` for informado, devolve o p-valor unilateral bootstrap de
+  # H0: rho >= limiar (fração de réplicas com rho >= limiar).
   set.seed(semente)
   completos <- stats::complete.cases(a, b)
   a <- a[completos]
   b <- b[completos]
+  if (!is.null(grupo)) grupo <- grupo[completos]
   rho <- stats::cor(a, b, method = "spearman")
   replicas <- replicate(n_boot, {
-    indice <- sample(length(a), replace = TRUE)
+    if (is.null(grupo)) {
+      indice <- sample(length(a), replace = TRUE)
+    } else {
+      blocos <- sample(unique(grupo), replace = TRUE)
+      indice <- unlist(lapply(blocos, function(g) which(grupo == g)))
+    }
     stats::cor(a[indice], b[indice], method = "spearman")
   })
+  replicas <- replicas[is.finite(replicas)]
   saida <- c(rho = rho,
              ic_inf = unname(stats::quantile(replicas, 0.025)),
              ic_sup = unname(stats::quantile(replicas, 0.975)),
-             n = length(a))
+             n = length(a),
+             n_blocos = if (is.null(grupo)) {
+               NA_real_
+             } else {
+               length(unique(grupo))
+             })
+  if (!is.null(limiar)) {
+    saida <- c(saida, p_h0_rho_maior_igual_limiar = mean(replicas >= limiar))
+  }
+  return(saida)
+}
+
+RegistrarManifesto <- function(script, sufixo, base, status, detalhe = "",
+                               arquivo = file.path("output/tables",
+                                                   "manifesto_execucoes.csv")) {
+  # Registra uma linha por execução (script, sufixo, base e seu hash MD5,
+  # horário e status) para vincular saídas à configuração que as gerou.
+  linha <- data.frame(
+    horario = format(Sys.time(), "%Y-%m-%d %H:%M:%S"), script = script,
+    sufixo = sufixo, base = base,
+    md5_base = if (file.exists(base)) unname(tools::md5sum(base)) else NA,
+    insumos = Sys.getenv("INSUMOS", "investimento,gerd"),
+    produtos = Sys.getenv("PRODUTOS", "publicacoes,patentes"),
+    status = status, detalhe = detalhe, stringsAsFactors = FALSE)
+  utils::write.table(linha, arquivo, sep = ",", row.names = FALSE,
+                     col.names = !file.exists(arquivo),
+                     append = file.exists(arquivo))
+  return(invisible(linha))
+}
+
+DistanciaShephard <- function(x, y, rts, xref = NULL, yref = NULL) {
+  # Distância de Shephard orientada a produto (<= 1) = 1 / Farrell, com
+  # tempo máximo por LP; LPs interrompidos devolvem NA. Se xref/yref forem
+  # dados, as unidades (x, y) são avaliadas contra essa tecnologia de
+  # referência (usado no bootstrap: observações originais contra a
+  # pseudofronteira, como em Simar e Wilson).
+  modelo <- Benchmarking::dea(x, y, RTS = rts, ORIENTATION = "out",
+                              XREF = xref, YREF = yref,
+                              CONTROL = list(timeout = 10))
+  return(1 / as.numeric(Benchmarking::eff(modelo)))
+}
+
+SortearSuavizado <- function(d) {
+  # Bootstrap homogêneo suavizado com reflexão em 1 (Simar e Wilson, 1998)
+  # aplicado às distâncias de Shephard (<= 1): reamostra {d, 2 - d},
+  # adiciona ruído com largura de Silverman, corrige a variância usando a
+  # média da reamostra e reflete de volta para (0, 1].
+  n <- length(d)
+  refletido <- c(d, 2 - d)
+  h <- 0.9 * min(stats::sd(refletido), stats::IQR(refletido) / 1.34) *
+    (2 * n)^(-1 / 5)
+  beta <- sample(refletido, n, replace = TRUE)
+  beta_til <- beta + h * stats::rnorm(n)
+  beta_corr <- mean(beta) + (beta_til - mean(beta)) /
+    sqrt(1 + h^2 / stats::var(d))
+  d_estrela <- ifelse(beta_corr > 1, 2 - beta_corr, beta_corr)
+  d_estrela <- pmin(pmax(d_estrela, 1e-4), 1)
+  return(d_estrela)
+}
+
+TesteRtsBootstrap <- function(x, y, h0 = "crs", n_rep = 1000) {
+  # Teste de retornos de escala inspirado em Simar e Wilson (2002):
+  # S = mean(D_H0) / mean(D_VRS); pseudo-produtos gerados sob H0 pela
+  # projeção na fronteira H0 e reposicionamento com distância sorteada;
+  # réplicas com qualquer LP falho são descartadas por inteiro.
+  d_h0 <- DistanciaShephard(x, y, h0)
+  d_vrs <- DistanciaShephard(x, y, "vrs")
+  ok <- is.finite(d_h0) & is.finite(d_vrs)
+  s_obs <- mean(d_h0[ok]) / mean(d_vrs[ok])
+  x_ok <- x[ok, , drop = FALSE]
+  y_ok <- y[ok, , drop = FALSE]
+  s_boot <- vapply(seq_len(n_rep), function(b) {
+    d_estrela <- SortearSuavizado(d_h0[ok])
+    # Pseudo-amostra sob H0 (projeção na fronteira H0 e reposicionamento);
+    # as observações ORIGINAIS são avaliadas contra a pseudofronteira,
+    # como no algoritmo de Simar e Wilson (1998, 2002).
+    y_estrela <- y_ok * (d_estrela / d_h0[ok])
+    d1 <- DistanciaShephard(x_ok, y_ok, h0, xref = x_ok, yref = y_estrela)
+    d2 <- DistanciaShephard(x_ok, y_ok, "vrs", xref = x_ok, yref = y_estrela)
+    if (any(!is.finite(d1)) || any(!is.finite(d2))) return(NA_real_)
+    mean(d1) / mean(d2)
+  }, numeric(1))
+  validas <- is.finite(s_boot)
+  s_boot <- s_boot[validas]
+  saida <- list(estatistica = s_obs, p_valor = mean(s_boot <= s_obs),
+                replicas_validas = sum(validas), n = sum(ok),
+                s_boot_q05 = unname(stats::quantile(s_boot, 0.05)),
+                s_boot_mediana = stats::median(s_boot))
   return(saida)
 }
 

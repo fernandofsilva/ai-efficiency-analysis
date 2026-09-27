@@ -18,7 +18,8 @@ Fase A (dataset original, apresentação):
 Rscript R/10_download_wdi.R            # indicadores do World Bank e WGI (cache em data/)
 Rscript R/01_prep_dataset_atual.R      # prepara data/processed/base_atual.csv
 Rscript R/02_fronteiras_dataset_atual.R    # DEA, bootstrap, FDH, order-m/alfa, canais, metafronteira, Malmquist
-Rscript R/02b_teste_rts.R              # teste de retornos de escala (demorado)
+Rscript R/02b_teste_rts.R              # teste de retornos de escala (adaptado de Simar-Wilson 2002)
+Rscript R/02c_validacao_rts.R          # validação por simulação do teste (tamanho e poder)
 Rscript R/03_segundo_estagio_dataset_atual.R  # Simar-Wilson, truncada, Tobit, Kruskal-Wallis
 Rscript R/04_figuras_apresentacao.R    # figuras
 ```
@@ -49,3 +50,7 @@ Os scripts 02, 03 e 04 são parametrizados por variáveis de ambiente (`BASE_ARQ
 - `artigo/06_resultados_painel.md` — resultados no painel reconstruído, variantes (qualidade, fontes alternativas, P&D público) e checagens entre fornecedores.
 - `artigo/07_registro_de_trabalho.md` — registro de tudo o que foi feito e guia de retomada (ler primeiro em nova sessão).
 - `artigo/08_brief_deck.md` — brief slide a slide para montar a apresentação no Claude Design.
+- `artigo/09_analise_critica_inconsistencias.md` — revisão crítica externa (24 pontos).
+- `artigo/10_avaliacao_inconsistencias.md` — veredito, correção adotada e estado de cada ponto, com os resultados após a reexecução.
+
+Comparações em amostra comum entre variantes: `R/05_comparacoes_amostra_comum.R`. Manifesto de execuções: `output/tables/manifesto_execucoes.csv`.
