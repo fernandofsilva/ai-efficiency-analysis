@@ -51,8 +51,7 @@ base_ins <- c("investimento_l1", "gerd_l1")
 base_prod <- c("publicacoes", "patentes")
 
 # 1. Metafronteira: base na amostra original, base na amostra da variante,
-
-      variante na amostra da variante --------------------------------------------
+#    variante na amostra da variante -----------------------------------------
 ids_base <- LerTabela("dea_ano_m2_painel")$id
 linhas <- list(cbind(variante = "base", amostra = "original",
                      especificacao = "base",
