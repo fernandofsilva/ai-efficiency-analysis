@@ -48,7 +48,7 @@ Documento de transferência: tudo o que foi feito, decidido e ficou pendente, pa
 - `summarise` do dplyr sobrescrevendo nomes usados nas expressões seguintes (cobertura do painel) — corrigido com nomes distintos.
 - Dois processos `exec/R` sem `--file` que aparecem no `pgrep` são do VS Code, não do projeto.
 
-## 6. Pendências (estado em 27/09/2026, 16h)
+## 6. Pendências (estado em 27/09/2026, 20h)
 
 ### Concluído (não requer ação)
 
@@ -59,14 +59,15 @@ Documento de transferência: tudo o que foi feito, decidido e ficou pendente, pa
 
 ### Aberto — depende do usuário
 
-1. **Apresentação de 28/09**: montar o deck de 20 minutos a partir de `artigo/05_resultados_fase_a.md` e das figuras sem sufixo em `output/figures/` (fig1–fig7). Nenhum cálculo pendente.
-2. **Commit inicial**: nada foi commitado; `git status` mostra `R/`, `artigo/`, `data/`, `output/`, `others/` e `README.md`.
+1. **Apresentação de 28/09**: o deck `AI Effiency Analysis.pdf` (raiz) foi gerado a partir da revisão 1 do brief e está desatualizado; atualizá-lo página a página conforme a seção 2 de `artigo/08_brief_deck.md` (revisão 2), embutindo as sete figuras (o PDF atual não contém nenhuma imagem), e reexportar. Nenhum cálculo pendente.
+2. **Commits**: `ae6c878` (pipeline e resultados), `c3b78ff` (resposta à análise crítica) e `3b0799b` (cabeçalho de `R/05`) estão em `main` e em `origin/main`; a revisão 2 do brief e os ajustes de texto de 27/09 (20h) ainda não foram commitados.
 3. **Top500** (opcional, baixa prioridade): o site bloqueou os downloads por taxa; rerodar `Rscript R/16_download_top500.R` mais tarde ou baixar as planilhas manualmente para `data/top500/` e rodar o script para agregar. Depois, usar `top500_sistemas` como Z no segundo estágio.
 4. **P&D público dos seis países sem fonte** (opcional): Brasil, Índia, Malásia, Filipinas, Arábia Saudita, Ucrânia só por fontes nacionais (RICYT, DST, MASTIC), manualmente. O UIS não publica mais a abertura por setor. Sem isso, esses países ficam fora apenas da variante `_painel_publico`.
 
 ### Aberto — decorrentes da análise crítica
 
-- Reexportar o deck com as figuras regeneradas (I05).
+- Reexportar o deck com as figuras regeneradas (I05); roteiro de alterações em `artigo/08`, seção 2.
+- Reprodutibilidade do algoritmo 2 (rDEA): `RodarComTempoMaximo` avalia `dea.env.robust` em processo-filho (`parallel::mcparallel`) sem `set.seed` próprio, e o filho recebe uma semente derivada do PID e do horário; por isso os intervalos do algoritmo 2 mudam um pouco entre execuções (Fase A: efetividade [5,6; 16,2] na primeira execução, [4,4; 15,9] na atual). Correção sugerida para a próxima rodada: chamar `set.seed(semente)` dentro da expressão avaliada no filho (ou `RNGkind("L'Ecuyer-CMRG")` com `parallel::mc.reset.stream()`), e rerodar `R/03` em todas as variantes. Os textos citam os valores das tabelas atuais.
 - Extensões metodológicas registradas como limitação: inferência de dois estágios para painel (I07), modelo de dois limites para a truncada (I08), comparação do teste de RTS com `rDEA` em amostras pequenas e ajuste do tamanho (I09), incerteza de postos no ranking (I04), manifesto com hashes de todas as saídas (I22), limites alternativos de piso por fonte (I01).
 
 ### Aberto — trabalho analítico da versão artigo (sem dados novos)

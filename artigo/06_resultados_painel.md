@@ -80,7 +80,7 @@ Regressão truncada, escores fixos, bootstrap por país; dependente = eficiênci
 | H7 patentes | log PIB per capita | −0,057 [−0,121; −0,008] | −0,042 [−0,120; 0,016] | −0,032 [−0,122; 0,052] | −0,080 [−0,142; −0,029] | −0,095 [−0,178; −0,025] |
 | H7 publicações | log PIB per capita | −0,068 [−0,149; 0,003] | 0,015 [−0,071; 0,097] | −0,093 [−0,163; −0,031] | −0,076 [−0,158; 0,001] | −0,088 [−0,178; −0,014] |
 
-- Algoritmo 2 de Simar-Wilson (rDEA, fronteira agrupada, casos completos de contexto, escala de Farrell, sinal invertido): base efetividade +17,0 [6,1; 24,6]*, crédito −0,25*; fonte +2,85*; P&D ES+gov +2,95*; Preqin +59 (n.s.); qualidade: não concluído em 10 minutos (tabela anterior marcada como obsoleta).
+- Algoritmo 2 de Simar-Wilson (rDEA, fronteira agrupada, casos completos de contexto, escala de Farrell, sinal invertido): base efetividade +17,0 [4,7; 25,5]*, crédito −0,25*; fonte +2,85*; P&D ES+gov +2,95*; Preqin +59 (n.s.); qualidade: não concluído em 10 minutos (tabela anterior marcada como obsoleta).
 - Leitura: a associação negativa entre efetividade governamental e eficiência medida aparece em quatro das cinco variantes com produtos em contagem e deixa de ser distinguível de zero na variante de qualidade; a seção 9 testa se essa diferença é de especificação ou de amostra. Pesquisadores por milhão e talento em IA só têm sinal positivo significativo nas variantes de fonte e de P&D executado por ensino superior e governo. Crédito bancário (não a capitalização) associa-se positivamente ao canal de patentes (H6 contrariada); PIB per capita é negativo ou nulo (H7 contrariada). Nenhum destes procedimentos testa separabilidade; o segundo estágio é exploratório.
 
 ## 8. Checagens entre fornecedores (`R/12`, bootstrap em blocos de país)

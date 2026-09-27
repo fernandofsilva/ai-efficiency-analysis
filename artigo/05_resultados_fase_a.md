@@ -49,7 +49,7 @@ Spearman com o escore VRS (bootstrap em blocos de país, 36 blocos): corrigido 0
 ## 6. Canais e metafronteira — H3 (Figuras 3 e 7)
 
 - Spearman entre eficiência acadêmica e tecnológica (país-ano, blocos de país): 0,52 [0,31; 0,69]; p-valor unilateral de H0: ρ ≥ 0,5 = 0,59 (sem piso: 0,56, p = 0,72). **H3a inconclusiva**: compatível no ponto com correlação moderada, sem evidência contra ρ ≥ 0,5.
-- Metafronteira agrupada por grupo de renda: TGR média 0,62 (alta renda) e 0,95 (renda média). H3b, redefinida como TGR(média) < TGR(alta): Mann-Whitney unilateral p = 1,0 (também em médias por país). **Não apoiada**: com contagens, o grupo de renda média define a metafronteira (China, Índia, México, Peru).
+- Metafronteira agrupada por grupo de renda: TGR média 0,62 (alta renda) e 0,94 (renda média). H3b, redefinida como TGR(média) < TGR(alta): Mann-Whitney unilateral p = 1,0 (também em médias por país). **Não apoiada**: com contagens, o grupo de renda média define a metafronteira (China, Índia, México, Peru).
 - Kruskal-Wallis por renda: canal de patentes difere (p = 0,001 em país-ano; p = 0,020 em médias por país; 0,34 na renda média-alta contra 0,17 na alta renda); publicações e modelo conjunto não.
 
 ## 7. Dinâmica 2016–2019 — H4 (Figura 2)
@@ -80,7 +80,7 @@ Regressão truncada com escores fixos e bootstrap por país (36 países), depend
 | H7 canal patentes | log PIB per capita | −0,045 | [−0,154; 0,013] | 191/36 |
 | H7 canal publicações | log PIB per capita | −0,093 | [−0,153; −0,014] | 191/36 |
 
-- Parametrização em Farrell (H5 conjunto): efetividade +57,3 [0,04; 82,4] (positivo = menos eficiente), mesmo sentido. Algoritmo 2 de Simar-Wilson (rDEA, fronteira agrupada, Farrell): efetividade +10,5 [5,6; 16,2]; crédito −0,15 [−0,24; −0,08]. Tobit: efetividade −0,116 (p < 0,001). Três procedimentos com fronteiras e amostras distintas dão o mesmo sinal; nenhum deles testa separabilidade (associações descritivas em `associacao_z_vs_escore.csv`: efetividade −0,25, PIB per capita −0,30, P&D % PIB −0,21), por isso o segundo estágio é exploratório.
+- Parametrização em Farrell (H5 conjunto): efetividade +57,3 [0,04; 82,4] (positivo = menos eficiente), mesmo sentido. Algoritmo 2 de Simar-Wilson (rDEA, fronteira agrupada, Farrell): efetividade +10,5 [4,4; 15,9]; crédito −0,15 [−0,23; −0,06]. Tobit: efetividade −0,116 (p < 0,001). Três procedimentos com fronteiras e amostras distintas dão o mesmo sinal; nenhum deles testa separabilidade (associações descritivas em `associacao_z_vs_escore.csv`: efetividade −0,25, PIB per capita −0,30, P&D % PIB −0,21), por isso o segundo estágio é exploratório.
 - H5 não confirmada (sinal negativo das instituições, no limite da significância e não robusto ao piso); H6 não confirmada; H7 contrariada (PIB per capita negativo em publicações, nulo em patentes).
 
 ## 9. O que muda na versão artigo
@@ -94,7 +94,7 @@ Ver `artigo/06_resultados_painel.md`: painel de 47 países (2017–2021), teste 
 | H1 escala | CRS rejeitado (p = 0,025, teste liberal), NIRS não rejeitado; EUA em DRS; China em CRS | parcialmente apoiada |
 | H2 insumos por canal | GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82) | a testar com SFA |
 | H3a canais | ρ = 0,52 [0,31; 0,69], p(ρ ≥ 0,5) = 0,59 | inconclusiva |
-| H3b metafronteira | TGR média 0,95 > alta 0,62 (p = 1,0) | não apoiada |
+| H3b metafronteira | TGR média 0,94 > alta 0,62 (p = 1,0) | não apoiada |
 | H4a dinâmica | TC domina (parcela 0,60), fronteira recua | apoiada |
 | H4b convergência | EC média 1,07 [0,96; 1,26]; β +0,04 (p = 0,47) | não apoiada |
 | H5 instituições | efetividade −0,14 [−0,33; −0,00]; não robusto ao piso | não apoiada |
