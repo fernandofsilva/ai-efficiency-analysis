@@ -1,25 +1,63 @@
-   variante     amostra especificacao  tgr_alta tgr_media   n inversao
-1      base    original          base 0.6064770 0.9316435 204    FALSE
-2   publico da variante          base 0.9271085 0.7975012 184     TRUE
-3   publico da variante      variante 0.9148048 0.8147483 184     TRUE
-4 qualidade da variante          base 0.5930181 0.8674636 117    FALSE
-5 qualidade da variante      variante 0.9437703 0.8349273 117     TRUE
-6     fonte da variante          base 0.6103115 0.9266631 203    FALSE
-7     fonte da variante      variante 0.7030516 0.8815488 203    FALSE
-8    preqin da variante          base 0.6060901 0.9579060 194    FALSE
-9    preqin da variante      variante 0.7785933 0.8448075 194    FALSE
-18:56:31 publico : efetividade base -0.207 variante -0.143 diferença IC [ -0.004 ; 0.127 ] 
-18:56:40 qualidade : efetividade base -0.15 variante -0.076 diferença IC [ -0.026 ; 0.181 ] 
-18:56:50 fonte : efetividade base -0.18 variante -0.136 diferença IC [ -0.047 ; 0.15 ] 
-18:57:00 preqin : efetividade base -0.18 variante -0.217 diferença IC [ -0.152 ; 0.088 ] 
-           variante n_obs n_paises  coef_base coef_variante   diferenca  dif_ic_inf dif_ic_sup
-publico     publico   128       34 -0.2072382   -0.14343911  0.06379906 -0.00398356 0.12725439
-qualidade qualidade    85       35 -0.1499360   -0.07606062  0.07387535 -0.02556465 0.18128812
-fonte         fonte   144       38 -0.1795499   -0.13605801  0.04349184 -0.04727301 0.14950210
-preqin       preqin   133       37 -0.1795170   -0.21721818 -0.03770115 -0.15234358 0.08808878
-          replicas_validas
-publico                300
-qualidade              300
-fonte                  300
-preqin                 300
-18:57:00 FIM comparações em amostra comum 
+16:59:44 publico : amostra comum 184 obs.; só na variante: 0  
+16:59:44 qualidade : amostra comum 117 obs.; só na variante: 0  
+16:59:44 fonte : amostra comum 203 obs.; só na variante: 14 IRL-2017 SAU-2017 SVN-2017 COL-2018 IND-2019 IRL-2019 CHL-2020 COL-2020 IND-2020 IRL-2020 SAU-2020 UKR-2020 IND-2021 SVN-2021 
+16:59:44 preqin : amostra comum 191 obs.; só na variante: 3 LUX-2017 COL-2019 SVN-2019 
+   variante  amostra especificacao  tgr_alta tgr_media   n inversao
+1      base original          base 0.6064770 0.9316435 204    FALSE
+2   publico    comum          base 0.9271085 0.7975012 184     TRUE
+3   publico    comum      variante 0.9148048 0.8147483 184     TRUE
+4 qualidade    comum          base 0.5930181 0.8674636 117    FALSE
+5 qualidade    comum      variante 0.9437703 0.8349273 117     TRUE
+6     fonte    comum          base 0.6103115 0.9266631 203    FALSE
+7     fonte    comum      variante 0.7030516 0.8815488 203    FALSE
+8    preqin    comum          base 0.6044345 0.9528880 191    FALSE
+9    preqin    comum      variante 0.7774873 0.8410223 191    FALSE
+16:59:44 publico : reestimando fronteiras e bootstrap na amostra comum... 
+16:59:55 publico : Spearman entre rankings (amostra e fronteira comuns) 0.891 
+17:00:04 publico : efetividade base -0.694 variante -0.376 diferença IC [ -0.012 ; 0.617 ] réplicas 300 
+17:00:04 qualidade : reestimando fronteiras e bootstrap na amostra comum... 
+17:00:10 qualidade : Spearman entre rankings (amostra e fronteira comuns) 0.775 
+17:00:20 qualidade : efetividade base -0.653 variante -0.224 diferença IC [ 0.049 ; 0.747 ] réplicas 300 
+17:00:20 fonte : reestimando fronteiras e bootstrap na amostra comum... 
+Error in solving for unit 10:  Status =5
+17:00:33 fonte : Spearman entre rankings (amostra e fronteira comuns) 0.909 
+17:00:45 fonte : efetividade base -0.707 variante -0.371 diferença IC [ -0.087 ; 0.85 ] réplicas 300 
+17:00:45 preqin : reestimando fronteiras e bootstrap na amostra comum... 
+17:00:58 preqin : Spearman entre rankings (amostra e fronteira comuns) 0.867 
+17:01:10 preqin : efetividade base -0.777 variante -1.099 diferença IC [ -0.663 ; 0.276 ] réplicas 300 
+           variante n_obs n_paises  coef_base coef_variante  diferenca  dif_ic_inf dif_ic_sup
+publico     publico   128       34 -0.6942842    -0.3759547  0.3183294 -0.01180090  0.6168562
+qualidade qualidade    85       35 -0.6525047    -0.2241379  0.4283667  0.04917634  0.7466158
+fonte         fonte   144       38 -0.7065243    -0.3708182  0.3357061 -0.08664893  0.8496039
+preqin       preqin   133       37 -0.7766014    -1.0992570 -0.3226556 -0.66260521  0.2763312
+          replicas_tentadas replicas_convergentes dependente
+publico                 300                   300 log_escore
+qualidade               300                   300 log_escore
+fonte                   300                   300 log_escore
+preqin                  300                   300 log_escore
+                                                        fronteira
+publico   reestimada na amostra comum (DEA anual VRS + bootstrap)
+qualidade reestimada na amostra comum (DEA anual VRS + bootstrap)
+fonte     reestimada na amostra comum (DEA anual VRS + bootstrap)
+preqin    reestimada na amostra comum (DEA anual VRS + bootstrap)
+              variante          pais n_anos base_original base_comum variante_comum
+fonte.9          fonte         China      5     0.6916343  0.6937995      0.7174150
+fonte.19         fonte         India      2     0.7119864  0.7119864      0.7085903
+fonte.20         fonte       Ireland      2     0.2043256  0.2042054      0.4825304
+fonte.21         fonte        Israel      5     0.1569139  0.1572819      0.4759141
+fonte.46         fonte United States      5     0.5818757  0.5820717      0.7480572
+preqin.9        preqin         China      5     0.6916343  0.6932562      0.7099988
+preqin.19       preqin         India      2     0.7119864  0.7093160      0.7256755
+preqin.20       preqin       Ireland      2     0.2043256  0.2096162      0.2236063
+preqin.21       preqin        Israel      5     0.1569139  0.1572248      0.1544488
+preqin.45       preqin United States      5     0.5818757  0.5833005      0.6047070
+publico.8      publico         China      5     0.6916343  0.7341977      0.7264782
+publico.18     publico       Ireland      2     0.2043256  0.3835809      0.4646630
+publico.19     publico        Israel      5     0.1569139  0.2234988      0.4663141
+publico.41     publico United States      5     0.5818757  0.6205447      0.6115856
+qualidade.9  qualidade         China      3     0.6689741  0.6715404      0.7155159
+qualidade.17 qualidade         India      2     0.7119864  0.7127054      0.8001291
+qualidade.18 qualidade       Ireland      1     0.1469025  0.1465147      0.2524241
+qualidade.19 qualidade        Israel      3     0.1111125  0.1115901      0.2279816
+qualidade.44 qualidade United States      3     0.5969314  0.5990789      0.7453705
+17:01:10 FIM comparações em amostra comum 

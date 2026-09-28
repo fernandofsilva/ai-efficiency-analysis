@@ -1,8 +1,36 @@
-18:42:18 CRS verdadeiro (tamanho) : rejeição a 5% = 0.167 
-18:42:24 DRS verdadeiro (poder) : rejeição a 5% = 0.9 
-18:42:30 DRS moderado (poder) : rejeição a 5% = 0.533 
-                       dgp escala n_sim n_dmu   B rejeicao_5pct rejeicao_10pct p_mediano
-1 CRS verdadeiro (tamanho)    1.0    30    40 100     0.1666667      0.3333333     0.205
-2   DRS verdadeiro (poder)    0.6    30    40 100     0.9000000      0.9333333     0.000
-3     DRS moderado (poder)    0.8    30    40 100     0.5333333      0.6333333     0.030
-18:42:30 FIM validação do teste de RTS 
+Error in solving for unit 10:  Status =5
+17:13:08 propria (Benchmarking) | CRS verdadeiro (tamanho) | n = 40 | m = 2 : rejeição a 5% = 0.19 
+17:13:18 referencia (rDEA::rts.test) | CRS verdadeiro (tamanho) | n = 40 | m = 2 : rejeição a 5% = 0.15 
+17:16:21 propria (Benchmarking) | CRS verdadeiro (tamanho) | n = 191 | m = 2 : rejeição a 5% = 0.23 
+17:17:59 referencia (rDEA::rts.test) | CRS verdadeiro (tamanho) | n = 191 | m = 2 : rejeição a 5% = 0.21 
+17:20:25 propria (Benchmarking) | CRS verdadeiro (tamanho) | n = 191 | m = 1 : rejeição a 5% = 0.25 
+17:21:41 referencia (rDEA::rts.test) | CRS verdadeiro (tamanho) | n = 191 | m = 1 : rejeição a 5% = 0.23 
+Error in solving for unit 35:  Status =5
+Error in solving for unit 32:  Status =5
+17:22:06 propria (Benchmarking) | DRS verdadeiro (poder) | n = 40 | m = 2 : rejeição a 5% = 0.77 
+17:22:15 referencia (rDEA::rts.test) | DRS verdadeiro (poder) | n = 40 | m = 2 : rejeição a 5% = 0.76 
+17:25:18 propria (Benchmarking) | DRS moderado (poder) | n = 191 | m = 2 : rejeição a 5% = 0.94 
+17:26:56 referencia (rDEA::rts.test) | DRS moderado (poder) | n = 191 | m = 2 : rejeição a 5% = 0.93 
+                        dgp               implementacao escala n_sim n_dmu n_insumos   B
+1  CRS verdadeiro (tamanho)      propria (Benchmarking)    1.0   100    40         2 100
+2  CRS verdadeiro (tamanho) referencia (rDEA::rts.test)    1.0   100    40         2 100
+3  CRS verdadeiro (tamanho)      propria (Benchmarking)    1.0   100   191         2 100
+4  CRS verdadeiro (tamanho) referencia (rDEA::rts.test)    1.0   100   191         2 100
+5  CRS verdadeiro (tamanho)      propria (Benchmarking)    1.0   100   191         1 100
+6  CRS verdadeiro (tamanho) referencia (rDEA::rts.test)    1.0   100   191         1 100
+7    DRS verdadeiro (poder)      propria (Benchmarking)    0.6   100    40         2 100
+8    DRS verdadeiro (poder) referencia (rDEA::rts.test)    0.6   100    40         2 100
+9      DRS moderado (poder)      propria (Benchmarking)    0.8   100   191         2 100
+10     DRS moderado (poder) referencia (rDEA::rts.test)    0.8   100   191         2 100
+   rejeicao_5pct rejeicao_5pct_ic_inf rejeicao_5pct_ic_sup rejeicao_10pct  p_mediano
+1           0.19           0.11844320            0.2806980           0.25 0.22772277
+2           0.15           0.08645439            0.2353075           0.27 0.25000000
+3           0.23           0.15173161            0.3248587           0.36 0.19801980
+4           0.21           0.13494370            0.3029154           0.30 0.23000000
+5           0.25           0.16877974            0.3465525           0.40 0.17326733
+6           0.23           0.15173161            0.3248587           0.40 0.15500000
+7           0.77           0.67514127            0.8482684           0.86 0.01980198
+8           0.76           0.66426451            0.8397754           0.89 0.01000000
+9           0.94           0.87397007            0.9776651           0.97 0.00990099
+10          0.93           0.86108027            0.9713947           0.95 0.01000000
+17:26:56 FIM validação do teste de RTS 

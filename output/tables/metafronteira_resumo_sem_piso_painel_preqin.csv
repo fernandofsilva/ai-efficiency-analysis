@@ -1,3 +1,3 @@
-"grupo","n","tgr_media","tgr_mediana","escore_meta_medio","escore_grupo_medio","p_mann_whitney_unilateral"
-"Alta renda",148,0.780090119931843,0.806941497917091,0.44652786284757,0.5710652511188,0.995617254807066
-"Renda média",42,0.852379398890455,0.873725092367525,0.558298084816027,0.655635399452079,0.995617254807066
+"grupo","n","tgr_media","tgr_mediana","escore_meta_medio","escore_grupo_medio","p_mann_whitney_unilateral","dif_tgr_media","dif_ic_inf","dif_ic_sup","replicas_validas","inferencia"
+"Alta renda",148,0.780090119931843,0.806941497917091,0.44652786284757,0.5710652511188,0.995617254807066,0.0722892789586118,-0.011375549705172,0.16222339569894,1000,"bootstrap em blocos de país, condicional às fronteiras estimadas"
+"Renda média",42,0.852379398890455,0.873725092367525,0.558298084816027,0.655635399452079,0.995617254807066,0.0722892789586118,-0.011375549705172,0.16222339569894,1000,"bootstrap em blocos de país, condicional às fronteiras estimadas"

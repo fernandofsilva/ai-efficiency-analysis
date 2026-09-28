@@ -50,10 +50,10 @@ fig1 <- ggplot2::ggplot(
                 y = NULL,
                 title = paste("Ranking de eficiência na conversão de",
                               "investimento em IA e P&D"),
-                subtitle = paste("Média", periodo, "dos escores anuais",
-                                 "corrigidos (cheio) e originais (vazado);",
-                                 "barras: IC 95% bootstrap da média anual;",
-                                 "entre parênteses, anos por país")) +
+                subtitle = paste0("Média ", periodo, " dos escores anuais: ",
+                                  "corrigido (cheio) e original (vazado)\n",
+                                  "Barras: IC 95% (pseudo-valores de ",
+                                  "Simar-Wilson); (n) = anos por país")) +
   tema
 SalvarFigura(fig1, "fig1_ranking_m2", 9, 9)
 
@@ -113,7 +113,10 @@ SalvarFigura(fig3, "fig3_canais", 8, 8)
 # 4. Segundo estágio: coeficientes com IC do bootstrap agrupado --------------
 seg <- LerTabela("segundo_estagio_truncada")
 seg <- seg[!grepl("^ano_f|Intercept|sigma", seg$termo), ]
-if ("dependente" %in% names(seg)) seg <- seg[seg$dependente == "escore", ]
+if ("dependente" %in% names(seg)) {
+  seg <- seg[seg$dependente == "log_escore", ]
+}
+seg <- seg[!is.na(seg$coeficiente), ]
 rotulos <- c(efetividade_governo = "Efetividade governamental",
              alta_tec_export = "Exportações de alta tecnologia (%)",
              log_comercio = "log(comércio/PIB)",
@@ -135,11 +138,12 @@ fig4 <- ggplot2::ggplot(seg, ggplot2::aes(x = coeficiente, y = termo_rotulo,
   ggplot2::scale_colour_manual(values = c(`TRUE` = "#d62728",
                                           `FALSE` = "grey50"),
                                name = "IC 95% exclui zero") +
-  ggplot2::labs(x = paste("Coeficiente (dependente: eficiência corrigida",
-                          "em (0,1]; positivo = mais eficiente)"),
+  ggplot2::labs(x = paste("Coeficiente (dependente: log da eficiência",
+                          "corrigida, truncada em 0; positivo = mais",
+                          "eficiente)"),
                 y = NULL,
-                title = paste("Segundo estágio: truncada, escores fixos,",
-                              "bootstrap por país (dependente em (0,1])")) +
+                title = paste("Segundo estágio: truncada sobre log(escore),",
+                              "escores fixos, bootstrap por país")) +
   tema + ggplot2::theme(strip.text = ggplot2::element_text(size = 9))
 SalvarFigura(fig4, "fig4_segundo_estagio", 12, 9)
 

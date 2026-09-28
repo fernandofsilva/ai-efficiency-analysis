@@ -1,13 +1,13 @@
-# Resultados — Fase A (dataset original, 2013–2021), revisados após a análise crítica
+# Resultados — Fase A (dataset original, 2013–2021), revisados após a reanálise crítica
 
-Base para a apresentação. Todos os números vêm de `output/tables/` (scripts `R/01` a `R/04`, `R/02b`, `R/02c`), reexecutados em 27/09/2026 após as correções registradas em `artigo/10_avaliacao_inconsistencias.md`; figuras em `output/figures/` (sem sufixo). Eficiência na escala (0, 1], orientação a produto; "corrigido" = após bootstrap de Simar-Wilson.
+Base para a apresentação. Todos os números vêm de `output/tables/` (scripts `R/01` a `R/04`, `R/02b`, `R/02c`), reexecutados em 28/09/2026 (`output/rodar_pipeline.sh tudo`) após as correções registradas em `artigo/12_avaliacao_reanalise.md`, que sucedem as de `artigo/10`; figuras em `output/figures/` (sem sufixo). Eficiência na escala (0, 1], orientação a produto; "corrigido" = após bootstrap de Simar-Wilson.
 
 ## 1. Dados e diagnóstico
 
 - 208 observações país-ano, 37 países na base bruta, 2013–2021, painel desbalanceado. A DEA principal usa **36 países e 191 observações** (17 zeros de investimento excluídos: Eslovênia só tem uma observação, com zero). Indicadores de IA do CSET via Our World in Data; patentes originalmente por milhão de habitantes, reconvertidas em contagem com a população do World Bank.
 - **Zeros e piso.** 17 zeros e 22 valores no piso de 1–2 milhões de US$ (granularidade de 1 milhão). Zeros não inviabilizam o modelo de dois insumos (a LP é viável), mas as unidades com zero saem eficientes ou quase por construção e rebaixam as demais (2015: escore médio das cinco unidades com zero 0,91; média das outras cai de 0,77 para 0,72; `sensibilidade_zeros_m2.csv`). A exclusão é uma escolha de medida (zero = negócio não registrado), não de viabilidade.
-- **Supereficiência.** 19 das 191 observações ficam além da fronteira agrupada (M2); **7 estão no piso** (Austrália 2013, México 2013, Peru 2019, Ucrânia 2018, Romênia 2016 e outras) e 12 não (China 2013, Índia 2019–2020, Peru 2020, México 2018). Pontos extremos não se explicam só pela granularidade (`supereficiencia_cruzada_piso.csv`).
-- **Publicações não nascem de capital de risco.** Ucrânia 2013–2017: investimento zero, 134–359 publicações. O modelo base adiciona o GERD (P&D interno total, todos os setores) como segundo insumo.
+- **Supereficiência.** 19 das 191 observações ficam além da fronteira agrupada (M2); **7 estão no piso** (Austrália e México 2013, Romênia e Malásia 2016, Ucrânia 2018, Peru 2019, Bulgária 2021) e 12 não (China 2013 e 2019–2021, Índia 2013, 2016 e 2019–2020, Malásia 2015, México 2018, Peru 2020, Romênia 2020). Pontos extremos não se explicam só pela granularidade (`supereficiencia_cruzada_piso.csv`).
+- **Publicações não nascem de capital de risco.** Ucrânia 2013–2017: investimento zero, 134–359 publicações. O modelo base adiciona o GERD (P&D interno total, todos os setores, inclusive o empresarial) como segundo insumo.
 - Correlações de Spearman insumo-produto: investimento × publicações 0,73; investimento × patentes 0,63; GERD × publicações 0,88; GERD × patentes 0,73.
 
 ## 2. Modelos
@@ -19,27 +19,27 @@ Base para a apresentação. Todos os números vêm de `output/tables/` (scripts 
 | Canal acadêmico | idem M2 | publicações | H2, H3, H7 |
 | Canal tecnológico | idem M2 | patentes | H2, H3, H6, H7 |
 
-Fronteiras **contemporâneas por ano** (16 a 27 países por ano) para escores, rankings, canais e segundo estágio por regressão truncada; fronteira **agrupada** (todas as observações) para supereficiência, metafronteira por renda, teste de retornos de escala e algoritmo 2 de Simar-Wilson. As duas tecnologias temporais são objetos diferentes e não se validam mutuamente. Bootstrap de Simar-Wilson (1.000 réplicas); FDH, order-m (m ≈ 40% de n) e order-α (0,95); Malmquist CRS no painel balanceado 2016–2019 (16 países); segundo estágio com regressão truncada (escores fixos, bootstrap por país, 300 réplicas), algoritmo 2 do rDEA e Tobit.
+Fronteiras **contemporâneas por ano** (16 a 27 países por ano) para escores, rankings, canais e segundo estágio por regressão truncada; fronteira **agrupada** (todas as observações) para supereficiência, metafronteira por renda, teste de retornos de escala e algoritmo 2 de Simar-Wilson. As duas tecnologias temporais são objetos diferentes e não se validam mutuamente. Bootstrap de Simar-Wilson (1.000 réplicas); FDH, order-m (m ≈ 40% de n) e order-α (0,95); Malmquist CRS no painel balanceado 2016–2019 (16 países); segundo estágio com regressão truncada sobre o log do escore corrigido (escores fixos, bootstrap por país, 300 réplicas, convergência verificada em cada ajuste), algoritmo 2 do rDEA (semente fixada no processo filho) e Tobit.
 
 ## 3. Escala e retornos (H1)
 
-- Teste de retornos de escala adaptado de Simar-Wilson (2002), fronteira agrupada, mil réplicas, observações originais avaliadas contra a pseudofronteira:
+- Teste de retornos de escala adaptado de Simar-Wilson (2002), rotina própria com a mesma construção da referência `rDEA::rts.test` (estatística 4.6, banda de Silverman), fronteira agrupada, mil réplicas, observações originais avaliadas contra a pseudofronteira:
 
-| Modelo | H0 | S | p-valor | Decisão a 5% |
+| Modelo | H0 | S | p-valor | Leitura |
 |---|---|---|---|---|
-| M2 | retornos constantes | 0,666 | 0,025 | rejeita |
-| M2 | retornos não crescentes | 0,989 | 0,89 | não rejeita |
-| M1 | retornos constantes | 0,202 | < 0,001 | rejeita |
+| M2 | retornos constantes | 0,666 | 0,091 | sem indício a 5% |
+| M2 | retornos não crescentes | 0,989 | 0,96 | sem indício |
+| M1 | retornos constantes | 0,202 | 0,116 | sem indício a 5% |
 
-- **Validação por simulação** (`R/02c`, 100 simulações, 40 DMUs, 100 réplicas): sob CRS verdadeiro o teste rejeita a 5% em **20%** das amostras (tamanho liberal); poder de 0,84 sob retornos decrescentes fortes e 0,49 sob moderados. O p-valor de 0,025 do M2 deve ser lido como indicativo, não conclusivo.
-- Por país (`rts_por_pais_m2.csv`): 15 dos 36 países estão em retornos decrescentes em todos os anos (Estados Unidos, SE média 0,35; Japão 0,67; Reino Unido 0,41); a **China é CRS com eficiência de escala 1 em todos os nove anos** e a Índia alterna (4 anos CRS, 4 DRS, SE média 0,93).
-- Leitura de H1: **parcialmente apoiada**. A tecnologia global é compatível com retornos variáveis e não crescentes, mas o enunciado sobre "os grandes investidores" só vale para os Estados Unidos; a China está sobre o raio de produtividade máxima.
+- **Validação por simulação** (`R/02c`, 100 simulações, B = 100, rotina própria e referência `rDEA::rts.test`): sob retornos constantes verdadeiros, as duas implementações rejeitam a 5% em cerca de 20% das amostras (rotina própria 0,19 com 40 unidades, 0,23 com 191 e dois insumos, 0,25 com 191 e um insumo; referência 0,15, 0,21 e 0,23; IC binomial de 95% da frequência de 0,20 em 100 amostras: [0,13; 0,29]). O tamanho não é controlado; os p-valores são diagnósticos exploratórios. A versão anterior da rotina (banda calculada na amostra refletida) era ainda mais liberal com n = 191 (0,30 e 0,48) e dava p = 0,025 (M2) e p < 0,001 (M1) nestes dados; com a rotina alinhada à referência, nenhum p fica abaixo de 0,05.
+- Por país (`rts_por_pais_m2.csv`, classificação anual pela regra de Färe, Grosskopf e Lovell): 15 dos 36 países estão em retornos decrescentes em todos os anos (Estados Unidos, SE média 0,35; Japão 0,67; Reino Unido 0,41); a **China é CRS com eficiência de escala 1 em todos os nove anos** e a Índia alterna (4 anos CRS, 4 DRS, SE média 0,93). Em 2018 (M2): 20 países em DRS, 3 em IRS, 4 em CRS.
+- Leitura de H1: **sem apoio conclusivo**. O teste global não fornece indício contra retornos constantes (e, se fornecesse, teria tamanho em torno de 0,20). A evidência é descritiva e heterogênea: os grandes investidores anglófonos e o Japão operam em retornos decrescentes; a China está sobre o raio de produtividade máxima.
 
 ## 4. Ranking com inferência (Figura 1)
 
-- Escore médio por país dos escores anuais corrigidos; IC 95% bootstrap da média anual (construção de Simar-Wilson centrada no estimador original; réplicas independentes entre anos). Entre parênteses, anos por país. Viés médio do bootstrap 0,15; escore médio 0,72 → 0,57 corrigido.
-- Topo: Itália (2 anos) 0,79 [0,42; 0,89]; Grécia (7) 0,77 [0,36; 0,78]; Malásia (4) 0,76 [0,00; 0,79]; Indonésia (2) 0,75; Bulgária (3) 0,75; Índia (8) 0,75 [0,00; 0,69]; Romênia (4) 0,75; Polônia (9) 0,75 [0,49; 0,73]. Base: África do Sul (5) 0,25 [0,18; 0,26]; Noruega (6) 0,23 [0,17; 0,24]; Irlanda (2) 0,21; Israel (9) 0,18 [0,14; 0,19]; Suíça (1) 0,15.
-- Os intervalos dos países no topo são largos e assimétricos (limite inferior em 0 para vários), porque unidades sobre a fronteira têm réplicas muito dispersas; só a base do ranking tem intervalos estreitos. Diferenças ordinais defensáveis existem entre o grupo da base (Israel, Suíça, Noruega, Irlanda, África do Sul) e o restante, não dentro do topo. A ordenação mistura países com 1 a 9 anos.
+- Construção: pseudo-valores de Simar e Wilson (1998) por país-ano e réplica (F̃ = 2F̂ − F*), invertidos para a escala de escore e agregados sobre os anos do país réplica a réplica (réplicas pareadas dentro do ano, independentes entre anos). Ponto = média das pseudo-réplicas (escore corrigido de viés na escala da média anual; coincide, a menos de 0,01, com a média dos escores anuais corrigidos); IC 95% = quantis das médias pseudo-replicadas; nenhum ponto fica fora do próprio intervalo. Também: intervalo de postos e contrastes pareados entre os cinco países da base e os demais (`ranking_paises_boot.csv`, `ranking_contrastes_base.csv`). Viés médio do bootstrap 0,15 (escore médio 0,72 → 0,57 corrigido).
+- Topo: Itália (2 anos) 0,80 [0,71; 0,90], posto [1; 13]; Grécia (7) 0,78 [0,72; 0,84], posto [1; 13]; Malásia (4) 0,77 [0,68; 0,87]; Indonésia (2) 0,77 [0,63; 0,91]; Índia (8) 0,77 [0,69; 0,84], posto [1; 15]; Bulgária (3) 0,76; Romênia (4) 0,76; China (9) 0,76 [0,68; 0,84], posto [2; 15]. Base: Filipinas (1) 0,36; África do Sul (5) 0,25 [0,24; 0,27], posto [32; 33]; Noruega (6) 0,24 [0,22; 0,25], posto [32; 34]; Irlanda (2) 0,22 [0,19; 0,24], posto [33; 34]; Israel (9) 0,19 [0,18; 0,20], posto [35; 35]; Suíça (1) 0,15 [0,12; 0,18], posto [36; 36].
+- Contrastes pareados (IC da diferença excluindo zero): a Suíça fica abaixo dos 35 demais países; Israel, de 34; Irlanda, de 32; Noruega e África do Sul, de 31. Já a ordem dentro do topo não é distinguível: os oito primeiros têm intervalos de posto que vão de 1 a 13–18. A ordenação mistura países com 1 a 9 anos, e os pseudo-valores condicionam-se às fronteiras anuais estimadas.
 - Leitura: com produtos em contagem e GERD total como insumo, países pequenos e ricos com P&D intensivo em empresas aparecem como ineficientes; o escore mede em parte a intensidade de IA do sistema de pesquisa.
 
 ## 5. Robustez entre estimadores — R1 (Figura 6)
@@ -49,55 +49,56 @@ Spearman com o escore VRS (bootstrap em blocos de país, 36 blocos): corrigido 0
 ## 6. Canais e metafronteira — H3 (Figuras 3 e 7)
 
 - Spearman entre eficiência acadêmica e tecnológica (país-ano, blocos de país): 0,52 [0,31; 0,69]; p-valor unilateral de H0: ρ ≥ 0,5 = 0,59 (sem piso: 0,56, p = 0,72). **H3a inconclusiva**: compatível no ponto com correlação moderada, sem evidência contra ρ ≥ 0,5.
-- Metafronteira agrupada por grupo de renda: TGR média 0,62 (alta renda) e 0,94 (renda média). H3b, redefinida como TGR(média) < TGR(alta): Mann-Whitney unilateral p = 1,0 (também em médias por país). **Não apoiada**: com contagens, o grupo de renda média define a metafronteira (China, Índia, México, Peru).
-- Kruskal-Wallis por renda: canal de patentes difere (p = 0,001 em país-ano; p = 0,020 em médias por país; 0,34 na renda média-alta contra 0,17 na alta renda); publicações e modelo conjunto não.
+- Metafronteira agrupada por grupo de renda: TGR média 0,62 (alta renda, 24 países) e 0,94 (renda média, 12 países). H3b, com dois alvos: (i) deslocamento de distribuição, Mann-Whitney unilateral (renda média abaixo), p = 1,0 em país-ano e em médias por país; (ii) diferença de TGR médio (renda média menos alta renda) +0,32 [+0,23; +0,40] por bootstrap em blocos de país. **Não apoiada**, com sinal contrário: com contagens, o grupo de renda média define a metafronteira (China, Índia, México, Peru). Ambos os alvos condicionam-se às fronteiras estimadas.
+- Diferenças por grupo de renda (mesmo teste nas duas unidades amostrais): canal de patentes, Kruskal-Wallis com três grupos p = 0,001 em país-ano e 0,022 em médias por país; Mann-Whitney com dois grupos p < 0,001 e 0,020 (0,34 na renda média-alta contra 0,17 na alta renda); publicações e modelo conjunto sem diferença em nenhuma versão.
 
 ## 7. Dinâmica 2016–2019 — H4 (Figura 2)
 
-Painel balanceado de 16 países (M2, CRS, produto), médias geométricas com IC 95% por bootstrap em blocos de país:
+Painel balanceado de 16 países (M2, CRS, produto), médias geométricas; intervalos por reamostragem de países com os índices mantidos fixos (descrevem a variação de composição entre trajetórias e não propagam a incerteza das fronteiras):
 
-| Grupo | n | Malmquist | Mudança técnica | Mudança de eficiência [IC] |
+| Grupo | n | Malmquist | Mudança técnica | Mudança de eficiência [intervalo] |
 |---|---|---|---|---|
 | Alta renda | 10 | 0,996 | 0,898 | 1,109 [1,007; 1,230] |
 | Renda média | 6 | 1,000 | 0,931 | 1,074 [0,958; 1,262] |
 | Todos | 16 | 0,997 | 0,910 | 1,096 [1,010; 1,197] |
 
 - Decomposição de Var(log M) = 0,286: Var(log TC) 0,204 + Var(log EC) 0,147 + 2 Cov −0,065. Parcela de TC com rateio simétrico da covariância: **0,60** (convenção contábil). H4a apoiada: o componente de fronteira domina, e a fronteira recua em produtos por dólar durante o boom de investimento.
-- H4b (EC da renda média > 1 com IC excluindo 1): EC = 1,07 com IC [0,96; 1,26] → **não apoiada**; a alta renda é que tem catch-up significativo (1,11 [1,01; 1,23]). β-convergência: inclinação de log EC no log da eficiência CRS inicial +0,043 (p = 0,47), sem convergência.
+- H4b (critério numérico: EC da renda média > 1 com o intervalo excluindo 1): EC = 1,074 com intervalo [0,958; 1,262] → **não atendido**; a alta renda tem catch-up acima de 1 pelo mesmo critério (1,109 [1,007; 1,230]), evidência descritiva. β-convergência (MQO descritivo; eficiência inicial CRS medida contra a mesma fronteira do painel balanceado, `e00` do Malmquist): inclinação de log EC no log da eficiência inicial +0,106 (p = 0,11), sem convergência; a versão anterior, com a eficiência inicial da DEA anual de todos os países, dava +0,043 (p = 0,47).
 - Em palavras simples: a produtividade sobe porque "os campeões avançaram" ou porque "o país se aproximou dos campeões"; o Malmquist separa os dois pedaços; aqui o primeiro domina e os que se aproximaram foram, em média, os ricos.
 
 ## 8. Segundo estágio — H5, H6, H7 (Figura 4)
 
-Regressão truncada com escores fixos e bootstrap por país (36 países), dependente = eficiência corrigida em (0, 1] truncada em 1 (positivo = mais eficiente); a parametrização em Farrell (≥ 1, truncada à esquerda) é reportada como sensibilidade do modelo conjunto e é instável nos canais (caudas extremas). N = casos completos da fórmula.
+Especificação principal: regressão truncada sobre o **log do escore corrigido** (log s em (−∞, 0), truncada à direita em 0 — o modelo de Simar e Wilson, 2007, sobre o logaritmo da medida de Farrell), escores fixos, bootstrap por país (36 países), convergência verificada no ajuste pontual e em cada réplica (todas as 300 convergem em todos os modelos abaixo). Coeficiente positivo = mais eficiente (semi-elasticidade do escore). N = casos completos da fórmula.
 
 | Modelo | Variável | Coef. | IC 95% | n obs./países |
 |---|---|---|---|---|
-| H5 conjunto (M2) | efetividade governamental | −0,137 | [−0,329; −0,000] | 191/36 |
-| H5 sem valores-piso | efetividade governamental | −0,121 | [−0,363; 0,012] | 169/34 |
-| H5 com pesquisadores | log pesquisadores por milhão | 0,042 | [−0,053; 0,133] | 161/33 |
-| H6 canal patentes | capitalização de mercado | 0,000 | [−0,001; 0,002] | 191/36 |
-| H6 canal patentes | crédito privado | 0,001 | [−0,002; 0,003] | 191/36 |
-| H7 canal patentes | log PIB per capita | −0,045 | [−0,154; 0,013] | 191/36 |
-| H7 canal publicações | log PIB per capita | −0,093 | [−0,153; −0,014] | 191/36 |
+| H5 conjunto (M2) | efetividade governamental | −0,581 | [−1,309; 0,016] | 191/36 |
+| H5 sem valores-piso | efetividade governamental | −0,656 | [−1,687; 0,016] | 169/34 |
+| H5 com pesquisadores | log pesquisadores por milhão | 0,146 | [−0,177; 0,445] | 161/33 |
+| H6 canal patentes | capitalização de mercado | 0,000 | [−0,015; 0,023] | 191/36 |
+| H6 canal patentes | crédito privado | 0,014 | [−0,022; 0,042] | 191/36 |
+| H7 canal patentes | log PIB per capita | −0,534 | [−1,803; 0,273] | 191/36 |
+| H7 canal publicações | log PIB per capita | −0,360 | [−0,660; −0,023] | 191/36 |
 
-- Parametrização em Farrell (H5 conjunto): efetividade +57,3 [0,04; 82,4] (positivo = menos eficiente), mesmo sentido. Algoritmo 2 de Simar-Wilson (rDEA, fronteira agrupada, Farrell): efetividade +10,5 [4,4; 15,9]; crédito −0,15 [−0,23; −0,06]. Tobit: efetividade −0,116 (p < 0,001). Três procedimentos com fronteiras e amostras distintas dão o mesmo sinal; nenhum deles testa separabilidade (associações descritivas em `associacao_z_vs_escore.csv`: efetividade −0,25, PIB per capita −0,30, P&D % PIB −0,21), por isso o segundo estágio é exploratório.
-- H5 não confirmada (sinal negativo das instituições, no limite da significância e não robusto ao piso); H6 não confirmada; H7 contrariada (PIB per capita negativo em publicações, nulo em patentes).
+- Comparações (`dependente` na tabela): escore truncado só em 1, a especificação das versões anteriores, dá efetividade −0,137 [−0,329; −0,000]; seu suporte (−∞, 1) é incompatível com o escore, com massa condicional abaixo de zero desprezível no modelo conjunto (0,2% na mediana) mas de 16% na mediana (máximo 46%) no canal de patentes. Em Farrell (truncada à esquerda em 1), o ajuste é degenerado: H5 "converge" para +57 [0,04; 90] com sigma = 10; H6 de patentes não é estimado; H7 de patentes tem 228 de 300 réplicas convergentes. A normal truncada em 0 e em 1 não tem máximo finito nos canais de patentes e foi descartada.
+- Algoritmo 2 de Simar-Wilson (rDEA, fronteira agrupada, Farrell, semente fixada): efetividade +10,1 [5,4; 15,3] (positivo = menos eficiente); crédito −0,15 [−0,23; −0,07]. Tobit: efetividade −0,116 (p < 0,001). Três procedimentos com fronteiras, amostras e escalas distintas dão o mesmo sinal negativo para as instituições; a especificação principal, porém, não o distingue de zero. Nenhum deles testa separabilidade (associações descritivas em `associacao_z_vs_escore.csv`), por isso o segundo estágio é exploratório.
+- H5 não apoiada (sinal negativo, IC da principal inclui zero; não robusto ao piso); H6 não apoiada; H7 contrariada (PIB per capita negativo em publicações, nulo em patentes).
 
 ## 9. O que muda na versão artigo
 
-Ver `artigo/06_resultados_painel.md`: painel de 47 países (2017–2021), teste de RTS inconclusivo no painel (CRS p = 0,10), sinais preservados no segundo estágio, e comparações em amostra comum mostrando que a inversão da metafronteira nas variantes de qualidade e de P&D público decorre, em parte, da composição da amostra.
+Ver `artigo/06_resultados_painel.md`: painel de 47 países (2017–2021), teste de RTS sem indício contra retornos constantes, instituições com sinal negativo e significativo na especificação principal em quatro variantes, e comparações em amostra e fronteira comuns mostrando que a inversão da metafronteira nas variantes de produtos alternativos e de P&D executado por ensino superior e governo tem origens diferentes (especificação e composição da amostra, respectivamente).
 
 ## 10. Síntese por hipótese
 
 | Hipótese | Evidência na Fase A | Status |
 |---|---|---|
-| H1 escala | CRS rejeitado (p = 0,025, teste liberal), NIRS não rejeitado; EUA em DRS; China em CRS | parcialmente apoiada |
+| H1 escala | teste global sem indício contra CRS (p = 0,09; tamanho ≈ 0,2); EUA em DRS, China em CRS | sem apoio conclusivo; heterogeneidade por país |
 | H2 insumos por canal | GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82) | a testar com SFA |
 | H3a canais | ρ = 0,52 [0,31; 0,69], p(ρ ≥ 0,5) = 0,59 | inconclusiva |
-| H3b metafronteira | TGR média 0,94 > alta 0,62 (p = 1,0) | não apoiada |
+| H3b metafronteira | TGR média 0,94 > alta 0,62; diferença +0,32 [0,23; 0,40]; MW p = 1,0 | não apoiada (sinal contrário) |
 | H4a dinâmica | TC domina (parcela 0,60), fronteira recua | apoiada |
-| H4b convergência | EC média 1,07 [0,96; 1,26]; β +0,04 (p = 0,47) | não apoiada |
-| H5 instituições | efetividade −0,14 [−0,33; −0,00]; não robusto ao piso | não apoiada |
+| H4b convergência | EC média 1,074 [0,958; 1,262]; β +0,11 (p = 0,11) | critério não atendido |
+| H5 instituições | efetividade −0,58 [−1,31; 0,02]; sinal negativo em quatro procedimentos | não apoiada |
 | H6 finanças | coeficientes nulos | não apoiada |
 | H7 desenvolvimento | PIB pc negativo em publicações, nulo em patentes | contrariada |
 | R1 estimadores | ρ entre 0,51 e 0,93 | moderadamente robusto |

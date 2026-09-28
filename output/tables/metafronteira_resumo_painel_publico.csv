@@ -1,3 +1,3 @@
-"grupo","n","tgr_media","tgr_mediana","escore_meta_medio","escore_grupo_medio","p_mann_whitney_unilateral","p_mann_whitney_medias_pais","n_paises"
-"Alta renda",156,0.914804768649307,0.983045009758742,0.561320825273692,0.625034998868696,0.00173648333110274,0.0180160037893086,34
-"Renda média",28,0.814748346786291,0.796717429936561,0.553230779822742,0.655605600729724,0.00173648333110274,0.0180160037893086,7
+"grupo","n","tgr_media","tgr_mediana","escore_meta_medio","escore_grupo_medio","p_mann_whitney_unilateral","p_mann_whitney_medias_pais","n_paises","alvo_mann_whitney","dif_tgr_media","dif_ic_inf","dif_ic_sup","replicas_validas","inferencia"
+"Alta renda",156,0.914804768649307,0.983045009758742,0.561320825273692,0.625034998868696,0.00173648333110274,0.0180160037893086,34,"deslocamento de distribuição (postos)",-0.100056421863017,-0.203280595021393,0.0121829841636342,1000,"bootstrap em blocos de país, condicional às fronteiras estimadas"
+"Renda média",28,0.814748346786291,0.796717429936561,0.553230779822742,0.655605600729724,0.00173648333110274,0.0180160037893086,7,"deslocamento de distribuição (postos)",-0.100056421863017,-0.203280595021393,0.0121829841636342,1000,"bootstrap em blocos de país, condicional às fronteiras estimadas"

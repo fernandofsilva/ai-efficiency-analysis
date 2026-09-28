@@ -3,9 +3,11 @@
 # Testes preliminares de H5 (instituições e capacidade de absorção),
 # H6 (finanças de mercado vs bancárias no canal de patentes) e
 # H7 (assimetria por nível de desenvolvimento entre canais).
-# Métodos: Simar-Wilson algoritmo 2 (rDEA::dea.env.robust), regressão
-# truncada com bootstrap agrupado por país (truncreg), Tobit comparativo
-# (AER::tobit) e Kruskal-Wallis por grupo de renda.
+# Métodos: regressão truncada sobre log(escore) com bootstrap agrupado por
+# país (especificação principal; parametrizações em escore (0,1] e em
+# Farrell como comparação, todas com verificação de convergência),
+# Simar-Wilson algoritmo 2 (rDEA::dea.env.robust), Tobit comparativo
+# (AER::tobit), Kruskal-Wallis e Mann-Whitney por grupo de renda.
 # Uso: Rscript R/03_segundo_estagio_dataset_atual.R (após o script 02)
 
 source("R/00_setup.R")
@@ -47,7 +49,8 @@ dados <- base |>
                                       "Alta renda", "Renda média"),
                 inv_mi = .data[[insumos[1]]] / 1e6,
                 gerd_mi = .data[[insumos[2]]] / 1e6,
-                log_pesquisadores = log(pesquisadores_pm))
+                log_pesquisadores = log(pesquisadores_pm),
+                log_escore_bc = log(escore_bc))
 Registrar("obs. no segundo estágio:", nrow(dados),
           "| com pesquisadores:", sum(!is.na(dados$pesquisadores_pm)))
 
@@ -72,92 +75,110 @@ boot_pat <- BootCanal(produtos[2])
 names(boot_pat)[2:3] <- c("farrell_bc_pat", "escore_bc_pat")
 dados <- dados |>
   dplyr::inner_join(boot_pub, by = "id") |>
-  dplyr::inner_join(boot_pat, by = "id")
+  dplyr::inner_join(boot_pat, by = "id") |>
+  dplyr::mutate(log_escore_bc_pub = log(escore_bc_pub),
+                log_escore_bc_pat = log(escore_bc_pat))
 Salvar(dados[, c("id", "pais", "ano", "grupo_renda", "escore_bc",
                        "escore_bc_pub", "escore_bc_pat")],
              "escores_bc_conjunto_e_canais")
 
 # Regressão truncada com bootstrap agrupado por país --------------------------
-AjustarTruncada <- function(formula, d, dependente = "escore") {
-  # Duas parametrizações da regressão truncada:
-  #   "farrell": dependente >= 1 (medida de Farrell corrigida), truncada à
-  #              esquerda em 1 — a do algoritmo de Simar e Wilson (2007);
-  #              coeficiente positivo = MENOS eficiente;
-  #   "escore":  dependente em (0, 1] (1/Farrell), truncada à direita em 1;
-  #              coeficiente positivo = MAIS eficiente. Não equivale à
-  #              anterior (1/(Zb + e) não é linear com erro normal truncado)
-  #              e admite, em princípio, valores negativos; é reportada como
-  #              sensibilidade de escala, útil quando Farrell tem caudas
-  #              extremas (canais com poucos produtos).
-  if (dependente == "farrell") {
-    modelo <- truncreg::truncreg(formula, data = d, point = 1,
-                                 direction = "left")
-  } else {
-    modelo <- truncreg::truncreg(formula, data = d, point = 1,
-                                 direction = "right")
-  }
-  return(modelo)
-}
-
+# AjustarTruncada (R/funcoes.R) ajusta a truncada em três parametrizações
+# e devolve convergiu = FALSE quando o otimizador não converge. A principal
+# é "log_escore" (log do escore corrigido, truncada à direita em 0); as
+# outras duas ("escore_1lim", "farrell") entram só como comparação.
 TruncadaAgrupada <- function(formula, d, rotulo, n_boot = n_boot_cluster,
-                             dependente = "escore") {
+                             dependente = "log_escore") {
   # Estimativas pontuais e IC percentílico por reamostragem de países com
   # os escores mantidos fixos (não propaga a incerteza da fronteira; o
   # algoritmo 2 de Simar-Wilson, abaixo, faz isso na fronteira agrupada).
   # A amostra é formada pelos casos completos da fórmula ANTES do ajuste e
   # da reamostragem, e n_obs/n_paises referem-se a esse quadro efetivo.
+  # Réplicas cujo ajuste não converge são descartadas e contadas
+  # (replicas_tentadas x replicas_convergentes); se o ajuste pontual não
+  # converge, o modelo é marcado como não estimado (coeficientes NA).
   variaveis <- all.vars(formula)
   d <- d[stats::complete.cases(d[, variaveis]), ]
   ajuste <- AjustarTruncada(formula, d, dependente)
-  coefs <- stats::coef(ajuste)
+  coefs <- ajuste$coeficientes
   paises <- unique(d$pais)
   set.seed(semente)
-  replicas <- replicate(n_boot, {
+  # Sem ajuste pontual convergente não há o que reamostrar: o modelo é
+  # marcado como não estimado e as réplicas são puladas (cada réplica de
+  # um modelo degenerado tentaria três otimizadores até o limite).
+  n_boot_efetivo <- if (ajuste$convergiu) n_boot else 0
+  replicas <- replicate(n_boot_efetivo, {
     escolhidos <- sample(paises, replace = TRUE)
     d_boot <- do.call(rbind, lapply(escolhidos, function(p) d[d$pais == p, ]))
-    tryCatch({
-      cb <- stats::coef(AjustarTruncada(formula, d_boot, dependente))
-      cb[names(coefs)]
-    }, error = function(e) rep(NA_real_, length(coefs)))
+    r <- tryCatch(AjustarTruncada(formula, d_boot, dependente),
+                  error = function(e) NULL)
+    if (is.null(r) || !r$convergiu) {
+      rep(NA_real_, length(coefs))
+    } else {
+      r$coeficientes[names(coefs)]
+    }
   })
-  replicas <- matrix(replicas, nrow = length(coefs))
+  replicas <- matrix(replicas, nrow = length(coefs),
+                     ncol = n_boot_efetivo)
   validas <- colSums(is.na(replicas)) == 0
   replicas <- replicas[, validas, drop = FALSE]
+  Quantil <- function(prob) {
+    if (ncol(replicas) < 20) return(rep(NA_real_, length(coefs)))
+    return(apply(replicas, 1, stats::quantile, probs = prob))
+  }
   saida <- data.frame(
     modelo = rotulo, dependente = dependente, termo = names(coefs),
-    coeficiente = as.numeric(coefs),
-    ep_boot = apply(replicas, 1, stats::sd),
-    ic_inf = apply(replicas, 1, stats::quantile, probs = 0.025),
-    ic_sup = apply(replicas, 1, stats::quantile, probs = 0.975),
+    coeficiente = if (ajuste$convergiu) as.numeric(coefs) else NA_real_,
+    ep_boot = if (ncol(replicas) >= 20) apply(replicas, 1, stats::sd) else NA,
+    ic_inf = Quantil(0.025), ic_sup = Quantil(0.975),
     n_obs = nrow(d), n_paises = length(paises),
+    convergiu_pontual = ajuste$convergiu,
+    mensagem_ajuste = ajuste$mensagem,
+    loglik = ajuste$loglik, grad_max = ajuste$grad_max,
+    replicas_tentadas = n_boot, replicas_convergentes = sum(validas),
     replicas_validas = sum(validas),
     inferencia = "truncada, escores fixos, bootstrap por país",
     stringsAsFactors = FALSE)
-  saida$significativo_5pct <- saida$ic_inf > 0 | saida$ic_sup < 0
+  saida$significativo_5pct <- ajuste$convergiu & !is.na(saida$ic_inf) &
+    (saida$ic_inf > 0 | saida$ic_sup < 0)
+  if (!ajuste$convergiu) {
+    Registrar("modelo não estimado:", rotulo, "(", dependente, ")",
+              ajuste$mensagem)
+  } else if (sum(validas) < 0.9 * n_boot) {
+    Registrar("atenção:", rotulo, "(", dependente, ") réplicas convergentes",
+              sum(validas), "de", n_boot)
+  }
   return(saida)
 }
 
-TruncadaDupla <- function(formula_escore, d, rotulo) {
-  # Roda as duas parametrizações: escore (0,1] e Farrell (>= 1), trocando
-  # a dependente da fórmula pela coluna Farrell correspondente.
-  dep <- all.vars(formula_escore)[1]
-  dep_farrell <- sub("^escore", "farrell", dep)
-  formula_farrell <- stats::as.formula(
-    paste(dep_farrell, "~", as.character(formula_escore)[3]))
-  saida <- TruncadaAgrupada(formula_escore, d, rotulo, dependente = "escore")
-  farrell <- tryCatch(
-    TruncadaAgrupada(formula_farrell, d, rotulo, dependente = "farrell"),
-    error = function(e) NULL)
-  return(rbind(saida, farrell))
+TruncadaParametrizacoes <- function(formula_log, d, rotulo,
+                                    parametrizacoes = c("log_escore",
+                                                        "escore_1lim",
+                                                        "farrell")) {
+  # Roda a especificação principal (log_escore) e as comparações, trocando
+  # a dependente da fórmula (log_escore_* -> escore_* -> farrell_*).
+  dep <- all.vars(formula_log)[1]
+  lado_direito <- as.character(formula_log)[3]
+  Formula <- function(nome_dep) {
+    return(stats::as.formula(paste(nome_dep, "~", lado_direito)))
+  }
+  dependentes <- c(log_escore = dep,
+                   escore_1lim = sub("^log_escore", "escore", dep),
+                   farrell = sub("^log_escore", "farrell", dep))
+  saida <- lapply(parametrizacoes, function(par) {
+    TruncadaAgrupada(Formula(dependentes[[par]]), d, rotulo, dependente = par)
+  })
+  return(do.call(rbind, saida))
 }
 
 # H5: instituições e capacidade de absorção (modelo conjunto M2) --------------
-# Nota: a variável dependente é a eficiência corrigida em (0, 1]: um
-# coeficiente positivo indica MAIOR eficiência.
-formula_h5 <- escore_bc ~ efetividade_governo + alta_tec_export +
+# Nota: a variável dependente principal é o log da eficiência corrigida
+# (em (-Inf, 0), truncada em 0): um coeficiente positivo indica MAIOR
+# eficiência (semi-elasticidade do escore).
+formula_h5 <- log_escore_bc ~ efetividade_governo + alta_tec_export +
   log_comercio + market_cap + credito_privado + ano_f
-h5 <- TruncadaDupla(formula_h5, dados, "H5 truncada (M2)")
-formula_h5b <- escore_bc ~ efetividade_governo + alta_tec_export +
+h5 <- TruncadaParametrizacoes(formula_h5, dados, "H5 truncada (M2)")
+formula_h5b <- log_escore_bc ~ efetividade_governo + alta_tec_export +
   log_comercio + log_pesquisadores + ano_f
 dados_pesq <- dados[!is.na(dados$log_pesquisadores), ]
 h5b <- TruncadaAgrupada(formula_h5b, dados_pesq,
@@ -169,14 +190,15 @@ if ("talento_ia_media_genero_pct" %in% names(dados)) {
   dados_tal <- dados[!is.na(dados$talento_ia_media_genero_pct) &
                        dados$talento_ia_media_genero_pct > 0, ]
   dados_tal$log_talento <- log(dados_tal$talento_ia_media_genero_pct)
-  formula_h5c <- escore_bc ~ efetividade_governo + alta_tec_export +
+  formula_h5c <- log_escore_bc ~ efetividade_governo + alta_tec_export +
     log_comercio + log_talento + ano_f
   h5c <- TruncadaAgrupada(formula_h5c, dados_tal,
                           paste("H5 truncada com talento em IA (média por",
                                 "gênero, subamostra)"))
 }
 
-# Tobit comparativo (escore em (0, 1], censurado à direita em 1) ---------------
+# Tobit comparativo (escore em (0, 1], censurado à direita em 1; prática
+# anterior da literatura, mantido só para comparação) -------------------------
 tobit_h5 <- AER::tobit(escore_bc ~ efetividade_governo + alta_tec_export +
                          log_comercio + market_cap + credito_privado + ano_f,
                        right = 1, data = dados)
@@ -203,9 +225,15 @@ Registrar("obs. no Simar-Wilson alg. 2:", nrow(dados_sw))
 # máximo real. Em caso de estouro, seguimos sem ele: a regressão truncada
 # com bootstrap agrupado acima é a especificação principal.
 limite_sw_seg <- as.numeric(Sys.getenv("LIMITE_SW_SEG", "300"))
-RodarComTempoMaximo <- function(expressao, segundos) {
-  # Avalia `expressao` em processo filho (fork); devolve NULL se estourar.
-  tarefa <- parallel::mcparallel(expressao)
+RodarComTempoMaximo <- function(funcao, segundos) {
+  # Avalia `funcao()` em processo filho (fork); devolve NULL se estourar.
+  # A semente é fixada DENTRO do filho: mcparallel reinicializa o gerador
+  # do processo filho a partir do PID e do horário, o que tornava o
+  # algoritmo 2 irreprodutível entre execuções.
+  tarefa <- parallel::mcparallel({
+    set.seed(semente)
+    funcao()
+  })
   resultado <- parallel::mccollect(tarefa, wait = FALSE, timeout = segundos)
   if (is.null(resultado)) {
     tools::pskill(tarefa$pid, tools::SIGKILL)
@@ -220,10 +248,12 @@ RodarComTempoMaximo <- function(expressao, segundos) {
 }
 sw <- tryCatch(
   RodarComTempoMaximo(
-    rDEA::dea.env.robust(X = as.matrix(dados_sw[, c("inv_mi", "gerd_mi")]),
-                         Y = as.matrix(dados_sw[, produtos]),
-                         Z = z_sw, model = "output", RTS = "variable",
-                         L1 = l1_sw, L2 = l2_sw, alpha = 0.05),
+    function() {
+      rDEA::dea.env.robust(X = as.matrix(dados_sw[, c("inv_mi", "gerd_mi")]),
+                           Y = as.matrix(dados_sw[, produtos]),
+                           Z = z_sw, model = "output", RTS = "variable",
+                           L1 = l1_sw, L2 = l2_sw, alpha = 0.05)
+    },
     limite_sw_seg),
   error = function(e) {
     Registrar("dea.env.robust não concluído:", conditionMessage(e))
@@ -261,57 +291,67 @@ if (!is.null(sw)) {
     sw_tab$significativo_5pct <- sw_tab$ic_inf > 0 | sw_tab$ic_sup < 0
   }
   sw_tab$fronteira <- "agrupada, casos completos de contexto"
+  sw_tab$semente_filho <- semente
   Salvar(sw_tab, "segundo_estagio_simar_wilson_m2")
   print(sw_tab)
 }
 
 # H6: finanças no canal de patentes -------------------------------------------
-formula_h6 <- escore_bc_pat ~ market_cap + credito_privado + npl +
+formula_h6 <- log_escore_bc_pat ~ market_cap + credito_privado + npl +
   efetividade_governo + ano_f
-h6 <- TruncadaDupla(formula_h6, dados, "H6 truncada (canal patentes)")
-formula_h6_pub <- escore_bc_pub ~ market_cap + credito_privado + npl +
+h6 <- TruncadaParametrizacoes(formula_h6, dados, "H6 truncada (canal patentes)")
+formula_h6_pub <- log_escore_bc_pub ~ market_cap + credito_privado + npl +
   efetividade_governo + ano_f
 h6_pub <- TruncadaAgrupada(formula_h6_pub, dados,
                            "H6 contraste (canal publicações)")
 
 # H7: PIB per capita por canal -------------------------------------------------
-formula_h7_pat <- escore_bc_pat ~ log_pib_pc + alta_tec_export +
+formula_h7_pat <- log_escore_bc_pat ~ log_pib_pc + alta_tec_export +
   log_comercio + ano_f
-formula_h7_pub <- escore_bc_pub ~ log_pib_pc + alta_tec_export +
+formula_h7_pub <- log_escore_bc_pub ~ log_pib_pc + alta_tec_export +
   log_comercio + ano_f
-h7_pat <- TruncadaDupla(formula_h7_pat, dados, "H7 canal patentes")
-h7_pub <- TruncadaDupla(formula_h7_pub, dados, "H7 canal publicações")
+h7_pat <- TruncadaParametrizacoes(formula_h7_pat, dados, "H7 canal patentes")
+h7_pub <- TruncadaParametrizacoes(formula_h7_pub, dados,
+                                  "H7 canal publicações")
 
 # H5 sem valores-piso do investimento (fronteiras reestimadas no script 02)
 boot_sp <- LerSaida("boot_ano_m2_sem_piso")
 dados_sp <- base |>
   dplyr::inner_join(dplyr::select(boot_sp, id, escore_bc), by = "id") |>
-  dplyr::mutate(ano_f = factor(ano))
+  dplyr::mutate(ano_f = factor(ano), log_escore_bc = log(escore_bc))
 h5_sp <- TruncadaAgrupada(formula_h5, dados_sp,
                           "H5 truncada sem valores-piso (M2)")
 
 segundo_estagio <- rbind(h5, h5_sp, h5b, h5c, h6, h6_pub, h7_pat, h7_pub)
 Salvar(segundo_estagio, "segundo_estagio_truncada")
 Salvar(tobit_tab, "segundo_estagio_tobit")
-print(segundo_estagio[!grepl("^ano_f", segundo_estagio$termo),
+print(segundo_estagio[!grepl("^ano_f", segundo_estagio$termo) &
+                        segundo_estagio$dependente == "log_escore",
                       c("modelo", "termo", "coeficiente", "ic_inf", "ic_sup",
-                        "significativo_5pct")])
+                        "significativo_5pct", "replicas_convergentes")])
 
 # Testes não paramétricos por grupo de renda -----------------------------------
 TesteGrupos <- function(variavel, rotulo) {
-  # Testes em país-ano (linhas repetidas por país) e, como sensibilidade,
-  # em médias por país (uma linha por país).
+  # Dois testes, cada um em duas unidades amostrais, identificados pelo
+  # nome da coluna: Kruskal-Wallis com os TRÊS grupos de renda e
+  # Mann-Whitney com DOIS grupos (alta renda vs renda média agregada), em
+  # país-ano (linhas repetidas por país) e em médias por país (uma linha
+  # por país). Comparar o mesmo teste nas duas unidades isola o efeito da
+  # repetição temporal; comparar testes diferentes não.
   kw <- stats::kruskal.test(dados[[variavel]], factor(dados$grupo_renda))
   mw <- stats::wilcox.test(dados[[variavel]] ~ dados$grupo_renda2)
   por_pais <- dados |>
-    dplyr::group_by(pais, grupo_renda2) |>
+    dplyr::group_by(pais, grupo_renda, grupo_renda2) |>
     dplyr::summarise(v = mean(.data[[variavel]]), .groups = "drop")
+  kw_pais <- stats::kruskal.test(por_pais$v, factor(por_pais$grupo_renda))
   mw_pais <- stats::wilcox.test(v ~ grupo_renda2, data = por_pais)
   medias <- tapply(dados[[variavel]], dados$grupo_renda, mean)
   Media <- function(g) if (g %in% names(medias)) medias[[g]] else NA_real_
-  saida <- data.frame(escore = rotulo, p_kruskal = kw$p.value,
-                      p_mann_whitney = mw$p.value,
-                      p_mann_whitney_medias_pais = mw_pais$p.value,
+  saida <- data.frame(escore = rotulo,
+                      p_kruskal_3grupos_pais_ano = kw$p.value,
+                      p_kruskal_3grupos_medias_pais = kw_pais$p.value,
+                      p_mann_whitney_2grupos_pais_ano = mw$p.value,
+                      p_mann_whitney_2grupos_medias_pais = mw_pais$p.value,
                       n_paises = nrow(por_pais),
                       media_alta = Media("Alta renda"),
                       media_media_alta = Media("Renda média-alta"),

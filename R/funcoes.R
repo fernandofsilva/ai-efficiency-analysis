@@ -179,10 +179,15 @@ SpearmanComIc <- function(a, b, n_boot = 2000, semente = 2026, grupo = NULL,
 RegistrarManifesto <- function(script, sufixo, base, status, detalhe = "",
                                arquivo = file.path("output/tables",
                                                    "manifesto_execucoes.csv")) {
-  # Registra uma linha por execução (script, sufixo, base e seu hash MD5,
-  # horário e status) para vincular saídas à configuração que as gerou.
+  # Registra uma linha por execução (id, script, sufixo, base e seu hash
+  # MD5, horário e status) e, em manifesto_saidas.csv, uma linha por tabela
+  # gravada nesta execução com o MD5 do arquivo, para vincular cada saída à
+  # configuração e à execução que a geraram.
+  horario <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
+  id_execucao <- paste0(sub("\\.R$", "", script), sufixo, "@",
+                        format(Sys.time(), "%Y%m%d%H%M%S"))
   linha <- data.frame(
-    horario = format(Sys.time(), "%Y-%m-%d %H:%M:%S"), script = script,
+    id_execucao = id_execucao, horario = horario, script = script,
     sufixo = sufixo, base = base,
     md5_base = if (file.exists(base)) unname(tools::md5sum(base)) else NA,
     insumos = Sys.getenv("INSUMOS", "investimento,gerd"),
@@ -191,6 +196,18 @@ RegistrarManifesto <- function(script, sufixo, base, status, detalhe = "",
   utils::write.table(linha, arquivo, sep = ",", row.names = FALSE,
                      col.names = !file.exists(arquivo),
                      append = file.exists(arquivo))
+  saidas <- .registro_saidas$arquivos
+  if (length(saidas) > 0) {
+    arquivo_saidas <- file.path(dirname(arquivo), "manifesto_saidas.csv")
+    tab <- data.frame(id_execucao = id_execucao, horario = horario,
+                      script = script, sufixo = sufixo, arquivo = saidas,
+                      md5 = unname(tools::md5sum(saidas)), status = status,
+                      stringsAsFactors = FALSE)
+    utils::write.table(tab, arquivo_saidas, sep = ",", row.names = FALSE,
+                       col.names = !file.exists(arquivo_saidas),
+                       append = file.exists(arquivo_saidas))
+    .registro_saidas$arquivos <- character(0)
+  }
   return(invisible(linha))
 }
 
@@ -206,37 +223,49 @@ DistanciaShephard <- function(x, y, rts, xref = NULL, yref = NULL) {
   return(1 / as.numeric(Benchmarking::eff(modelo)))
 }
 
-SortearSuavizado <- function(d) {
+ArredondarEmUm <- function(x, tolerancia = 1e-5) {
+  # Fixa em exatamente 1 os valores a menos de `tolerancia` de 1 (ruído
+  # numérico da LP), como faz a implementação de referência do rDEA.
+  x[abs(x - 1) < tolerancia] <- 1
+  return(x)
+}
+
+SortearSuavizado <- function(d, h = stats::bw.nrd0(d)) {
   # Bootstrap homogêneo suavizado com reflexão em 1 (Simar e Wilson, 1998)
-  # aplicado às distâncias de Shephard (<= 1): reamostra {d, 2 - d},
-  # adiciona ruído com largura de Silverman, corrige a variância usando a
-  # média da reamostra e reflete de volta para (0, 1].
+  # aplicado às distâncias de Shephard (<= 1), com as mesmas escolhas da
+  # implementação de referência (rDEA::rts.test): largura de banda de
+  # Silverman calculada na amostra original (bw.nrd0), sorteio da mistura
+  # gaussiana, reflexão em 1 e correção de variância pela média e pela
+  # variância da amostra original. Valores negativos (sorteios abaixo de
+  # zero, fora do suporte) são levados a 1e-4: a pseudo-unidade resultante
+  # fica no interior da tecnologia e não afeta a pseudofronteira.
   n <- length(d)
-  refletido <- c(d, 2 - d)
-  h <- 0.9 * min(stats::sd(refletido), stats::IQR(refletido) / 1.34) *
-    (2 * n)^(-1 / 5)
-  beta <- sample(refletido, n, replace = TRUE)
-  beta_til <- beta + h * stats::rnorm(n)
-  beta_corr <- mean(beta) + (beta_til - mean(beta)) /
-    sqrt(1 + h^2 / stats::var(d))
-  d_estrela <- ifelse(beta_corr > 1, 2 - beta_corr, beta_corr)
+  beta_til <- sample(d, n, replace = TRUE) + h * stats::rnorm(n)
+  beta_til <- ifelse(beta_til > 1, 2 - beta_til, beta_til)
+  d_estrela <- mean(d) + (beta_til - mean(d)) / sqrt(1 + h^2 / stats::var(d))
+  d_estrela <- ifelse(d_estrela > 1, 2 - d_estrela, d_estrela)
   d_estrela <- pmin(pmax(d_estrela, 1e-4), 1)
   return(d_estrela)
 }
 
 TesteRtsBootstrap <- function(x, y, h0 = "crs", n_rep = 1000) {
-  # Teste de retornos de escala inspirado em Simar e Wilson (2002):
-  # S = mean(D_H0) / mean(D_VRS); pseudo-produtos gerados sob H0 pela
-  # projeção na fronteira H0 e reposicionamento com distância sorteada;
-  # réplicas com qualquer LP falho são descartadas por inteiro.
-  d_h0 <- DistanciaShephard(x, y, h0)
-  d_vrs <- DistanciaShephard(x, y, "vrs")
+  # Teste de retornos de escala adaptado de Simar e Wilson (2002), com a
+  # mesma construção da implementação de referência (rDEA::rts.test,
+  # estatística 4.6): S = mean(D_H0) / mean(D_VRS); pseudo-produtos gerados
+  # sob H0 pela projeção na fronteira H0 e reposicionamento com distância
+  # sorteada; réplicas com qualquer LP falho são descartadas por inteiro.
+  # O tamanho do teste NÃO é controlado em amostras finitas (validação em
+  # R/02c_validacao_rts.R, também para a referência): os p-valores são
+  # diagnósticos exploratórios, não decisões com erro tipo I de 5%.
+  d_h0 <- ArredondarEmUm(DistanciaShephard(x, y, h0))
+  d_vrs <- ArredondarEmUm(DistanciaShephard(x, y, "vrs"))
   ok <- is.finite(d_h0) & is.finite(d_vrs)
   s_obs <- mean(d_h0[ok]) / mean(d_vrs[ok])
   x_ok <- x[ok, , drop = FALSE]
   y_ok <- y[ok, , drop = FALSE]
+  h <- stats::bw.nrd0(d_h0[ok])
   s_boot <- vapply(seq_len(n_rep), function(b) {
-    d_estrela <- SortearSuavizado(d_h0[ok])
+    d_estrela <- SortearSuavizado(d_h0[ok], h)
     # Pseudo-amostra sob H0 (projeção na fronteira H0 e reposicionamento);
     # as observações ORIGINAIS são avaliadas contra a pseudofronteira,
     # como no algoritmo de Simar e Wilson (1998, 2002).
@@ -248,18 +277,90 @@ TesteRtsBootstrap <- function(x, y, h0 = "crs", n_rep = 1000) {
   }, numeric(1))
   validas <- is.finite(s_boot)
   s_boot <- s_boot[validas]
-  saida <- list(estatistica = s_obs, p_valor = mean(s_boot <= s_obs),
+  # p-valor com a correção (k + 1) / (B + 1), como na referência.
+  saida <- list(estatistica = s_obs,
+                p_valor = (sum(s_boot <= s_obs) + 1) / (length(s_boot) + 1),
                 replicas_validas = sum(validas), n = sum(ok),
+                largura_banda = h,
                 s_boot_q05 = unname(stats::quantile(s_boot, 0.05)),
                 s_boot_mediana = stats::median(s_boot))
   return(saida)
 }
 
+AjustarTruncada <- function(formula, d, dependente = "log_escore") {
+  # Regressão truncada (truncreg) em uma de três parametrizações, com
+  # verificação explícita da convergência ANTES de devolver coeficientes:
+  #   "log_escore":  dependente = log do escore corrigido, em (-Inf, 0),
+  #                  truncada à direita em 0. É o modelo de Simar e Wilson
+  #                  (2007) aplicado ao logaritmo da medida de Farrell
+  #                  (transformação monótona), com suporte compatível com
+  #                  o escore em (0, 1) e numericamente estável mesmo nos
+  #                  canais com escores próximos de zero; coeficiente
+  #                  positivo = MAIS eficiente (semi-elasticidade);
+  #   "escore_1lim": dependente = escore em (0, 1], truncada só à direita
+  #                  em 1 (suporte (-Inf, 1); especificação das versões
+  #                  anteriores, mantida para comparação);
+  #   "farrell":     dependente = Farrell corrigido (>= 1), truncada à
+  #                  esquerda em 1 (escala original de Simar e Wilson,
+  #                  2007); coeficiente positivo = MENOS eficiente; nos
+  #                  canais com caudas pesadas o ajuste é degenerado.
+  # A normal truncada em 0 E em 1 sobre o escore foi testada e descartada:
+  # nos canais com escores acumulados perto de zero a verossimilhança não
+  # tem máximo finito (gradiente não se anula em nenhum otimizador).
+  # Devolve lista com coeficientes (nomeados, incluindo sigma), convergiu,
+  # log-verossimilhança, norma máxima do gradiente e mensagem; ajustes sem
+  # convergência devolvem convergiu = FALSE e coeficientes NA.
+  x <- stats::model.matrix(formula, d)
+  nomes <- c(colnames(x), "sigma")
+  Falha <- function(msg) {
+    return(list(coeficientes = stats::setNames(rep(NA_real_, length(nomes)),
+                                               nomes),
+                convergiu = FALSE, loglik = NA_real_, grad_max = NA_real_,
+                mensagem = msg))
+  }
+  ponto <- switch(dependente, log_escore = 0, escore_1lim = 1, farrell = 1)
+  direcao <- switch(dependente, log_escore = "right", escore_1lim = "right",
+                    farrell = "left")
+  y <- as.numeric(stats::model.response(stats::model.frame(formula, d)))
+  fora <- if (direcao == "right") any(y >= ponto) else any(y <= ponto)
+  if (fora) {
+    return(Falha("dependente fora do suporte da truncada"))
+  }
+  ajuste <- NULL
+  for (metodo in c("BFGS", "NR", "BHHH")) {
+    candidato <- tryCatch(
+      truncreg::truncreg(formula, data = d, point = ponto,
+                         direction = direcao, method = metodo,
+                         iterlim = 500),
+      error = function(e) NULL)
+    if (!is.null(candidato) &&
+        grepl("success", candidato$est.stat$message, ignore.case = TRUE) &&
+        all(is.finite(stats::coef(candidato)))) {
+      ajuste <- candidato
+      break
+    }
+  }
+  if (is.null(ajuste)) {
+    return(Falha("truncreg sem convergência (BFGS, NR, BHHH)"))
+  }
+  grad <- ajuste$gradient
+  return(list(coeficientes = stats::coef(ajuste)[nomes], convergiu = TRUE,
+              loglik = as.numeric(ajuste$logLik),
+              grad_max = if (is.null(grad)) NA_real_ else max(abs(grad)),
+              mensagem = paste(trimws(ajuste$est.stat$message), metodo)))
+}
+
+# Registro das saídas gravadas na sessão (consumido por RegistrarManifesto).
+.registro_saidas <- new.env()
+.registro_saidas$arquivos <- character(0)
+
 SalvarTabela <- function(dados, nome, pasta = "output/tables") {
-  # Grava uma tabela em CSV na pasta de saída.
+  # Grava uma tabela em CSV na pasta de saída e anota o arquivo no registro
+  # da sessão, para que o manifesto vincule cada saída à execução.
   dir.create(pasta, showWarnings = FALSE, recursive = TRUE)
-  utils::write.csv(dados, file.path(pasta, paste0(nome, ".csv")),
-                   row.names = FALSE)
+  arquivo <- file.path(pasta, paste0(nome, ".csv"))
+  utils::write.csv(dados, arquivo, row.names = FALSE)
+  .registro_saidas$arquivos <- unique(c(.registro_saidas$arquivos, arquivo))
   return(invisible(dados))
 }
 

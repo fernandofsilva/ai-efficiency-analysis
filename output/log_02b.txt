@@ -1,15 +1,14 @@
-18:42:30 amostra agrupada: 191 obs.; réplicas: 1000 
-18:42:48 M2 crs S = 0.666 p = 0.025 | réplicas válidas 1000 
+17:01:11 amostra agrupada: 191 obs.; réplicas: 1000 
+17:01:33 M2 crs S = 0.666 p = 0.0909 | réplicas válidas 1000 
 Error in solving for unit 47:  Status =5
-18:43:07 M2 drs S = 0.9888 p = 0.8859 | réplicas válidas 999 
-Error in solving for unit 1:  Status =1
-18:43:33 M1 crs S = 0.2019 p = 0 | réplicas válidas 999 
-  modelo  h0   n    B replicas_validas estatistica   p_valor rejeita_h0_5pct s_boot_q05
-1     M2 crs 191 1000             1000   0.6660349 0.0250000            TRUE  0.7539455
-2     M2 drs 191 1000              999   0.9888332 0.8858859           FALSE  0.9319198
-3     M1 crs 191 1000              999   0.2018932 0.0000000            TRUE  0.8728581
+17:01:56 M2 drs S = 0.9888 p = 0.956 | réplicas válidas 999 
+17:02:14 M1 crs S = 0.2019 p = 0.1159 | réplicas válidas 1000 
+  modelo  h0   n    B replicas_validas estatistica    p_valor rejeita_h0_5pct s_boot_q05
+1     M2 crs 191 1000             1000   0.6660349 0.09090909           FALSE 0.60478818
+2     M2 drs 191 1000              999   0.9888332 0.95600000           FALSE 0.89699954
+3     M1 crs 191 1000             1000   0.2018932 0.11588412           FALSE 0.09783398
   s_boot_mediana                       fronteira   minutos
-1      0.8736396 agrupada (todas as observações) 0.2953650
-2      0.9739131 agrupada (todas as observações) 0.3268271
-3      0.9256618 agrupada (todas as observações) 0.4227410
-18:43:33 FIM teste de RTS 
+1      0.8038160 agrupada (todas as observações) 0.3666018
+2      0.9615229 agrupada (todas as observações) 0.3947545
+3      0.3839384 agrupada (todas as observações) 0.2888395
+17:02:14 FIM teste de RTS 

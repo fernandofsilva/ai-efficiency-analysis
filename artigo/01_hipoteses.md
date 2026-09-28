@@ -24,13 +24,13 @@ A tecnologia de produção de conhecimento em IA exibe retornos variáveis de es
 
 *Fundamentação.* Há duas predições concorrentes. A inflação de custos de talento e de computação nos grandes polos de IA e a saturação do número de pesquisadores sugerem retornos decrescentes; economias de aglomeração e efeitos de rede sugerem retornos crescentes. A hipótese assume a primeira, mas o desenho permite identificar a segunda.
 
-*Teste.* Teste de retornos de escala com bootstrap (Simar e Wilson, 2002) — H0 de retornos constantes e, em seguida, H0 de retornos não crescentes; eficiência de escala como razão entre escores CRS e VRS; direção dos retornos comparando modelos DRS e IRS.
+*Teste.* Teste de retornos de escala com bootstrap (Simar e Wilson, 2002), rotina própria sobre `Benchmarking` com a mesma construção da implementação de referência (`rDEA::rts.test`, estatística 4.6, banda de Silverman) — H0 de retornos constantes e, em seguida, H0 de retornos não crescentes; eficiência de escala como razão entre escores CRS e VRS; direção dos retornos comparando modelos DRS e IRS, país a país. O tamanho do teste foi medido por simulação nas duas implementações (`R/02c`): ambas rejeitam retornos constantes verdadeiros em cerca de 20% das amostras ao nível nominal de 5%, com 40 ou 191 unidades; os p-valores são, portanto, diagnósticos exploratórios, sem controle do erro tipo I.
 
-*Critério.* Rejeição de retornos constantes ao nível de 5% (teste global, com tamanho conhecido por simulação) **e** eficiência de escala média inferior a 0,8 para cada grande investidor, avaliada país a país (`rts_por_pais`). Os dois critérios são reportados separadamente: o teste global não demonstra o comportamento individual.
+*Critério.* Indício contra retornos constantes (p-valor abaixo de 0,05 em um teste cujo tamanho real está em torno de 0,20, ou seja, sem afirmação de rejeição com erro tipo I controlado) **e** eficiência de escala média inferior a 0,8 para cada grande investidor, avaliada país a país (`rts_por_pais`). Os dois critérios são reportados separadamente: o teste global não demonstra o comportamento individual, e a heterogeneia por país é a evidência descritiva principal.
 
 ### H2 — Especificidade dos insumos por canal de produção
 
-Controlando pelo P&D executado fora das empresas (GERD total ou, preferencialmente, P&D executado pelo ensino superior e pelo governo, HERD + GOVERD), o investimento privado em IA tem produto marginal significativo para famílias de patentes, mas não para publicações.
+Controlando pelo P&D executado no país — o GERD total, que inclui o setor empresarial, no dataset original; e, preferencialmente, o P&D executado pelo ensino superior e pelo governo (HERD + GOVERD) no painel reconstruído, soma que identifica dois setores de execução e não esgota todo o P&D não empresarial —, o investimento privado em IA tem produto marginal significativo para famílias de patentes, mas não para publicações.
 
 *Fundamentação.* Publicações são produzidas majoritariamente em universidades e institutos; patentes, em empresas. Os insumos medem setor de execução do P&D e captação de capital privado, não fontes de financiamento mutuamente exclusivas (Manual de Frascati, cap. 4): a hipótese trata da complementaridade entre os dois insumos, não de "dinheiro público" versus "dinheiro privado".
 
@@ -40,13 +40,13 @@ Controlando pelo P&D executado fora das empresas (GERD total ou, preferencialmen
 
 ### H3 — Divergência entre canais e heterogeneidade tecnológica
 
-A eficiência no canal acadêmico (publicações) e no canal tecnológico (patentes) são fracamente correlacionadas (H3a: ρ < 0,5). Países de renda média operam sob uma tecnologia menos favorável que a dos países de alta renda: a razão de gap tecnológico (TGR) média do grupo de renda média é inferior à do grupo de alta renda em uma metafronteira por grupo de renda (H3b; O'Donnell, Rao e Battese, 2008). Como TGR ≤ 1 vale por construção, "TGR < 1" não é uma hipótese testável e foi substituída pela comparação entre grupos.
+A eficiência no canal acadêmico (publicações) e no canal tecnológico (patentes) são fracamente correlacionadas (H3a: ρ < 0,5). Países de renda média operam sob uma tecnologia menos favorável que a dos países de alta renda: em uma metafronteira por grupo de renda (O'Donnell, Rao e Battese, 2008), a distribuição da razão de gap tecnológico (TGR) do grupo de renda média está deslocada para baixo em relação à da alta renda, e o TGR médio do grupo é menor (H3b). A comparação entre grupos substitui o enunciado original "TGR < 1" por interesse substantivo, e não por impossibilidade lógica: um parâmetro limitado por 1 pode ser testado contra uma nula na fronteira do suporte, mas isso exigiria uma distribuição nula que respeite a estimação das fronteiras, o que não foi implementado.
 
 *Fundamentação.* Sistemas nacionais de inovação orientados à ciência e sistemas orientados à comercialização convertem os mesmos recursos em produtos diferentes. A correlação bruta entre publicações e patentes no dataset é de apenas 0,47.
 
-*Teste.* DEA por canal e correlação de Spearman entre os escores com bootstrap em blocos de país e p-valor unilateral de H0: ρ ≥ 0,5; metafronteira por grupo de renda com TGR e Mann-Whitney unilateral (país-ano e médias por país); decomposição amostra × especificação em amostra comum ao comparar variantes; classes latentes em SFA como robustez.
+*Teste.* DEA por canal e correlação de Spearman entre os escores com bootstrap em blocos de país e p-valor unilateral de H0: ρ ≥ 0,5; metafronteira por grupo de renda com dois alvos explícitos: (i) deslocamento de distribuição, por Mann-Whitney unilateral (teste de postos) em país-ano e em médias por país; (ii) diferença de TGR médio (renda média menos alta renda) com IC 95% por bootstrap em blocos de país; ambos condicionais às fronteiras estimadas (a dependência entre TGRs pela fronteira compartilhada não é modelada). Decomposição amostra × especificação em amostra e fronteira comuns ao comparar variantes; classes latentes em SFA como robustez.
 
-*Critério.* H3a: p-valor unilateral de ρ ≥ 0,5 inferior a 0,05. H3b: TGR média do grupo de renda média inferior à do grupo de alta renda com p unilateral inferior a 0,05 nas duas versões do teste.
+*Critério.* H3a: p-valor unilateral de ρ ≥ 0,5 inferior a 0,05. H3b: Mann-Whitney unilateral com p inferior a 0,05 nas duas unidades amostrais **e** IC 95% da diferença de TGR médio inteiramente abaixo de zero.
 
 ### H4 — Dinâmica: a fronteira domina e a renda média converge
 
@@ -58,9 +58,9 @@ No período analisado, a variação de produtividade medida pelo índice de Malm
 
 *Cuidado metodológico.* Uma fronteira que parece recuar quando medida com fluxos anuais de capital de risco reflete o crescimento explosivo do denominador (no dataset original, a mediana do investimento cresceu cerca de 26 vezes entre 2013 e 2021 e a de publicações apenas 1,4 vez). Por isso o insumo entra defasado ou como soma móvel de três anos, e o Malmquist é calculado sob retornos constantes, evitando distâncias intertemporais inviáveis sob retornos variáveis.
 
-*Teste.* Índice de Malmquist com decomposição em mudança de eficiência e mudança técnica no painel balanceado (2016–2019 no dataset original; 2016–2021 no painel reconstruído, e até 2024 no canal de publicações); intervalos por bootstrap em blocos de país; regressão da mudança de eficiência no escore inicial (β-convergência).
+*Teste.* Índice de Malmquist com decomposição em mudança de eficiência e mudança técnica no painel balanceado (2016–2019 no dataset original; 2017–2021 no painel reconstruído); intervalos por reamostragem de países com os índices mantidos fixos (descrevem a variação de composição entre trajetórias, condicionais às fronteiras estimadas; não propagam a incerteza da estimação das fronteiras, que exigiria o bootstrap de Malmquist de Simar e Wilson, 1999); regressão da mudança de eficiência média no escore CRS inicial medido contra a mesma fronteira do painel balanceado (β-convergência, MQO descritivo).
 
-*Critério.* H4a: parcela da mudança técnica na variância de log M superior a 0,5, com a covariância entre componentes rateada simetricamente (Var log M = Var log TC + Var log EC + 2 Cov). H4b: média geométrica da mudança de eficiência do grupo de renda média superior a um, com IC 95% por bootstrap em blocos de país excluindo um; a comparação com a alta renda e a β-convergência (log EC contra eficiência inicial) são reportadas em separado.
+*Critério.* H4a: parcela da mudança técnica na variância de log M superior a 0,5, com a covariância entre componentes rateada simetricamente (Var log M = Var log TC + Var log EC + 2 Cov). H4b, critério numérico: média geométrica da mudança de eficiência do grupo de renda média superior a um, com o intervalo por reamostragem de países excluindo um, avaliado com valores não arredondados; como esse intervalo não propaga a incerteza das fronteiras, atender ao critério é evidência descritiva de catch-up, não confirmação inferencial. A comparação com a alta renda e a β-convergência são reportadas em separado.
 
 ### H5 — Instituições e capacidade de absorção
 
@@ -68,7 +68,7 @@ A eficiência é positivamente associada à efetividade governamental (ou a um �
 
 *Fundamentação.* Furman, Porter e Stern (2002) e Cohen e Levinthal (1990). Efetividade governamental e controle da corrupção são quase colineares no dataset e entram como um único indicador. Quando o GERD é usado como insumo (H2), ele não pode reaparecer como variável de contexto; usa-se então pesquisadores per capita.
 
-*Teste.* Diagnóstico da condição de separabilidade (Daraio e Simar, 2005; Daraio, Simar e Wilson, 2018) por meio de order-*m* condicional; regressão truncada com bootstrap duplo de Simar e Wilson (2007) com até cinco variáveis de contexto e dummies de ano; regressão truncada com bootstrap agrupado por país; Tobit apenas como comparação com a prática anterior.
+*Teste.* Regressão truncada sobre o logaritmo do escore corrigido de viés (log s em (−∞, 0), truncada em 0: o modelo de Simar e Wilson, 2007, aplicado ao logaritmo da medida de Farrell, com suporte compatível com o escore e numericamente estável), com escores fixos e bootstrap agrupado por país, verificação de convergência do ajuste pontual e de cada réplica, até cinco variáveis de contexto e dummies de ano; as parametrizações em escore truncado só em 1 e em Farrell truncado em 1 entram como comparação; algoritmo 2 de Simar e Wilson (2007) na fronteira agrupada, com semente fixada no processo filho; Tobit apenas como comparação com a prática anterior. A condição de separabilidade (Daraio, Simar e Wilson, 2018) não é testada: associações descritivas Z × escore são reportadas e o segundo estágio é exploratório.
 
 *Critério.* Sinais previstos com intervalos de 95% que excluem zero em pelo menos duas especificações.
 
@@ -104,13 +104,13 @@ Reportadas como resultados, não como hipóteses:
 
 | Hipótese | Método principal | Função em R | Critério |
 |---|---|---|---|
-| H1 retornos de escala | Teste de RTS com bootstrap; SE = CRS/VRS | `rDEA::rts.test`, `Benchmarking::dea` | CRS rejeitado; SE < 0,8 nos grandes |
+| H1 retornos de escala | Teste de RTS com bootstrap (tamanho ≈ 0,20 por simulação); SE = CRS/VRS por país | `TesteRtsBootstrap` (rotina própria alinhada a `rDEA::rts.test`), `Benchmarking::dea` | indício contra CRS (p < 0,05, teste liberal); SE < 0,8 nos grandes |
 | H2 insumos por canal | SFA dois insumos; DEA com/sem GERD | `Benchmarking::sfa`, `frontier::sfa` | elasticidade só em patentes |
-| H3 canais e metafronteira | DEA por canal; TGR por renda; classes latentes | `Benchmarking::dea` (XREF/YREF), `sfaR::sfalcmcross` | ρ < 0,5; TGR < 1 |
-| H4 dinâmica | Malmquist CRS, painel balanceado | `Benchmarking::malmquist`, `boot` | TC domina; EC > 1 na renda média |
-| H5 instituições | Simar-Wilson alg. 2; truncada; separabilidade | `rDEA::dea.env.robust`, `truncreg::truncreg` | sinais previstos, IC exclui 0 |
+| H3 canais e metafronteira | DEA por canal; TGR por grupo de renda (Mann-Whitney e diferença de médias por blocos de país); classes latentes | `Benchmarking::dea`, `wilcox.test`, `sfaR::sfalcmcross` | p(ρ ≥ 0,5) < 0,05; TGR média < alta (postos e média) |
+| H4 dinâmica | Malmquist CRS, painel balanceado; intervalos por reamostragem de países (índices fixos) | `Benchmarking::malmquist` | parcela de TC > 0,5 (covariância rateada); EC > 1 na renda média (critério numérico, descritivo) |
+| H5 instituições | Truncada sobre log(escore), escores fixos, bootstrap por país; Simar-Wilson alg. 2 | `truncreg::truncreg`, `rDEA::dea.env.robust` | sinais previstos, IC exclui 0 (exploratório: separabilidade não testada) |
 | H6 finanças | Segundo estágio do canal de patentes | idem | market cap > 0; crédito ≤ 0 |
-| H7 desenvolvimento | Sinais por canal; Kruskal-Wallis | `kruskal.test` | positivo só em patentes |
+| H7 desenvolvimento | Sinais por canal; Kruskal-Wallis (3 grupos) e Mann-Whitney (2 grupos), em país-ano e em médias por país | `kruskal.test`, `wilcox.test` | positivo só em patentes |
 
 ## Referências
 
@@ -134,6 +134,7 @@ Reportadas como resultados, não como hipóteses:
 - Olesen, O. B.; Petersen, N. C.; Podinovski, V. V. (2015). Efficiency analysis with ratio measures. *European Journal of Operational Research*, 245(2), 446–462.
 - Pakes, A.; Griliches, Z. (1984). Patents and R&D at the firm level: a first look. In: Griliches, Z. (ed.), *R&D, Patents, and Productivity*. University of Chicago Press.
 - Simar, L.; Wilson, P. W. (1998). Sensitivity analysis of efficiency scores: how to bootstrap in nonparametric frontier models. *Management Science*, 44(1), 49–61.
+- Simar, L.; Wilson, P. W. (1999). Estimating and bootstrapping Malmquist indices. *European Journal of Operational Research*, 115(3), 459–471.
 - Simar, L.; Wilson, P. W. (2002). Non-parametric tests of returns to scale. *European Journal of Operational Research*, 139(1), 115–132.
 - Simar, L.; Wilson, P. W. (2007). Estimation and inference in two-stage, semi-parametric models of production processes. *Journal of Econometrics*, 136(1), 31–64.
 - Wilson, P. W. (1993). Detecting outliers in deterministic nonparametric frontier models with multiple outputs. *Journal of Business & Economic Statistics*, 11(3), 319–323.

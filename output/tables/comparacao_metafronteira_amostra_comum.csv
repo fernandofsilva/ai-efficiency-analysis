@@ -1,10 +1,10 @@
 "variante","amostra","especificacao","tgr_alta","tgr_media","n","inversao"
 "base","original","base",0.606477023197032,0.931643499674547,204,FALSE
-"publico","da variante","base",0.927108534120897,0.797501178194606,184,TRUE
-"publico","da variante","variante",0.914804768649307,0.814748346786291,184,TRUE
-"qualidade","da variante","base",0.593018062615298,0.867463584079739,117,FALSE
-"qualidade","da variante","variante",0.943770257657132,0.834927283030514,117,TRUE
-"fonte","da variante","base",0.610311499898359,0.926663111565325,203,FALSE
-"fonte","da variante","variante",0.703051589384185,0.88154881500661,203,FALSE
-"preqin","da variante","base",0.6060900573201,0.957905990232348,194,FALSE
-"preqin","da variante","variante",0.778593343332455,0.844807529176411,194,FALSE
+"publico","comum","base",0.927108534120897,0.797501178194606,184,TRUE
+"publico","comum","variante",0.914804768649307,0.814748346786291,184,TRUE
+"qualidade","comum","base",0.593018062615298,0.867463584079739,117,FALSE
+"qualidade","comum","variante",0.943770257657132,0.834927283030514,117,TRUE
+"fonte","comum","base",0.610311499898359,0.926663111565325,203,FALSE
+"fonte","comum","variante",0.703051589384185,0.88154881500661,203,FALSE
+"preqin","comum","base",0.604434501420821,0.952887978132969,191,FALSE
+"preqin","comum","variante",0.777487349517881,0.841022346961202,191,FALSE
