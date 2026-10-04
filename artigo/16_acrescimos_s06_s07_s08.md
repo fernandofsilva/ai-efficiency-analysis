@@ -120,7 +120,7 @@ A tabela da Fase A está em `artigo/05`, seção 7. O padrão de cada base:
 
 **O que a decomposição diz, em palavras simples.** A fronteira avança em todas as bases, puxada pelos países que estão nela, e a maioria dos outros fica para trás. As exceções são as variantes de patentes por inventor e de P&D público: nelas a fronteira avança pouco (TC 1,03 e 1,05) e os países, em média, se aproximam dela (EC 1,02 e 1,04).
 - A **China** está na fronteira em todos os anos em cinco das seis bases. Na de inventor, as famílias IP5 reduzem muito suas patentes. O movimento dela é o da própria fronteira, e é o maior avanço da Fase A (1,54 ao ano; 1,30 no painel). Seu produto de IA cresce mais depressa que os insumos.
-- Os **Estados Unidos** se afastam da fronteira (EC 0,83 na Fase A e 0,80 no painel), embora ela avance muito no seu ponto (TC 1,47 e 1,34): a produtividade americana cresce, mas menos que a dos líderes.
+- Os **Estados Unidos** se afastam da fronteira (EC 0,82 na Fase A e 0,80 no painel), embora ela avance muito no seu ponto (TC 1,47 e 1,34): a produtividade americana cresce, mas menos que a dos líderes.
 - O **Brasil** se afasta da fronteira nas duas bases (EC 0,66 e 0,88). Na Fase A, com a fronteira estável no seu ponto (TC 1,05), a produtividade cai (0,69). No painel, a fronteira avança (1,25) e a produtividade sobe um pouco (1,11). É o contrário da leitura anterior e da expectativa levantada na aula.
 
 **Tese do platô.** Não se confirma no Malmquist:

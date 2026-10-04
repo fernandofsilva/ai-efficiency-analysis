@@ -154,7 +154,7 @@ Estrutura decidida em 04/10/2026 (S03; `artigo/01`): três hipóteses (H1 a H3) 
 
 **Robustez à padronização (S01, 04/10/2026; detalhes em `artigo/14_padronizacao_minmax.md`).** Com as variáveis da fronteira em min-max (ε = 0,01), a Fase A mantém:
 - a base do ranking (Israel em 35º/36º; Suíça);
-- H3b sem apoio (TGR renda média − alta +0,27 [0,19; 0,35]);
+- H3b sem apoio (TGR renda média − alta +0,27 [0,18; 0,35]);
 - o sinal de H5: efetividade −0,53 [−0,94; −0,08], agora com IC que exclui zero;
 - o sinal de H7.
 

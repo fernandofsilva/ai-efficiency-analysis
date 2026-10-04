@@ -72,7 +72,7 @@ Por isso o teste de RTS rejeita retornos constantes com p = 0,001 em todas as ba
 | País-ano em DRS / CRS / IRS | 136 / 38 / 17 | 45 / 40 / 106 | 138 / 25 / 41 | 67 / 23 / 114 |
 | H3a: Spearman entre canais | 0,52 [0,31; 0,69] | 0,46 [0,23; 0,66] | 0,48 [0,30; 0,63] | 0,34 [0,14; 0,51] |
 | H3a: p unilateral de ρ ≥ 0,5 | 0,59 | 0,35 | 0,37 | 0,033 |
-| H3b: TGR médio, renda média − alta | +0,32 [0,23; 0,40] | +0,27 [0,19; 0,35] | +0,33 [0,24; 0,40] | +0,24 [0,18; 0,30] |
+| H3b: TGR médio, renda média − alta | +0,32 [0,23; 0,40] | +0,27 [0,18; 0,35] | +0,33 [0,24; 0,40] | +0,24 [0,17; 0,30] |
 | Kruskal-Wallis, canal de patentes (país-ano) | 0,0005 | 0,073 | 0,0002 | 0,0001 |
 | R1: Spearman VRS × corrigido / × order-m | 0,93 / 0,51 | 0,71 / 0,20 | 0,96 / 0,63 | 0,88 / 0,42 |
 
