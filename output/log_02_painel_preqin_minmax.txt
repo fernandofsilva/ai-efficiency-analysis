@@ -1,0 +1,95 @@
+08:48:22 padronização minmax | epsilon 0.01 | referência: 208 obs. 
+08:48:22 valores-piso no insumo usado (<= 2,5 M): 4 
+08:48:22 amostra (insumos investimento_preqin_l1+gerd_l1 ): 194 obs., 46 países 
+08:48:26 outlier.ap: componentes ratio, imat, r0 
+08:48:26 supereficientes: 17 | destes no piso: 3 
+08:48:26 supereficientes (F < 1) no pooled M2: 17 
+         id         pais  ano farrell_super       inv_mi inv_piso supereficiente
+1  CZE-2018      Czechia 2018     0.6690508     1.105459     TRUE           TRUE
+2  SAU-2021 Saudi Arabia 2021     0.7076501     9.422807    FALSE           TRUE
+3  ITA-2020        Italy 2020     0.7103121    24.377561    FALSE           TRUE
+4  CHN-2021        China 2021     0.7756153 35405.674932    FALSE           TRUE
+5  KOR-2017  South Korea 2017     0.8139962   217.898334    FALSE           TRUE
+6  RUS-2017       Russia 2017     0.8216128     2.258014     TRUE           TRUE
+7  IND-2018        India 2018     0.8265850   575.944353    FALSE           TRUE
+8  KOR-2021  South Korea 2021     0.8979408  1280.454814    FALSE           TRUE
+9  GRC-2020       Greece 2020     0.9021880     2.119788     TRUE           TRUE
+10 TUR-2020       Turkey 2020     0.9286385     4.239576    FALSE           TRUE
+    ano  n media_vrs eficientes_vrs media_crs  media_se drs irs crs modelo
+1  2017 36 0.7136056              6 0.4496158 0.6473758   6  27   3     M1
+2  2018 37 0.7275034              7 0.4528966 0.6381503   6  28   3     M1
+3  2019 39 0.7729296              7 0.5069167 0.6806724  14  23   2     M1
+4  2020 39 0.7299318              8 0.3961193 0.5853951  16  21   2     M1
+5  2021 43 0.7251813              9 0.4194566 0.6106823  15  26   2     M1
+6  2017 36 0.8567933             12 0.7755845 0.9051216  13  18   5     M2
+7  2018 37 0.8246766             13 0.7457223 0.9009377   8  25   4     M2
+8  2019 39 0.8705026             15 0.7722017 0.8885743  16  17   6     M2
+9  2020 39 0.8413978             13 0.6815434 0.8176968  14  20   5     M2
+10 2021 43 0.8078563             14 0.6359788 0.7974812  14  24   5     M2
+08:48:26 bootstrap M2 por ano... 
+08:48:31 pontos fora do próprio IC: 0 
+    pais_base n_separados n_comparados
+1     Belgium          42           45
+2     Denmark          37           45
+3      Israel          45           45
+4      Sweden          43           45
+5 Switzerland          43           45
+08:48:31 bootstrap M1 por ano... 
+08:48:33 faixas: fdh 1-1.54097392109446 | orderm 0.846-2.646 | orderalfa 0.83-16.963 
+              a             b       rho    ic_inf    ic_sup   n n_paises
+rho  escore_vrs     escore_bc 0.8369568 0.6956649 0.9261789 194       46
+rho1 escore_vrs        orderm 0.4984589 0.2477409 0.6929769 194       46
+rho2 escore_vrs     orderalfa 0.5546386 0.3124138 0.7334777 194       46
+rho3 escore_vrs           fdh 0.6880061 0.5299530 0.7927981 194       46
+rho4 escore_vrs escore_vrs_m1 0.8402526 0.7348278 0.9104038 194       46
+rho5     orderm     orderalfa 0.9405462 0.8815520 0.9746329 194       46
+08:48:35 Spearman entre canais: 0.336 0.105 0.531 194 46 0.051 
+Warning message:
+In wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...) :
+  cannot compute exact p-value with ties
+        grupo   n tgr_media tgr_mediana escore_meta_medio escore_grupo_medio
+1  Alta renda 152 0.8751638   0.9729690         0.6837138          0.7778596
+2 Renda média  42 0.9327790   0.9510379         0.8385486          0.8976462
+  p_mann_whitney_unilateral p_mann_whitney_medias_pais n_paises
+1                 0.4826418                  0.5102737       35
+2                 0.4826418                  0.5102737       11
+                      alvo_mann_whitney dif_tgr_media  dif_ic_inf dif_ic_sup replicas_validas
+1 deslocamento de distribuição (postos)    0.05761525 -0.01272784  0.1250641             1000
+2 deslocamento de distribuição (postos)    0.05761525 -0.01272784  0.1250641             1000
+                                                        inferencia
+1 bootstrap em blocos de país, condicional às fronteiras estimadas
+2 bootstrap em blocos de país, condicional às fronteiras estimadas
+08:48:37 Malmquist: países balanceados 32 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+08:48:37 malmquist: componentes m, tc, ec, id, time, e00, e10, e11, e01 
+  grupo_renda2 n_paises malmquist mudanca_tecnica mudanca_eficiencia parcela_tc_rateio_simetrico
+1   Alta renda       26 0.9758593       0.8959942           1.089136                   0.2359687
+2  Renda média        6 0.9115869       0.8782285           1.037984                   0.2359687
+3        Todos       32 0.9634723       0.8926360           1.079356                   0.2359687
+  malmquist_ic_inf malmquist_ic_sup mudanca_tecnica_ic_inf mudanca_tecnica_ic_sup
+1        0.9556371        0.9970334              0.8876002              0.9060886
+2        0.8312142        0.9742038              0.8527453              0.9021798
+3        0.9398762        0.9860018              0.8831495              0.9024362
+  mudanca_eficiencia_ic_inf mudanca_eficiencia_ic_sup
+1                 1.0646504                  1.112277
+2                 0.9789135                  1.099477
+3                 1.0534859                  1.102995
+                                                                        inferencia
+1 reamostragem de países com índices fixos; não propaga a incerteza das fronteiras
+2 reamostragem de países com índices fixos; não propaga a incerteza das fronteiras
+3 reamostragem de países com índices fixos; não propaga a incerteza das fronteiras
+08:48:37 amostra sem valores-piso: 190 obs., 46 países 
+08:48:42 Spearman entre canais (sem piso): 0.332 0.101 0.54 190 46 0.054 
+        grupo   n tgr_media tgr_mediana escore_meta_medio escore_grupo_medio
+1  Alta renda 148 0.8719607   0.9693171         0.6781549          0.7746912
+2 Renda média  42 0.9400008   0.9673815         0.8455127          0.8976462
+  p_mann_whitney_unilateral dif_tgr_media   dif_ic_inf dif_ic_sup replicas_validas
+1                 0.7526614    0.06804012 -0.004577531  0.1352996             1000
+2                 0.7526614    0.06804012 -0.004577531  0.1352996             1000
+                                                        inferencia
+1 bootstrap em blocos de país, condicional às fronteiras estimadas
+2 bootstrap em blocos de país, condicional às fronteiras estimadas
+08:48:44 FIM fronteiras Fase A 

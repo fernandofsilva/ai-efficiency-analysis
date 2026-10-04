@@ -6,13 +6,15 @@
 # R/02c_validacao_rts.R. H0: retornos constantes ("crs") ou não crescentes
 # ("drs" = NIRS) contra H1: retornos variáveis.
 # Variáveis de ambiente: BASE_ARQUIVO, SUFIXO_SAIDA, INSUMOS, PRODUTOS,
-# N_REP_RTS (padrão 1000).
+# N_REP_RTS (padrão 1000), PADRONIZACAO e EPSILON_PADRONIZACAO (mesma
+# transformação das fronteiras do script 02).
 # Uso: Rscript R/02b_teste_rts.R
 
 source("R/00_setup.R")
 
 arquivo_base <- Sys.getenv("BASE_ARQUIVO", "data/processed/base_atual.csv")
-sufixo <- Sys.getenv("SUFIXO_SAIDA", "")
+padronizacao <- ConfigurarPadronizacao()
+sufixo <- paste0(Sys.getenv("SUFIXO_SAIDA", ""), padronizacao$sufixo)
 insumos <- strsplit(Sys.getenv("INSUMOS", "investimento,gerd"), ",")[[1]]
 produtos <- strsplit(Sys.getenv("PRODUTOS", "publicacoes,patentes"), ",")[[1]]
 n_rep_rts <- as.integer(Sys.getenv("N_REP_RTS", "1000"))
@@ -20,9 +22,11 @@ n_rep_rts <- as.integer(Sys.getenv("N_REP_RTS", "1000"))
 base <- utils::read.csv(arquivo_base, stringsAsFactors = FALSE)
 completas <- stats::complete.cases(base[, c(insumos, produtos)])
 amostra <- base[completas & base[[insumos[1]]] > 0, ]
-x_m2 <- as.matrix(amostra[, insumos]) / 1e6
+parametros_pad <- ParametrosPadronizacao(base[completas, ],
+                                         c(insumos, produtos), padronizacao)
+x_m2 <- MatrizFronteira(amostra, insumos, parametros_pad, 1e6)
 x_m1 <- x_m2[, 1, drop = FALSE]
-y <- as.matrix(amostra[, produtos])
+y <- MatrizFronteira(amostra, produtos, parametros_pad)
 Registrar("amostra agrupada:", nrow(amostra), "obs.; réplicas:", n_rep_rts)
 
 RodarTeste <- function(x, modelo, h0) {

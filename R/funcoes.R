@@ -83,6 +83,94 @@ ParaEscala01 <- function(farrell) {
   return(1 / farrell)
 }
 
+ConfigurarPadronizacao <- function() {
+  # Lê a padronização das variáveis da fronteira (insumos e produtos da DEA)
+  # das variáveis de ambiente:
+  #   PADRONIZACAO: "nenhuma" (padrão: unidades originais, insumos em
+  #                 milhões de US$ e produtos em contagem) ou "minmax";
+  #   EPSILON_PADRONIZACAO: piso da escala min-max, em (0, 1) (padrão 0,01).
+  # A min-max leva cada variável a [epsilon, 1] com
+  #   z = epsilon + (1 - epsilon) (x - mín) / (máx - mín),
+  # no mesmo sentido para insumos e produtos (o insumo continua insumo). O
+  # piso epsilon evita insumo zero (unidade eficiente por construção) e
+  # produto zero. Os modelos radiais são invariantes à escala, mas não à
+  # translação: a min-max equivale a somar a cada variável a constante
+  # epsilon (máx - mín) / (1 - epsilon) - mín, e é, portanto, outra
+  # especificação, e não a mesma DEA em outra escala.
+  # Devolve lista com metodo, epsilon e o sufixo dos arquivos de saída
+  # ("" sem padronização; "_minmax" com epsilon = 0,01; "_minmax_eps<e>"
+  # com outro epsilon).
+  metodo <- Sys.getenv("PADRONIZACAO", "nenhuma")
+  if (!metodo %in% c("nenhuma", "minmax")) {
+    stop("PADRONIZACAO deve ser 'nenhuma' ou 'minmax', não '", metodo, "'")
+  }
+  epsilon <- as.numeric(Sys.getenv("EPSILON_PADRONIZACAO", "0.01"))
+  if (!is.finite(epsilon) || epsilon <= 0 || epsilon >= 1) {
+    stop("EPSILON_PADRONIZACAO deve estar em (0, 1)")
+  }
+  sufixo <- if (metodo == "nenhuma") {
+    ""
+  } else if (isTRUE(all.equal(epsilon, 0.01))) {
+    "_minmax"
+  } else {
+    paste0("_minmax_eps", format(epsilon))
+  }
+  return(list(metodo = metodo, epsilon = epsilon, sufixo = sufixo))
+}
+
+ParametrosPadronizacao <- function(base, colunas, config) {
+  # Mínimo e máximo de cada variável da fronteira na amostra de referência:
+  # observações com as colunas completas, todos os anos agrupados e
+  # incluindo investimento zero. Com os mesmos parâmetros em todas as
+  # análises de uma execução (fronteiras anuais, fronteira agrupada,
+  # metafronteira, Malmquist e sensibilidades), a transformação é uma só.
+  # Devolve NULL sem padronização.
+  if (config$metodo == "nenhuma") {
+    return(NULL)
+  }
+  referencia <- base[stats::complete.cases(base[, colunas]), colunas,
+                     drop = FALSE]
+  saida <- data.frame(
+    coluna = colunas,
+    minimo = vapply(referencia, min, numeric(1)),
+    maximo = vapply(referencia, max, numeric(1)),
+    metodo = config$metodo, epsilon = config$epsilon,
+    n_referencia = nrow(referencia), stringsAsFactors = FALSE)
+  rownames(saida) <- NULL
+  if (any(saida$maximo <= saida$minimo)) {
+    stop("variável sem amplitude na amostra de referência: ",
+         paste(saida$coluna[saida$maximo <= saida$minimo], collapse = ", "))
+  }
+  return(saida)
+}
+
+MatrizFronteira <- function(dados, colunas, parametros, escala = 1) {
+  # Matriz de insumos ou produtos usada nas fronteiras. Sem padronização
+  # (parametros = NULL), devolve as colunas divididas por `escala` (1e6 nos
+  # insumos: milhões de US$), exatamente como nas versões anteriores; com
+  # padronização, aplica a min-max com os parâmetros da execução, e
+  # `escala` é irrelevante (a min-max é invariante à escala).
+  x <- as.matrix(dados[, colunas, drop = FALSE])
+  if (is.null(parametros)) {
+    if (escala != 1) x <- x / escala
+    return(x)
+  }
+  for (j in seq_along(colunas)) {
+    p <- parametros[parametros$coluna == colunas[j], ]
+    if (nrow(p) != 1) {
+      stop("sem parâmetros de padronização para ", colunas[j])
+    }
+    z <- p$epsilon + (1 - p$epsilon) * (x[, j] - p$minimo) /
+      (p$maximo - p$minimo)
+    if (any(z < p$epsilon - 1e-12 | z > 1 + 1e-12, na.rm = TRUE)) {
+      stop(colunas[j], ": valores fora da amostra de referência da ",
+           "padronização")
+    }
+    x[, j] <- z
+  }
+  return(x)
+}
+
 ClassificarRts <- function(f_crs, f_vrs, f_nirs, tolerancia = 1e-6) {
   # Classifica a região de retornos de escala de cada DMU (orientação a
   # produto) pela regra de Färe, Grosskopf e Lovell:
@@ -183,6 +271,12 @@ RegistrarManifesto <- function(script, sufixo, base, status, detalhe = "",
   # MD5, horário e status) e, em manifesto_saidas.csv, uma linha por tabela
   # gravada nesta execução com o MD5 do arquivo, para vincular cada saída à
   # configuração e à execução que a geraram.
+  config <- ConfigurarPadronizacao()
+  if (config$metodo != "nenhuma") {
+    detalhe <- paste0(detalhe, if (nzchar(detalhe)) "; " else "",
+                      "padronizacao=", config$metodo, " epsilon=",
+                      config$epsilon)
+  }
   horario <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
   id_execucao <- paste0(sub("\\.R$", "", script), sufixo, "@",
                         format(Sys.time(), "%Y%m%d%H%M%S"))

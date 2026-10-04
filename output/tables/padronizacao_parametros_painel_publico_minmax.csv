@@ -1,0 +1,5 @@
+"coluna","minimo","maximo","metodo","epsilon","n_referencia"
+"investimento_l1",0,109260228053.232,"minmax",0.01,192
+"pd_publico_l1",104610172.559145,138236228550.52,"minmax",0.01,192
+"publicacoes",139,72439,"minmax",0.01,192
+"patentes",1,92950,"minmax",0.01,192

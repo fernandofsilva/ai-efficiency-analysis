@@ -22,9 +22,13 @@ n_rep_boot <- 1000   # réplicas do bootstrap DEA (Fase A; artigo usa 2000)
 #            investimento,gerd; Fase B usa investimento_l1,gerd_l1);
 #   PRODUTOS: duas colunas de produto (padrão: publicacoes,patentes; a
 #             variante de qualidade usa citacoes_ok,patentes_concedidas_ok);
-#   JANELA_MALMQUIST: primeiro e último ano do painel balanceado.
+#   JANELA_MALMQUIST: primeiro e último ano do painel balanceado;
+#   PADRONIZACAO, EPSILON_PADRONIZACAO: padronização das variáveis da
+#            fronteira (ver ConfigurarPadronizacao em R/funcoes.R); com
+#            "minmax", o sufixo das saídas ganha "_minmax".
 arquivo_base <- Sys.getenv("BASE_ARQUIVO", "data/processed/base_atual.csv")
-sufixo <- Sys.getenv("SUFIXO_SAIDA", "")
+padronizacao <- ConfigurarPadronizacao()
+sufixo <- paste0(Sys.getenv("SUFIXO_SAIDA", ""), padronizacao$sufixo)
 insumos <- strsplit(Sys.getenv("INSUMOS", "investimento,gerd"), ",")[[1]]
 produtos <- strsplit(Sys.getenv("PRODUTOS", "publicacoes,patentes"), ",")[[1]]
 janela_env <- as.integer(strsplit(Sys.getenv("JANELA_MALMQUIST", "2016,2019"),
@@ -42,6 +46,19 @@ base$grupo_renda2 <- ifelse(base$grupo_renda == "Alta renda",
 # insumo de investimento positivo (insumo zero inviabiliza CRS) --------------
 completas <- stats::complete.cases(base[, c(insumos, produtos)])
 amostra <- base[completas & base[[insumos[1]]] > 0, ]
+# Padronização das variáveis da fronteira: parâmetros calculados uma única
+# vez nas observações completas (incluindo investimento zero) e usados em
+# todas as fronteiras desta execução. A seleção de amostra (investimento
+# positivo, produto positivo nos canais, valores-piso) usa sempre as
+# unidades originais.
+parametros_pad <- ParametrosPadronizacao(base[completas, ],
+                                         c(insumos, produtos), padronizacao)
+if (!is.null(parametros_pad)) {
+  Salvar(parametros_pad, "padronizacao_parametros")
+  Registrar("padronização", padronizacao$metodo, "| epsilon",
+            padronizacao$epsilon, "| referência:",
+            parametros_pad$n_referencia[1], "obs.")
+}
 amostra$inv_mi <- amostra[[insumos[1]]] / 1e6   # milhões de US$ 2021
 amostra$gerd_mi <- amostra[[insumos[2]]] / 1e6  # milhões de US$ 2015
 # Marca de piso construída SEMPRE a partir do insumo efetivamente usado
@@ -59,14 +76,16 @@ Registrar("amostra (insumos", paste(insumos, collapse = "+"), "):",
           length(unique(amostra$pais)), "países")
 
 MatrizesModelo <- function(dados, modelo, canal = "conjunto") {
-  # Devolve as matrizes X e Y de um modelo e canal.
+  # Devolve as matrizes X e Y de um modelo e canal: insumos em milhões de
+  # US$ e produtos em contagem, ou padronizados (parametros_pad).
   x <- switch(modelo,
-              M1 = as.matrix(dados[, "inv_mi", drop = FALSE]),
-              M2 = as.matrix(dados[, c("inv_mi", "gerd_mi")]))
+              M1 = MatrizFronteira(dados, insumos[1], parametros_pad, 1e6),
+              M2 = MatrizFronteira(dados, insumos, parametros_pad, 1e6))
   y <- switch(canal,
-              conjunto = as.matrix(dados[, produtos]),
-              publicacoes = as.matrix(dados[, produtos[1], drop = FALSE]),
-              patentes = as.matrix(dados[, produtos[2], drop = FALSE]))
+              conjunto = MatrizFronteira(dados, produtos, parametros_pad),
+              publicacoes = MatrizFronteira(dados, produtos[1],
+                                            parametros_pad),
+              patentes = MatrizFronteira(dados, produtos[2], parametros_pad))
   return(list(x = x, y = y))
 }
 

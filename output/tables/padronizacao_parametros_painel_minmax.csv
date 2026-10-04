@@ -1,0 +1,5 @@
+"coluna","minimo","maximo","metodo","epsilon","n_referencia"
+"investimento_l1",0,109260228053.232,"minmax",0.01,215
+"gerd_l1",364939070.988242,674690920323.55,"minmax",0.01,215
+"publicacoes",139,72439,"minmax",0.01,215
+"patentes",1,92950,"minmax",0.01,215

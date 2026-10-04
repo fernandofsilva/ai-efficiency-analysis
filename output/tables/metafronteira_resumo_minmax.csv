@@ -1,0 +1,3 @@
+"grupo","n","tgr_media","tgr_mediana","escore_meta_medio","escore_grupo_medio","p_mann_whitney_unilateral","p_mann_whitney_medias_pais","n_paises","alvo_mann_whitney","dif_tgr_media","dif_ic_inf","dif_ic_sup","replicas_validas","inferencia"
+"Alta renda",132,0.729630700469339,0.790161286104905,0.675493601641573,0.909755955951146,1,0.999997685490005,24,"deslocamento de distribuição (postos)",0.265009491655566,0.184959716358447,0.348342296050757,1000,"bootstrap em blocos de país, condicional às fronteiras estimadas"
+"Renda média",59,0.994640192124905,1,0.865931740394309,0.87061941733438,1,0.999997685490005,12,"deslocamento de distribuição (postos)",0.265009491655566,0.184959716358447,0.348342296050757,1000,"bootstrap em blocos de país, condicional às fronteiras estimadas"

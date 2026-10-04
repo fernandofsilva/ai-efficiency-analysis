@@ -6,14 +6,22 @@
 #   painel tiverem concluído; o código de saída é o número de etapas com falha.
 # - Não há modo "só rankings": o ranking sai do script 02, e o 03 e o 04 leem
 #   suas saídas; rerodar o 02 exige rerodar 03 e 04 (a cadeia inteira).
-# Uso: zsh output/rodar_pipeline.sh [faseA|painel|variantes|rts|validacao|tudo]
+# - Padronização das variáveis da fronteira (S01): com PADRONIZACAO=minmax (e,
+#   opcionalmente, EPSILON_PADRONIZACAO; padrão 0,01) todas as etapas gravam
+#   tabelas, figuras, logs e status com o sufixo "_minmax"; a validação por
+#   simulação (02c) não depende dos dados e é pulada; no modo "tudo", a
+#   comparação com a versão em unidades originais (05b) roda no fim.
+# Uso: zsh output/rodar_pipeline.sh [faseA|painel|variantes|rts|validacao|padronizacao|tudo]
+#      PADRONIZACAO=minmax zsh output/rodar_pipeline.sh tudo
 set -u
 cd "$(dirname "$0")/.." || exit 1
-STATUS=output/status_execucao.txt
+export PADRONIZACAO=${PADRONIZACAO:-nenhuma}
+PAD=$(Rscript -e 'source("R/funcoes.R"); cat(ConfigurarPadronizacao()$sufixo)') || exit 2
+STATUS=output/status_execucao$PAD.txt
 MODO=${1:-tudo}
 FALHAS=0
 : > "$STATUS"
-echo "$(date '+%Y-%m-%d %H:%M:%S') INICIO modo=$MODO" >> "$STATUS"
+echo "$(date '+%Y-%m-%d %H:%M:%S') INICIO modo=$MODO padronizacao=$PADRONIZACAO sufixo=${PAD:-nenhum}" >> "$STATUS"
 
 registrar() {  # estado rótulo
   echo "$(date '+%H:%M:%S') $1 $2" | tee -a "$STATUS"
@@ -28,9 +36,9 @@ rodar() {  # rótulo script log
 limpar_ambiente() { unset BASE_ARQUIVO SUFIXO_SAIDA INSUMOS PRODUTOS JANELA_MALMQUIST; }
 cadeia() {  # rótulo (usa as variáveis de ambiente exportadas)
   local s=${SUFIXO_SAIDA:-}
-  rodar "$1 02 fronteiras" R/02_fronteiras_dataset_atual.R "output/log_02$s.txt" &&
-    rodar "$1 03 segundo estágio" R/03_segundo_estagio_dataset_atual.R "output/log_03$s.txt" &&
-    rodar "$1 04 figuras" R/04_figuras_apresentacao.R "output/log_04$s.txt"
+  rodar "$1 02 fronteiras" R/02_fronteiras_dataset_atual.R "output/log_02$s$PAD.txt" &&
+    rodar "$1 03 segundo estágio" R/03_segundo_estagio_dataset_atual.R "output/log_03$s$PAD.txt" &&
+    rodar "$1 04 figuras" R/04_figuras_apresentacao.R "output/log_04$s$PAD.txt"
 }
 PAINEL_OK=1
 fase_a() { limpar_ambiente; export SUFIXO_SAIDA=""; cadeia "FASE A" || true; }
@@ -55,22 +63,34 @@ variantes() {
 comparacoes() {
   limpar_ambiente
   if [[ $PAINEL_OK -eq 1 ]]; then
-    rodar "COMPARACOES 05" R/05_comparacoes_amostra_comum.R output/log_05.txt || true
+    rodar "COMPARACOES 05" R/05_comparacoes_amostra_comum.R "output/log_05$PAD.txt" || true
   else
     registrar PULADA "COMPARACOES 05 (variante do painel com falha)"
   fi
 }
 rts() {
   limpar_ambiente
-  N_REP_RTS=1000 rodar "RTS FASE A 02b" R/02b_teste_rts.R output/log_02b.txt || true
+  N_REP_RTS=1000 rodar "RTS FASE A 02b" R/02b_teste_rts.R "output/log_02b$PAD.txt" || true
   export BASE_ARQUIVO=data/processed/painel_ia.csv INSUMOS=investimento_l1,gerd_l1 \
     SUFIXO_SAIDA=_painel PRODUTOS=publicacoes,patentes
-  N_REP_RTS=1000 rodar "RTS PAINEL 02b" R/02b_teste_rts.R output/log_02b_painel.txt || true
+  N_REP_RTS=1000 rodar "RTS PAINEL 02b" R/02b_teste_rts.R "output/log_02b_painel$PAD.txt" || true
   limpar_ambiente
 }
 validacao() {
   limpar_ambiente
+  if [[ -n $PAD ]]; then
+    registrar PULADA "VALIDACAO RTS 02c (simulação; não depende da padronização)"
+    return 0
+  fi
   N_SIM=100 N_REP=100 rodar "VALIDACAO RTS 02c" R/02c_validacao_rts.R output/log_02c.txt || true
+}
+padronizacao() {  # compara com a versão em unidades originais (S01)
+  limpar_ambiente
+  if [[ -z $PAD ]]; then
+    registrar PULADA "COMPARACAO PADRONIZACAO 05b (rode com PADRONIZACAO=minmax)"
+    return 0
+  fi
+  rodar "COMPARACAO PADRONIZACAO 05b" R/05b_comparacao_padronizacao.R "output/log_05b$PAD.txt" || true
 }
 case "$MODO" in
   faseA) fase_a ;;
@@ -78,7 +98,8 @@ case "$MODO" in
   variantes) variantes ;;
   rts) rts ;;
   validacao) validacao ;;
-  tudo) fase_a; painel_base; variantes; comparacoes; rts; validacao ;;
+  padronizacao) padronizacao ;;
+  tudo) fase_a; painel_base; variantes; comparacoes; rts; validacao; padronizacao ;;
   *) echo "modo desconhecido: $MODO"; exit 2 ;;
 esac
 echo "$(date '+%Y-%m-%d %H:%M:%S') FIM modo=$MODO falhas=$FALHAS" >> "$STATUS"

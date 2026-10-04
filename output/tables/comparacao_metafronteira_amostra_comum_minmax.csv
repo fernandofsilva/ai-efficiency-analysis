@@ -1,0 +1,10 @@
+"variante","amostra","especificacao","tgr_alta","tgr_media","n","inversao"
+"base","original","base",0.744487970267544,0.981709830442328,204,FALSE
+"publico","comum","base",0.890895831880191,0.94876869852792,184,FALSE
+"publico","comum","variante",0.89378057448161,0.933341394731337,184,FALSE
+"qualidade","comum","base",0.777693564962889,0.936086744245763,117,FALSE
+"qualidade","comum","variante",0.955004678332938,0.91151421904147,117,TRUE
+"fonte","comum","base",0.744853067348672,0.980356413408229,203,FALSE
+"fonte","comum","variante",0.760873289636569,0.891026875517821,203,FALSE
+"preqin","comum","base",0.731073887216729,0.979668199739568,191,FALSE
+"preqin","comum","variante",0.873561210294262,0.931989860437458,191,FALSE

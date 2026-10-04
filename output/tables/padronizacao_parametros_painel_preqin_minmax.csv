@@ -1,0 +1,5 @@
+"coluna","minimo","maximo","metodo","epsilon","n_referencia"
+"investimento_preqin_l1",0,72808985010.9507,"minmax",0.01,208
+"gerd_l1",395593529.696691,674690920323.55,"minmax",0.01,208
+"publicacoes",139,72439,"minmax",0.01,208
+"patentes",1,92950,"minmax",0.01,208

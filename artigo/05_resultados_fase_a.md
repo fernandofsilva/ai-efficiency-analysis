@@ -102,3 +102,11 @@ Ver `artigo/06_resultados_painel.md`: painel de 47 países (2017–2021), teste 
 | H6 finanças | coeficientes nulos | não apoiada |
 | H7 desenvolvimento | PIB pc negativo em publicações, nulo em patentes | contrariada |
 | R1 estimadores | ρ entre 0,51 e 0,93 | moderadamente robusto |
+
+**Robustez à padronização (S01, 04/10/2026; detalhes em `artigo/14_padronizacao_minmax.md`).** Com as variáveis da fronteira em min-max (ε = 0,01), a Fase A mantém:
+- a base do ranking (Israel em 35º/36º; Suíça);
+- H3b sem apoio (TGR renda média − alta +0,27 [0,19; 0,35]);
+- o sinal de H5: efetividade −0,53 [−0,94; −0,08], agora com IC que exclui zero;
+- o sinal de H7.
+
+Mudam o topo do ranking (Spearman entre versões 0,45) e a classificação de retornos de escala. Esta última não tem leitura econômica com min-max, porque a origem muda; H1 e o Malmquist seguem lidos em unidades originais. A especificação principal continua em unidades originais até a decisão do autor com o professor.

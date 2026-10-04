@@ -8,7 +8,7 @@
 
 | Id | Tema | Tipo | Prioridade | Onde mexer |
 |---|---|---|---|---|
-| S01 | Padronização min-max das variáveis da fronteira e reexecução completa | cálculo | alta (primeira) | `R/02`, `R/02b`, `R/03`, `R/04`, `R/05`, `output/rodar_pipeline.sh` |
+| S01 | Padronização min-max das variáveis da fronteira e reexecução completa | cálculo | alta (primeira); **executado em 04/10/2026** (`artigo/14`), decisão da especificação principal pendente | `R/02`, `R/02b`, `R/03`, `R/04`, `R/05`, `output/rodar_pipeline.sh` |
 | S02 | SFA de H2 com variáveis reescalonadas | cálculo | alta | novo `R/06_sfa_canais.R` |
 | S03 | Menos hipóteses; hipótese × pergunta de pesquisa; fechar cada uma na discussão | decisão e texto | alta (antes de escrever) | `artigo/01`, manuscrito |
 | S04 | H1: discutir a heterogeneidade dos retornos de escala com evidência contemporânea | texto | média | manuscrito (discussão) |
@@ -37,6 +37,14 @@
    - *Invariância.* Os modelos CCR e BCC são invariantes a mudança de unidade (multiplicação por constante positiva), mas não à translação: sob CRS, subtrair o mínimo altera os escores; sob VRS orientado a produto (o modelo usado aqui), a translação dos insumos não altera os escores, mas a dos produtos altera (Ali e Seiford, 1990; Lovell e Pastor, 1995; Pastor, 1996). O min-max é translação mais reescalonamento, logo é uma especificação diferente, e não um reescalonamento neutro: escores CRS, eficiência de escala, classificação de RTS e Malmquist CRS devem mudar. Reportar como variante, explicar a origem das diferenças e não apresentar a versão padronizada como "a mesma DEA em outra escala".
    - *Uma só transformação.* Seguir a recomendação de não misturar transformações entre as variáveis da fronteira. O log das variáveis de contexto e do escore no segundo estágio é outro objeto (regressores e dependente), mas a escolha deve ficar explícita na metodologia.
 3. Só depois da reexecução: revisar as conclusões de ranking (S05), H1 (S04), H3, H4 (S06) e segundo estágio (S07), como o professor pediu ("só bateria a mão conclusiva rodando as coisas com as variáveis transformadas").
+
+**Estado em 04/10/2026.** Executado; resultados e decisões de implementação em `artigo/14_padronizacao_minmax.md`. Em resumo:
+- Implementação: opção (a) do sentido do insumo, ε = 0,01, mín e máx da amostra completa, mesma amostra nas duas versões.
+- A mudança de escala pura (x / máx) reproduz todos os escores até 10⁻¹², então a ordem de grandeza não afeta a DEA nesta base.
+- A min-max muda os resultados por translação: soma, por exemplo, 854 patentes e US$ 1,5 bilhão de investimento a cada país na Fase A, e desloca a origem. Com isso, retornos de escala e Malmquist CRS perdem a leitura econômica.
+- Resistem às duas versões: a base do ranking (Israel; Suíça e Noruega), H3b sem apoio e o sinal de H5 e de H7.
+- Não resistem: o topo do ranking, H6, a força de H3a e a inversão da metafronteira nas variantes.
+- Pendente: decidir, com o professor, a especificação principal. A recomendação é manter as unidades originais e apresentar a min-max como robustez dos resultados VRS.
 
 ### S02 — SFA de H2 com variáveis reescalonadas
 

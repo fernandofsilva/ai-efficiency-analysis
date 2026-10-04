@@ -1,0 +1,13 @@
+08:55:27 amostra agrupada: 191 obs.; réplicas: 1000 
+08:55:44 M2 crs S = 0.612 p = 0.001 | réplicas válidas 1000 
+08:56:01 M2 drs S = 0.6337 p = 0.001 | réplicas válidas 1000 
+08:56:14 M1 crs S = 0.3047 p = 0.001 | réplicas válidas 1000 
+  modelo  h0   n    B replicas_validas estatistica     p_valor rejeita_h0_5pct s_boot_q05
+1     M2 crs 191 1000             1000   0.6120329 0.000999001            TRUE  0.8043629
+2     M2 drs 191 1000             1000   0.6336988 0.000999001            TRUE  0.8391745
+3     M1 crs 191 1000             1000   0.3047055 0.000999001            TRUE  0.5232046
+  s_boot_mediana                       fronteira   minutos
+1      0.8573810 agrupada (todas as observações) 0.2773222
+2      0.8976544 agrupada (todas as observações) 0.2816544
+3      0.6636931 agrupada (todas as observações) 0.2269739
+08:56:14 FIM teste de RTS 

@@ -1,0 +1,147 @@
+08:40:31 obs. no segundo estágio: 204 | com pesquisadores: 172 
+08:40:31 bootstrap dos canais... 
+08:41:15 Simar-Wilson algoritmo 2 (L1 = 50 , L2 = 500 )... 
+08:41:15 obs. no Simar-Wilson alg. 2: 144 
+08:41:20 dea.env.robust: componentes delta_hat, beta_hat, sigma_hat, bias, delta_hat_hat, delta_ci_low, delta_ci_high, delta_ci_kneip_low, delta_ci_kneip_high, delta_hat_hat_used, beta_hat_hat, sigma_hat_hat, Zbeta_hat_hat, beta_hat_hat_star, sigma_hat_hat_star, beta_ci, sigma_ci 
+08:41:20 faixa de delta corrigido: 1.062 a 5.163 
+                                  modelo               termo  coeficiente       ic_inf      ic_sup
+1  H5 Simar-Wilson alg. 2 (rDEA, pooled)         (Intercept) 12.340499449  6.971605952 17.64121304
+2  H5 Simar-Wilson alg. 2 (rDEA, pooled) efetividade_governo  4.994247797  2.829371088  7.25066896
+3  H5 Simar-Wilson alg. 2 (rDEA, pooled)     alta_tec_export  0.006041622 -0.035351598  0.05547029
+4  H5 Simar-Wilson alg. 2 (rDEA, pooled)        log_comercio -3.461186972 -5.098828630 -1.88650662
+5  H5 Simar-Wilson alg. 2 (rDEA, pooled)          market_cap  0.016254379  0.003955563  0.03004592
+6  H5 Simar-Wilson alg. 2 (rDEA, pooled)     credito_privado -0.053326773 -0.079577886 -0.02612047
+7  H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2018  0.539948676 -0.769280302  1.84754955
+8  H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2019  0.170164288 -1.230324486  1.42160316
+9  H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2020  0.408752254 -1.164611980  1.87555400
+10 H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2021  0.202559422 -1.202837686  1.74355880
+   significativo_5pct                             fronteira semente_filho
+1                TRUE agrupada, casos completos de contexto          2026
+2                TRUE agrupada, casos completos de contexto          2026
+3               FALSE agrupada, casos completos de contexto          2026
+4                TRUE agrupada, casos completos de contexto          2026
+5                TRUE agrupada, casos completos de contexto          2026
+6                TRUE agrupada, casos completos de contexto          2026
+7               FALSE agrupada, casos completos de contexto          2026
+8               FALSE agrupada, casos completos de contexto          2026
+9               FALSE agrupada, casos completos de contexto          2026
+10              FALSE agrupada, casos completos de contexto          2026
+                                                          modelo               termo
+1                                               H5 truncada (M2)         (Intercept)
+2                                               H5 truncada (M2) efetividade_governo
+3                                               H5 truncada (M2)     alta_tec_export
+4                                               H5 truncada (M2)        log_comercio
+5                                               H5 truncada (M2)          market_cap
+6                                               H5 truncada (M2)     credito_privado
+11                                              H5 truncada (M2)               sigma
+34                             H5 truncada sem valores-piso (M2)         (Intercept)
+35                             H5 truncada sem valores-piso (M2) efetividade_governo
+36                             H5 truncada sem valores-piso (M2)     alta_tec_export
+37                             H5 truncada sem valores-piso (M2)        log_comercio
+38                             H5 truncada sem valores-piso (M2)          market_cap
+39                             H5 truncada sem valores-piso (M2)     credito_privado
+44                             H5 truncada sem valores-piso (M2)               sigma
+45                    H5 truncada com pesquisadores (subamostra)         (Intercept)
+46                    H5 truncada com pesquisadores (subamostra) efetividade_governo
+47                    H5 truncada com pesquisadores (subamostra)     alta_tec_export
+48                    H5 truncada com pesquisadores (subamostra)        log_comercio
+49                    H5 truncada com pesquisadores (subamostra)   log_pesquisadores
+54                    H5 truncada com pesquisadores (subamostra)               sigma
+55  H5 truncada com talento em IA (média por gênero, subamostra)         (Intercept)
+56  H5 truncada com talento em IA (média por gênero, subamostra) efetividade_governo
+57  H5 truncada com talento em IA (média por gênero, subamostra)     alta_tec_export
+58  H5 truncada com talento em IA (média por gênero, subamostra)        log_comercio
+59  H5 truncada com talento em IA (média por gênero, subamostra)         log_talento
+64  H5 truncada com talento em IA (média por gênero, subamostra)               sigma
+65                                  H6 truncada (canal patentes)         (Intercept)
+66                                  H6 truncada (canal patentes)          market_cap
+67                                  H6 truncada (canal patentes)     credito_privado
+68                                  H6 truncada (canal patentes)                 npl
+69                                  H6 truncada (canal patentes) efetividade_governo
+74                                  H6 truncada (canal patentes)               sigma
+95                              H6 contraste (canal publicações)         (Intercept)
+96                              H6 contraste (canal publicações)          market_cap
+97                              H6 contraste (canal publicações)     credito_privado
+98                              H6 contraste (canal publicações)                 npl
+99                              H6 contraste (canal publicações) efetividade_governo
+104                             H6 contraste (canal publicações)               sigma
+105                                            H7 canal patentes         (Intercept)
+106                                            H7 canal patentes          log_pib_pc
+107                                            H7 canal patentes     alta_tec_export
+108                                            H7 canal patentes        log_comercio
+113                                            H7 canal patentes               sigma
+132                                         H7 canal publicações         (Intercept)
+133                                         H7 canal publicações          log_pib_pc
+134                                         H7 canal publicações     alta_tec_export
+135                                         H7 canal publicações        log_comercio
+140                                         H7 canal publicações               sigma
+        coeficiente        ic_inf       ic_sup significativo_5pct replicas_convergentes
+1   -1.574750257062 -2.6998963070 -0.005800753               TRUE                   300
+2   -0.572239417967 -0.8802223124 -0.134717302               TRUE                   300
+3    0.000288419019 -0.0153957165  0.006608274              FALSE                   300
+4    0.367274158309  0.0270571299  0.592338375               TRUE                   300
+5   -0.001359167292 -0.0035626188  0.002103219              FALSE                   300
+6    0.006722075378  0.0003109252  0.011272896               TRUE                   300
+11   0.298989385713  0.1931574032  0.360562447               TRUE                   300
+34  -1.848642297839 -2.7926118053 -0.451277290               TRUE                   300
+35  -0.498150442670 -0.7128396834 -0.162972664               TRUE                   300
+36   0.000002160967 -0.0124659833  0.005840100              FALSE                   300
+37   0.372065400152  0.0607212949  0.577707923               TRUE                   300
+38  -0.000923008200 -0.0025956265  0.002336408              FALSE                   300
+39   0.006779575180  0.0010323776  0.010508353               TRUE                   300
+44   0.258211631003  0.1658128787  0.292324814               TRUE                   300
+45   0.517294373227 -0.6681982047  2.215050819              FALSE                   300
+46  -0.339676131466 -0.5149355928 -0.137117713               TRUE                   300
+47   0.005765112704 -0.0083001402  0.013802130              FALSE                   300
+48   0.042054758204 -0.2523828637  0.249941661              FALSE                   300
+49  -0.069157877310 -0.2842668032  0.086646480              FALSE                   300
+54   0.302020147797  0.2267514054  0.338932315               TRUE                   300
+55  -1.035434924681 -2.0239210893  0.845103468              FALSE                   300
+56  -0.259156976056 -0.4458126036 -0.081351586               TRUE                   300
+57   0.000699461392 -0.0247390292  0.018310679              FALSE                   300
+58   0.190114237727 -0.1900463864  0.405994664              FALSE                   300
+59  -0.279096725516 -0.5597519523  0.164428812              FALSE                   300
+64   0.319486465006  0.2296216415  0.347018173               TRUE                   300
+65   1.600884614198  0.0637335180  3.887672934               TRUE                   300
+66  -0.002063968745 -0.0163080844  0.002947031              FALSE                   300
+67  -0.001349204134 -0.0116639719  0.014495188              FALSE                   300
+68   0.050258539978 -0.0766891063  0.215695638              FALSE                   300
+69  -0.416334204435 -1.3029588727  0.438439307              FALSE                   300
+74   0.757980049546  0.3601142873  1.074930665               TRUE                   300
+95  -0.937878830918 -1.7264374416 -0.687285738               TRUE                   300
+96  -0.001974743651 -0.0046308169  0.003360652              FALSE                   300
+97   0.006511488842  0.0021488620  0.012197175               TRUE                   300
+98   0.016911031944  0.0015334086  0.152549635               TRUE                   300
+99  -0.405897001686 -0.8168805742 -0.073005488               TRUE                   300
+104  0.416905243137  0.2776124995  0.482404761               TRUE                   300
+105  7.502628049398  3.1939461665 12.414347552               TRUE                   300
+106 -0.903491242111 -1.3638028462 -0.468608089               TRUE                   300
+107 -0.007570700585 -0.0337448611  0.011901855              FALSE                   300
+108  0.552085712233  0.0612659954  0.976308260               TRUE                   300
+113  0.714867034228  0.4812125221  0.890870572               TRUE                   300
+132  1.996425579837  0.5339010150  4.299520324               TRUE                   300
+133 -0.275005666592 -0.4932628966 -0.115393528               TRUE                   300
+134  0.004051993784 -0.0098161339  0.015779324              FALSE                   300
+135 -0.045978796242 -0.2921449206  0.153102934              FALSE                   300
+140  0.446812397501  0.3341092340  0.528172241               TRUE                   300
+                  escore p_kruskal_3grupos_pais_ano p_kruskal_3grupos_medias_pais
+1       conjunto M2 (bc)              0.00211840135                    0.09821875
+2 canal publicações (bc)              0.07640540189                    0.15618708
+3    canal patentes (bc)              0.00009159973                    0.06141120
+  p_mann_whitney_2grupos_pais_ano p_mann_whitney_2grupos_medias_pais n_paises media_alta
+1                   0.00045859114                         0.03145568       47  0.6706912
+2                   0.04112758735                         0.08549430       47  0.5193651
+3                   0.00002517829                         0.02416405       47  0.4935256
+  media_media_alta media_media_baixa
+1        0.7856886         0.8019111
+2        0.5822159         0.7428916
+3        0.6775973         0.5557578
+                       z        rho     ic_inf       ic_sup
+rho  efetividade_governo -0.4479762 -0.6324404 -0.219464941
+rho1     alta_tec_export -0.1898689 -0.4266459  0.043125256
+rho2        log_comercio -0.1196571 -0.3760643  0.141165495
+rho3          market_cap -0.1464802 -0.3622729  0.079039341
+rho4     credito_privado -0.2284932 -0.4532891 -0.003410058
+rho5          log_pib_pc -0.4553265 -0.6369787 -0.212021304
+rho6          pd_pct_pib -0.5893630 -0.7276937 -0.381334331
+08:43:11 FIM segundo estágio Fase A 

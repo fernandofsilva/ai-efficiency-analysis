@@ -8,6 +8,9 @@
 # Farrell como comparação, todas com verificação de convergência),
 # Simar-Wilson algoritmo 2 (rDEA::dea.env.robust), Tobit comparativo
 # (AER::tobit), Kruskal-Wallis e Mann-Whitney por grupo de renda.
+# Variáveis de ambiente: as do script 02 (BASE_ARQUIVO, SUFIXO_SAIDA,
+# INSUMOS, PRODUTOS, PADRONIZACAO, EPSILON_PADRONIZACAO); as fronteiras dos
+# canais e do algoritmo 2 usam a mesma padronização do script 02.
 # Uso: Rscript R/03_segundo_estagio_dataset_atual.R (após o script 02)
 
 source("R/00_setup.R")
@@ -18,7 +21,8 @@ l2_sw <- 500            # réplicas externas do algoritmo 2 (Fase A)
 n_rep_canais <- 500     # bootstrap DEA dos canais
 
 arquivo_base <- Sys.getenv("BASE_ARQUIVO", "data/processed/base_atual.csv")
-sufixo <- Sys.getenv("SUFIXO_SAIDA", "")
+padronizacao <- ConfigurarPadronizacao()
+sufixo <- paste0(Sys.getenv("SUFIXO_SAIDA", ""), padronizacao$sufixo)
 insumos <- strsplit(Sys.getenv("INSUMOS", "investimento,gerd"), ",")[[1]]
 produtos <- strsplit(Sys.getenv("PRODUTOS", "publicacoes,patentes"), ",")[[1]]
 Salvar <- function(dados, nome) {
@@ -31,6 +35,11 @@ LerSaida <- function(nome) {
 }
 
 base <- utils::read.csv(arquivo_base, stringsAsFactors = FALSE)
+# Mesmos parâmetros de padronização do script 02 (mesma amostra de
+# referência: observações completas nas colunas da fronteira).
+parametros_pad <- ParametrosPadronizacao(
+  base[stats::complete.cases(base[, c(insumos, produtos)]), ],
+  c(insumos, produtos), padronizacao)
 boot_m2 <- LerSaida("boot_ano_m2")
 dea_m2 <- LerSaida("dea_ano_m2")
 # Pesquisadores por milhão: o painel reconstruído já traz a coluna; o
@@ -47,8 +56,6 @@ dados <- base |>
   dplyr::mutate(ano_f = factor(ano),
                 grupo_renda2 = ifelse(grupo_renda == "Alta renda",
                                       "Alta renda", "Renda média"),
-                inv_mi = .data[[insumos[1]]] / 1e6,
-                gerd_mi = .data[[insumos[2]]] / 1e6,
                 log_pesquisadores = log(pesquisadores_pm),
                 log_escore_bc = log(escore_bc))
 Registrar("obs. no segundo estágio:", nrow(dados),
@@ -61,8 +68,8 @@ BootCanal <- function(coluna_y) {
   anos <- sort(unique(dados$ano))
   saida <- lapply(anos, function(a) {
     d <- dados[dados$ano == a & dados[[coluna_y]] > 0, ]
-    boot <- BootstrapDea(as.matrix(d[, c("inv_mi", "gerd_mi")]),
-                         as.matrix(d[, coluna_y, drop = FALSE]), d$id,
+    boot <- BootstrapDea(MatrizFronteira(d, insumos, parametros_pad, 1e6),
+                         MatrizFronteira(d, coluna_y, parametros_pad), d$id,
                          "vrs", n_rep = n_rep_canais)
     return(boot[, c("id", "farrell_bc", "escore_bc")])
   })
@@ -249,8 +256,10 @@ RodarComTempoMaximo <- function(funcao, segundos) {
 sw <- tryCatch(
   RodarComTempoMaximo(
     function() {
-      rDEA::dea.env.robust(X = as.matrix(dados_sw[, c("inv_mi", "gerd_mi")]),
-                           Y = as.matrix(dados_sw[, produtos]),
+      rDEA::dea.env.robust(X = MatrizFronteira(dados_sw, insumos,
+                                               parametros_pad, 1e6),
+                           Y = MatrizFronteira(dados_sw, produtos,
+                                               parametros_pad),
                            Z = z_sw, model = "output", RTS = "variable",
                            L1 = l1_sw, L2 = l2_sw, alpha = 0.05)
     },

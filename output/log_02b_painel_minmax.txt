@@ -1,0 +1,20 @@
+08:56:15 amostra agrupada: 204 obs.; réplicas: 1000 
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+08:56:54 M2 crs S = 0.6636 p = 0.001 | réplicas válidas 998 
+Error in solving for unit 24:  Status =1
+Error in solving for unit 47:  Status =5
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+Error in solving for unit 24:  Status =1
+08:57:53 M2 drs S = 0.6949 p = 0.001 | réplicas válidas 995 
+08:58:08 M1 crs S = 0.437 p = 0.001 | réplicas válidas 1000 
+  modelo  h0   n    B replicas_validas estatistica     p_valor rejeita_h0_5pct s_boot_q05
+1     M2 crs 204 1000              998   0.6635864 0.001001001            TRUE  0.7691994
+2     M2 drs 204 1000              995   0.6949299 0.001004016            TRUE  0.8209560
+3     M1 crs 204 1000             1000   0.4369738 0.000999001            TRUE  0.6820238
+  s_boot_mediana                       fronteira   minutos
+1      0.8290769 agrupada (todas as observações) 0.6524944
+2      0.8800282 agrupada (todas as observações) 0.9902252
+3      0.7874547 agrupada (todas as observações) 0.2533569
+08:58:08 FIM teste de RTS 

@@ -7,7 +7,15 @@
 
 source("R/00_setup.R")
 
-sufixo <- Sys.getenv("SUFIXO_SAIDA", "")
+padronizacao <- ConfigurarPadronizacao()
+sufixo <- paste0(Sys.getenv("SUFIXO_SAIDA", ""), padronizacao$sufixo)
+# Nas execuções com padronização, cada figura traz a transformação usada.
+nota_padronizacao <- if (padronizacao$metodo == "nenhuma") {
+  NULL
+} else {
+  sprintf("Variáveis da fronteira padronizadas: min-max em [%s; 1]",
+          format(padronizacao$epsilon, decimal.mark = ","))
+}
 
 LerTabela <- function(nome) {
   return(utils::read.csv(file.path("output/tables",
@@ -16,6 +24,9 @@ LerTabela <- function(nome) {
 }
 
 SalvarFigura <- function(grafico, nome, largura = 9, altura = 6) {
+  if (!is.null(nota_padronizacao)) {
+    grafico <- grafico + ggplot2::labs(caption = nota_padronizacao)
+  }
   ggplot2::ggsave(file.path("output/figures", paste0(nome, sufixo, ".png")),
                   grafico, width = largura, height = altura, dpi = 200,
                   bg = "white")

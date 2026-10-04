@@ -16,6 +16,9 @@
 # Também decompõe, país a país, a mudança do escore médio em três passos
 # (base na amostra original; base na amostra comum; variante na amostra
 # comum), o que separa composição da fronteira e especificação.
+# Com PADRONIZACAO=minmax, lê e grava as tabelas com sufixo "_minmax" e
+# reestima as fronteiras com a padronização de cada especificação (mesmos
+# parâmetros do script 02 de cada variante).
 # Uso: Rscript R/05_comparacoes_amostra_comum.R (após as variantes do painel)
 
 source("R/00_setup.R")
@@ -25,16 +28,32 @@ n_boot_coef <- 300    # réplicas do bootstrap pareado da diferença
 
 painel <- utils::read.csv("data/processed/painel_ia.csv",
                           stringsAsFactors = FALSE)
+padronizacao <- ConfigurarPadronizacao()
+sufixo_pad <- padronizacao$sufixo
 LerTabela <- function(nome) {
-  return(utils::read.csv(file.path("output/tables", paste0(nome, ".csv")),
+  return(utils::read.csv(file.path("output/tables",
+                                   paste0(nome, sufixo_pad, ".csv")),
                          stringsAsFactors = FALSE))
+}
+Salvar <- function(dados, nome) {
+  return(SalvarTabela(dados, paste0(nome, sufixo_pad)))
+}
+Parametros <- function(insumos, produtos) {
+  # Parâmetros da padronização de uma especificação, na mesma amostra de
+  # referência do script 02 (observações completas do painel nas colunas
+  # da especificação); NULL sem padronização.
+  colunas <- c(insumos, produtos)
+  return(ParametrosPadronizacao(
+    painel[stats::complete.cases(painel[, colunas]), ], colunas,
+    padronizacao))
 }
 
 TgrPorGrupo <- function(d, insumos, produtos) {
   # Metafronteira VRS agrupada e fronteiras de grupo (alta vs média renda).
   g <- ifelse(d$grupo_renda == "Alta renda", "Alta renda", "Renda média")
-  x <- as.matrix(d[, insumos]) / 1e6
-  y <- as.matrix(d[, produtos])
+  parametros <- Parametros(insumos, produtos)
+  x <- MatrizFronteira(d, insumos, parametros, 1e6)
+  y <- MatrizFronteira(d, produtos, parametros)
   meta <- CalcularDea(x, y, d$id, "vrs")$escore
   grupo <- numeric(nrow(d))
   for (categoria in unique(g)) {
@@ -52,11 +71,12 @@ EscoresCorrigidosPorAno <- function(d, insumos, produtos) {
   # DEA VRS anual com bootstrap de Simar-Wilson na amostra `d`; devolve
   # id e escore corrigido (mesma construção do script 02).
   set.seed(semente)
+  parametros <- Parametros(insumos, produtos)
   saida <- lapply(sort(unique(d$ano)), function(a) {
     da <- d[d$ano == a, ]
-    boot <- BootstrapDea(as.matrix(da[, insumos]) / 1e6,
-                         as.matrix(da[, produtos]), da$id, "vrs",
-                         n_rep = n_rep_boot)
+    boot <- BootstrapDea(MatrizFronteira(da, insumos, parametros, 1e6),
+                         MatrizFronteira(da, produtos, parametros), da$id,
+                         "vrs", n_rep = n_rep_boot)
     return(boot[, c("id", "escore", "escore_bc")])
   })
   return(do.call(rbind, saida))
@@ -114,7 +134,7 @@ for (nome in names(variantes)) {
 }
 meta_comp <- do.call(rbind, linhas)
 meta_comp$inversao <- meta_comp$tgr_media < meta_comp$tgr_alta
-SalvarTabela(meta_comp, "comparacao_metafronteira_amostra_comum")
+Salvar(meta_comp, "comparacao_metafronteira_amostra_comum")
 print(meta_comp)
 
 # 2. Escores reestimados na amostra comum, decomposição por país e segundo
@@ -145,7 +165,7 @@ for (nome in names(variantes)) {
     dplyr::left_join(dplyr::rename(boot_base_original,
                                    escore_bc_base_original = escore_bc),
                      by = "id")
-  SalvarTabela(escores, paste0("escores_amostra_comum", v$sufixo))
+  Salvar(escores, paste0("escores_amostra_comum", v$sufixo))
   # Decomposição por país: base (amostra original) -> base (amostra comum)
   # -> variante (amostra comum), médias dos escores corrigidos.
   por_pais <- escores |>
@@ -201,15 +221,15 @@ for (nome in names(variantes)) {
             sum(validas))
 }
 comp_coef <- do.call(rbind, comp_coef)
-SalvarTabela(comp_coef, "comparacao_coeficiente_efetividade_amostra_comum")
+Salvar(comp_coef, "comparacao_coeficiente_efetividade_amostra_comum")
 print(comp_coef)
 comp_pais <- do.call(rbind, comp_pais)
-SalvarTabela(comp_pais, "comparacao_escores_pais_amostra_comum")
+Salvar(comp_pais, "comparacao_escores_pais_amostra_comum")
 destaque <- comp_pais[comp_pais$pais %in% c("Israel", "Ireland", "China",
                                             "United States", "India"), ]
 print(destaque[order(destaque$variante, destaque$pais),
                c("variante", "pais", "n_anos", "base_original", "base_comum",
                  "variante_comum")])
-RegistrarManifesto("05_comparacoes_amostra_comum.R", "",
+RegistrarManifesto("05_comparacoes_amostra_comum.R", sufixo_pad,
                    "data/processed/painel_ia.csv", "ok")
 Registrar("FIM comparações em amostra comum")

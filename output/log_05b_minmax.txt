@@ -1,0 +1,257 @@
+   execucao                                                            indicador       original
+1    Fase A                                               observações (país-ano) 191.0000000000
+2    Fase A                                                     escore VRS médio   0.7191098394
+3    Fase A                                                     escore CRS médio   0.5005171147
+4    Fase A                                           eficiência de escala média   0.6694066705
+5    Fase A                                                   eficientes VRS (%)  39.2670157068
+6    Fase A                                                      país-ano em CRS  38.0000000000
+7    Fase A                                                      país-ano em DRS 136.0000000000
+8    Fase A                                                      país-ano em IRS  17.0000000000
+9    Fase A                                    concordância da classificação (%)             NA
+10   Fase A                                     Spearman entre rankings (países)             NA
+11   Fase A                                            países em comum no topo 5             NA
+12   Fase A                                            países em comum na base 5             NA
+13   Fase A                              mudança média de posto (valor absoluto)             NA
+14   Fase A                                    largura média do IC 95% do escore   0.1290697897
+15   Fase A                                             unidades supereficientes  19.0000000000
+16   Fase A                              supereficientes no piso de investimento   7.0000000000
+17   Fase A                                                Spearman entre canais   0.5229862887
+18   Fase A                                           p unilateral de rho >= 0,5   0.5880000000
+19   Fase A                                                TGR médio, Alta renda   0.6231356301
+20   Fase A                                               TGR médio, Renda média   0.9447795994
+21   Fase A                          diferença de TGR médio (renda média - alta)   0.3216439693
+22   Fase A                                 p Mann-Whitney unilateral (país-ano)   1.0000000000
+23   Fase A                                  malmquist (média geométrica, todos)   0.9972949385
+24   Fase A                            mudanca_tecnica (média geométrica, todos)   0.9102821299
+25   Fase A                         mudanca_eficiencia (média geométrica, todos)   1.0955888353
+26   Fase A                             mudança de eficiência, renda média (H4b)   1.0741074042
+27   Fase A                                parcela de TC (rateio simétrico, H4a)   0.5985451755
+28   Fase A                                       beta-convergência (inclinação)   0.1057067297
+29   Fase A                                                p-valor, M2, H0 = crs   0.0909090909
+30   Fase A                                                p-valor, M2, H0 = drs   0.9560000000
+31   Fase A                                                p-valor, M1, H0 = crs   0.1158841159
+32   Fase A              p Kruskal-Wallis, 3 grupos (país-ano), conjunto M2 (bc)   0.1563686508
+33   Fase A       p Kruskal-Wallis, 3 grupos (médias por país), conjunto M2 (bc)   0.3788525847
+34   Fase A        p Kruskal-Wallis, 3 grupos (país-ano), canal publicações (bc)   0.1177357103
+35   Fase A p Kruskal-Wallis, 3 grupos (médias por país), canal publicações (bc)   0.5665410687
+36   Fase A           p Kruskal-Wallis, 3 grupos (país-ano), canal patentes (bc)   0.0005179986
+37   Fase A    p Kruskal-Wallis, 3 grupos (médias por país), canal patentes (bc)   0.0220034933
+38   Fase A                                      Spearman escore_vrs x escore_bc   0.9271227263
+39   Fase A                                         Spearman escore_vrs x orderm   0.5145444349
+40   Fase A                                      Spearman escore_vrs x orderalfa   0.6877604986
+41   Fase A                                            Spearman escore_vrs x fdh   0.6986764553
+42   Fase A                                  Spearman escore_vrs x escore_vrs_m1   0.7235150830
+43   Fase A                                          Spearman orderm x orderalfa   0.7357593083
+44   Painel                                               observações (país-ano) 204.0000000000
+45   Painel                                                     escore VRS médio   0.6055865944
+46   Painel                                                     escore CRS médio   0.3640328774
+47   Painel                                           eficiência de escala média   0.6005621670
+48   Painel                                                   eficientes VRS (%)  24.5098039216
+49   Painel                                                      país-ano em CRS  25.0000000000
+50   Painel                                                      país-ano em DRS 138.0000000000
+51   Painel                                                      país-ano em IRS  41.0000000000
+52   Painel                                    concordância da classificação (%)             NA
+53   Painel                                     Spearman entre rankings (países)             NA
+54   Painel                                            países em comum no topo 5             NA
+55   Painel                                            países em comum na base 5             NA
+56   Painel                              mudança média de posto (valor absoluto)             NA
+57   Painel                                    largura média do IC 95% do escore   0.1183651964
+58   Painel                                             unidades supereficientes  15.0000000000
+59   Painel                              supereficientes no piso de investimento   3.0000000000
+60   Painel                                                Spearman entre canais   0.4823140642
+61   Painel                                           p unilateral de rho >= 0,5   0.3700000000
+62   Painel                                                TGR médio, Alta renda   0.6064770232
+63   Painel                                               TGR médio, Renda média   0.9316434997
+64   Painel                          diferença de TGR médio (renda média - alta)   0.3251664765
+65   Painel                                 p Mann-Whitney unilateral (país-ano)   1.0000000000
+66   Painel                                  malmquist (média geométrica, todos)   0.9206825097
+67   Painel                            mudanca_tecnica (média geométrica, todos)   0.8520192353
+68   Painel                         mudanca_eficiencia (média geométrica, todos)   1.0805888782
+69   Painel                             mudança de eficiência, renda média (H4b)   0.9842035282
+70   Painel                                parcela de TC (rateio simétrico, H4a)   0.2612475629
+71   Painel                                       beta-convergência (inclinação)   0.0014153335
+72   Painel                                                p-valor, M2, H0 = crs   0.4356333677
+73   Painel                                                p-valor, M2, H0 = drs   0.9661885246
+74   Painel                                                p-valor, M1, H0 = crs   0.3263263263
+75   Painel              p Kruskal-Wallis, 3 grupos (país-ano), conjunto M2 (bc)   0.1155244345
+76   Painel       p Kruskal-Wallis, 3 grupos (médias por país), conjunto M2 (bc)   0.2966759917
+77   Painel        p Kruskal-Wallis, 3 grupos (país-ano), canal publicações (bc)   0.2405119267
+78   Painel p Kruskal-Wallis, 3 grupos (médias por país), canal publicações (bc)   0.3486203539
+79   Painel           p Kruskal-Wallis, 3 grupos (país-ano), canal patentes (bc)   0.0002444093
+80   Painel    p Kruskal-Wallis, 3 grupos (médias por país), canal patentes (bc)   0.0396721069
+81   Painel                                      Spearman escore_vrs x escore_bc   0.9645130933
+82   Painel                                         Spearman escore_vrs x orderm   0.6349315940
+83   Painel                                      Spearman escore_vrs x orderalfa   0.6478971920
+84   Painel                                            Spearman escore_vrs x fdh   0.6889776336
+85   Painel                                  Spearman escore_vrs x escore_vrs_m1   0.8214459708
+86   Painel                                          Spearman orderm x orderalfa   0.9376999268
+       padronizada comparacao
+1  191.00000000000         NA
+2    0.89497343415  0.8419659
+3    0.78647956823  0.6430538
+4    0.87645907253  0.3444583
+5   39.79057591623         NA
+6   40.00000000000         NA
+7   45.00000000000         NA
+8  106.00000000000         NA
+9               NA 40.8376963
+10              NA  0.4525097
+11              NA  2.0000000
+12              NA  2.0000000
+13              NA  8.8333333
+14   0.09321938375         NA
+15  19.00000000000         NA
+16   7.00000000000         NA
+17   0.45919504085         NA
+18   0.35450000000         NA
+19   0.72963070047         NA
+20   0.99464019212         NA
+21   0.26500949166         NA
+22   1.00000000000         NA
+23   0.96162661345         NA
+24   0.84556493094         NA
+25   1.13725933782         NA
+26   1.09216271313         NA
+27   0.67698733863         NA
+28  -0.09256879107         NA
+29   0.00099900100         NA
+30   0.00099900100         NA
+31   0.00099900100         NA
+32   0.23091814880         NA
+33   0.25179774092         NA
+34   0.06063165469         NA
+35   0.46259265433         NA
+36   0.07342785124         NA
+37   0.35399376607         NA
+38   0.70964043440         NA
+39   0.20445478922         NA
+40   0.48131424561         NA
+41   0.54615654844         NA
+42   0.72122720321         NA
+43   0.66702986989         NA
+44 204.00000000000         NA
+45   0.78282719854  0.7818429
+46   0.67429106882  0.6938233
+47   0.86417330668  0.1222764
+48  24.50980392157         NA
+49  23.00000000000         NA
+50  67.00000000000         NA
+51 114.00000000000         NA
+52              NA 45.5882353
+53              NA  0.5861471
+54              NA  0.0000000
+55              NA  3.0000000
+56              NA  9.2765957
+57   0.11280101738         NA
+58  15.00000000000         NA
+59   3.00000000000         NA
+60   0.34277600591         NA
+61   0.03300000000         NA
+62   0.74448797027         NA
+63   0.98170983044         NA
+64   0.23722186017         NA
+65   1.00000000000         NA
+66   0.94280430757         NA
+67   0.87565407395         NA
+68   1.07668580051         NA
+69   1.06325753253         NA
+70   0.14723885033         NA
+71  -0.02894028535         NA
+72   0.00100100100         NA
+73   0.00100401606         NA
+74   0.00099900100         NA
+75   0.00211840135         NA
+76   0.09821874801         NA
+77   0.07640540189         NA
+78   0.15618708209         NA
+79   0.00009159973         NA
+80   0.06141120133         NA
+81   0.88122510537         NA
+82   0.41555761008         NA
+83   0.45869883016         NA
+84   0.61621718419         NA
+85   0.82079485304         NA
+86   0.93750332818         NA
+09:00:16 figura gravada: fig11_ranking_padronizacao_minmax 
+09:00:16 figura gravada: fig11_ranking_padronizacao_painel_minmax 
+09:00:16 sensibilidade a epsilon e invariância à escala... 
+Period  2 
+Period  3 
+Period  4 
+Period  2 
+Period  3 
+Period  4 
+Period  2 
+Period  3 
+Period  4 
+Period  2 
+Period  3 
+Period  4 
+Period  2 
+Period  3 
+Period  4 
+Period  2 
+Period  3 
+Period  4 
+Period  2 
+Period  3 
+Period  4 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+     base         transformacao epsilon          max_dif_vrs spearman_vrs_pais_ano
+1  Fase A    unidades originais      NA 0.000000000000000000             1.0000000
+2  Fase A escala pura (x / máx)      NA 0.000000000001488143             1.0000000
+3  Fase A               min-max   0.001 0.510730805623781592             0.9476562
+4  Fase A               min-max   0.010 0.762330139210921076             0.8419659
+5  Fase A               min-max   0.050 0.831492712549594337             0.8066931
+6  Fase A               min-max   0.100 0.857897933521076572             0.8008689
+7  Fase A               min-max   0.200 0.881057556808038433             0.7981961
+8  Painel    unidades originais      NA 0.000000000000000000             1.0000000
+9  Painel escala pura (x / máx)      NA 0.000000000001269762             1.0000000
+10 Painel               min-max   0.001 0.725613669677491413             0.9274710
+11 Painel               min-max   0.010 0.762590590852885386             0.7818429
+12 Painel               min-max   0.050 0.826260256088008349             0.6608229
+13 Painel               min-max   0.100 0.843015124561633855             0.6244406
+14 Painel               min-max   0.200 0.885475106549778013             0.6030988
+   spearman_ranking_vrs   crs_pct  drs_pct rho_canais mudanca_tecnica
+1             1.0000000 19.895288 71.20419  0.5229863       0.9102821
+2             1.0000000 19.895288 71.20419  0.5229863       0.9102821
+3             0.9408867 26.701571 34.03141  0.3926576       0.8428449
+4             0.7635468 20.942408 23.56021  0.4591950       0.8455649
+5             0.6834327 17.801047 23.03665  0.5374087       0.8930977
+6             0.6766917 17.801047 23.03665  0.5508426       0.9134841
+7             0.6735805 18.848168 21.98953  0.5556189       0.9385921
+8             1.0000000 12.254902 67.64706  0.4823141       0.8520192
+9             1.0000000 12.254902 67.64706  0.4822913       0.8520192
+10            0.9466464 11.274510 53.92157  0.2971012       0.8447072
+11            0.8356196 11.274510 32.84314  0.3427760       0.8756541
+12            0.7421050  4.901961 10.29412  0.4734880       0.8868451
+13            0.7143191  4.901961 10.29412  0.5190506       0.8826204
+14            0.6941218  4.901961 10.29412  0.5473690       0.8936302
+09:00:17 FIM comparação com e sem padronização 

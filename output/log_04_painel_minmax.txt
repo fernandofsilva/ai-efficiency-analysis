@@ -1,0 +1,14 @@
+Warning message:
+`geom_errorbarh()` was deprecated in ggplot2 4.0.0.
+ℹ Please use the `orientation` argument of `geom_errorbar()` instead. 
+`height` was translated to `width`.
+09:05:22 figura gravada: fig1_ranking_m2 
+09:05:22 figura gravada: fig2_malmquist_decomposicao 
+09:05:22 figura gravada: fig3_canais 
+`height` was translated to `width`.
+09:05:22 figura gravada: fig4_segundo_estagio 
+09:05:23 figura gravada: fig5_renda_ano 
+`height` was translated to `width`.
+09:05:23 figura gravada: fig6_estimadores 
+09:05:23 figura gravada: fig7_metafronteira 
+09:05:23 FIM figuras Fase A 
