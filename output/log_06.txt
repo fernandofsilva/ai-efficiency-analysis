@@ -1,0 +1,57 @@
+10:31:44 amostra: 191 obs., 36 países | insumos: investimento + gerd | correlação dos logs: 0.741 
+10:31:44 publicacoes ( publicacoes ): 191 obs. | assimetria dos resíduos de MQO: 0.183 
+10:31:44   cobb_douglas | inv 0.097 (p 0 ) | P&D 0.589 | LR p 0.499 | convergiu TRUE | inferência válida TRUE | 0.17 s 
+10:31:44   exponencial | inv 0.097 (p 1 ) | P&D 0.589 | LR p 0.489 | convergiu TRUE | inferência válida FALSE | 0.29 s 
+10:31:44   translog | inv 0.105 (p 0 ) | P&D 0.554 | LR p 0.499 | convergiu TRUE | inferência válida TRUE | 0.01 s 
+10:31:44   painel_bc88 | inv 0.018 (p 0.027 ) | P&D 0.462 | LR p 0 | convergiu TRUE | inferência válida TRUE | 0.06 s 
+10:31:44   painel_bc92 | inv 0.019 (p 0.022 ) | P&D 0.467 | LR p 0 | convergiu TRUE | inferência válida TRUE | 0 s 
+10:31:44 patentes ( patentes ): 191 obs. | assimetria dos resíduos de MQO: -0.136 
+10:31:44   cobb_douglas | inv 0.087 (p 0.165 ) | P&D 1.168 | LR p 0.195 | convergiu TRUE | inferência válida TRUE | 0 s 
+10:31:44   exponencial | inv 0.071 (p 0.262 ) | P&D 1.179 | LR p 0.425 | convergiu TRUE | inferência válida TRUE | 0.01 s 
+10:31:44   translog | inv 0.029 (p 0.609 ) | P&D 1.094 | LR p 0.499 | convergiu TRUE | inferência válida TRUE | 0.01 s 
+10:31:44   painel_bc88 | inv 0.142 (p 0.003 ) | P&D 1.074 | LR p 0 | convergiu TRUE | inferência válida TRUE | 0 s 
+10:31:44   painel_bc92 | inv 0.153 (p 0.001 ) | P&D 1.076 | LR p 0 | convergiu TRUE | inferência válida TRUE | 0 s 
+10:31:44 bootstrap por país ( 300 réplicas ): cobb_douglas 
+10:34:33 bootstrap por país ( 300 réplicas ): painel_bc88 
+10:36:20 bootstrap por país ( 300 réplicas ): painel_bc92 
+Initialization: SFA + halfnormal - normal distributions...
+LCM 2 Classes Estimation...
+10:37:32 classes latentes, publicacoes | identificado: TRUE | parcela de alta renda por classe: 0.77 e 0.37 
+Initialization: SFA + halfnormal - normal distributions...
+LCM 2 Classes Estimation...
+10:37:32 classes latentes, patentes | identificado: FALSE | parcela de alta renda por classe: 0.64 e 0.75 
+         canal       modelo elasticidade_inv    p_inv elasticidade_pd retornos    gamma
+1  publicacoes cobb_douglas           0.0974 0.000408           0.589    0.687 2.52e-05
+2  publicacoes  exponencial           0.0974        1           0.589    0.687       NA
+3  publicacoes     translog            0.105 6.64e-05           0.554    0.659 2.69e-05
+4  publicacoes  painel_bc88           0.0179   0.0273           0.462     0.48    0.996
+5  publicacoes  painel_bc92           0.0185   0.0218           0.467    0.485    0.996
+6     patentes cobb_douglas           0.0868    0.165            1.17     1.25    0.688
+7     patentes  exponencial           0.0712    0.262            1.18     1.25       NA
+8     patentes     translog           0.0291    0.609            1.09     1.12 3.05e-05
+9     patentes  painel_bc88            0.142  0.00333            1.07     1.22    0.933
+10    patentes  painel_bc92            0.153  0.00071            1.08     1.23     0.96
+   p_lr_ineficiencia inferencia_valida segundos
+1              0.499              TRUE    0.166
+2              0.489             FALSE    0.291
+3              0.499              TRUE   0.0116
+4            5.7e-98              TRUE   0.0583
+5           6.98e-97              TRUE  0.00479
+6              0.195              TRUE  0.00412
+7              0.425              TRUE  0.00764
+8              0.499              TRUE   0.0131
+9           6.94e-38              TRUE  0.00382
+10          1.04e-38              TRUE  0.00435
+        modelo inv_publicacoes ic_inf_publicacoes ic_sup_publicacoes inv_patentes ic_inf_patentes
+1 cobb_douglas          0.0974            -0.0446               0.25       0.0868          -0.127
+2  painel_bc88          0.0179           -0.00106               0.08        0.142          0.0483
+3  painel_bc92          0.0185           0.000404             0.0398        0.153          0.0517
+  ic_sup_patentes diferenca ic_inf_diferenca ic_sup_diferenca
+1           0.275   -0.0106           -0.223            0.201
+2           0.215     0.124           0.0249            0.208
+3           0.242     0.135           0.0289            0.223
+        modelo                         veredito_estrito especificidade_relativa
+1 cobb_douglas não apoiada (sem efeito nos dois canais)                   FALSE
+2  painel_bc88                                  apoiada                    TRUE
+3  painel_bc92     não apoiada (efeito nos dois canais)                    TRUE
+10:37:32 FIM SFA por canal 

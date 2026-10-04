@@ -11,7 +11,9 @@
 #   tabelas, figuras, logs e status com o sufixo "_minmax"; a validação por
 #   simulação (02c) não depende dos dados e é pulada; no modo "tudo", a
 #   comparação com a versão em unidades originais (05b) roda no fim.
-# Uso: zsh output/rodar_pipeline.sh [faseA|painel|variantes|rts|validacao|padronizacao|tudo]
+# - SFA por canal (S02/H2, R/06): em log, não depende da padronização; roda nas seis
+#   bases (Fase A, painel e variantes) e é pulado com PADRONIZACAO=minmax.
+# Uso: zsh output/rodar_pipeline.sh [faseA|painel|variantes|rts|sfa|validacao|padronizacao|tudo]
 #      PADRONIZACAO=minmax zsh output/rodar_pipeline.sh tudo
 set -u
 cd "$(dirname "$0")/.." || exit 1
@@ -84,6 +86,27 @@ validacao() {
   fi
   N_SIM=100 N_REP=100 rodar "VALIDACAO RTS 02c" R/02c_validacao_rts.R output/log_02c.txt || true
 }
+sfa() {  # fronteira estocástica por canal em log (S02/H2)
+  limpar_ambiente
+  if [[ -n $PAD ]]; then
+    registrar PULADA "SFA 06 (em log; não depende da padronização)"
+    return 0
+  fi
+  export SUFIXO_SAIDA=""
+  rodar "SFA FASE A 06" R/06_sfa_canais.R output/log_06.txt || true
+  export BASE_ARQUIVO=data/processed/painel_ia.csv INSUMOS=investimento_l1,gerd_l1 \
+    SUFIXO_SAIDA=_painel PRODUTOS=publicacoes,patentes
+  rodar "SFA PAINEL 06" R/06_sfa_canais.R output/log_06_painel.txt || true
+  export SUFIXO_SAIDA=_painel_qualidade PRODUTOS=citacoes_ok,patentes_concedidas_ok
+  rodar "SFA QUALIDADE 06" R/06_sfa_canais.R output/log_06_painel_qualidade.txt || true
+  export SUFIXO_SAIDA=_painel_fonte PRODUTOS=publicacoes,patentes_inventor
+  rodar "SFA FONTE 06" R/06_sfa_canais.R output/log_06_painel_fonte.txt || true
+  export SUFIXO_SAIDA=_painel_preqin INSUMOS=investimento_preqin_l1,gerd_l1 PRODUTOS=publicacoes,patentes
+  rodar "SFA PREQIN 06" R/06_sfa_canais.R output/log_06_painel_preqin.txt || true
+  export SUFIXO_SAIDA=_painel_publico INSUMOS=investimento_l1,pd_publico_l1 PRODUTOS=publicacoes,patentes
+  rodar "SFA PUBLICO 06" R/06_sfa_canais.R output/log_06_painel_publico.txt || true
+  limpar_ambiente
+}
 padronizacao() {  # compara com a versão em unidades originais (S01)
   limpar_ambiente
   if [[ -z $PAD ]]; then
@@ -98,8 +121,9 @@ case "$MODO" in
   variantes) variantes ;;
   rts) rts ;;
   validacao) validacao ;;
+  sfa) sfa ;;
   padronizacao) padronizacao ;;
-  tudo) fase_a; painel_base; variantes; comparacoes; rts; validacao; padronizacao ;;
+  tudo) fase_a; painel_base; variantes; comparacoes; rts; sfa; validacao; padronizacao ;;
   *) echo "modo desconhecido: $MODO"; exit 2 ;;
 esac
 echo "$(date '+%Y-%m-%d %H:%M:%S') FIM modo=$MODO falhas=$FALHAS" >> "$STATUS"

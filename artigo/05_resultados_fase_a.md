@@ -93,7 +93,7 @@ Ver `artigo/06_resultados_painel.md`: painel de 47 países (2017–2021), teste 
 | Hipótese | Evidência na Fase A | Status |
 |---|---|---|
 | H1 escala | teste global sem indício contra CRS (p = 0,09; tamanho ≈ 0,2); EUA em DRS, China em CRS | sem apoio conclusivo; heterogeneidade por país |
-| H2 insumos por canal | GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82) | a testar com SFA |
+| H2 insumos por canal | GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82); SFA (`artigo/15`): investimento sem efeito nos dois canais no modelo agrupado, e efeito maior em patentes que em publicações nos modelos de painel (diferença 0,12 [0,02; 0,21]); elasticidade do GERD 0,59 (publicações) e 1,17 (patentes) | apoio parcial só nos modelos de painel; não se repete no painel do artigo |
 | H3a canais | ρ = 0,52 [0,31; 0,69], p(ρ ≥ 0,5) = 0,59 | inconclusiva |
 | H3b metafronteira | TGR média 0,94 > alta 0,62; diferença +0,32 [0,23; 0,40]; MW p = 1,0 | não apoiada (sinal contrário) |
 | H4a dinâmica | TC domina (parcela 0,60), fronteira recua | apoiada |

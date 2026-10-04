@@ -9,7 +9,7 @@
 | Id | Tema | Tipo | Prioridade | Onde mexer |
 |---|---|---|---|---|
 | S01 | Padronização min-max das variáveis da fronteira e reexecução completa | cálculo | alta (primeira); **executado em 04/10/2026** (`artigo/14`), decisão da especificação principal pendente | `R/02`, `R/02b`, `R/03`, `R/04`, `R/05`, `output/rodar_pipeline.sh` |
-| S02 | SFA de H2 com variáveis reescalonadas | cálculo | alta | novo `R/06_sfa_canais.R` |
+| S02 | SFA de H2 com variáveis reescalonadas | cálculo | alta; **executado em 04/10/2026** (`artigo/15`) | novo `R/06_sfa_canais.R` |
 | S03 | Menos hipóteses; hipótese × pergunta de pesquisa; fechar cada uma na discussão | decisão e texto | alta (antes de escrever) | `artigo/01`, manuscrito |
 | S04 | H1: discutir a heterogeneidade dos retornos de escala com evidência contemporânea | texto | média | manuscrito (discussão) |
 | S05 | Ranking: perfis de três países do topo e três ou quatro da base | texto | média (após S01) | manuscrito, fig1 |
@@ -59,6 +59,15 @@
 3. Controle da estimação: valores iniciais por MQO (padrão de `frontier::sfa`), limite de iterações, verificação do código de convergência e do tempo de execução gravados na tabela, como se faz nas truncadas (`AjustarTruncada`). Com 191 observações em log, a convergência deve levar segundos; se não levar, o problema é outro (colinearidade entre log do investimento e log do GERD, ou assimetria do resíduo de MQO no sentido contrário ao da ineficiência): testar e reportar.
 4. Saídas de H2: elasticidades do investimento privado e do GERD por canal com erro-padrão, teste de razão de verossimilhança da presença de ineficiência e comparação entre canais (critério de H2: elasticidade do investimento privado significativa só em patentes); painel com efeitos de ineficiência (Battese e Coelli, 1995) como extensão.
 5. Classes latentes (`sfaR::sfalcmcross`) como robustez de H3, somente depois que o SFA simples convergir.
+
+**Estado em 04/10/2026.** Executado; resultados em `artigo/15_sfa_canais.md`.
+- O `R/06_sfa_canais.R` roda nas seis bases: Cobb-Douglas meia-normal agrupada (principal), exponencial, translog, painel de Battese e Coelli (1988 e 1992) e duas classes latentes, com bootstrap em blocos de país.
+- Em log, cada ajuste leva menos de meio segundo; 53 dos 60 ajustes têm inferência válida.
+- H2 não se confirma: o critério estrito vale em 2 de 18 combinações de base e modelo, o padrão oposto em 7, e a base do artigo e o controle preferido (P&D público) não dão apoio.
+- O robusto é o P&D: elasticidade de 0,59 a 0,70 em publicações e de 0,94 a 1,41 em patentes, com retornos decrescentes no canal acadêmico e crescentes no tecnológico.
+- No corte agrupado, a ineficiência não é identificada em publicações (assimetria positiva do resíduo nas seis bases).
+- As classes latentes ficam identificadas em 4 de 12 ajustes e só na Fase A acompanham a renda.
+- Pendente: o status de H2 entra na decisão do S03.
 
 ### S03 — Menos hipóteses; hipótese × pergunta de pesquisa; fechar cada uma na discussão
 

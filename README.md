@@ -22,6 +22,7 @@ Rscript R/02b_teste_rts.R              # teste de retornos de escala (adaptado d
 Rscript R/02c_validacao_rts.R          # validação por simulação do teste (tamanho e poder)
 Rscript R/03_segundo_estagio_dataset_atual.R  # Simar-Wilson, truncada, Tobit, Kruskal-Wallis
 Rscript R/04_figuras_apresentacao.R    # figuras
+Rscript R/06_sfa_canais.R              # SFA por canal em log (H2): Cobb-Douglas, exponencial, translog, painel
 ```
 
 Fase B (painel reconstruído CSET + World Bank, artigo):
@@ -39,7 +40,7 @@ INSUMOS=investimento_l1,gerd_l1 JANELA_MALMQUIST=2017,2021 \
 # idem para R/03_... e R/04_... com as mesmas variáveis de ambiente
 ```
 
-Os scripts 02, 03 e 04 são parametrizados por variáveis de ambiente (`BASE_ARQUIVO`, `SUFIXO_SAIDA`, `INSUMOS`, `PRODUTOS`, `JANELA_MALMQUIST`), de modo que o mesmo pipeline roda nas duas bases; as saídas da Fase B levam o sufixo `_painel`. A variante ajustada por qualidade (produtos `citacoes_ok` e `patentes_concedidas_ok`, janela 2017–2019) usa o sufixo `_painel_qualidade`; a variante de fonte alternativa (patentes por país do inventor, OCDE: `PRODUTOS=publicacoes,patentes_inventor`) usa `_painel_fonte`; a variante com VC da Preqin como insumo (`INSUMOS=investimento_preqin_l1,gerd_l1`) usa `_painel_preqin`. O teste de retornos de escala aceita `N_REP_RTS` e `SUFIXO_SAIDA`. Para executar tudo com propagação de falhas, use `zsh output/rodar_pipeline.sh tudo` (modos `faseA`, `painel`, `variantes`, `rts`, `validacao`, `padronizacao`); o status de cada etapa fica em `output/status_execucao.txt` e cada execução é registrada em `output/tables/manifesto_execucoes.csv` (com o MD5 das tabelas gravadas em `manifesto_saidas.csv`).
+Os scripts 02, 03 e 04 são parametrizados por variáveis de ambiente (`BASE_ARQUIVO`, `SUFIXO_SAIDA`, `INSUMOS`, `PRODUTOS`, `JANELA_MALMQUIST`), de modo que o mesmo pipeline roda nas duas bases; as saídas da Fase B levam o sufixo `_painel`. A variante ajustada por qualidade (produtos `citacoes_ok` e `patentes_concedidas_ok`, janela 2017–2019) usa o sufixo `_painel_qualidade`; a variante de fonte alternativa (patentes por país do inventor, OCDE: `PRODUTOS=publicacoes,patentes_inventor`) usa `_painel_fonte`; a variante com VC da Preqin como insumo (`INSUMOS=investimento_preqin_l1,gerd_l1`) usa `_painel_preqin`. O teste de retornos de escala aceita `N_REP_RTS` e `SUFIXO_SAIDA`; o SFA por canal (`R/06`) aceita as mesmas variáveis de base, insumos e produtos e `N_BOOT_SFA` (réplicas do bootstrap por país, padrão 300). Para executar tudo com propagação de falhas, use `zsh output/rodar_pipeline.sh tudo` (modos `faseA`, `painel`, `variantes`, `rts`, `sfa`, `validacao`, `padronizacao`); o status de cada etapa fica em `output/status_execucao.txt` e cada execução é registrada em `output/tables/manifesto_execucoes.csv` (com o MD5 das tabelas gravadas em `manifesto_saidas.csv`).
 
 Padronização das variáveis da fronteira (S01): os scripts 02, 02b, 03, 04 e 05 aceitam `PADRONIZACAO=minmax` (padrão `nenhuma`, unidades originais) e `EPSILON_PADRONIZACAO` (padrão 0,01). Com min-max, insumos e produtos vão para [ε, 1] com mínimo e máximo da amostra completa (todos os anos), a seleção de amostra continua nas unidades originais e todas as saídas ganham o sufixo `_minmax`. `PADRONIZACAO=minmax zsh output/rodar_pipeline.sh tudo` refaz tudo nessa versão (status em `output/status_execucao_minmax.txt`) e termina com `R/05b_comparacao_padronizacao.R`, que compara as duas versões e mede a sensibilidade a ε.
 
@@ -58,5 +59,6 @@ Padronização das variáveis da fronteira (S01): os scripts 02, 02b, 03, 04 e 0
 - `artigo/12_avaliacao_reanalise.md` — veredito e correção de cada achado da reanálise, com a reexecução de 28/09/2026.
 - `artigo/13_comentarios_apresentacao.md` — comentários do Prof. Peter Wanke na apresentação de 28/09/2026 e pendências decorrentes (S01–S10).
 - `artigo/14_padronizacao_minmax.md` — S01: padronização min-max das variáveis da fronteira, reexecução completa e comparação com as unidades originais.
+- `artigo/15_sfa_canais.md` — S02: fronteira estocástica por canal em log e teste de H2.
 
 Comparações em amostra comum entre variantes: `R/05_comparacoes_amostra_comum.R`. Comparação com e sem padronização: `R/05b_comparacao_padronizacao.R`. Manifesto de execuções: `output/tables/manifesto_execucoes.csv`.

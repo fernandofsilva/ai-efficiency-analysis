@@ -1,4 +1,4 @@
-# Registro de trabalho e guia de retomada (estado em 04/10/2026, após a reexecução com padronização, S01)
+# Registro de trabalho e guia de retomada (estado em 04/10/2026, após S01 e S02)
 
 Documento de transferência: tudo o que foi feito, decidido e ficou pendente, para retomar o trabalho em nova sessão sem depender do histórico da conversa. Plano aprovado em `~/.claude/plans/esse-um-trabalho-cheerful-squirrel.md`.
 
@@ -28,6 +28,7 @@ Documento de transferência: tudo o que foi feito, decidido e ficou pendente, pa
 4. `03`: bootstrap dos canais; regressão truncada sobre log(escore corrigido) (em (−∞, 0), truncada em 0; especificação principal, compatível com o suporte) com escores fixos e bootstrap agrupado por país (300 réplicas), convergência verificada em cada ajuste (`AjustarTruncada` em `R/funcoes.R`; réplicas tentadas × convergentes na tabela); parametrizações em escore truncado só em 1 e em Farrell como comparação; H5 (com e sem piso, com pesquisadores, com talento em IA), H6 (canal patentes), H7 (PIB per capita por canal); Tobit comparativo; Simar-Wilson algoritmo 2 do rDEA em processo filho com timeout e semente fixada no filho; Kruskal-Wallis (3 grupos) e Mann-Whitney (2 grupos) por renda, em país-ano e em médias por país; associação descritiva Z × escore.
 5. `04`: figuras 1–7 (com `ggrepel`).
 5a. `05b` (só com `PADRONIZACAO=minmax`): compara cada execução com a versão em unidades originais (escores, RTS, ranking, canais, metafronteira, Malmquist, teste de RTS, segundo estágio, `R/05`) e mede a sensibilidade a ε e a invariância à escala pura (`sensibilidade_padronizacao_epsilon.csv`; fig11).
+5b. `06`: SFA por canal em log (S02/H2), nas seis bases; Cobb-Douglas meia-normal agrupada (principal), exponencial, translog centrada e painel (Battese e Coelli, 1988 e 1992); bootstrap em blocos de país (300 réplicas) com os dois canais no mesmo sorteio, o que dá o IC da diferença entre as elasticidades do investimento; diagnósticos de assimetria, colinearidade, convergência e tempo. Pulado com `PADRONIZACAO=minmax` (o log já remove a escala).
 6. Fase B: `10` → `11` → `14` → `12` → `13` → 02/03/04 com variáveis de ambiente.
 
 ## 4. Resultados principais
@@ -46,7 +47,7 @@ Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `ar
 - Dois processos `exec/R` sem `--file` que aparecem no `pgrep` são do VS Code, não do projeto.
 - Rodada de 28/09 (`artigo/12`): `truncreg` devolve coeficientes mesmo sem convergência (`est.stat$message = "iteration limit exceeded"`) — verificar sempre; a truncada em Farrell é degenerada nos canais (sigma explode) e a normal truncada em 0 e 1 não tem máximo finito quando os escores se acumulam perto de zero — a truncada sobre log(escore) resolve os dois problemas; `parallel::mcparallel` reinicializa o gerador do filho pelo PID e horário — fixar a semente dentro do filho; a largura de banda do teste de RTS calculada na amostra refletida subsuavizava em amostras grandes — usar `bw.nrd0` na amostra original, como o rDEA; `rDEA::rts.test` roda em segundos em amostras simuladas (banda de Silverman), mas não conclui na base real; réplicas de `dea.boot` invertidas para a escala de escore explodem quando F* < 1 — usar pseudo-valores 2F̂ − F*; o texto do PDF do deck é vetorial (extração de texto devolve vazio; usar renderização por página para conferir); rótulos de modelo com vírgula quebram `cut` nos CSVs — usar leitor de CSV.
 
-## 6. Pendências (estado em 04/10/2026, após a reexecução com padronização, S01)
+## 6. Pendências (estado em 04/10/2026, após S01 e S02)
 
 ### Concluído (não requer ação)
 
@@ -70,7 +71,13 @@ Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `ar
   - Resistem: a base do ranking (Israel; Suíça e Noruega), H3b sem apoio e o sinal de H5 e de H7.
   - Não resistem: o topo do ranking, H6, a força de H3a, a inversão da metafronteira nas variantes e a diferença de coeficientes entre qualidade e base.
   - **Decisão pendente do autor, com o professor:** especificação principal. A recomendação do `artigo/14`, seção 7, é manter as unidades originais e apresentar a min-max como robustez dos resultados VRS. Depois da decisão, levar a tabela de robustez ao `artigo/05`, ao `artigo/06` e ao deck.
-- **S02 SFA de H2 com variáveis reescalonadas** [alta]: não há SFA versionado; criar `R/06_sfa_canais.R` em log (Cobb-Douglas e translog), por canal, com valores iniciais por MQO, verificação de convergência e tempo; classes latentes só depois.
+- **S02 SFA de H2** [executado em 04/10/2026]: `R/06_sfa_canais.R` nas seis bases (modo `sfa` do runner); resultados em `artigo/15_sfa_canais.md`.
+  - Em log, cada ajuste converge em menos de meio segundo.
+  - H2 não se confirma: critério estrito em 2 de 18 combinações; sem apoio na base do artigo nem com o P&D público.
+  - O P&D domina nos dois canais, com retornos decrescentes em publicações e crescentes em patentes.
+  - No corte agrupado, a ineficiência não é identificada em publicações.
+  - As classes latentes ficam identificadas em 4 de 12 ajustes.
+  - O status de H2 passa para a decisão do S03.
 - **S03 Menos hipóteses; hipótese × pergunta de pesquisa** [alta, antes de escrever]: manter como hipóteses o que tem ancoragem (sugestão: H1, H3, H4 e H2 se o SFA convergir) e converter H5–H7 em RQs; ancorar cada hipótese na literatura ou em indução explícita; fechar cada uma na discussão (bateu, não bateu, por quê).
 - **S04 Discussão de H1 por país** [média]: EUA, Japão e Reino Unido em DRS, China em CRS (não IRS, como dito na fala), Índia alternando; explicar com evidência contemporânea (platô japonês e britânico, desindustrialização e aposta em IA dos EUA, ascensão chinesa e indiana). Discutir em unidades originais: com min-max a origem muda e os retornos de escala perdem sentido; EUA, Reino Unido e China coincidem nas duas versões, o Japão não (`artigo/14`).
 - **S05 Perfis do ranking** [média, liberado por S01]: três do topo e três ou quatro da base (países "nichados"), com fontes; aumentar a legibilidade da fig1. Pela robustez à padronização (`artigo/14`, seção 4), os candidatos mais estáveis são Itália, Grécia e Malásia no topo e Israel, Suíça e Noruega na base; Irlanda e África do Sul só ficam na base na versão original.
@@ -88,7 +95,7 @@ Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `ar
 
 ### Aberto — trabalho analítico da versão artigo (sem dados novos)
 
-5. SFA por canal com classes latentes (`frontier`, `sfaR`; H2), na forma de estimação de S02 acima; teste de separabilidade formal (`npsf`); Malmquist com soma móvel de 3 anos; matriz de robustez consolidada (estimador × defasagem × qualidade × fonte × insumo público × padronização, S01) em uma tabela única.
+5. SFA por canal e classes latentes: feitos em S02 (`artigo/15`). Extensões opcionais: painel com determinantes da ineficiência (Battese e Coelli, 1995), defasagem de dois anos do investimento e modelos com heterogeneidade separada da ineficiência (Greene, 2005). Teste de separabilidade formal (`npsf`); Malmquist com soma móvel de 3 anos; matriz de robustez consolidada (estimador × defasagem × qualidade × fonte × insumo público × padronização, S01) em uma tabela única.
 6. `artigo/04_metodologia.md` e rascunho do manuscrito em português (introdução, dados, método, resultados, discussão), usando `artigo/01`, `02`, `05`, `06`.
 
 ## 7. Como retomar rapidamente
@@ -98,6 +105,7 @@ cd /Users/fernando/Projects/ai-efficiency-analysis
 cat output/status_execucao.txt                 # status por etapa da última execução
 zsh output/rodar_pipeline.sh faseA             # só a Fase A (02 -> 03 -> 04)
 zsh output/rodar_pipeline.sh tudo              # tudo: Fase A, painel e variantes, 05, RTS, validação (~1h30)
+zsh output/rodar_pipeline.sh sfa               # SFA por canal nas seis bases (S02, ~45 min)
 PADRONIZACAO=minmax zsh output/rodar_pipeline.sh tudo  # versão min-max (S01) + comparação 05b (~20 min)
 cat output/status_execucao_minmax.txt          # status da versão min-max
 tail -5 output/tables/manifesto_execucoes.csv  # execuções registradas (id, base, MD5, status)
@@ -113,3 +121,4 @@ tail -5 output/tables/manifesto_execucoes.csv  # execuções registradas (id, ba
 | 28/09/2026 | Análise crítica 2 (`artigo/11`) → resposta (`artigo/12`) | 15 itens, 12 verdadeiros + 3 em parte | convergência verificada nas truncadas; especificação principal sobre log(escore); RTS alinhado ao `rDEA` e validado nas duas implementações (tamanho ≈ 0,20; nenhum p < 0,05 nas bases); ranking por pseudo-valores, postos e contrastes; amostra e fronteira comuns nas comparações; β-convergência com a fronteira do painel balanceado; testes por grupo identificados; dois alvos em H3b; intervalos do Malmquist rotulados; semente no processo filho; runner único com propagação de falhas e manifesto de saídas; nove divergências documentais |
 | 28/09/2026 | Apresentação em aula e comentários do Prof. Peter Wanke (transcrição) | `artigo/13` | pendências S01–S10: padronização min-max das variáveis da fronteira e reexecução; SFA em variáveis reescalonadas; menos hipóteses e RQs; discussão de H1, do ranking, do Malmquist por país e da heterogeneidade por renda com evidência contemporânea; níveis de evidência no segundo estágio e dimensões do WGI; literatura por hipótese e periódico-alvo (CEJOR) |
 | 04/10/2026 | S01: padronização min-max das variáveis da fronteira e reexecução completa | `artigo/14` | variante `_minmax` em todo o pipeline (`R/02`, `02b`, `03`, `04`, `05`) e comparação `R/05b`; escala pura sem efeito (até 4 × 10⁻¹²); a min-max muda os resultados por translação e desloca a origem (H1 e Malmquist sem leitura); resistem a base do ranking, H3b e o sinal de H5 e H7; não resistem o topo do ranking, H6, a força de H3a e as inversões da metafronteira nas variantes; modo padrão conferido contra as tabelas versionadas (linhas de H6 em Farrell da Fase A regravadas, coerentes com o código) |
+| 04/10/2026 | S02: fronteira estocástica por canal em log | `artigo/15` | `R/06_sfa_canais.R` e modo `sfa` do runner (seis bases; bootstrap em blocos de país, paralelo e reproduzível); H2 não se confirma (2 de 18 combinações; sem apoio no painel nem com P&D público); elasticidade do P&D robusta (0,59–0,70 em publicações, 0,94–1,41 em patentes); retornos decrescentes em publicações e crescentes em patentes; ineficiência não identificada no corte agrupado de publicações; classes latentes identificadas em 4 de 12 ajustes |
