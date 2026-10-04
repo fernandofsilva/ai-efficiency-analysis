@@ -153,3 +153,4 @@ Metafronteira por grupo de renda, três estimativas por variante, na interseçã
     - Malmquist por país com a separação entre deslocamento da fronteira e catch-up.
     - Níveis de evidência no segundo estágio: o sinal contrário da efetividade governamental é robusto e vale para todas as dimensões do WGI, que não se separam.
     - Dispersão por renda sem tendência significativa.
+11. Estrutura do artigo (S03, decidida em 04/10/2026; `artigo/01`): três hipóteses (H1 a H3) e duas perguntas de pesquisa exploratórias. A seção 6 responde à RQ1 (dinâmica, antiga H4) e a seção 7 à RQ2 (determinantes; antigas H5, H6 e H7, agora expectativas E5, E6 e E7). As menções a H4–H7 neste documento e nos rótulos das tabelas seguem a numeração antiga.

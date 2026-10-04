@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | S01 | Padronização min-max das variáveis da fronteira e reexecução completa | cálculo | alta (primeira); **executado em 04/10/2026** (`artigo/14`), decisão da especificação principal pendente | `R/02`, `R/02b`, `R/03`, `R/04`, `R/05`, `output/rodar_pipeline.sh` |
 | S02 | SFA de H2 com variáveis reescalonadas | cálculo | alta; **executado em 04/10/2026** (`artigo/15`) | novo `R/06_sfa_canais.R` |
-| S03 | Menos hipóteses; hipótese × pergunta de pesquisa; fechar cada uma na discussão | decisão e texto | alta (antes de escrever) | `artigo/01`, manuscrito |
+| S03 | Menos hipóteses; hipótese × pergunta de pesquisa; fechar cada uma na discussão | decisão e texto | alta (antes de escrever); **decidido em 04/10/2026** (opção B; `artigo/01`) | `artigo/01`, manuscrito |
 | S04 | H1: discutir a heterogeneidade dos retornos de escala com evidência contemporânea | texto | média | manuscrito (discussão) |
 | S05 | Ranking: perfis de três países do topo e três ou quatro da base | texto | média (após S01) | manuscrito, fig1 |
 | S06 | Malmquist: frontier shift × catch-up por país; tese do platô; Moraes e Wanke (2019) | cálculo leve e texto | média; **executado em 04/10/2026** (`artigo/16`) | `R/04`, `artigo/05`, deck (slide 11), manuscrito |
@@ -80,6 +80,17 @@
 1. Decidir o conjunto de hipóteses do manuscrito. Sugestão a validar pelo autor: manter como hipóteses H1 (retornos de escala, com indução explícita pela função de produção), H3 (canais e metafronteira) e H4 (dinâmica), e H2 se o SFA convergir (S02); converter H5, H6 e H7 em perguntas de pesquisa (RQ1–RQ3, ou uma única RQ sobre determinantes da eficiência), coerente com o caráter exploratório do segundo estágio; manter R1–R3 como robustez.
 2. Reescrever a seção de hipóteses com a ancoragem exigida: para cada hipótese, o que a literatura confirma, o que contradiz e qual lacuna ela ataca (ver S09), ou a indução explícita quando não houver literatura.
 3. Na discussão de resultados, um fechamento por hipótese e por RQ: resultado, direção, por que (ou por que não), evidência contemporânea (S04–S08).
+
+**Estado em 04/10/2026.** Decisão do autor: **opção B**.
+- **Três hipóteses:** H1 (retornos de escala), H2 (insumos por canal) e H3 (canais e heterogeneidade tecnológica).
+- **Duas perguntas de pesquisa exploratórias:** RQ1, dinâmica (antiga H4, cujo Malmquist só tem intervalos descritivos), e RQ2, determinantes (antigas H5 a H7, viradas expectativas E5 a E7 de um segundo estágio exploratório).
+- R1 a R4 continuam como robustez, com R4 sendo a padronização min-max.
+
+O `artigo/01` foi reescrito com base, teste, critério e situação atual de cada hipótese, e com a justificativa de cada pergunta ser pergunta e não hipótese. A síntese do `artigo/05` (seção 10) segue a nova estrutura.
+
+Pendentes:
+- a revisão de literatura por hipótese (S09): referências marcadas "(S09)" no `artigo/01`;
+- o fechamento de cada hipótese e de cada RQ na discussão do manuscrito.
 
 ### S04 — H1: discutir a heterogeneidade dos retornos de escala com evidência contemporânea
 

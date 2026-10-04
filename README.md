@@ -46,7 +46,7 @@ Padronização das variáveis da fronteira (S01): os scripts 02, 02b, 03, 04 e 0
 
 ## Documentos
 
-- `artigo/01_hipoteses.md` — questão de pesquisa, enquadramento teórico e hipóteses H1–H7 com testes e critérios.
+- `artigo/01_hipoteses.md` — questão de pesquisa, enquadramento teórico, hipóteses H1–H3 e perguntas de pesquisa RQ1–RQ2 (estrutura decidida em 04/10/2026), com testes, critérios e situação atual.
 - `artigo/02_dados_externos.md` — proveniência do dataset original e catálogo priorizado de fontes externas.
 - `artigo/03_codebook.md` — codebook do painel reconstruído.
 - `artigo/05_resultados_fase_a.md` — resultados preliminares para a apresentação (dataset original).

@@ -126,19 +126,20 @@ Níveis de evidência (S07): significativo a 5% (IC 95% exclui zero), "bateu na 
 
 Ver `artigo/06_resultados_painel.md`: painel de 47 países (2017–2021), teste de RTS sem indício contra retornos constantes, instituições com sinal negativo e significativo na especificação principal em quatro variantes, e comparações em amostra e fronteira comuns mostrando que a inversão da metafronteira nas variantes de produtos alternativos e de P&D executado por ensino superior e governo tem origens diferentes (especificação e composição da amostra, respectivamente).
 
-## 10. Síntese por hipótese
+## 10. Síntese por hipótese e por pergunta de pesquisa
 
-| Hipótese | Evidência na Fase A | Status |
+Estrutura decidida em 04/10/2026 (S03; `artigo/01`): três hipóteses (H1 a H3) e duas perguntas de pesquisa exploratórias (RQ1, dinâmica, antiga H4; RQ2, determinantes, antigas H5 a H7, com as expectativas E5 a E7).
+
+| | Evidência na Fase A | Status |
 |---|---|---|
-| H1 escala | teste global sem indício contra CRS (p = 0,09; tamanho ≈ 0,2); EUA em DRS, China em CRS | sem apoio conclusivo; heterogeneidade por país |
-| H2 insumos por canal | GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82); SFA (`artigo/15`): investimento sem efeito nos dois canais no modelo agrupado, e efeito maior em patentes que em publicações nos modelos de painel (diferença 0,12 [0,02; 0,21]); elasticidade do GERD 0,59 (publicações) e 1,17 (patentes) | apoio parcial só nos modelos de painel; não se repete no painel do artigo |
+| H1 escala | teste global sem indício contra CRS (p = 0,09; tamanho ≈ 0,2); EUA em DRS, China em CRS; SFA: retornos 0,69 em publicações e 1,25 em patentes | sem apoio conclusivo; heterogeneidade por país e por canal |
+| H2 insumos por canal | GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82); SFA (`artigo/15`): investimento sem efeito nos dois canais no modelo agrupado e efeito maior em patentes que em publicações nos modelos de painel (diferença 0,12 [0,02; 0,21]); elasticidade do GERD 0,59 (publicações) e 1,17 (patentes) | apoio parcial só nos modelos de painel; não se repete no painel do artigo |
 | H3a canais | ρ = 0,52 [0,31; 0,69], p(ρ ≥ 0,5) = 0,59 | inconclusiva |
 | H3b metafronteira | TGR média 0,94 > alta 0,62; diferença +0,32 [0,23; 0,40]; MW p = 1,0 | não apoiada (sinal contrário) |
-| H4a dinâmica | TC domina (parcela 0,60), fronteira recua | apoiada |
-| H4b convergência | EC média 1,074 [0,958; 1,262]; β +0,11 (p = 0,11) | critério não atendido |
-| H5 instituições | efetividade −0,58 [−1,31; 0,02] (sinal contrário, 5–10%), negativa em quatro procedimentos e com todas as dimensões do WGI; exportações de alta tecnologia e pesquisadores só com o sinal previsto | não apoiada (sinal contrário robusto nas instituições) |
-| H6 finanças | capitalização ≈ 0; crédito compatível com a previsão | não apoiada |
-| H7 desenvolvimento | PIB per capita negativo em patentes (sinal contrário, sem significância) e em publicações (compatível) | contrariada no canal de patentes |
+| RQ1 dinâmica | TC domina a variância (parcela 0,60) e a fronteira recua; EC da renda média 1,074 [0,958; 1,262] contra 1,109 na alta renda; β +0,11 (p = 0,11); por país, China, Índia, Grécia e Argentina só se movem com a fronteira e o Brasil ganha por catch-up | resposta: a fronteira (em recuo) domina; sem convergência da renda média |
+| RQ2-E5 instituições | efetividade −0,58 [−1,31; 0,02] (sinal contrário, 5–10%), negativa em quatro procedimentos e com todas as dimensões do WGI; exportações de alta tecnologia e pesquisadores só com o sinal esperado | associação negativa robusta com as instituições, contrária à expectativa |
+| RQ2-E6 finanças | capitalização ≈ 0; crédito compatível com a expectativa | sem associação |
+| RQ2-E7 desenvolvimento | PIB per capita negativo em patentes (sinal contrário, sem significância) e em publicações (compatível) | contrária à expectativa no canal de patentes |
 | R1 estimadores | ρ entre 0,51 e 0,93 | moderadamente robusto |
 
 **Robustez à padronização (S01, 04/10/2026; detalhes em `artigo/14_padronizacao_minmax.md`).** Com as variáveis da fronteira em min-max (ε = 0,01), a Fase A mantém:
