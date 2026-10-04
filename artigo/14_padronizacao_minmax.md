@@ -143,7 +143,7 @@ As próprias conclusões da versão min-max dependem de ε. No painel, a correla
 
 Com ε → 0, a min-max VRS se aproxima da versão original (Spearman 0,94–0,95 com ε = 0,001). Nesse limite, porém, a unidade de menor investimento fica com insumo próximo de zero e vira eficiente por construção nos modelos CRS.
 
-## 7. Leitura e decisão pendente
+## 7. Leitura e decisão
 
 **O que pode ser afirmado (resiste às duas versões, às fontes e a ε ≤ 0,1):**
 - a base do ranking: Israel e, com menos folga, Suíça e Noruega;
@@ -160,7 +160,7 @@ Com ε → 0, a min-max VRS se aproxima da versão original (Spearman 0,94–0,9
 
 **O que não pode ser checado assim:** H1 e o Malmquist (H4), porque a min-max desloca a origem. Para esses, valem as unidades originais e as ressalvas já registradas: teste de RTS com tamanho de cerca de 0,20 e intervalos do Malmquist descritivos.
 
-**Recomendação (a decidir com o professor):** manter as unidades originais como especificação principal e apresentar a min-max (ε = 0,01) como verificação de robustez dos resultados VRS, com a tabela da seção 6. Os motivos:
+**Decisão do autor (04/10/2026):** unidades originais como especificação principal; a min-max (ε = 0,01) entra como verificação de robustez dos resultados VRS (proposição R4 do `artigo/01`), com as tabelas das seções 4 a 7a. Os motivos:
 1. A preocupação levantada na aula, de que escalas muito diferentes atrapalham na prática, foi testada e não se confirma nesta base: a mudança de escala pura reproduz tudo.
 2. A min-max acrescenta uma translação arbitrária, cujo tamanho depende de ε e dos dois maiores países.
 3. Com min-max, retornos de escala e Malmquist perdem o sentido econômico, o que obrigaria a misturar especificações entre as hipóteses, e o próprio professor recomendou não misturar transformações.
@@ -168,9 +168,25 @@ Com ε → 0, a min-max VRS se aproxima da versão original (Spearman 0,94–0,9
 
 **Efeito colateral.** Com min-max, todos os modelos do segundo estágio convergiram, inclusive os ajustes em Farrell que antes falhavam. O algoritmo 2 concluiu na variante de qualidade, que antes estourava o limite de 300 s, e a execução completa levou 21 minutos, contra 78 na original sem a validação por simulação. Isso vem da compressão da distribuição dos escores, que facilita a verossimilhança, e não é argumento para adotar a min-max: a especificação principal já é a truncada sobre log(escore), que converge em todas as execuções.
 
+## 7a. Atualização: níveis de evidência com e sem padronização (04/10/2026, após S06–S08)
+
+O segundo estágio e as figuras da versão min-max foram refeitos com os níveis de evidência do S07 e as dimensões alternativas do WGI. A execução foi `PADRONIZACAO=minmax zsh output/rodar_pipeline.sh estagio2`, sem falhas; os coeficientes min-max são idênticos aos anteriores. O `R/05b` passou a comparar também o nível de evidência e o H5 com as outras dimensões do WGI.
+
+Dos 105 coeficientes com expectativa (truncada sobre log do escore e dimensões do WGI, seis bases), 64 têm o mesmo nível de evidência nas duas versões. A concordância é de 18% na Fase A, 64% no painel e de 57% a 71% nas variantes.
+
+| Termo | Unidades originais | Min-max | Leitura |
+|---|---|---|---|
+| Efetividade governamental (E5) | contrário em todas as bases; 5% no painel, na Preqin e no P&D público; 5–10% na Fase A e no inventor | contrário em todas as bases; 5% em cinco delas, 5–10% na qualidade | sinal robusto; significância um pouco maior com min-max |
+| Índice composto do WGI (E5) | contrário; 5% em cinco bases | contrário; 5% em cinco bases | robusto |
+| Pesquisadores por milhão (E5) | esperado (+); 5% no inventor e no P&D público | contrário (−) em quatro bases, sem significância | não robusto |
+| Crédito privado, patentes (E6) | contrário (+) e significativo no painel, na Preqin e no P&D público | ≈ 0, compatível com a expectativa | não robusto |
+| PIB per capita, patentes (E7) | contrário (−); 5% em quatro bases | contrário (−); 5% em todas as seis | robusto, e mais forte com min-max |
+
+O que resiste à transformação, na RQ2, é a associação negativa da eficiência com a qualidade institucional (qualquer dimensão do WGI) e com o PIB per capita no canal de patentes. O sinal dos pesquisadores e o efeito do crédito dependem da transformação e não devem ser afirmados.
+
 ## 8. Pendências decorrentes
 
-1. **Decisão do autor, com o professor:** especificação principal (recomendação acima). Depois disso, levar ao `artigo/05`, ao `artigo/06` e ao deck a tabela de robustez à padronização: seções 4 a 6 deste documento.
+1. **Especificação principal:** decidida em 04/10/2026 (unidades originais; min-max como robustez R4). Falta levar a tabela de robustez à padronização ao deck e ao manuscrito; o comparativo para o professor foi publicado como página compartilhável (link no `artigo/07`, seção 6).
 2. **S02 (SFA):** sem mudança de plano. O SFA em log já resolve a diferença de ordem de grandeza (o log transforma escala em constante aditiva, absorvida pelo intercepto) e é uma única transformação para todas as variáveis.
 3. **S04 (H1 por país):** discutir em unidades originais. Estados Unidos e Reino Unido em DRS e China em CRS coincidem nas duas versões; o Japão, não.
 4. **S05 (perfis do ranking):** preferir os países estáveis nas duas versões. No topo, Itália, Grécia e Malásia; na base, Israel, Suíça e Noruega. Irlanda e África do Sul só entram na base na versão original. A fig11 serve de apoio para a legibilidade pedida na fig1.

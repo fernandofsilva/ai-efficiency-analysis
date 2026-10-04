@@ -1,9 +1,9 @@
-08:37:40 obs. no segundo estágio: 191 | com pesquisadores: 161 
-08:37:40 bootstrap dos canais... 
-08:38:11 Simar-Wilson algoritmo 2 (L1 = 50 , L2 = 500 )... 
-08:38:11 obs. no Simar-Wilson alg. 2: 191 
-08:38:17 dea.env.robust: componentes delta_hat, beta_hat, sigma_hat, bias, delta_hat_hat, delta_ci_low, delta_ci_high, delta_ci_kneip_low, delta_ci_kneip_high, delta_hat_hat_used, beta_hat_hat, sigma_hat_hat, Zbeta_hat_hat, beta_hat_hat_star, sigma_hat_hat_star, beta_ci, sigma_ci 
-08:38:17 faixa de delta corrigido: 1.038 a 4.832 
+12:16:05 obs. no segundo estágio: 191 | com pesquisadores: 161 
+12:16:05 bootstrap dos canais... 
+12:17:04 Simar-Wilson algoritmo 2 (L1 = 50 , L2 = 500 )... 
+12:17:04 obs. no Simar-Wilson alg. 2: 191 
+12:17:17 dea.env.robust: componentes delta_hat, beta_hat, sigma_hat, bias, delta_hat_hat, delta_ci_low, delta_ci_high, delta_ci_kneip_low, delta_ci_kneip_high, delta_hat_hat_used, beta_hat_hat, sigma_hat_hat, Zbeta_hat_hat, beta_hat_hat_star, sigma_hat_hat_star, beta_ci, sigma_ci 
+12:17:17 faixa de delta corrigido: 1.038 a 4.832 
                                   modelo               termo   coeficiente       ic_inf
 1  H5 Simar-Wilson alg. 2 (rDEA, pooled)         (Intercept)  3.1927775473  0.249227552
 2  H5 Simar-Wilson alg. 2 (rDEA, pooled) efetividade_governo  3.6223303182  2.250065906
@@ -19,21 +19,46 @@
 12 H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2019  2.6125991143 -0.410327606
 13 H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2020  3.2023616390  0.170651530
 14 H5 Simar-Wilson alg. 2 (rDEA, pooled)           ano_f2021  3.3796122956  0.567292254
-         ic_sup significativo_5pct                             fronteira semente_filho
-1   6.508836672               TRUE agrupada, casos completos de contexto          2026
-2   5.275311052               TRUE agrupada, casos completos de contexto          2026
-3   0.116559704               TRUE agrupada, casos completos de contexto          2026
-4  -1.416868686               TRUE agrupada, casos completos de contexto          2026
-5   0.006957089              FALSE agrupada, casos completos de contexto          2026
-6  -0.004950988               TRUE agrupada, casos completos de contexto          2026
-7   4.108844429              FALSE agrupada, casos completos de contexto          2026
-8   5.307464273               TRUE agrupada, casos completos de contexto          2026
-9   4.673899310              FALSE agrupada, casos completos de contexto          2026
-10  5.243725557               TRUE agrupada, casos completos de contexto          2026
-11  4.478797283              FALSE agrupada, casos completos de contexto          2026
-12  4.710506978              FALSE agrupada, casos completos de contexto          2026
-13  5.662200866               TRUE agrupada, casos completos de contexto          2026
-14  5.788927420               TRUE agrupada, casos completos de contexto          2026
+         ic_sup significativo_5pct     ic90_inf     ic90_sup significativo_10pct sinal_previsto
+1   6.508836672               TRUE  0.669447541  5.926970651                TRUE           <NA>
+2   5.275311052               TRUE  2.682708641  5.106192025                TRUE              -
+3   0.116559704               TRUE  0.033078689  0.111328636                TRUE              -
+4  -1.416868686               TRUE -3.277338174 -1.668908547                TRUE           <NA>
+5   0.006957089              FALSE -0.007720848  0.005310834               FALSE           <NA>
+6  -0.004950988               TRUE -0.029346428 -0.007264668                TRUE           <NA>
+7   4.108844429              FALSE -0.080324105  3.843673319               FALSE           <NA>
+8   5.307464273               TRUE  1.048562546  5.085703966                TRUE           <NA>
+9   4.673899310              FALSE  0.587090123  4.519926485                TRUE           <NA>
+10  5.243725557               TRUE  0.857540750  5.033681270                TRUE           <NA>
+11  4.478797283              FALSE  0.351706505  4.236078606                TRUE           <NA>
+12  4.710506978              FALSE  0.529449913  4.535724495                TRUE           <NA>
+13  5.662200866               TRUE  1.127928112  5.301265062                TRUE           <NA>
+14  5.788927420               TRUE  1.164400301  5.490331977                TRUE           <NA>
+                       nivel_evidencia                             fronteira semente_filho
+1                                 <NA> agrupada, casos completos de contexto          2026
+2  sinal contrário, significativo (5%) agrupada, casos completos de contexto          2026
+3  sinal contrário, significativo (5%) agrupada, casos completos de contexto          2026
+4                                 <NA> agrupada, casos completos de contexto          2026
+5                                 <NA> agrupada, casos completos de contexto          2026
+6                                 <NA> agrupada, casos completos de contexto          2026
+7                                 <NA> agrupada, casos completos de contexto          2026
+8                                 <NA> agrupada, casos completos de contexto          2026
+9                                 <NA> agrupada, casos completos de contexto          2026
+10                                <NA> agrupada, casos completos de contexto          2026
+11                                <NA> agrupada, casos completos de contexto          2026
+12                                <NA> agrupada, casos completos de contexto          2026
+13                                <NA> agrupada, casos completos de contexto          2026
+14                                <NA> agrupada, casos completos de contexto          2026
+                                                               modelo                 termo
+2  H5 truncada com qualidade_regulatoria no lugar da efetividade (M2) qualidade_regulatoria
+17        H5 truncada com estado_direito no lugar da efetividade (M2)        estado_direito
+32    H5 truncada com controle_corrupcao no lugar da efetividade (M2)    controle_corrupcao
+47            H5 truncada com indice_wgi no lugar da efetividade (M2)            indice_wgi
+   coeficiente     ic_inf      ic_sup     p_boot                     nivel_evidencia
+2   -0.5235718 -0.9504053 -0.07907979 0.01333333 sinal contrário, significativo (5%)
+17  -0.4245038 -0.8236375 -0.08877643 0.01333333 sinal contrário, significativo (5%)
+32  -0.4167116 -0.8044248 -0.07163121 0.01333333 sinal contrário, significativo (5%)
+47  -0.4810594 -0.8593159 -0.08885418 0.01333333 sinal contrário, significativo (5%)
                                         modelo               termo   coeficiente         ic_inf
 1                             H5 truncada (M2)         (Intercept) -0.2928761730 -1.80465336346
 2                             H5 truncada (M2) efetividade_governo -0.5267028254 -0.94344476997
@@ -77,49 +102,49 @@
 172                       H7 canal publicações     alta_tec_export -0.0043302488 -0.02454812824
 173                       H7 canal publicações        log_comercio  0.0448486972 -0.12531622153
 182                       H7 canal publicações               sigma  0.3939026171  0.22595562516
-          ic_sup significativo_5pct replicas_convergentes
-1    0.914368465              FALSE                   300
-2   -0.076019788               TRUE                   300
-3    0.004552806              FALSE                   300
-4    0.594616312              FALSE                   300
-5    0.005891119              FALSE                   300
-6    0.009958220              FALSE                   300
-15   0.370762912               TRUE                   300
-46   0.920784069              FALSE                   300
-47  -0.041741455               TRUE                   300
-48   0.001734031              FALSE                   300
-49   0.549435025              FALSE                   300
-50   0.005308139              FALSE                   300
-51   0.008909543              FALSE                   300
-60   0.347864526               TRUE                   300
-61   1.593599996              FALSE                   300
-62  -0.046268803               TRUE                   300
-63   0.005747039              FALSE                   300
-64   0.271472119              FALSE                   300
-65   0.063879330              FALSE                   300
-74   0.239401023               TRUE                   300
-75  18.335660865               TRUE                   300
-76   0.003287977              FALSE                   300
-77   0.017285318              FALSE                   300
-78   0.217539235              FALSE                   300
-79   0.657811994              FALSE                   300
-88   1.588612503               TRUE                   300
-117 -0.161527099               TRUE                   300
-118  0.003707593              FALSE                   300
-119  0.013024398              FALSE                   300
-120  0.069557813               TRUE                   300
-121 -0.045578836               TRUE                   300
-130  0.494559014               TRUE                   300
-131 17.105053048              FALSE                   300
-132 -0.021526153               TRUE                   300
-133  0.012983399              FALSE                   300
-134  2.007284896               TRUE                   300
-143  1.288870608               TRUE                   300
-170  4.569108006               TRUE                   300
-171 -0.065299963               TRUE                   300
-172  0.004557316              FALSE                   300
-173  0.309474162              FALSE                   300
-182  0.534181230               TRUE                   300
+          ic_sup      p_boot                     nivel_evidencia replicas_convergentes
+1    0.914368465 0.673333333                                <NA>                   300
+2   -0.076019788 0.020000000 sinal contrário, significativo (5%)                   300
+3    0.004552806 0.226666667                     sinal contrário                   300
+4    0.594616312 0.113333333                                <NA>                   300
+5    0.005891119 0.973333333                                <NA>                   300
+6    0.009958220 0.366666667                                <NA>                   300
+15   0.370762912 0.000000000                                <NA>                   300
+46   0.920784069 0.593333333                                <NA>                   300
+47  -0.041741455 0.020000000 sinal contrário, significativo (5%)                   300
+48   0.001734031 0.113333333                     sinal contrário                   300
+49   0.549435025 0.140000000                                <NA>                   300
+50   0.005308139 0.760000000                                <NA>                   300
+51   0.008909543 0.286666667                                <NA>                   300
+60   0.347864526 0.000000000                                <NA>                   300
+61   1.593599996 0.613333333                                <NA>                   300
+62  -0.046268803 0.020000000 sinal contrário, significativo (5%)                   300
+63   0.005747039 0.706666667                     sinal contrário                   300
+64   0.271472119 0.213333333                                <NA>                   300
+65   0.063879330 0.426666667                     sinal contrário                   300
+74   0.239401023 0.000000000                                <NA>                   300
+75  18.335660865 0.000000000                                <NA>                   300
+76   0.003287977 0.320000000                     sinal contrário                   300
+77   0.017285318 0.793333333                          compatível                   300
+78   0.217539235 0.533333333                                <NA>                   300
+79   0.657811994 0.340000000                                <NA>                   300
+88   1.588612503 0.000000000                                <NA>                   300
+117 -0.161527099 0.000000000                                <NA>                   300
+118  0.003707593 0.593333333                                <NA>                   300
+119  0.013024398 0.060000000                                <NA>                   300
+120  0.069557813 0.026666667                                <NA>                   300
+121 -0.045578836 0.006666667                                <NA>                   300
+130  0.494559014 0.000000000                                <NA>                   300
+131 17.105053048 0.080000000                                <NA>                   300
+132 -0.021526153 0.040000000 sinal contrário, significativo (5%)                   300
+133  0.012983399 0.180000000                                <NA>                   300
+134  2.007284896 0.013333333                                <NA>                   300
+143  1.288870608 0.000000000                                <NA>                   300
+170  4.569108006 0.020000000                                <NA>                   300
+171 -0.065299963 0.013333333                          compatível                   300
+172  0.004557316 0.380000000                                <NA>                   300
+173  0.309474162 0.980000000                                <NA>                   300
+182  0.534181230 0.000000000                                <NA>                   300
                   escore p_kruskal_3grupos_pais_ano p_kruskal_3grupos_medias_pais
 1       conjunto M2 (bc)                 0.23091815                     0.2517977
 2 canal publicações (bc)                 0.06063165                     0.4625927
@@ -140,4 +165,4 @@ rho3          market_cap -0.27542711 -0.4273709 -0.10023216
 rho4     credito_privado -0.15148801 -0.3244447  0.03268388
 rho5          log_pib_pc -0.25072678 -0.4258259 -0.06175276
 rho6          pd_pct_pib -0.38246073 -0.5458987 -0.15799303
-08:40:06 FIM segundo estágio Fase A 
+12:19:10 FIM segundo estágio Fase A 

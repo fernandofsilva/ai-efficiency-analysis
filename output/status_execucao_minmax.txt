@@ -1,25 +1,14 @@
-2026-10-04 08:37:20 INICIO modo=tudo padronizacao=minmax sufixo=_minmax
-08:37:40 OK FASE A 02 fronteiras
-08:40:06 OK FASE A 03 segundo estágio
-08:40:08 OK FASE A 04 figuras
-08:40:30 OK PAINEL 02 fronteiras
-08:43:11 OK PAINEL 03 segundo estágio
-08:43:13 OK PAINEL 04 figuras
-08:43:27 OK QUALIDADE 02 fronteiras
-08:45:29 OK QUALIDADE 03 segundo estágio
-08:45:31 OK QUALIDADE 04 figuras
-08:45:55 OK FONTE 02 fronteiras
-08:48:20 OK FONTE 03 segundo estágio
-08:48:22 OK FONTE 04 figuras
-08:48:44 OK PREQIN 02 fronteiras
-08:51:24 OK PREQIN 03 segundo estágio
-08:51:26 OK PREQIN 04 figuras
-08:51:45 OK PUBLICO 02 fronteiras
-08:54:10 OK PUBLICO 03 segundo estágio
-08:54:12 OK PUBLICO 04 figuras
-08:55:27 OK COMPARACOES 05
-08:56:14 OK RTS FASE A 02b
-08:58:08 OK RTS PAINEL 02b
-08:58:08 PULADA VALIDACAO RTS 02c (simulação; não depende da padronização)
-08:58:11 OK COMPARACAO PADRONIZACAO 05b
-2026-10-04 08:58:11 FIM modo=tudo falhas=0
+2026-10-04 12:16:04 INICIO modo=estagio2 padronizacao=minmax sufixo=_minmax
+12:19:10 OK FASE A 03 segundo estágio
+12:19:12 OK FASE A 04 figuras
+12:22:39 OK PAINEL 03 segundo estágio
+12:22:41 OK PAINEL 04 figuras
+12:25:18 OK QUALIDADE 03 segundo estágio
+12:25:20 OK QUALIDADE 04 figuras
+12:28:25 OK FONTE 03 segundo estágio
+12:28:27 OK FONTE 04 figuras
+12:31:51 OK PREQIN 03 segundo estágio
+12:31:53 OK PREQIN 04 figuras
+12:34:58 OK PUBLICO 03 segundo estágio
+12:35:01 OK PUBLICO 04 figuras
+2026-10-04 12:35:01 FIM modo=estagio2 falhas=0

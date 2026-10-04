@@ -44,7 +44,7 @@
 - A min-max muda os resultados por translação: soma, por exemplo, 854 patentes e US$ 1,5 bilhão de investimento a cada país na Fase A, e desloca a origem. Com isso, retornos de escala e Malmquist CRS perdem a leitura econômica.
 - Resistem às duas versões: a base do ranking (Israel; Suíça e Noruega), H3b sem apoio e o sinal de H5 e de H7.
 - Não resistem: o topo do ranking, H6, a força de H3a e a inversão da metafronteira nas variantes.
-- Pendente: decidir, com o professor, a especificação principal. A recomendação é manter as unidades originais e apresentar a min-max como robustez dos resultados VRS.
+- Decidido pelo autor em 04/10/2026: unidades originais como especificação principal e min-max como verificação de robustez dos resultados VRS (R4). O comparativo entre as duas versões foi preparado como página compartilhável para o professor.
 
 ### S02 — SFA de H2 com variáveis reescalonadas
 

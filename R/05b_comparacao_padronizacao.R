@@ -68,6 +68,23 @@ FormatarIc <- function(inf, sup) {
   return(sprintf("[%.3f; %.3f]", inf, sup))
 }
 
+CompararSegundoEstagio <- function(o, p) {
+  # Junta as duas versões por modelo e termo e marca se o sinal, a
+  # conclusão a 5% e o nível de evidência (quando houver) coincidem.
+  sg <- dplyr::full_join(o, p, by = c("modelo", "termo"),
+                         suffix = c("_original", "_padronizada"))
+  sg$mesmo_sinal <- sign(sg$coeficiente_original) ==
+    sign(sg$coeficiente_padronizada)
+  sg$mesma_conclusao_5pct <- sg$significativo_5pct_original ==
+    sg$significativo_5pct_padronizada
+  if (all(c("nivel_evidencia_original", "nivel_evidencia_padronizada") %in%
+          names(sg))) {
+    sg$mesmo_nivel <- sg$nivel_evidencia_original ==
+      sg$nivel_evidencia_padronizada
+  }
+  return(sg)
+}
+
 # 1. Comparação dos resultados gravados ---------------------------------------
 resumo <- list()
 ranking_comp <- list()
@@ -327,20 +344,40 @@ for (k in seq_len(nrow(execucoes))) {
   seg <- LerPar("segundo_estagio_truncada", s)
   if (!is.null(seg)) {
     Filtrar <- function(t) {
+      # Inclui p-valor e nível de evidência (S07) quando a tabela os tem.
+      colunas <- intersect(c("modelo", "termo", "coeficiente", "ic_inf",
+                             "ic_sup", "p_boot", "significativo_5pct",
+                             "nivel_evidencia", "n_obs",
+                             "replicas_convergentes"), names(t))
       t <- t[t$dependente == "log_escore" &
-               !grepl("^ano_f|Intercept|sigma", t$termo),
-             c("modelo", "termo", "coeficiente", "ic_inf", "ic_sup",
-               "significativo_5pct", "n_obs", "replicas_convergentes")]
+               !grepl("^ano_f|Intercept|sigma", t$termo), colunas]
       return(t)
     }
-    sg <- dplyr::full_join(Filtrar(seg$o), Filtrar(seg$p),
-                           by = c("modelo", "termo"),
-                           suffix = c("_original", "_padronizada"))
-    sg$mesmo_sinal <- sign(sg$coeficiente_original) ==
-      sign(sg$coeficiente_padronizada)
-    sg$mesma_conclusao_5pct <- sg$significativo_5pct_original ==
-      sg$significativo_5pct_padronizada
+    sg <- CompararSegundoEstagio(Filtrar(seg$o), Filtrar(seg$p))
     seg_comp[[ex]] <- data.frame(execucao = ex, sg)
+    if ("mesmo_nivel" %in% names(sg)) {
+      com_expectativa <- !is.na(sg$nivel_evidencia_original)
+      resumo[[ex]] <- rbind(resumo[[ex]], Linha(
+        ex, "segundo estágio",
+        "termos com expectativa: mesmo nível de evidência (%)",
+        comparacao = 100 * mean(sg$mesmo_nivel[com_expectativa],
+                                na.rm = TRUE),
+        detalhe = paste(sum(com_expectativa), "termos")))
+    }
+  }
+  # H5 com as outras dimensões do WGI (S07).
+  wgi <- LerPar("segundo_estagio_wgi", s)
+  if (!is.null(wgi)) {
+    dimensoes <- c("qualidade_regulatoria", "estado_direito",
+                   "controle_corrupcao", "indice_wgi")
+    FiltrarWgi <- function(t) {
+      colunas <- intersect(c("modelo", "termo", "coeficiente", "ic_inf",
+                             "ic_sup", "p_boot", "significativo_5pct",
+                             "nivel_evidencia", "n_obs"), names(t))
+      return(t[t$termo %in% dimensoes, colunas])
+    }
+    sg <- CompararSegundoEstagio(FiltrarWgi(wgi$o), FiltrarWgi(wgi$p))
+    seg_comp[[paste(ex, "wgi")]] <- data.frame(execucao = ex, sg)
   }
   sw <- LerPar("segundo_estagio_simar_wilson_m2", s)
   if (!is.null(sw)) {

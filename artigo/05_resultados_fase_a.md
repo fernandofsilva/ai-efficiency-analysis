@@ -148,4 +148,4 @@ Estrutura decidida em 04/10/2026 (S03; `artigo/01`): três hipóteses (H1 a H3) 
 - o sinal de H5: efetividade −0,53 [−0,94; −0,08], agora com IC que exclui zero;
 - o sinal de H7.
 
-Mudam o topo do ranking (Spearman entre versões 0,45) e a classificação de retornos de escala. Esta última não tem leitura econômica com min-max, porque a origem muda; H1 e o Malmquist seguem lidos em unidades originais. A especificação principal continua em unidades originais até a decisão do autor com o professor.
+Mudam o topo do ranking (Spearman entre versões 0,45) e a classificação de retornos de escala. Esta última não tem leitura econômica com min-max, porque a origem muda; H1 e o Malmquist seguem lidos em unidades originais. A especificação principal é a de unidades originais (decisão do autor de 04/10/2026), e a min-max entra como verificação de robustez (R4).

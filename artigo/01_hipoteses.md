@@ -192,7 +192,7 @@ Reportadas como resultados, não como hipóteses:
 - **R1.** Os rankings são estáveis entre estimadores (DEA com bootstrap, FDH, order-*m*, order-α, SFA), com correlação de Spearman superior a 0,7 e intervalo de confiança.
 - **R2.** Os rankings são estáveis à estrutura de defasagem (t, t−1, t−2) e ao uso de soma móvel de três anos em vez de fluxo anual.
 - **R3.** Os rankings são sensíveis ao ajuste por qualidade (citações no lugar de contagens de artigos; patentes concedidas no lugar de pedidos) e à fonte (patentes por país do inventor; VC da Preqin; P&D executado por ensino superior e governo). Essa sensibilidade é um achado a ser declarado, não um problema a ser escondido.
-- **R4.** Os resultados VRS (ranking, canais, metafronteira, segundo estágio) são comparados com a padronização min-max das variáveis da fronteira (S01, `artigo/14`). A mudança de escala pura não altera nada; a min-max altera por translação. A escolha da especificação principal depende da decisão do autor com o professor.
+- **R4.** Os resultados VRS (ranking, canais, metafronteira, segundo estágio) são comparados com a padronização min-max das variáveis da fronteira (S01, `artigo/14`). A mudança de escala pura não altera nada; a min-max altera por translação. Decisão do autor (04/10/2026): a especificação principal é a de unidades originais, e a min-max entra como verificação de robustez.
 
 ## 6. Quadro-resumo
 
