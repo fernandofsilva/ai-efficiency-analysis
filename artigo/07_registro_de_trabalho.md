@@ -4,12 +4,31 @@ Documento de transferência: tudo o que foi feito, decidido e ficou pendente, pa
 
 ## 1. Contexto e decisões do usuário
 
-- Disciplina *Introdução à Análise de Eficiência em R* (Prof. Peter Wanke). Entregas: apresentação de diagnóstico em 28/09/2026 (dataset original) e manuscrito em português para periódico Qualis (painel reconstruído).
+- Disciplina *Introdução à Análise de Eficiência em R* (Escola de Métodos, Prof. Peter Wanke, 30 horas; programa em `others/`).
+  - **Avaliação:** manuscrito submetido a periódico Qualis até a data-limite de lançamento das notas (pode ser em grupo e deve refletir as metodologias do curso) e apresentação em PowerPoint de 20 minutos com diagnóstico setorial.
+  - **Entregas deste trabalho:** apresentação de diagnóstico em 28/09/2026 (dataset original) e manuscrito em português para periódico Qualis (painel reconstruído).
+  - **Técnicas a replicar:** o programa pede que o aluno replique as técnicas das sessões; o que falta está no `artigo/19`, seção 1.
+- **Trabalho anterior.** As orientações dos laboratórios de 14 e 21/09/2026 ficaram num repositório anterior, `~/Projects/investimentos_ia` (https://github.com/fernandofsilva/investimentos_ia). Este repositório começou em 27/09 com um plano novo. O resumo das orientações e a situação de cada uma estão no `artigo/19`.
 - Decisões: modelo principal conjunto (publicações + patentes) com modelos por canal; tudo em português; painel reconstruído (CSET + World Bank) substitui o dataset original na versão artigo; scripts R no estilo Google (BigCamelCase, `return()` explícito, `pkg::fun`, 80 colunas); todas as bases dentro de `data/`, uma subpasta por fonte; documentos em `artigo/` (o `.gitignore` ignora `docs/`).
-- Commits em `main` e `origin/main` (sincronizados em 28/09/2026): `ae6c878` (pipeline e resultados), `c3b78ff` (resposta à análise crítica, `artigo/10`), `3b0799b` (cabeçalho de `R/05`), `91ee83c` (revisão 2 do brief), `f188559` (resposta à reanálise crítica, `artigo/11` → `artigo/12`, código e reexecução). Em 04/10/2026, só em `main` local (sem push): `c780f89` (deck da apresentação e `artigo/13`).
+- Commits em `main`, sincronizada com `origin/main`:
+  - 27 e 28/09/2026: `ae6c878` (pipeline e resultados), `c3b78ff` (resposta à análise crítica, `artigo/10`), `3b0799b` (cabeçalho de `R/05`), `91ee83c` (revisão 2 do brief), `f188559` (resposta à reanálise crítica, `artigo/11` → `artigo/12`, código e reexecução);
+  - 04/10/2026: `c780f89` (deck e `artigo/13`), `a8fbb21` (S01), `ee19b58` (S02), `ea0c969` (S06–S08), `72b54a7` (S03), `a1af12f` (decisão do S01), `61c274f` (análise crítica 3, `artigo/17` → `artigo/18`).
 - Especificação principal decidida em 04/10/2026 (S01): unidades originais; a padronização min-max entra como verificação de robustez (R4).
 - Estrutura do artigo decidida em 04/10/2026 (S03, opção B): três hipóteses (H1 retornos de escala, H2 insumos por canal, H3 canais e metafronteira) e duas perguntas de pesquisa exploratórias (RQ1 dinâmica, antiga H4; RQ2 determinantes, antigas H5–H7 como expectativas E5–E7). Os rótulos de código e tabelas mantêm a numeração antiga.
 - Apresentação em aula feita em 28/09/2026. Os comentários do Prof. Peter Wanke e as pendências decorrentes (S01–S10) estão em `artigo/13_comentarios_apresentacao.md`; a ordem de execução acordada está na seção 6 abaixo.
+
+## 1a. Convenções de trabalho
+
+- **Versionamento.** Commit e push só quando o autor pede, assim:
+  - cada rodada vai num branch próprio, integrado em `main` por fast-forward e enviado ao GitHub; o branch local é apagado em seguida;
+  - mensagens de commit em português, com o que mudou e por quê.
+- **Análises críticas e comentários do professor.** Cada item recebe veredito ou estado atual e a ação escolhida, com justificativa. O registro vai num arquivo novo, numerado em `artigo/`:
+  - análises críticas: 09 → 10, 11 → 12, 17 → 18;
+  - comentários da apresentação: 13; orientações dos laboratórios: 19.
+
+  As pendências se consolidam na seção 6 deste registro. Documentos de rodadas anteriores não são reescritos: recebem nota de superação quando um resultado deles muda.
+- **Números e reexecução.** Toda mudança de método é reexecutada pelo runner e conferida contra as tabelas versionadas antes de entrar nos textos. Os números dos documentos saem das tabelas de `output/tables/`, nunca de memória.
+- **Língua, estilo e dados:** ver a seção 1 (tudo em português; estilo Google em R; bases em `data/`). Ambiente e versões dos pacotes: `README.md`, seção "Ambiente".
 
 ## 2. Estrutura do repositório
 
@@ -17,10 +36,10 @@ Documento de transferência: tudo o que foi feito, decidido e ficou pendente, pa
 - `data/cat/` — CSET Country AI Activity Metrics v1.12.0 (Zenodo 22772306), 2016–2026, campo `field == "All"`, coluna `complete` (artigos completos até 2024, pedidos de patente até 2021, concedidas até 2019, investimento em milhões de US$ nominais). Índia: patentes quebradas a partir de 2019 (tratadas como NA).
 - `data/wdi/`, `data/wgi/` — World Bank (API v2, cache por indicador; WGI com códigos novos `GOV_WGI_*`, fonte 3). `data/ai_index/` — dados públicos do AI Index 2025 (CSVs por figura). `data/oecd-ai/` — export manual de publicações (`data.csv`), patentes de IA por país do inventor via API SDMX (`patentes_ia_ip5_inventor.csv`, `patentes_ia_triadicas_inventor.csv`) e export manual do VC da Preqin (`vc_investimentos_pais_ano.csv`). `data/msti/` — HERD/GOVERD (MSTI + Eurostat). `data/top500/` — parcial.
 - `data/processed/` — `base_atual.csv` (Fase A), `cset_long.csv`, `ai_index_pais_ano.csv`, `ai_index_transversal.csv`, `oecd_ai_publicacoes.csv`, `oecd_ai_patentes.csv`, `painel_ia.csv` (47 países, 2016–2024). Inventário completo em `data/README.md`; codebook em `artigo/03_codebook.md`.
-- `R/` — `00_setup.R` (pacotes, opções, pastas, `source("R/funcoes.R")`), `funcoes.R` (World Bank, DEA, bootstrap, Spearman com IC, interpolação), `01_prep_dataset_atual.R`, `02_fronteiras_dataset_atual.R`, `02b_teste_rts.R`, `03_segundo_estagio_dataset_atual.R`, `04_figuras_apresentacao.R`, `10_download_wdi.R`, `11_import_cset.R`, `12_import_fontes_alternativas.R`, `13_build_painel.R`, `14_download_oecd_patentes.R`.
+- `R/` — `00_setup.R` (pacotes, opções, pastas, `source("R/funcoes.R")`), `funcoes.R` (World Bank, DEA, bootstrap, Spearman com IC, Malmquist, manifesto, interpolação), `01_prep_dataset_atual.R`, `02_fronteiras_dataset_atual.R`, `02b_teste_rts.R`, `02c_validacao_rts.R`, `03_segundo_estagio_dataset_atual.R`, `04_figuras_apresentacao.R`, `05_comparacoes_amostra_comum.R`, `05b_comparacao_padronizacao.R`, `06_sfa_canais.R`, `10_download_wdi.R`, `11_import_cset.R`, `12_import_fontes_alternativas.R`, `13_build_painel.R`, `14_download_oecd_patentes.R`, `15_download_msti.R`, `16_download_top500.R`.
 - Scripts 02/02b/03/04 são parametrizados por variáveis de ambiente: `BASE_ARQUIVO` (padrão `data/processed/base_atual.csv`), `SUFIXO_SAIDA` (`""`, `_painel`, `_painel_qualidade`, `_painel_fonte`, `_painel_preqin`, `_painel_publico`), `INSUMOS` (`investimento,gerd`; `investimento_l1,gerd_l1`; `investimento_preqin_l1,gerd_l1`; `investimento_l1,pd_publico_l1`), `PRODUTOS` (`publicacoes,patentes`; `citacoes_ok,patentes_concedidas_ok`; `publicacoes,patentes_inventor`), `JANELA_MALMQUIST` (`2016,2019`; `2017,2021`; `2017,2019`), `N_REP_RTS`, `LIMITE_SW_SEG`. Runner único: `output/rodar_pipeline.sh` (modos `faseA`, `painel`, `variantes`, `cadeias`, `rts`, `sfa`, `estagio2`, `validacao`, `padronizacao`, `tudo`), com status por etapa em `output/status_execucao.txt` (ou no arquivo de `STATUS_ARQUIVO`), interrupção da cadeia dependente em caso de falha e código de saída igual ao número de falhas. Manifesto de execuções, de saídas (tabelas e figuras, com MD5) e de tabelas derivadas lidas pelo `04` e pelo `05b` em `output/tables/manifesto_execucoes.csv`, `manifesto_saidas.csv` e `manifesto_entradas.csv`; os scripts de preparação e importação (`01`, `10`, `11`, `13` a `16`) ficam fora. `PADRONIZACAO` (`nenhuma` ou `minmax`) e `EPSILON_PADRONIZACAO` (padrão 0,01) valem também para o `05`; com min-max, as saídas ganham o sufixo `_minmax` (ver `artigo/14`).
 - `output/tables/` (~100 CSVs) e `output/figures/` (fig1–fig7 por variante, fig8 investimento CSET × Quid, fig9 patentes CSET × OCDE, fig10 investimento CSET × Preqin, fig11 ranking com e sem padronização). Logs em `output/log_*.txt`.
-- `artigo/` — `01_hipoteses.md`, `02_dados_externos.md` (inclui seção 5a: como obter patentes por inventor e VC), `03_codebook.md`, `05_resultados_fase_a.md`, `06_resultados_painel.md`, este registro, `08_brief_deck.md` (brief do deck, revisão 3), `09`/`10` (análise crítica 1 e resposta), `11`/`12` (reanálise crítica e resposta), `13_comentarios_apresentacao.md` (comentários do professor na apresentação de 28/09/2026 e pendências S01–S10), `14_padronizacao_minmax.md` (S01: padronização min-max, reexecução e comparação), `15_sfa_canais.md` (S02: SFA por canal e H2), `16_acrescimos_s06_s07_s08.md` (S06–S08), `17_analise_critica_inconsistencias.md` (análise crítica 3) e `18_avaliacao_analise_critica.md` (resposta).
+- `artigo/` — `01_hipoteses.md`, `02_dados_externos.md` (inclui seção 5a: como obter patentes por inventor e VC), `03_codebook.md`, `05_resultados_fase_a.md`, `06_resultados_painel.md`, este registro, `08_brief_deck.md` (brief do deck, revisão 3), `09`/`10` (análise crítica 1 e resposta), `11`/`12` (reanálise crítica e resposta), `13_comentarios_apresentacao.md` (comentários do professor na apresentação de 28/09/2026 e pendências S01–S10), `14_padronizacao_minmax.md` (S01: padronização min-max, reexecução e comparação), `15_sfa_canais.md` (S02: SFA por canal e H2), `16_acrescimos_s06_s07_s08.md` (S06–S08), `17_analise_critica_inconsistencias.md` (análise crítica 3), `18_avaliacao_analise_critica.md` (resposta) e `19_orientacoes_sessoes_1_2.md` (orientações dos laboratórios de 14 e 21/09 e exigências do programa, a partir do repositório anterior).
 
 ## 3. Pipeline (por variante)
 
@@ -35,7 +54,7 @@ Documento de transferência: tudo o que foi feito, decidido e ficou pendente, pa
 
 ## 4. Resultados principais
 
-Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `artigo/06_resultados_painel.md` (painel e variantes), regenerados a partir das tabelas da reexecução de 28/09/2026 após a reanálise crítica (`artigo/11` → `artigo/12`). Este registro não duplica números: as duas rodadas de crítica (`artigo/09`/`10` em 27/09 e `artigo/11`/`12` em 28/09) mudaram procedimentos e valores, e as versões anteriores desta seção descreviam estados já superados (teste de RTS antes da correção, IC do ranking pela média dos limites, segundo estágio em escore truncado só em 1). O que cada rodada mudou de substância está nas seções finais de `artigo/10` e `artigo/12`.
+Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `artigo/06_resultados_painel.md` (painel e variantes). Partem da reexecução de 28/09/2026 após a reanálise crítica (`artigo/11` → `artigo/12`). Em 04/10/2026 foram atualizados pelas rodadas S01 (`artigo/14`), S02 (`artigo/15`), S06–S08 (`artigo/16`) e pela análise crítica 3 (`artigo/18`), que corrigiu a leitura invertida do Malmquist. Este registro não duplica números: as duas rodadas de crítica (`artigo/09`/`10` em 27/09 e `artigo/11`/`12` em 28/09) mudaram procedimentos e valores, e as versões anteriores desta seção descreviam estados já superados (teste de RTS antes da correção, IC do ranking pela média dos limites, segundo estágio em escore truncado só em 1). O que cada rodada mudou de substância está nas seções finais de `artigo/10` e `artigo/12`.
 
 ## 5. Problemas encontrados e como foram resolvidos
 
@@ -55,7 +74,7 @@ Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `ar
   - **WGI da Fase A.** O dataset original traz uma cópia da efetividade governamental e do controle da corrupção diferente da do World Bank (até 0,53); não misturar as cópias.
   - **Checagens entre fontes.** Usar as colunas tratadas, nunca as brutas.
 
-## 6. Pendências (estado em 04/10/2026, após S01, S02, S06, S07 e S08)
+## 6. Pendências (estado em 04/10/2026, após S01–S03, S06–S08, a análise crítica 3 e o registro dos laboratórios)
 
 ### Concluído (não requer ação)
 
@@ -114,6 +133,27 @@ Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `ar
 - **S09 Literatura, evidência contemporânea e periódico-alvo** [média]: revisão por hipótese (Wang e Huang, 2007; Sharma e Thomas, 2008; Guan e Chen, 2012; Cullmann et al., 2012, a verificar); dossiê de evidência por país com fontes datadas; CEJOR como candidato (Holý e Šafr, 2018, saiu lá); decisão do usuário sobre seguir para artigo.
 - **S10 Ordem acordada**: S01 → S02 → acréscimos leves (S07, S06, S08) → S03 → discussões (S04–S08 com S09) → relatório final e manuscrito.
 
+### Aberto — orientações dos laboratórios de 14 e 21/09 e exigências do programa (`artigo/19`)
+
+- **Zeros de investimento** [decisão com o professor]: na sessão 2 ele disse que "zero é zero". Este repositório exclui os zeros do modelo principal e os chama de "negócio não registrado" (`artigo/05`, seção 1).
+  - Saída A: manter a exclusão, com a justificativa reescrita. Sob retornos variáveis, a unidade sem investimento só é comparada a outras sem investimento e sai eficiente por construção.
+  - Saída B: trazer os zeros de volta ao modelo principal e discuti-los como casos.
+  - A sensibilidade já existe: `sensibilidade_zeros_m2*.csv`.
+- **Técnicas do programa que faltam:**
+  - ganhos com fusões (`Benchmarking::dea.merge`, por exemplo com blocos regionais);
+  - TOPSIS para agregar os estimadores num ranking final;
+  - análise das folgas (já calculadas nas tabelas `dea_ano_*`);
+  - opcionais: classes latentes com `poLCA` e o teste de Kolmogorov-Smirnov, como no material de aula.
+- **Base industrial** (sessão 1: a pesquisa só vira patente com base industrial): decidir se a manufatura (% do PIB) e a participação das exportações de manufaturados entram como contextuais na RQ2, ou justificar a omissão.
+- **Regra dos três anos** (sessão 2, "trabalho de cirurgião"): ranking só com países com pelo menos três anos.
+  - Hoje ficariam de fora 8 de 36 países na Fase A, inclusive o primeiro (Itália) e o último (Suíça), e 7 de 47 no painel.
+  - Isso afeta a escolha dos perfis do S05.
+- **Manuscrito:**
+  - tabela de regressões no formato de periódico;
+  - parágrafo "por que fronteira, e não mediação ou moderação";
+  - posicionamento contra Fukuyama, Tan e Wanke (2025), já nas referências do `artigo/01` (S09), e contra o estudo econométrico do grupo, se o professor o disponibilizar.
+- **Opcionais:** *voice and accountability* no bloco WGI; participação de STEM na produção científica; Malmquist global (Pastor e Lovell, 2005); tempo desde o primeiro investimento; modelo de conversão de publicações em patentes (DEA em rede).
+
 ### Aberto — decorrentes da análise crítica
 
 - Reexportar o deck com as figuras regeneradas (I05/P01); roteiro de alterações em `artigo/08`, seção 2.
@@ -163,3 +203,4 @@ tail -5 output/tables/manifesto_execucoes.csv  # execuções registradas (id, ba
 | 04/10/2026 | S03: decisão do autor (opção B) | `artigo/01` | três hipóteses (H1–H3) e duas perguntas de pesquisa (RQ1 dinâmica; RQ2 determinantes com expectativas E5–E7); `artigo/01` reescrito; síntese do `artigo/05` e notas no `artigo/06` e no `artigo/13` |
 | 04/10/2026 | S01: decisão do autor e comparativo atualizado | `artigo/14` | especificação principal em unidades originais e min-max como robustez (R4); segundo estágio min-max refeito com níveis de evidência e dimensões do WGI (64 de 105 coeficientes com o mesmo nível; robustos: instituições e PIB per capita em patentes; não robustos: pesquisadores e crédito); `R/05b` compara níveis de evidência e WGI |
 | 04/10/2026 | Análise crítica 3 (`artigo/17`) → resposta (`artigo/18`) | 15 achados, 15 verdadeiros (12 com a sugestão do revisor, 3 adaptados) | **Malmquist com sentido invertido desde o início** (o `Benchmarking` devolve, na orientação a produto, índices em que menor que 1 é melhora): a fronteira avança e a maioria dos países se afasta dela, o oposto do que se lia; "na fronteira em todos os anos" pelos escores CRS de todos os anos; H2 pela especificidade relativa com direção, só com ajuste válido; reinício do `frontier` (o descarte de réplicas com código 5 não era neutro); retornos do SFA com IC por país; amostra do conjunto preservada (inventor: 154 casos); bloco WGI com uma só cópia (Fase A: efetividade do cache significativa a 5%); checagem de patentes sem a Índia quebrada (ρ 0,76); dispersão com bootstrap de países e IQR relativo; ε minúsculo na sensibilidade; manifesto com figuras e entradas; errata do deck. Reexecução: cadeias 02 → 03 → 04 nas seis bases (originais e min-max), SFA, `R/12` e `R/05b` |
+| 04/10/2026 | Memória × documentação: orientações dos laboratórios e convenções | `artigo/19`; seção 1a deste registro; README | orientações dos laboratórios de 14 e 21/09 (repositório anterior `investimentos_ia`) trazidas para cá, com a situação de cada uma; conflito "zero é zero" × exclusão dos zeros registrado como decisão pendente; técnicas do programa que faltam (fusões, TOPSIS, folgas); Fukuyama, Tan e Wanke (2025) nas referências; convenções de trabalho e ambiente (R 4.5.2, versões dos pacotes) documentados |

@@ -211,6 +211,10 @@ A expectativa do professor confirma-se nos dados vigentes: a China não tem catc
 3. Decidir o periódico-alvo: CEJOR como candidato principal (conferir escopo, classificação Qualis vigente e exigências de formato); alternativas a avaliar: *Socio-Economic Planning Sciences*, *Technological Forecasting and Social Change*, *Journal of the Knowledge Economy*.
 4. Decisão do autor sobre seguir para artigo (condiciona o esforço de 1 a 3).
 
+**Acréscimo de 04/10/2026 (`artigo/19`).** O trabalho do grupo do professor sobre base parecida, identificado no repositório anterior, entra na revisão: Fukuyama, Tan e Wanke (2025), *Socio-Economic Planning Sciences*, já nas referências do `artigo/01` (marcado S09). Segundo o resumo, o controle da corrupção reduz a ineficiência em patentes, o que contrasta com a associação negativa entre instituições e eficiência encontrada aqui. Ficam também para o S09:
+- a literatura de capital humano sugerida no laboratório de 21/09;
+- o parágrafo "por que fronteira, e não mediação ou moderação", pedido no laboratório de 14/09.
+
 ### S10 — Ordem de execução acordada
 
 Ao final, o autor propôs e o professor concordou: (1) fazer o SFA funcionar (S02), aplicando a padronização sugerida; (2) fazer os ajustes de transformação (S01) e reexecutar; (3) fazer a revisão teórica para explicar os resultados, se eles não mudarem depois de arrumar a base; (4) terminar o relatório final. Ordem recomendada aqui, respeitando as dependências:

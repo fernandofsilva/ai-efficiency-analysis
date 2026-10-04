@@ -1,6 +1,6 @@
 # AI Efficiency Analysis
 
-Eficiência dos países na conversão de investimento em inteligência artificial (e P&D) em produção científica (publicações em IA) e tecnológica (pedidos de patente em IA). Trabalho da disciplina *Introdução à Análise de Eficiência em R* (Prof. Peter Wanke), a ser convertido em artigo para periódico Qualis.
+Eficiência dos países na conversão de investimento em inteligência artificial (e P&D) em produção científica (publicações em IA) e tecnológica (pedidos de patente em IA). Trabalho da disciplina *Introdução à Análise de Eficiência em R* (Escola de Métodos, Prof. Peter Wanke), a ser convertido em artigo para periódico Qualis.
 
 ## Estrutura
 
@@ -9,6 +9,30 @@ Eficiência dos países na conversão de investimento em inteligência artificia
 - `artigo/` — documentos do trabalho: hipóteses, catálogo de dados externos, codebook, resultados.
 - `output/tables/` e `output/figures/` — tabelas (CSV) e figuras (PNG) geradas pelos scripts.
 - `others/` — syllabus da disciplina.
+
+## Ambiente
+
+Resultados de 04/10/2026 gerados em macOS com R 4.5.2 (`/usr/local/bin/Rscript`). Versões dos pacotes usados:
+
+| Pacote | Versão | Pacote | Versão |
+|---|---|---|---|
+| Benchmarking | 0.33 | frontier | 1.1.8 |
+| rDEA | 1.2.8 | sfaR | 1.0.1 |
+| nonparaeff | 0.5.15 | npsf | 0.8.0 |
+| frontiles | 1.3.1 | plm | 2.6.7 |
+| truncreg | 0.2.5 | lmtest | 0.9.40 |
+| AER | 1.2.15 | boot | 1.3.32 |
+| dplyr | 1.1.4 | tidyr | 1.3.1 |
+| ggplot2 | 4.0.1 | ggrepel | 0.9.8 |
+| countrycode | 1.9.0 | curl | 7.0.0 |
+| jsonlite | 2.0.0 | readxl | 1.4.5 |
+| lpSolveAPI | 5.5.2.0.17.15 | | |
+
+**Cuidados com as versões e a máquina:**
+- **Pacotes ausentes.** `R/00_setup.R` instala do CRAN os que faltarem, e a versão instalada pode ser outra.
+- **Malmquist.** O sentido dos índices depende da convenção do `Benchmarking` (na 0.33, orientação a produto, menor que 1 é melhora). Por isso `IndicesMalmquist` confere a convenção a cada execução e para o script se ela mudar.
+- **Python.** O da máquina não tem certificados SSL (`CERTIFICATE_VERIFY_FAILED`): os downloads usam o pacote `curl` do R ou o `curl` da linha de comando.
+- **PDF do deck.** Para inspecionar o PDF, o PyMuPDF foi instalado num ambiente virtual temporário.
 
 ## Como rodar
 
@@ -65,6 +89,7 @@ Padronização das variáveis da fronteira (S01): os scripts 02, 02b, 03, 04 e 0
 - `artigo/16_acrescimos_s06_s07_s08.md` — S06–S08: Malmquist por país, níveis de evidência do segundo estágio (com as dimensões do WGI) e dispersão por renda e ano.
 - `artigo/17_analise_critica_inconsistencias.md` — terceira revisão crítica (15 achados, entre eles o sentido invertido do Malmquist).
 - `artigo/18_avaliacao_analise_critica.md` — veredito, correção adotada e estado de cada achado da terceira revisão, com a reexecução de 04/10/2026.
+- `artigo/19_orientacoes_sessoes_1_2.md` — orientações dos laboratórios de 14 e 21/09/2026 e exigências do programa da disciplina, trazidas do repositório anterior ([investimentos_ia](https://github.com/fernandofsilva/investimentos_ia)), com a situação de cada uma aqui e as pendências.
 
 **Convenção do Malmquist.** As tabelas `malmquist_*` usam índice maior que 1 = melhora (Färe et al., 1994): M > 1, a produtividade cresce; TC > 1, a fronteira avança; EC > 1, o país se aproxima da fronteira. Na orientação a produto, o `Benchmarking` devolve os recíprocos, e `IndicesMalmquist` (em `R/funcoes.R`) faz a conversão.
 
