@@ -1,4 +1,4 @@
-# Registro de trabalho e guia de retomada (estado em 28/09/2026, após a reanálise crítica)
+# Registro de trabalho e guia de retomada (estado em 28/09/2026, após a apresentação em aula)
 
 Documento de transferência: tudo o que foi feito, decidido e ficou pendente, para retomar o trabalho em nova sessão sem depender do histórico da conversa. Plano aprovado em `~/.claude/plans/esse-um-trabalho-cheerful-squirrel.md`.
 
@@ -6,7 +6,8 @@ Documento de transferência: tudo o que foi feito, decidido e ficou pendente, pa
 
 - Disciplina *Introdução à Análise de Eficiência em R* (Prof. Peter Wanke). Entregas: apresentação de diagnóstico em 28/09/2026 (dataset original) e manuscrito em português para periódico Qualis (painel reconstruído).
 - Decisões: modelo principal conjunto (publicações + patentes) com modelos por canal; tudo em português; painel reconstruído (CSET + World Bank) substitui o dataset original na versão artigo; scripts R no estilo Google (BigCamelCase, `return()` explícito, `pkg::fun`, 80 colunas); todas as bases dentro de `data/`, uma subpasta por fonte; documentos em `artigo/` (o `.gitignore` ignora `docs/`).
-- Commits em `main` e `origin/main`: `ae6c878` (pipeline e resultados), `c3b78ff` (resposta à análise crítica, `artigo/10`), `3b0799b` (cabeçalho de `R/05`), `91ee83c` (revisão 2 do brief). A resposta à reanálise crítica de 28/09 (`artigo/11` → `artigo/12`, código e reexecução) ainda não foi commitada no momento desta escrita; conferir com `git status`.
+- Commits em `main` e `origin/main` (sincronizados em 28/09/2026): `ae6c878` (pipeline e resultados), `c3b78ff` (resposta à análise crítica, `artigo/10`), `3b0799b` (cabeçalho de `R/05`), `91ee83c` (revisão 2 do brief), `f188559` (resposta à reanálise crítica, `artigo/11` → `artigo/12`, código e reexecução).
+- Apresentação em aula feita em 28/09/2026. Os comentários do Prof. Peter Wanke e as pendências decorrentes (S01–S10) estão em `artigo/13_comentarios_apresentacao.md`; a ordem de execução acordada está na seção 6 abaixo.
 
 ## 2. Estrutura do repositório
 
@@ -17,7 +18,7 @@ Documento de transferência: tudo o que foi feito, decidido e ficou pendente, pa
 - `R/` — `00_setup.R` (pacotes, opções, pastas, `source("R/funcoes.R")`), `funcoes.R` (World Bank, DEA, bootstrap, Spearman com IC, interpolação), `01_prep_dataset_atual.R`, `02_fronteiras_dataset_atual.R`, `02b_teste_rts.R`, `03_segundo_estagio_dataset_atual.R`, `04_figuras_apresentacao.R`, `10_download_wdi.R`, `11_import_cset.R`, `12_import_fontes_alternativas.R`, `13_build_painel.R`, `14_download_oecd_patentes.R`.
 - Scripts 02/02b/03/04 são parametrizados por variáveis de ambiente: `BASE_ARQUIVO` (padrão `data/processed/base_atual.csv`), `SUFIXO_SAIDA` (`""`, `_painel`, `_painel_qualidade`, `_painel_fonte`, `_painel_preqin`, `_painel_publico`), `INSUMOS` (`investimento,gerd`; `investimento_l1,gerd_l1`; `investimento_preqin_l1,gerd_l1`; `investimento_l1,pd_publico_l1`), `PRODUTOS` (`publicacoes,patentes`; `citacoes_ok,patentes_concedidas_ok`; `publicacoes,patentes_inventor`), `JANELA_MALMQUIST` (`2016,2019`; `2017,2021`; `2017,2019`), `N_REP_RTS`, `LIMITE_SW_SEG`. Runner único: `output/rodar_pipeline.sh` (modos `faseA`, `painel`, `variantes`, `rts`, `validacao`, `tudo`), com status por etapa em `output/status_execucao.txt`, interrupção da cadeia dependente em caso de falha e código de saída igual ao número de falhas; manifesto de execuções e de saídas (MD5) em `output/tables/manifesto_execucoes.csv` e `manifesto_saidas.csv`.
 - `output/tables/` (~100 CSVs) e `output/figures/` (fig1–fig7 por variante, fig8 investimento CSET × Quid, fig9 patentes CSET × OCDE). Logs em `output/log_*.txt`.
-- `artigo/` — `01_hipoteses.md`, `02_dados_externos.md` (inclui seção 5a: como obter patentes por inventor e VC), `03_codebook.md`, `05_resultados_fase_a.md`, `06_resultados_painel.md`, este registro.
+- `artigo/` — `01_hipoteses.md`, `02_dados_externos.md` (inclui seção 5a: como obter patentes por inventor e VC), `03_codebook.md`, `05_resultados_fase_a.md`, `06_resultados_painel.md`, este registro, `08_brief_deck.md` (brief do deck, revisão 3), `09`/`10` (análise crítica 1 e resposta), `11`/`12` (reanálise crítica e resposta), `13_comentarios_apresentacao.md` (comentários do professor na apresentação de 28/09/2026 e pendências S01–S10).
 
 ## 3. Pipeline (por variante)
 
@@ -44,7 +45,7 @@ Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `ar
 - Dois processos `exec/R` sem `--file` que aparecem no `pgrep` são do VS Code, não do projeto.
 - Rodada de 28/09 (`artigo/12`): `truncreg` devolve coeficientes mesmo sem convergência (`est.stat$message = "iteration limit exceeded"`) — verificar sempre; a truncada em Farrell é degenerada nos canais (sigma explode) e a normal truncada em 0 e 1 não tem máximo finito quando os escores se acumulam perto de zero — a truncada sobre log(escore) resolve os dois problemas; `parallel::mcparallel` reinicializa o gerador do filho pelo PID e horário — fixar a semente dentro do filho; a largura de banda do teste de RTS calculada na amostra refletida subsuavizava em amostras grandes — usar `bw.nrd0` na amostra original, como o rDEA; `rDEA::rts.test` roda em segundos em amostras simuladas (banda de Silverman), mas não conclui na base real; réplicas de `dea.boot` invertidas para a escala de escore explodem quando F* < 1 — usar pseudo-valores 2F̂ − F*; o texto do PDF do deck é vetorial (extração de texto devolve vazio; usar renderização por página para conferir); rótulos de modelo com vírgula quebram `cut` nos CSVs — usar leitor de CSV.
 
-## 6. Pendências (estado em 28/09/2026, após a reanálise crítica)
+## 6. Pendências (estado em 28/09/2026, após a apresentação em aula)
 
 ### Concluído (não requer ação)
 
@@ -55,10 +56,23 @@ Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `ar
 
 ### Aberto — depende do usuário
 
-1. **Apresentação de 28/09**: o deck `AI Effiency Analysis.pdf` (raiz) foi gerado a partir da revisão 1 do brief e está desatualizado; atualizá-lo página a página conforme a seção 2 de `artigo/08_brief_deck.md` (revisão 3, com os números da reexecução de 28/09), embutindo as sete figuras (o PDF atual não contém nenhuma imagem), e reexportar. Nenhum cálculo pendente.
-2. **Commits**: a resposta à reanálise crítica (código, saídas regeneradas, `artigo/01`, `05`, `06`, `07`, `08`, `10`, `11`, `12`, runner único) foi commitada e integrada em `main` em 28/09/2026 (ver `git log`). Próximos commits: atualização do deck e trabalho da versão artigo.
+1. **Apresentação de 28/09**: feita. O deck `AI Effiency Analysis.pdf` (raiz) foi modificado em 28/09/2026 às 19:30, depois do último commit (20 páginas; a versão commitada, da revisão 1 do brief, tinha 19), e foi commitado em 04/10/2026 junto com o registro dos comentários; tem as sete figuras embutidas da revisão 3 de `artigo/08_brief_deck.md` (conferência dos números página a página não feita: o texto do PDF não é extraível sem poppler). Os comentários recebidos na apresentação estão em `artigo/13` e geram as pendências S01–S10 abaixo; para uma nova versão do deck ou para o relatório final, aplicar também S05 (legibilidade da fig1), S06 (decomposição do Malmquist por país no slide 11) e S07 (níveis de evidência no slide 12).
+2. **Commits**: a resposta à reanálise crítica (código, saídas regeneradas, `artigo/01`, `05`, `06`, `07`, `08`, `10`, `11`, `12`, runner único) foi commitada e integrada em `main` em 28/09/2026 (`f188559`). O deck modificado (item 1) e o registro dos comentários da apresentação (`artigo/13`, este arquivo, `README.md`, `artigo/06`) foram commitados em 04/10/2026. Próximo commit: o trabalho da versão artigo, começando por S01.
 3. **Top500** (opcional, baixa prioridade): o site bloqueou os downloads por taxa; rerodar `Rscript R/16_download_top500.R` mais tarde ou baixar as planilhas manualmente para `data/top500/` e rodar o script para agregar. Depois, usar `top500_sistemas` como Z no segundo estágio.
 4. **P&D público dos seis países sem fonte** (opcional): Brasil, Índia, Malásia, Filipinas, Arábia Saudita, Ucrânia só por fontes nacionais (RICYT, DST, MASTIC), manualmente. O UIS não publica mais a abertura por setor. Sem isso, esses países ficam fora apenas da variante `_painel_publico`.
+
+### Aberto — sugestões do Prof. Peter Wanke na apresentação de 28/09/2026 (detalhes, estado atual e ações em `artigo/13_comentarios_apresentacao.md`)
+
+- **S01 Padronização das variáveis da fronteira (min-max) e reexecução** [alta, primeira]: a DEA roda hoje em unidades originais (milhões de US$ e contagens, de três a cinco ordens de grandeza por variável); implementar a transformação como variante parametrizada (`PADRONIZACAO=minmax`, sufixo `_minmax`), igual para todas as variáveis, reexecutar Fase A e painel e comparar em amostra e fronteira comuns (`R/05`). Cuidados registrados em `artigo/13`: sentido do insumo, zeros no mínimo (deslocar para [ε, 1]), mín e máx únicos para o Malmquist e a fronteira agrupada, não invariância à translação sob CRS. Só "bater o martelo" nas conclusões depois disso.
+- **S02 SFA de H2 com variáveis reescalonadas** [alta]: não há SFA versionado; criar `R/06_sfa_canais.R` em log (Cobb-Douglas e translog), por canal, com valores iniciais por MQO, verificação de convergência e tempo; classes latentes só depois.
+- **S03 Menos hipóteses; hipótese × pergunta de pesquisa** [alta, antes de escrever]: manter como hipóteses o que tem ancoragem (sugestão: H1, H3, H4 e H2 se o SFA convergir) e converter H5–H7 em RQs; ancorar cada hipótese na literatura ou em indução explícita; fechar cada uma na discussão (bateu, não bateu, por quê).
+- **S04 Discussão de H1 por país** [média]: EUA, Japão e Reino Unido em DRS, China em CRS (não IRS, como dito na fala), Índia alternando; explicar com evidência contemporânea (platô japonês e britânico, desindustrialização e aposta em IA dos EUA, ascensão chinesa e indiana).
+- **S05 Perfis do ranking** [média, após S01]: três do topo e três ou quatro da base (países "nichados": Itália, Grécia, Índia ou Malásia; Suíça, Israel, Irlanda, Noruega), com fontes; aumentar a legibilidade da fig1.
+- **S06 Malmquist por país: frontier shift × catch-up** [média]: a decomposição já existe (`malmquist_m2.csv`, fig2), mas o slide e a fala destacaram o índice agregado; tabela por país em `artigo/05` e no deck (China e Índia só se movem com a fronteira; Brasil ganha por catch-up com fronteira parada); discutir a tese do platô; citar Moraes e Wanke (2019, *Cadernos EBAPE.BR*, 17(2)) com o achado correto (BNDES com efeito negativo no catch-up na siderurgia).
+- **S07 Segundo estágio: dois níveis de evidência e o que mede a efetividade governamental** [média]: acrescentar p-valor bootstrap, IC 90% e coluna de sinal previsto; classificar em significativo / "bateu na trave" (5–10%) / sinal confirmado / sinal contrário; descrever o WGI-GE e testar qualidade regulatória e estado de direito (já em `data/wgi/` e no painel) como Z alternativos.
+- **S08 Heterogeneidade por grupo de renda e ano** [média]: a "abertura" de 2018 na renda média-baixa é a entrada das Filipinas; a dispersão da renda média-alta cresce (DP 0,15 em 2013 → 0,27–0,34 em 2016–2020, escore VRS), a alta renda não; tabela de dispersão com escore corrigido, teste de tendência e discussão (China descolada; Indonésia, Malásia, Peru; México; Ucrânia pré-guerra); rever a nota do slide 13.
+- **S09 Literatura, evidência contemporânea e periódico-alvo** [média]: revisão por hipótese (Wang e Huang, 2007; Sharma e Thomas, 2008; Guan e Chen, 2012; Cullmann et al., 2012, a verificar); dossiê de evidência por país com fontes datadas; CEJOR como candidato (Holý e Šafr, 2018, saiu lá); decisão do usuário sobre seguir para artigo.
+- **S10 Ordem acordada**: S01 → S02 → acréscimos leves (S07, S06, S08) → S03 → discussões (S04–S08 com S09) → relatório final e manuscrito.
 
 ### Aberto — decorrentes da análise crítica
 
@@ -68,7 +82,7 @@ Os resultados vigentes estão em `artigo/05_resultados_fase_a.md` (Fase A) e `ar
 
 ### Aberto — trabalho analítico da versão artigo (sem dados novos)
 
-5. SFA por canal com classes latentes (`frontier`, `sfaR`; H2), teste de separabilidade formal (`npsf`), Malmquist com soma móvel de 3 anos, matriz de robustez consolidada (estimador × defasagem × qualidade × fonte × insumo público) em uma tabela única.
+5. SFA por canal com classes latentes (`frontier`, `sfaR`; H2), na forma de estimação de S02 acima; teste de separabilidade formal (`npsf`); Malmquist com soma móvel de 3 anos; matriz de robustez consolidada (estimador × defasagem × qualidade × fonte × insumo público × padronização, S01) em uma tabela única.
 6. `artigo/04_metodologia.md` e rascunho do manuscrito em português (introdução, dados, método, resultados, discussão), usando `artigo/01`, `02`, `05`, `06`.
 
 ## 7. Como retomar rapidamente
@@ -89,3 +103,4 @@ tail -5 output/tables/manifesto_execucoes.csv  # execuções registradas (id, ba
 | 27/09/2026 | Análise crítica 1 (`artigo/09`) → resposta (`artigo/10`); commit `c3b78ff` | 24 itens, 22 verdadeiros + 2 em parte | piso pelo insumo usado; RTS com observações originais contra a pseudofronteira e validação; IC do ranking por réplicas; N efetivo; covariância no Malmquist; H3b redefinida; decomposição amostra × especificação; rótulos e manifesto |
 | 27/09/2026 | Brief do deck, revisão 2; commit `91ee83c` | `artigo/08` | roteiro de edição do deck página a página |
 | 28/09/2026 | Análise crítica 2 (`artigo/11`) → resposta (`artigo/12`) | 15 itens, 12 verdadeiros + 3 em parte | convergência verificada nas truncadas; especificação principal sobre log(escore); RTS alinhado ao `rDEA` e validado nas duas implementações (tamanho ≈ 0,20; nenhum p < 0,05 nas bases); ranking por pseudo-valores, postos e contrastes; amostra e fronteira comuns nas comparações; β-convergência com a fronteira do painel balanceado; testes por grupo identificados; dois alvos em H3b; intervalos do Malmquist rotulados; semente no processo filho; runner único com propagação de falhas e manifesto de saídas; nove divergências documentais |
+| 28/09/2026 | Apresentação em aula e comentários do Prof. Peter Wanke (transcrição) | `artigo/13` | pendências S01–S10: padronização min-max das variáveis da fronteira e reexecução; SFA em variáveis reescalonadas; menos hipóteses e RQs; discussão de H1, do ranking, do Malmquist por país e da heterogeneidade por renda com evidência contemporânea; níveis de evidência no segundo estágio e dimensões do WGI; literatura por hipótese e periódico-alvo (CEJOR) |

@@ -52,5 +52,8 @@ Os scripts 02, 03 e 04 são parametrizados por variáveis de ambiente (`BASE_ARQ
 - `artigo/08_brief_deck.md` — brief slide a slide para montar a apresentação no Claude Design.
 - `artigo/09_analise_critica_inconsistencias.md` — revisão crítica externa (24 pontos).
 - `artigo/10_avaliacao_inconsistencias.md` — veredito, correção adotada e estado de cada ponto, com os resultados após a reexecução.
+- `artigo/11_reanalise_critica_inconsistencias.md` — segunda revisão crítica externa (13 achados e 2 pendências).
+- `artigo/12_avaliacao_reanalise.md` — veredito e correção de cada achado da reanálise, com a reexecução de 28/09/2026.
+- `artigo/13_comentarios_apresentacao.md` — comentários do Prof. Peter Wanke na apresentação de 28/09/2026 e pendências decorrentes (S01–S10).
 
 Comparações em amostra comum entre variantes: `R/05_comparacoes_amostra_comum.R`. Manifesto de execuções: `output/tables/manifesto_execucoes.csv`.
