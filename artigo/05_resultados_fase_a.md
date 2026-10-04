@@ -51,6 +51,10 @@ Spearman com o escore VRS (bootstrap em blocos de país, 36 blocos): corrigido 0
 - Spearman entre eficiência acadêmica e tecnológica (país-ano, blocos de país): 0,52 [0,31; 0,69]; p-valor unilateral de H0: ρ ≥ 0,5 = 0,59 (sem piso: 0,56, p = 0,72). **H3a inconclusiva**: compatível no ponto com correlação moderada, sem evidência contra ρ ≥ 0,5.
 - Metafronteira agrupada por grupo de renda: TGR média 0,62 (alta renda, 24 países) e 0,94 (renda média, 12 países). H3b, com dois alvos: (i) deslocamento de distribuição, Mann-Whitney unilateral (renda média abaixo), p = 1,0 em país-ano e em médias por país; (ii) diferença de TGR médio (renda média menos alta renda) +0,32 [+0,23; +0,40] por bootstrap em blocos de país. **Não apoiada**, com sinal contrário: com contagens, o grupo de renda média define a metafronteira (China, Índia, México, Peru). Ambos os alvos condicionam-se às fronteiras estimadas.
 - Diferenças por grupo de renda (mesmo teste nas duas unidades amostrais): canal de patentes, Kruskal-Wallis com três grupos p = 0,001 em país-ano e 0,022 em médias por país; Mann-Whitney com dois grupos p < 0,001 e 0,020 (0,34 na renda média-alta contra 0,17 na alta renda); publicações e modelo conjunto sem diferença em nenhuma versão.
+- **Dispersão por grupo de renda e ano** (Figura 5; S08, detalhes em `artigo/16`, seção 4; escore corrigido; só a dispersão relativa se compara entre anos, porque as fronteiras são anuais):
+  - **Renda média-alta:** o coeficiente de variação sobe 0,022 por ano (p = 0,10), sem tendência significativa. O mínimo é o Brasil até 2015, a África do Sul de 2016 a 2019 e a Argentina em 2020–2021; o máximo alterna entre Indonésia, México, Malásia e China.
+  - **Alta renda:** sem tendência (p = 0,48). Israel é o mínimo em todos os anos.
+  - **Renda média-baixa:** só tem a Índia, exceto em 2018, quando entram as Filipinas (0,35). A "abertura" de 2018 na Figura 5 é composição, não crise.
 
 ## 7. Dinâmica 2016–2019 — H4 (Figura 2)
 
@@ -66,19 +70,53 @@ Painel balanceado de 16 países (M2, CRS, produto), médias geométricas; interv
 - H4b (critério numérico: EC da renda média > 1 com o intervalo excluindo 1): EC = 1,074 com intervalo [0,958; 1,262] → **não atendido**; a alta renda tem catch-up acima de 1 pelo mesmo critério (1,109 [1,007; 1,230]), evidência descritiva. β-convergência (MQO descritivo; eficiência inicial CRS medida contra a mesma fronteira do painel balanceado, `e00` do Malmquist): inclinação de log EC no log da eficiência inicial +0,106 (p = 0,11), sem convergência; a versão anterior, com a eficiência inicial da DEA anual de todos os países, dava +0,043 (p = 0,47).
 - Em palavras simples: a produtividade sobe porque "os campeões avançaram" ou porque "o país se aproximou dos campeões"; o Malmquist separa os dois pedaços; aqui o primeiro domina e os que se aproximaram foram, em média, os ricos.
 
+**Por país (S06; `malmquist_por_pais.csv`).** Médias geométricas 2016–2019. A leitura usa faixas de 5% em torno de 1: TC acima de 1,05, a fronteira avança; abaixo de 0,95, recua. EC acima de 1,05 é catch-up; abaixo de 0,95, o país se afasta. "Na fronteira" quando EC = 1 em todos os pares de anos.
+
+| País | Grupo | Malmquist | Mudança técnica (TC) | Mudança de eficiência (EC) | Leitura |
+|---|---|---|---|---|---|
+| Brasil | Renda média | 1,45 | 0,96 | 1,52 | catch-up; fronteira estável |
+| Áustria | Alta renda | 1,27 | 0,78 | 1,63 | catch-up; fronteira recua |
+| Polônia | Alta renda | 1,25 | 1,00 | 1,25 | catch-up; fronteira estável |
+| Grécia | Alta renda | 1,23 | 1,23 | 1,00 | na fronteira: só deslocamento da fronteira |
+| Argentina | Renda média | 1,20 | 1,20 | 1,00 | na fronteira: só deslocamento da fronteira |
+| Noruega | Alta renda | 1,15 | 0,92 | 1,26 | catch-up; fronteira recua |
+| México | Renda média | 1,07 | 0,93 | 1,15 | catch-up; fronteira recua |
+| Espanha | Alta renda | 0,95 | 0,98 | 0,97 | estável; fronteira estável |
+| Índia | Renda média | 0,95 | 0,95 | 1,00 | na fronteira: só deslocamento da fronteira |
+| Singapura | Alta renda | 0,91 | 0,96 | 0,94 | se afasta; fronteira estável |
+| Israel | Alta renda | 0,90 | 0,95 | 0,94 | se afasta; fronteira estável |
+| África do Sul | Renda média | 0,87 | 0,99 | 0,88 | se afasta; fronteira estável |
+| Estados Unidos | Alta renda | 0,82 | 0,68 | 1,21 | catch-up; fronteira recua |
+| Japão | Alta renda | 0,82 | 0,76 | 1,07 | catch-up; fronteira recua |
+| Hungria | Alta renda | 0,81 | 0,83 | 0,98 | estável; fronteira recua |
+| China | Renda média | 0,65 | 0,65 | 1,00 | na fronteira: só deslocamento da fronteira |
+
+- **Só se movem com a fronteira** (estão sobre ela em todos os anos): China, Índia, Grécia e Argentina. Na China, o recuo é o maior da amostra (0,65): o investimento cresce mais depressa que os produtos de IA.
+- **Ganham por catch-up:** Brasil, Áustria, Polônia, Noruega, México, Estados Unidos e Japão.
+  - O Brasil ganha com a fronteira estável (TC 0,96), como o professor antecipou.
+  - Nos Estados Unidos e no Japão, o catch-up não compensa o recuo da fronteira (TC 0,68 e 0,76).
+- **Tese do platô:** confirmada em parte.
+  - Quem investe muito perto da fronteira é quem mais a vê recuar, o que é coerente com retornos decrescentes em escala grande (seção 3).
+  - Mas o catch-up da renda média (1,07) não supera o da alta renda (1,11).
+- **Moraes e Wanke (2019)**, *Cadernos EBAPE.BR*, 17(2): na siderurgia brasileira, o financiamento do BNDES tem efeito negativo sobre o catch-up e nenhum sobre o deslocamento da fronteira. O artigo chama o catch-up de "Mudança Técnica", ao contrário deste projeto, em que esse nome designa o deslocamento da fronteira (ver `artigo/16`, seção 3).
+
 ## 8. Segundo estágio — H5, H6, H7 (Figura 4)
 
 Especificação principal: regressão truncada sobre o **log do escore corrigido** (log s em (−∞, 0), truncada à direita em 0 — o modelo de Simar e Wilson, 2007, sobre o logaritmo da medida de Farrell), escores fixos, bootstrap por país (36 países), convergência verificada no ajuste pontual e em cada réplica (todas as 300 convergem em todos os modelos abaixo). Coeficiente positivo = mais eficiente (semi-elasticidade do escore). N = casos completos da fórmula.
 
-| Modelo | Variável | Coef. | IC 95% | n obs./países |
-|---|---|---|---|---|
-| H5 conjunto (M2) | efetividade governamental | −0,581 | [−1,309; 0,016] | 191/36 |
-| H5 sem valores-piso | efetividade governamental | −0,656 | [−1,687; 0,016] | 169/34 |
-| H5 com pesquisadores | log pesquisadores por milhão | 0,146 | [−0,177; 0,445] | 161/33 |
-| H6 canal patentes | capitalização de mercado | 0,000 | [−0,015; 0,023] | 191/36 |
-| H6 canal patentes | crédito privado | 0,014 | [−0,022; 0,042] | 191/36 |
-| H7 canal patentes | log PIB per capita | −0,534 | [−1,803; 0,273] | 191/36 |
-| H7 canal publicações | log PIB per capita | −0,360 | [−0,660; −0,023] | 191/36 |
+| Modelo | Variável | Coef. | IC 95% | p bootstrap | Nível de evidência (S07) | n obs./países |
+|---|---|---|---|---|---|---|
+| H5 conjunto (M2) | efetividade governamental | −0,581 | [−1,309; 0,016] | 0,060 | sinal contrário, 5–10% | 191/36 |
+| H5 sem valores-piso | efetividade governamental | −0,656 | [−1,687; 0,016] | 0,087 | sinal contrário, 5–10% | 169/34 |
+| H5 com pesquisadores | log pesquisadores por milhão | 0,146 | [−0,177; 0,445] | 0,433 | só o sinal | 161/33 |
+| H6 canal patentes | capitalização de mercado | 0,000 | [−0,015; 0,023] | 0,933 | sem sinal (≈ 0) | 191/36 |
+| H6 canal patentes | crédito privado | 0,014 | [−0,022; 0,042] | 0,347 | compatível (previsão: não positivo) | 191/36 |
+| H7 canal patentes | log PIB per capita | −0,534 | [−1,803; 0,273] | 0,213 | sinal contrário | 191/36 |
+| H7 canal publicações | log PIB per capita | −0,360 | [−0,660; −0,023] | 0,033 | compatível (previsão: não positivo) | 191/36 |
+
+Níveis de evidência (S07): significativo a 5% (IC 95% exclui zero), "bateu na trave" (só o IC 90% exclui), só o sinal ou sinal contrário; definição completa em `artigo/16`, seção 2. As exportações de alta tecnologia têm o sinal previsto, sem significância, nos três modelos de H5.
+
+**Outras dimensões do WGI (S07).** Com a efetividade trocada por qualidade regulatória, estado de direito, controle da corrupção ou o índice composto, o sinal continua negativo: −0,56 (5–10%), −0,49, −0,48 e −0,55 (os três últimos com IC 95% excluindo zero). As quatro dimensões têm correlação de 0,91 a 0,96 nesta amostra, então não é possível separar capacidade regulatória de qualidade institucional geral (`segundo_estagio_wgi.csv`, `artigo/16`).
 
 - Comparações (`dependente` na tabela): escore truncado só em 1, a especificação das versões anteriores, dá efetividade −0,137 [−0,329; −0,000]; seu suporte (−∞, 1) é incompatível com o escore, com massa condicional abaixo de zero desprezível no modelo conjunto (0,2% na mediana) mas de 16% na mediana (máximo 46%) no canal de patentes. Em Farrell (truncada à esquerda em 1), o ajuste é degenerado: H5 "converge" para +57 [0,04; 90] com sigma = 10; H6 de patentes não é estimado; H7 de patentes tem 228 de 300 réplicas convergentes. A normal truncada em 0 e em 1 não tem máximo finito nos canais de patentes e foi descartada.
 - Algoritmo 2 de Simar-Wilson (rDEA, fronteira agrupada, Farrell, semente fixada): efetividade +10,1 [5,4; 15,3] (positivo = menos eficiente); crédito −0,15 [−0,23; −0,07]. Tobit: efetividade −0,116 (p < 0,001). Três procedimentos com fronteiras, amostras e escalas distintas dão o mesmo sinal negativo para as instituições; a especificação principal, porém, não o distingue de zero. Nenhum deles testa separabilidade (associações descritivas em `associacao_z_vs_escore.csv`), por isso o segundo estágio é exploratório.
@@ -98,9 +136,9 @@ Ver `artigo/06_resultados_painel.md`: painel de 47 países (2017–2021), teste 
 | H3b metafronteira | TGR média 0,94 > alta 0,62; diferença +0,32 [0,23; 0,40]; MW p = 1,0 | não apoiada (sinal contrário) |
 | H4a dinâmica | TC domina (parcela 0,60), fronteira recua | apoiada |
 | H4b convergência | EC média 1,074 [0,958; 1,262]; β +0,11 (p = 0,11) | critério não atendido |
-| H5 instituições | efetividade −0,58 [−1,31; 0,02]; sinal negativo em quatro procedimentos | não apoiada |
-| H6 finanças | coeficientes nulos | não apoiada |
-| H7 desenvolvimento | PIB pc negativo em publicações, nulo em patentes | contrariada |
+| H5 instituições | efetividade −0,58 [−1,31; 0,02] (sinal contrário, 5–10%), negativa em quatro procedimentos e com todas as dimensões do WGI; exportações de alta tecnologia e pesquisadores só com o sinal previsto | não apoiada (sinal contrário robusto nas instituições) |
+| H6 finanças | capitalização ≈ 0; crédito compatível com a previsão | não apoiada |
+| H7 desenvolvimento | PIB per capita negativo em patentes (sinal contrário, sem significância) e em publicações (compatível) | contrariada no canal de patentes |
 | R1 estimadores | ρ entre 0,51 e 0,93 | moderadamente robusto |
 
 **Robustez à padronização (S01, 04/10/2026; detalhes em `artigo/14_padronizacao_minmax.md`).** Com as variáveis da fronteira em min-max (ε = 0,01), a Fase A mantém:

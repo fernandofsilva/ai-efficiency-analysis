@@ -2,13 +2,19 @@ Warning message:
 `geom_errorbarh()` was deprecated in ggplot2 4.0.0.
 ℹ Please use the `orientation` argument of `geom_errorbar()` instead. 
 `height` was translated to `width`.
-17:25:08 figura gravada: fig1_ranking_m2 
-17:25:08 figura gravada: fig2_malmquist_decomposicao 
-17:25:09 figura gravada: fig3_canais 
+11:47:10 figura gravada: fig1_ranking_m2 
+11:47:10 figura gravada: fig2_malmquist_decomposicao 
+11:47:10 figura gravada: fig3_canais 
 `height` was translated to `width`.
-17:25:09 figura gravada: fig4_segundo_estagio 
-17:25:09 figura gravada: fig5_renda_ano 
+11:47:10 figura gravada: fig4_segundo_estagio 
+11:47:11 figura gravada: fig5_renda_ano 
+       grupo_renda anos observacoes inclinacao_cv p_inclinacao_cv inclinacao_iqr p_inclinacao_iqr
+1       Alta renda    5         152   -0.02650281       0.1714704    -0.00994806        0.4518796
+2 Renda média-alta    5          40    0.04947713       0.2633335     0.03613599        0.3304446
+  corte_periodo desvio_mediano_primeira desvio_mediano_segunda p_mann_whitney_desvios
+1          2019              0.21166795              0.2103639              0.8977661
+2          2019              0.06427081              0.1777820              0.0774756
 `height` was translated to `width`.
-17:25:09 figura gravada: fig6_estimadores 
-17:25:09 figura gravada: fig7_metafronteira 
-17:25:09 FIM figuras Fase A 
+11:47:11 figura gravada: fig6_estimadores 
+11:47:11 figura gravada: fig7_metafronteira 
+11:47:11 FIM figuras Fase A 

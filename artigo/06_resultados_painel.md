@@ -70,6 +70,14 @@ Painel balanceado, CRS, médias geométricas; intervalos por reamostragem de pa�
 - H4b, critério numérico (EC da renda média > 1 com o intervalo excluindo 1, valores não arredondados): base 0,984 [0,909; 1,062] → não atendido; produtos alternativos 0,997 [0,886; 1,123] → não; patentes por inventor 0,956 [0,864; 1,036] → não; **Preqin 1,0378 [1,0012; 1,0820] → atendido** (limite inferior acima de 1 em 20 sementes de 20; evidência descritiva de catch-up, não confirmação inferencial); P&D executado 0,916 [0,801; 1,043] → não.
 - β-convergência (MQO descritivo; eficiência inicial CRS medida contra a fronteira do painel balanceado): base +0,001 (p = 0,96); produtos alternativos +0,115 (p = 0,066); patentes por inventor **+0,100 (p < 0,001)**; Preqin −0,020 (p = 0,32); P&D executado +0,115 (p < 0,001). Nenhuma variante mostra inclinação negativa; em duas, quem começou mais eficiente ganhou mais eficiência (divergência, não convergência).
 
+- **Por país (S06; `malmquist_por_pais_painel.csv`; detalhes em `artigo/16`, seção 3):**
+  - Na fronteira em todos os anos (só se movem com ela): China (TC 0,77), Coreia do Sul, Malásia e Rússia.
+  - Dos 34 países, 21 ganham por catch-up com a fronteira recuando, entre eles Estados Unidos (EC 1,25; TC 0,75), Reino Unido, Alemanha, Brasil (EC 1,13; TC 0,80), Itália e Israel.
+  - A Grécia é o único caso com a fronteira avançando (TC 1,06) e catch-up (1,11).
+- **Dispersão por grupo de renda e ano (S08; `dispersao_renda_ano_painel.csv`):** sem tendência significativa a 5%.
+  - Renda média-alta: o coeficiente de variação cai 0,099 por ano (p = 0,08), ao contrário da Fase A. O mínimo é a África do Sul em quatro dos cinco anos.
+  - Alta renda: Israel é o mínimo em quatro dos cinco anos.
+
 ## 7. Segundo estágio (H5, H6, H7)
 
 Especificação principal: regressão truncada sobre o log do escore corrigido (truncada em 0), escores fixos, bootstrap por país, convergência verificada em cada ajuste (300 de 300 réplicas em todos os modelos abaixo); coeficiente positivo = mais eficiente (semi-elasticidade). N = casos completos. Parametrizações em escore truncado em 1 e em Farrell ficam nas tabelas como comparação (`dependente`), com os sinais de convergência; em Farrell, H6 de patentes não é estimado em nenhuma variante.
@@ -87,6 +95,14 @@ Especificação principal: regressão truncada sobre o log do escore corrigido (
 
 - Algoritmo 2 de Simar-Wilson (rDEA, fronteira agrupada, casos completos de contexto, escala de Farrell, sinal invertido, semente fixada no processo filho): base efetividade +17,1 [8,1; 25,5]*, crédito −0,26*; patentes por inventor +2,76 [0,75; 5,01]*; P&D executado +2,77 [1,25; 4,19]*; Preqin +54 [−12; 95] (n.s.); produtos alternativos: não concluído em 300 s (tabela anterior marcada como obsoleta). Tobit (base): −0,167 (ep 0,032).
 - Leitura: a associação negativa entre efetividade governamental e eficiência medida é significativa na especificação principal em três variantes com produtos em contagem (base, Preqin, P&D executado), fica no limite na variante de patentes por inventor e deixa de ser distinguível de zero na variante de produtos alternativos; a seção 9 testa se essa diferença é de especificação. Pesquisadores por milhão e talento em IA só têm sinal positivo significativo nas variantes de patentes por inventor (ambos) e de P&D executado (só pesquisadores). Crédito bancário (não a capitalização) associa-se positivamente ao canal de patentes (H6 contrariada); PIB per capita é negativo ou nulo nos dois canais (H7 contrariada). Nenhum procedimento testa separabilidade; o segundo estágio é exploratório.
+
+- **Níveis de evidência (S07; colunas `nivel_evidencia`, `p_boot` e IC 90% nas tabelas; detalhes em `artigo/16`, seção 2):**
+  - **Efetividade governamental:** sinal contrário ao previsto nas 20 especificações de H5 do painel (12 a 5%, 4 entre 5% e 10%, 4 sem significância), no Tobit e no algoritmo 2.
+  - **Pesquisadores:** sinal previsto em todas as variantes, significativo no inventor e no P&D público.
+  - **Exportações de alta tecnologia:** sinal previsto sempre; significativo em três especificações com pesquisadores.
+  - **Crédito no canal de patentes:** contraria H6 (positivo e significativo na base, na Preqin e no P&D público).
+  - **PIB per capita em patentes:** contraria H7 (negativo e significativo em quatro variantes).
+- **Outras dimensões do WGI:** qualidade regulatória, estado de direito, controle da corrupção e o índice composto dão o mesmo sinal negativo em todas as variantes, com IC 95% excluindo zero na base, na Preqin e no P&D público. Por exemplo, na base: −0,71, −0,51, −0,51 e −0,63. As dimensões têm correlação de 0,94 a 0,96 e não se separam.
 
 ## 8. Checagens entre fornecedores (`R/12`, bootstrap em blocos de país)
 
@@ -133,3 +149,7 @@ Metafronteira por grupo de renda, três estimativas por variante, na interseçã
 7. Sugestões do Prof. Peter Wanke na apresentação de 28/09/2026 (S01–S10 em `artigo/13_comentarios_apresentacao.md`): reexecutar com as variáveis da fronteira padronizadas (min-max, uma só transformação) antes de fechar qualquer conclusão; SFA em log; menos hipóteses, com H5–H7 como perguntas de pesquisa; discussão país a país com evidência contemporânea; dois níveis de evidência no segundo estágio.
 8. Robustez à padronização (S01, 04/10/2026; detalhes em `artigo/14_padronizacao_minmax.md`): com min-max (ε = 0,01) em todas as variantes, resistem a base do ranking (Israel em 47º nas duas versões; Suíça e Noruega), H3b sem apoio no painel base (+0,24 [0,18; 0,30]) e os sinais de H5 (efetividade −0,57 [−0,88; −0,13]) e de H7 (PIB per capita negativo nos dois canais). Não resistem o topo do ranking (Spearman entre versões 0,59), H6 (o crédito privado no canal de patentes perde o efeito), a inversão da metafronteira nas variantes de qualidade e de P&D público e a diferença do coeficiente de efetividade entre qualidade e base em amostra comum (+0,43 [0,05; 0,75] → +0,16 [−0,07; 0,45]). Retornos de escala e Malmquist não podem ser checados por min-max, porque a origem muda. A mudança de escala pura (x / máx) reproduz todos os escores. A especificação principal continua em unidades originais até a decisão do autor com o professor.
 9. SFA por canal em log (S02, 04/10/2026; detalhes em `artigo/15_sfa_canais.md`): H2 não se confirma no painel. No painel base, o investimento defasado não tem efeito no modelo agrupado e tem efeito só em publicações nos modelos de painel (0,03 [0,01; 0,06]). Com o P&D público como controle, não há efeito em patentes em nenhum modelo. A elasticidade do P&D é robusta: 0,64 [0,51; 0,77] em publicações e 1,41 [0,98; 1,75] em patentes no painel base. As somas das elasticidades indicam retornos decrescentes em publicações e crescentes em patentes. No corte agrupado, a ineficiência não é identificada em publicações (assimetria positiva do resíduo).
+10. Acréscimos S06–S08 (04/10/2026; `artigo/16`):
+    - Malmquist por país com a separação entre deslocamento da fronteira e catch-up.
+    - Níveis de evidência no segundo estágio: o sinal contrário da efetividade governamental é robusto e vale para todas as dimensões do WGI, que não se separam.
+    - Dispersão por renda sem tendência significativa.

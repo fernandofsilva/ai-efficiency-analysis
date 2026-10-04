@@ -2,7 +2,10 @@
 # Fase A: figuras para a apresentação (a partir das tabelas de output/tables).
 # Figuras: ranking com IC, decomposição de Malmquist, canais acadêmico x
 # tecnológico, coeficientes do segundo estágio, eficiência por grupo de renda
-# e ano, comparação de estimadores.
+# e ano, comparação de estimadores. Tabelas derivadas (comentários da
+# apresentação de 28/09/2026): Malmquist por país com a leitura de cada
+# componente (S06) e dispersão do escore por grupo de renda e ano, com
+# testes de tendência (S08).
 # Uso: Rscript R/04_figuras_apresentacao.R (após os scripts 02 e 03)
 
 source("R/00_setup.R")
@@ -95,6 +98,35 @@ fig2 <- ggplot2::ggplot(
   tema
 SalvarFigura(fig2, "fig2_malmquist_decomposicao", 9, 7)
 
+# 2b. Malmquist por país: deslocamento da fronteira x catch-up (S06) --------
+# Médias geométricas por país; a leitura usa faixas de 5% em torno de 1 para
+# a mudança técnica (TC: a fronteira avança, fica estável ou recua) e para a
+# mudança de eficiência (EC: o país se aproxima da fronteira, fica estável
+# ou se afasta). EC igual a 1 em todos os pares de anos indica país sobre a
+# fronteira CRS em todos os anos: todo o movimento é da própria fronteira.
+Faixa <- function(x, acima, estavel, abaixo) {
+  return(ifelse(x > 1.05, acima, ifelse(x < 0.95, abaixo, estavel)))
+}
+malm_por_pais <- malm |>
+  dplyr::group_by(pais, grupo_renda2) |>
+  dplyr::summarise(
+    pares_de_anos = dplyr::n(),
+    malmquist = MediaGeometrica(malmquist),
+    mudanca_tecnica = MediaGeometrica(mudanca_tecnica),
+    mudanca_eficiencia = MediaGeometrica(mudanca_eficiencia),
+    sempre_na_fronteira = all(abs(mudanca_eficiencia - 1) < 1e-6),
+    .groups = "drop") |>
+  dplyr::mutate(
+    fronteira = Faixa(mudanca_tecnica, "avança", "estável", "recua"),
+    eficiencia_relativa = Faixa(mudanca_eficiencia, "catch-up", "estável",
+                                "se afasta"),
+    leitura = ifelse(sempre_na_fronteira,
+                     "na fronteira: só deslocamento da fronteira",
+                     paste0(eficiencia_relativa, "; fronteira ",
+                            fronteira))) |>
+  dplyr::arrange(dplyr::desc(malmquist))
+SalvarTabela(malm_por_pais, paste0("malmquist_por_pais", sufixo))
+
 # 3. Canais: acadêmico x tecnológico -------------------------------------------
 canais <- LerTabela("canais_ano_m2")
 canais_pais <- canais |>
@@ -139,16 +171,43 @@ rotulos <- c(efetividade_governo = "Efetividade governamental",
              log_talento = "log(concentração de talento em IA)")
 seg$termo_rotulo <- ifelse(seg$termo %in% names(rotulos),
                            rotulos[seg$termo], seg$termo)
+# Cor pelo nível de evidência (S07): tons de azul para o sinal previsto
+# (escuro = IC 95% exclui zero; médio = só o IC 90%; claro = sem
+# significância, compatível com previsão nula ou coeficiente ≈ 0), vermelho
+# para o sinal contrário (com ou sem significância: o IC mostra qual) e
+# cinza para controles sem previsão. Tabelas antigas sem a
+# classificação caem na legenda de significância a 5%.
+niveis_fig4 <- c("Sinal previsto, IC 95% exclui zero",
+                 "Sinal previsto, só IC 90% exclui zero",
+                 "Sem significância (previsto, compatível ou ≈ 0)",
+                 "Sinal contrário", "Controle (sem previsão)")
+if ("nivel_evidencia" %in% names(seg)) {
+  seg$evidencia <- factor(dplyr::case_when(
+    is.na(seg$nivel_evidencia) ~ niveis_fig4[5],
+    seg$nivel_evidencia == "significativo (5%)" ~ niveis_fig4[1],
+    seg$nivel_evidencia == "bateu na trave (5-10%)" ~ niveis_fig4[2],
+    seg$nivel_evidencia %in% c("só o sinal", "compatível",
+                               "sem sinal (coeficiente ≈ 0)") ~
+      niveis_fig4[3],
+    TRUE ~ niveis_fig4[4]), levels = niveis_fig4)
+} else {
+  seg$evidencia <- factor(ifelse(seg$significativo_5pct, niveis_fig4[1],
+                                 niveis_fig4[5]), levels = niveis_fig4)
+}
+cores_evidencia <- stats::setNames(
+  c("#104281", "#3987e5", "#86b6ef", "#e34948", "#898781"), niveis_fig4)
 fig4 <- ggplot2::ggplot(seg, ggplot2::aes(x = coeficiente, y = termo_rotulo,
-                                          colour = significativo_5pct)) +
+                                          colour = evidencia)) +
   ggplot2::geom_vline(xintercept = 0, linetype = 2) +
+  # show.legend = TRUE: desenha a chave também dos níveis sem coeficiente
+  # nesta base, para a legenda ser a mesma em todas as figuras.
   ggplot2::geom_errorbarh(ggplot2::aes(xmin = ic_inf, xmax = ic_sup),
-                          height = 0.25) +
-  ggplot2::geom_point(size = 2.5) +
+                          height = 0.25, show.legend = TRUE) +
+  ggplot2::geom_point(size = 2.5, show.legend = TRUE) +
   ggplot2::facet_wrap(~ modelo, scales = "free", ncol = 2) +
-  ggplot2::scale_colour_manual(values = c(`TRUE` = "#d62728",
-                                          `FALSE` = "grey50"),
-                               name = "IC 95% exclui zero") +
+  ggplot2::scale_colour_manual(values = cores_evidencia, name = NULL,
+                               drop = FALSE) +
+  ggplot2::guides(colour = ggplot2::guide_legend(ncol = 2)) +
   ggplot2::labs(x = paste("Coeficiente (dependente: log da eficiência",
                           "corrigida, truncada em 0; positivo = mais",
                           "eficiente)"),
@@ -168,6 +227,57 @@ fig5 <- ggplot2::ggplot(boot_m2, ggplot2::aes(x = factor(ano), y = escore_bc,
                               "renda e ano")) +
   tema
 SalvarFigura(fig5, "fig5_renda_ano", 10, 6)
+
+# 5b. Dispersão do escore por grupo de renda e ano (S08) -------------------
+# Escore corrigido de viés. As fronteiras são anuais (contemporâneas): o
+# nível do escore não se compara entre anos, só a dispersão relativa
+# (coeficiente de variação, IQR). Em cada grupo e ano, também quem fica nos
+# extremos (quem "abre" a distribuição).
+dispersao <- boot_m2 |>
+  dplyr::group_by(grupo_renda, ano) |>
+  dplyr::summarise(
+    n = dplyr::n(), media = mean(escore_bc),
+    desvio_padrao = if (dplyr::n() > 1) stats::sd(escore_bc) else NA_real_,
+    iqr = stats::IQR(escore_bc), minimo = min(escore_bc),
+    pais_minimo = pais[which.min(escore_bc)], maximo = max(escore_bc),
+    pais_maximo = pais[which.max(escore_bc)], .groups = "drop") |>
+  dplyr::mutate(cv = desvio_padrao / media)
+SalvarTabela(dispersao, paste0("dispersao_renda_ano", sufixo))
+# Tendência da dispersão por grupo (anos com pelo menos 3 países; com menos
+# de 4 anos assim o grupo fica de fora): inclinação do CV e do IQR no ano
+# (MQO descritivo) e comparação dos desvios absolutos em relação à mediana
+# de cada ano entre a primeira e a segunda metade do período (Mann-Whitney,
+# versão não paramétrica do teste de Brown-Forsythe). n pequeno e
+# composição variável: leitura exploratória.
+TendenciaDispersao <- function(g) {
+  d <- boot_m2[boot_m2$grupo_renda == g, ]
+  por_ano <- dispersao[dispersao$grupo_renda == g & dispersao$n >= 3, ]
+  if (nrow(por_ano) < 4) return(NULL)
+  d <- d[d$ano %in% por_ano$ano, ]
+  d$desvio <- abs(d$escore_bc - stats::ave(d$escore_bc, d$ano,
+                                           FUN = stats::median))
+  corte <- stats::median(por_ano$ano)
+  d$periodo <- ifelse(d$ano <= corte, "primeira", "segunda")
+  cv <- summary(stats::lm(cv ~ ano, data = por_ano))$coefficients
+  iqr <- summary(stats::lm(iqr ~ ano, data = por_ano))$coefficients
+  mw <- stats::wilcox.test(desvio ~ periodo, data = d, exact = FALSE)
+  return(data.frame(
+    grupo_renda = g, anos = nrow(por_ano),
+    observacoes = nrow(d), inclinacao_cv = cv["ano", 1],
+    p_inclinacao_cv = cv["ano", 4], inclinacao_iqr = iqr["ano", 1],
+    p_inclinacao_iqr = iqr["ano", 4], corte_periodo = corte,
+    desvio_mediano_primeira = stats::median(d$desvio[d$periodo ==
+                                                       "primeira"]),
+    desvio_mediano_segunda = stats::median(d$desvio[d$periodo ==
+                                                      "segunda"]),
+    p_mann_whitney_desvios = mw$p.value, stringsAsFactors = FALSE))
+}
+tendencia <- do.call(rbind, lapply(sort(unique(boot_m2$grupo_renda)),
+                                   TendenciaDispersao))
+if (!is.null(tendencia)) {
+  SalvarTabela(tendencia, paste0("dispersao_renda_tendencia", sufixo))
+  print(tendencia)
+}
 
 # 6. Concordância entre estimadores --------------------------------------------
 cor_est <- LerTabela("spearman_estimadores_m2")

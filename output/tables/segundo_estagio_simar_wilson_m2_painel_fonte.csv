@@ -1,11 +1,11 @@
-"modelo","termo","coeficiente","ic_inf","ic_sup","significativo_5pct","fronteira","semente_filho"
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","(Intercept)",2.89023605653472,-3.93848121366526,9.62081993133193,FALSE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","efetividade_governo",2.76426283494429,0.752101244037667,5.0131753928503,TRUE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","alta_tec_export",-0.15922631780626,-0.246435328317196,-0.0683201654854744,TRUE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","log_comercio",0.300368650168523,-1.23228022235857,1.92978232243415,FALSE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","market_cap",0.0256124145879294,0.00904324906123382,0.0437273361723799,TRUE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","credito_privado",-0.0453925543513112,-0.0798453823921852,-0.00762705196083221,TRUE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2018",-0.418652942648697,-2.49248958150632,1.76209156666182,FALSE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2019",-0.53343056965405,-2.87242165662397,2.13758611574112,FALSE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2020",-2.49007954456612,-4.99703457980044,0.370497382142857,FALSE,"agrupada, casos completos de contexto",2026
-"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2021",-3.21955519183644,-5.90486620416822,-0.317157307284133,TRUE,"agrupada, casos completos de contexto",2026
+"modelo","termo","coeficiente","ic_inf","ic_sup","significativo_5pct","ic90_inf","ic90_sup","significativo_10pct","sinal_previsto","nivel_evidencia","fronteira","semente_filho"
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","(Intercept)",2.89023605653472,-3.93848121366526,9.62081993133193,FALSE,-3.1947859388183,8.48342749555009,FALSE,NA,NA,"agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","efetividade_governo",2.76426283494429,0.752101244037667,5.0131753928503,TRUE,1.18784554602481,4.66025492150813,TRUE,"-","sinal contrário, significativo (5%)","agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","alta_tec_export",-0.15922631780626,-0.246435328317196,-0.0683201654854744,TRUE,-0.238719338299451,-0.0844101337876185,TRUE,"-","significativo (5%)","agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","log_comercio",0.300368650168523,-1.23228022235857,1.92978232243415,FALSE,-0.910368645566333,1.61808624206748,FALSE,NA,NA,"agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","market_cap",0.0256124145879294,0.00904324906123382,0.0437273361723799,TRUE,0.0131491441106945,0.0404523826365303,TRUE,NA,NA,"agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","credito_privado",-0.0453925543513112,-0.0798453823921852,-0.00762705196083221,TRUE,-0.0757037954329162,-0.0169092176311955,TRUE,NA,NA,"agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2018",-0.418652942648697,-2.49248958150632,1.76209156666182,FALSE,-2.03796805785402,1.44611490652824,FALSE,NA,NA,"agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2019",-0.53343056965405,-2.87242165662397,2.13758611574112,FALSE,-2.49978363064813,1.55230842932164,FALSE,NA,NA,"agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2020",-2.49007954456612,-4.99703457980044,0.370497382142857,FALSE,-4.7780555372364,-0.298861750971094,TRUE,NA,NA,"agrupada, casos completos de contexto",2026
+"H5 Simar-Wilson alg. 2 (rDEA, pooled)","ano_f2021",-3.21955519183644,-5.90486620416822,-0.317157307284133,TRUE,-5.70479893891273,-0.980370250530842,TRUE,NA,NA,"agrupada, casos completos de contexto",2026

@@ -13,7 +13,9 @@
 #   comparação com a versão em unidades originais (05b) roda no fim.
 # - SFA por canal (S02/H2, R/06): em log, não depende da padronização; roda nas seis
 #   bases (Fase A, painel e variantes) e é pulado com PADRONIZACAO=minmax.
-# Uso: zsh output/rodar_pipeline.sh [faseA|painel|variantes|rts|sfa|validacao|padronizacao|tudo]
+# - Modo estagio2: refaz só o segundo estágio e as figuras (03 -> 04) nas seis
+#   bases, sobre as fronteiras já gravadas pelo 02 (o 02 não muda).
+# Uso: zsh output/rodar_pipeline.sh [faseA|painel|variantes|rts|sfa|estagio2|validacao|padronizacao|tudo]
 #      PADRONIZACAO=minmax zsh output/rodar_pipeline.sh tudo
 set -u
 cd "$(dirname "$0")/.." || exit 1
@@ -38,8 +40,10 @@ rodar() {  # rótulo script log
 limpar_ambiente() { unset BASE_ARQUIVO SUFIXO_SAIDA INSUMOS PRODUTOS JANELA_MALMQUIST; }
 cadeia() {  # rótulo (usa as variáveis de ambiente exportadas)
   local s=${SUFIXO_SAIDA:-}
-  rodar "$1 02 fronteiras" R/02_fronteiras_dataset_atual.R "output/log_02$s$PAD.txt" &&
-    rodar "$1 03 segundo estágio" R/03_segundo_estagio_dataset_atual.R "output/log_03$s$PAD.txt" &&
+  if [[ ${SO_ESTAGIO2:-0} -eq 0 ]]; then
+    rodar "$1 02 fronteiras" R/02_fronteiras_dataset_atual.R "output/log_02$s$PAD.txt" || return 1
+  fi
+  rodar "$1 03 segundo estágio" R/03_segundo_estagio_dataset_atual.R "output/log_03$s$PAD.txt" &&
     rodar "$1 04 figuras" R/04_figuras_apresentacao.R "output/log_04$s$PAD.txt"
 }
 PAINEL_OK=1
@@ -122,6 +126,7 @@ case "$MODO" in
   rts) rts ;;
   validacao) validacao ;;
   sfa) sfa ;;
+  estagio2) SO_ESTAGIO2=1; fase_a; painel_base; variantes ;;
   padronizacao) padronizacao ;;
   tudo) fase_a; painel_base; variantes; comparacoes; rts; sfa; validacao; padronizacao ;;
   *) echo "modo desconhecido: $MODO"; exit 2 ;;

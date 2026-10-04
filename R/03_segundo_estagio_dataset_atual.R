@@ -8,6 +8,11 @@
 # Farrell como comparação, todas com verificação de convergência),
 # Simar-Wilson algoritmo 2 (rDEA::dea.env.robust), Tobit comparativo
 # (AER::tobit), Kruskal-Wallis e Mann-Whitney por grupo de renda.
+# Níveis de evidência (S07, comentários da apresentação de 28/09/2026):
+# cada coeficiente com sinal previsto é classificado em significativo a 5%,
+# "bateu na trave" (só o IC 90% exclui zero), só o sinal, ou sinal
+# contrário; a efetividade governamental é trocada, uma de cada vez, pelas
+# outras dimensões do WGI e por um índice composto.
 # Variáveis de ambiente: as do script 02 (BASE_ARQUIVO, SUFIXO_SAIDA,
 # INSUMOS, PRODUTOS, PADRONIZACAO, EPSILON_PADRONIZACAO); as fronteiras dos
 # canais e do algoritmo 2 usam a mesma padronização do script 02.
@@ -32,6 +37,79 @@ LerSaida <- function(nome) {
   return(utils::read.csv(file.path("output/tables",
                                    paste0(nome, sufixo, ".csv")),
                          stringsAsFactors = FALSE))
+}
+
+SinalPrevisto <- function(modelo, termo) {
+  # Sinal previsto por H5-H7 (artigo/01) na escala do escore (positivo =
+  # mais eficiente): "+", ou "nao+" quando a hipótese só exclui o efeito
+  # positivo (crédito no canal de patentes, H6; PIB per capita no canal de
+  # publicações, H7); NA para controles e contrastes.
+  Um <- function(m, t) {
+    institucionais <- c("efetividade_governo", "alta_tec_export",
+                        "log_pesquisadores", "log_talento",
+                        "qualidade_regulatoria", "estado_direito",
+                        "controle_corrupcao", "indice_wgi")
+    if (grepl("^H5", m) && t %in% institucionais) return("+")
+    if (grepl("^H6 truncada", m) && t == "market_cap") return("+")
+    if (grepl("^H6 truncada", m) && t == "credito_privado") return("nao+")
+    if (grepl("^H7 canal patentes", m) && t == "log_pib_pc") return("+")
+    if (grepl("^H7 canal publica", m) && t == "log_pib_pc") return("nao+")
+    return(NA_character_)
+  }
+  return(as.character(mapply(Um, modelo, termo, USE.NAMES = FALSE)))
+}
+
+InverterSinal <- function(previsto) {
+  # Para as escalas de Farrell (positivo = MENOS eficiente).
+  return(unname(c("+" = "-", "-" = "+", "nao+" = "nao-",
+                  "nao-" = "nao+")[previsto]))
+}
+
+NivelEvidencia <- function(coeficiente, sig5, sig10, previsto,
+                           largura = rep(NA_real_, length(coeficiente))) {
+  # Com sinal previsto: "significativo (5%)" quando o IC 95% exclui zero;
+  # "bateu na trave (5-10%)" quando só o IC 90% exclui; "só o sinal" quando
+  # nenhum exclui; no sentido oposto, "sinal contrário", "sinal contrário,
+  # 5-10%" ou "sinal contrário, significativo (5%)". Quando a hipótese só
+  # exclui um sentido ("nao+", "nao-"): "compatível", salvo coeficiente no
+  # sentido excluído com IC fora do zero. Coeficiente desprezível diante da
+  # largura do IC 95% (menos de um milésimo dela) não tem sinal. NA para
+  # controles.
+  Um <- function(b, s5, s10, p, l) {
+    if (is.na(p) || is.na(b)) return(NA_character_)
+    if (!is.na(l) && abs(b) < 1e-3 * l) return("sem sinal (coeficiente ≈ 0)")
+    s5 <- isTRUE(s5)
+    s10 <- isTRUE(s10)
+    if (p %in% c("nao+", "nao-")) {
+      contra <- (p == "nao+" && b > 0) || (p == "nao-" && b < 0)
+      if (contra && s5) return("sinal contrário, significativo (5%)")
+      if (contra && s10) return("sinal contrário, 5-10%")
+      return("compatível")
+    }
+    if ((p == "+" && b > 0) || (p == "-" && b < 0)) {
+      if (s5) return("significativo (5%)")
+      if (s10) return("bateu na trave (5-10%)")
+      return("só o sinal")
+    }
+    if (s5) return("sinal contrário, significativo (5%)")
+    if (s10) return("sinal contrário, 5-10%")
+    return("sinal contrário")
+  }
+  return(as.character(mapply(Um, coeficiente, sig5, sig10, previsto,
+                             largura, USE.NAMES = FALSE)))
+}
+
+ClassificarTabela <- function(t) {
+  # Acrescenta sinal previsto e nível de evidência a uma tabela de
+  # truncadas; na parametrização em Farrell o sinal previsto se inverte.
+  previsto <- SinalPrevisto(t$modelo, t$termo)
+  farrell <- t$dependente == "farrell"
+  previsto[farrell] <- InverterSinal(previsto[farrell])
+  t$sinal_previsto <- previsto
+  t$nivel_evidencia <- NivelEvidencia(t$coeficiente, t$significativo_5pct,
+                                      t$significativo_10pct, previsto,
+                                      t$ic_sup - t$ic_inf)
+  return(t)
 }
 
 base <- utils::read.csv(arquivo_base, stringsAsFactors = FALSE)
@@ -133,11 +211,19 @@ TruncadaAgrupada <- function(formula, d, rotulo, n_boot = n_boot_cluster,
     if (ncol(replicas) < 20) return(rep(NA_real_, length(coefs)))
     return(apply(replicas, 1, stats::quantile, probs = prob))
   }
+  PValor <- function() {
+    # p-valor bootstrap bicaudal pelo método percentílico: duas vezes a
+    # menor fração de réplicas de um lado do zero (resolução 1/réplicas).
+    if (ncol(replicas) < 20) return(rep(NA_real_, length(coefs)))
+    return(pmin(1, 2 * pmin(rowMeans(replicas <= 0),
+                            rowMeans(replicas >= 0))))
+  }
   saida <- data.frame(
     modelo = rotulo, dependente = dependente, termo = names(coefs),
     coeficiente = if (ajuste$convergiu) as.numeric(coefs) else NA_real_,
     ep_boot = if (ncol(replicas) >= 20) apply(replicas, 1, stats::sd) else NA,
     ic_inf = Quantil(0.025), ic_sup = Quantil(0.975),
+    ic90_inf = Quantil(0.05), ic90_sup = Quantil(0.95), p_boot = PValor(),
     n_obs = nrow(d), n_paises = length(paises),
     convergiu_pontual = ajuste$convergiu,
     mensagem_ajuste = ajuste$mensagem,
@@ -148,6 +234,8 @@ TruncadaAgrupada <- function(formula, d, rotulo, n_boot = n_boot_cluster,
     stringsAsFactors = FALSE)
   saida$significativo_5pct <- ajuste$convergiu & !is.na(saida$ic_inf) &
     (saida$ic_inf > 0 | saida$ic_sup < 0)
+  saida$significativo_10pct <- ajuste$convergiu & !is.na(saida$ic90_inf) &
+    (saida$ic90_inf > 0 | saida$ic90_sup < 0)
   if (!ajuste$convergiu) {
     Registrar("modelo não estimado:", rotulo, "(", dependente, ")",
               ajuste$mensagem)
@@ -204,6 +292,43 @@ if ("talento_ia_media_genero_pct" %in% names(dados)) {
                                 "gênero, subamostra)"))
 }
 
+# H5 com outras dimensões do WGI (S07) ----------------------------------------
+# O WGI de efetividade governamental mede a percepção da qualidade dos
+# serviços públicos e da burocracia, de sua independência de pressões
+# políticas, da formulação e implementação de políticas e da credibilidade
+# do compromisso do governo com elas (Kaufmann, Kraay e Mastruzzi, 2010).
+# Para ver se o sinal negativo vem da capacidade regulatória (leitura do
+# professor na apresentação) ou da qualidade institucional em geral, a
+# efetividade é trocada, uma de cada vez, por qualidade regulatória, estado
+# de direito, controle da corrupção e um índice composto (média simples das
+# quatro estimativas, que já estão na mesma escala). Na Fase A, qualidade
+# regulatória e estado de direito vêm do cache do World Bank (data/wgi/).
+dimensoes_wgi <- c("efetividade_governo", "qualidade_regulatoria",
+                   "estado_direito", "controle_corrupcao")
+codigos_wgi <- c(efetividade_governo = "GOV_WGI_GE.EST",
+                 qualidade_regulatoria = "GOV_WGI_RQ.EST",
+                 estado_direito = "GOV_WGI_RL.EST",
+                 controle_corrupcao = "GOV_WGI_CC.EST")
+for (v in setdiff(dimensoes_wgi, names(dados))) {
+  dados <- dplyr::left_join(
+    dados, LerWorldBank(codigos_wgi[[v]], v, pasta = "data/wgi"),
+    by = c("iso3c", "ano"))
+}
+dados$indice_wgi <- rowMeans(dados[, dimensoes_wgi])
+correlacao_wgi <- stats::cor(dados[, c(dimensoes_wgi, "indice_wgi")],
+                             use = "pairwise.complete.obs")
+Salvar(data.frame(dimensao = rownames(correlacao_wgi), correlacao_wgi,
+                  row.names = NULL), "correlacao_wgi")
+h5_wgi <- do.call(rbind, lapply(c(dimensoes_wgi[-1], "indice_wgi"),
+                                function(v) {
+  formula <- stats::as.formula(paste(
+    "log_escore_bc ~", v, "+ alta_tec_export + log_comercio + market_cap +",
+    "credito_privado + ano_f"))
+  return(TruncadaAgrupada(formula, dados,
+                          paste("H5 truncada com", v,
+                                "no lugar da efetividade (M2)")))
+}))
+
 # Tobit comparativo (escore em (0, 1], censurado à direita em 1; prática
 # anterior da literatura, mantido só para comparação) -------------------------
 tobit_h5 <- AER::tobit(escore_bc ~ efetividade_governo + alta_tec_export +
@@ -214,6 +339,12 @@ tobit_tab <- data.frame(modelo = "H5 Tobit (escore_bc, M2)",
                         termo = rownames(tob), coeficiente = tob[, 1],
                         ep = tob[, 2], p_valor = tob[, 4],
                         stringsAsFactors = FALSE)
+tobit_tab$ic90_inf <- tobit_tab$coeficiente - stats::qnorm(0.95) * tobit_tab$ep
+tobit_tab$ic90_sup <- tobit_tab$coeficiente + stats::qnorm(0.95) * tobit_tab$ep
+tobit_tab$sinal_previsto <- SinalPrevisto(tobit_tab$modelo, tobit_tab$termo)
+tobit_tab$nivel_evidencia <- NivelEvidencia(
+  tobit_tab$coeficiente, tobit_tab$p_valor < 0.05, tobit_tab$p_valor < 0.10,
+  tobit_tab$sinal_previsto, 2 * stats::qnorm(0.975) * tobit_tab$ep)
 
 # Simar-Wilson algoritmo 2 (rDEA) no pooled ------------------------------------
 Registrar("Simar-Wilson algoritmo 2 (L1 =", l1_sw, ", L2 =", l2_sw, ")...")
@@ -253,21 +384,29 @@ RodarComTempoMaximo <- function(funcao, segundos) {
   }
   return(saida)
 }
-sw <- tryCatch(
-  RodarComTempoMaximo(
-    function() {
-      rDEA::dea.env.robust(X = MatrizFronteira(dados_sw, insumos,
-                                               parametros_pad, 1e6),
-                           Y = MatrizFronteira(dados_sw, produtos,
-                                               parametros_pad),
-                           Z = z_sw, model = "output", RTS = "variable",
-                           L1 = l1_sw, L2 = l2_sw, alpha = 0.05)
-    },
-    limite_sw_seg),
-  error = function(e) {
-    Registrar("dea.env.robust não concluído:", conditionMessage(e))
-    return(NULL)
-  })
+RodarSw <- function(alpha) {
+  # Algoritmo 2 com nível `alpha` para o IC; com a mesma semente, as
+  # réplicas são as mesmas em qualquer alpha (o rDEA não devolve as
+  # réplicas, só o IC básico).
+  return(tryCatch(
+    RodarComTempoMaximo(
+      function() {
+        rDEA::dea.env.robust(X = MatrizFronteira(dados_sw, insumos,
+                                                 parametros_pad, 1e6),
+                             Y = MatrizFronteira(dados_sw, produtos,
+                                                 parametros_pad),
+                             Z = z_sw, model = "output", RTS = "variable",
+                             L1 = l1_sw, L2 = l2_sw, alpha = alpha)
+      },
+      limite_sw_seg),
+    error = function(e) {
+      Registrar("dea.env.robust não concluído:", conditionMessage(e))
+      return(NULL)
+    }))
+}
+sw <- RodarSw(0.05)
+# IC 90% (S07) só quando o IC 95% foi obtido.
+sw90 <- if (is.null(sw)) NULL else RodarSw(0.10)
 arquivo_sw <- file.path(
   "output/tables", paste0("segundo_estagio_simar_wilson_m2", sufixo, ".csv"))
 if (is.null(sw)) {
@@ -299,6 +438,21 @@ if (!is.null(sw)) {
     sw_tab$ic_sup <- ci[, 2]
     sw_tab$significativo_5pct <- sw_tab$ic_inf > 0 | sw_tab$ic_sup < 0
   }
+  ci90 <- if (is.null(sw90)) NULL else sw90$beta_ci
+  if (!is.null(ci90) && nrow(ci90) == nrow(sw_tab)) {
+    sw_tab$ic90_inf <- ci90[, 1]
+    sw_tab$ic90_sup <- ci90[, 2]
+    sw_tab$significativo_10pct <- sw_tab$ic90_inf > 0 | sw_tab$ic90_sup < 0
+  } else {
+    sw_tab$significativo_10pct <- NA
+  }
+  # Farrell: positivo = MENOS eficiente; o sinal previsto se inverte.
+  sw_tab$sinal_previsto <- InverterSinal(SinalPrevisto(sw_tab$modelo,
+                                                       sw_tab$termo))
+  sw_tab$nivel_evidencia <- NivelEvidencia(
+    sw_tab$coeficiente, sw_tab$significativo_5pct,
+    sw_tab$significativo_10pct, sw_tab$sinal_previsto,
+    if (is.null(sw_tab$ic_inf)) NA_real_ else sw_tab$ic_sup - sw_tab$ic_inf)
   sw_tab$fronteira <- "agrupada, casos completos de contexto"
   sw_tab$semente_filho <- semente
   Salvar(sw_tab, "segundo_estagio_simar_wilson_m2")
@@ -332,12 +486,19 @@ h5_sp <- TruncadaAgrupada(formula_h5, dados_sp,
                           "H5 truncada sem valores-piso (M2)")
 
 segundo_estagio <- rbind(h5, h5_sp, h5b, h5c, h6, h6_pub, h7_pat, h7_pub)
+segundo_estagio <- ClassificarTabela(segundo_estagio)
 Salvar(segundo_estagio, "segundo_estagio_truncada")
+h5_wgi <- ClassificarTabela(h5_wgi)
+Salvar(h5_wgi, "segundo_estagio_wgi")
+print(h5_wgi[h5_wgi$termo %in% c(dimensoes_wgi, "indice_wgi"),
+             c("modelo", "termo", "coeficiente", "ic_inf", "ic_sup",
+               "p_boot", "nivel_evidencia")])
 Salvar(tobit_tab, "segundo_estagio_tobit")
 print(segundo_estagio[!grepl("^ano_f", segundo_estagio$termo) &
                         segundo_estagio$dependente == "log_escore",
                       c("modelo", "termo", "coeficiente", "ic_inf", "ic_sup",
-                        "significativo_5pct", "replicas_convergentes")])
+                        "p_boot", "nivel_evidencia",
+                        "replicas_convergentes")])
 
 # Testes não paramétricos por grupo de renda -----------------------------------
 TesteGrupos <- function(variavel, rotulo) {

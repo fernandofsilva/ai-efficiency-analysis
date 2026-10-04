@@ -13,9 +13,9 @@
 | S03 | Menos hipóteses; hipótese × pergunta de pesquisa; fechar cada uma na discussão | decisão e texto | alta (antes de escrever) | `artigo/01`, manuscrito |
 | S04 | H1: discutir a heterogeneidade dos retornos de escala com evidência contemporânea | texto | média | manuscrito (discussão) |
 | S05 | Ranking: perfis de três países do topo e três ou quatro da base | texto | média (após S01) | manuscrito, fig1 |
-| S06 | Malmquist: frontier shift × catch-up por país; tese do platô; Moraes e Wanke (2019) | cálculo leve e texto | média | `R/04`, `artigo/05`, deck (slide 11), manuscrito |
-| S07 | Segundo estágio: "bateu na trave" e confirmação de sinal; o que mede a efetividade governamental | cálculo leve e texto | média | `R/03`, `R/04`, `artigo/05`, `artigo/06` |
-| S08 | Eficiência por renda e ano: heterogeneidade e sua evolução | cálculo leve e texto | média | `R/02` ou `R/04`, `artigo/05` |
+| S06 | Malmquist: frontier shift × catch-up por país; tese do platô; Moraes e Wanke (2019) | cálculo leve e texto | média; **executado em 04/10/2026** (`artigo/16`) | `R/04`, `artigo/05`, deck (slide 11), manuscrito |
+| S07 | Segundo estágio: "bateu na trave" e confirmação de sinal; o que mede a efetividade governamental | cálculo leve e texto | média; **executado em 04/10/2026** (`artigo/16`) | `R/03`, `R/04`, `artigo/05`, `artigo/06` |
+| S08 | Eficiência por renda e ano: heterogeneidade e sua evolução | cálculo leve e texto | média; **executado em 04/10/2026** (`artigo/16`) | `R/02` ou `R/04`, `artigo/05` |
 | S09 | Revisão de literatura por hipótese, evidência contemporânea e periódico-alvo | texto e decisão | média | `artigo/01`, manuscrito |
 | S10 | Ordem de execução acordada ao final da apresentação | organização | — | `artigo/07` |
 
@@ -136,6 +136,14 @@ A expectativa do professor confirma-se nos dados vigentes: a China não tem catc
 3. Discutir a tese do platô para a alta renda e a intuição "quem está na fronteira precisa gastar mais para deslocá-la", ligando a H1 (Estados Unidos e Japão em DRS e com TC < 1).
 4. Citar Moraes e Wanke (2019) com o achado correto (catch-up e financiamento estatal na siderurgia) e, se houver fonte, evidência sobre FINEP e a indústria de defesa; manter a ressalva sobre os intervalos (reamostragem com índices fixos; bootstrap de Simar e Wilson, 1999, pendente).
 
+**Estado em 04/10/2026.** Itens 1 a 4 feitos (`artigo/16`, seção 3; tabela da Fase A em `artigo/05`, seção 7):
+- `malmquist_por_pais<sufixo>.csv` nas seis bases.
+- China, Índia, Grécia e Argentina sempre na fronteira na Fase A; China, Coreia do Sul, Malásia e Rússia no painel.
+- O Brasil ganha por catch-up nas duas bases.
+- Tese do platô confirmada em parte: quem investe muito perto da fronteira mais a vê recuar, mas o catch-up da renda média não supera o da alta renda.
+- Moraes e Wanke (2019) conferido: efeito negativo do BNDES sobre o catch-up, que os autores chamam de "Mudança Técnica" (atenção à nomenclatura), e nenhum sobre o deslocamento da fronteira.
+- Pendente: tabela no deck (slide 11) e evidência sobre FINEP.
+
 ### S07 — Segundo estágio: "bateu na trave" e confirmação de sinal; o que mede a efetividade governamental
 
 **O que foi dito.** Para os coeficientes não significativos do segundo estágio, distinguir dois níveis: (a) "bateu na trave" (não está nos 5%, mas está, por exemplo, em 7% de significância); (b) confirmação do sinal previsto, independentemente da significância ("nível de evidência mais fraco, mas pode ajudar a compor a discussão"). Sobre a efetividade governamental com sinal negativo: ver o que o indicador mede (o professor o chamou de indicador "Bloomberg" e citou voice and accountability, que é uma das seis dimensões dos Worldwide Governance Indicators do Banco Mundial); um governo "efetivo" pode ser efetivo em regular e travar ("137 licenças ambientais" para uma ferrovia): "é regramento? rule of law? o que está dentro?". Sobre o coeficiente de publicações: "não adianta só publicar". E, de novo, bater o martelo só depois da reexecução com variáveis transformadas.
@@ -148,6 +156,13 @@ A expectativa do professor confirma-se nos dados vigentes: a China não tem catc
 2. Descrever o que o WGI de efetividade governamental mede (qualidade dos serviços públicos e da burocracia, independência de pressões políticas, formulação e implementação de políticas, credibilidade do compromisso do governo; Kaufmann, Kraay e Mastruzzi, 2010) e testar qualidade regulatória, estado de direito e um índice composto como variáveis de contexto alternativas, para verificar a leitura do professor de que o sinal negativo capta capacidade regulatória que trava, e não qualidade institucional. Registrar que efetividade e controle da corrupção são quase colineares (já anotado em `artigo/01`).
 3. Reavaliar tudo após S01; só então redigir a discussão de H5–H7 (ou das RQs, S03).
 
+**Estado em 04/10/2026.** Itens 1 e 2 feitos (`artigo/16`, seção 2): `R/03` grava p-valor bootstrap, IC 90%, sinal previsto e nível de evidência, e a fig4 mostra os níveis.
+- A efetividade governamental tem sinal contrário em todas as 23 especificações da truncada (12 a 5%, 7 entre 5% e 10%).
+- Qualidade regulatória, estado de direito, controle da corrupção e o índice composto dão o mesmo sinal. Têm correlação de 0,91 a 0,96 com a efetividade, então a capacidade regulatória não se separa da qualidade institucional geral.
+- Exportações de alta tecnologia e pesquisadores têm o sinal previsto sem significância na maior parte das especificações.
+- H6 (crédito) e H7 (patentes) são contrariadas.
+- Item 3: S01 feito; a redação de H5–H7 depende do S03.
+
 ### S08 — Eficiência por grupo de renda e ano: heterogeneidade e sua evolução
 
 **O que foi dito.** Sobre a figura de eficiência por grupo de renda e ano (fig5): a renda média-baixa parece a menos heterogênea ("você pode ser pobre para sempre; teu cenário não vai mudar"), mas só tem um ano com mais de um país (2018) e o autor citou as Filipinas; entender essa "abertura" de 2018 (crise financeira? país específico?). A renda média-alta parece ter heterogeneidade crescente: "quem são esses países? É o BRICS+, eles não são homogêneos; na realidade, BRICS é só China"; a China se descolou; Indonésia, Malásia e Peru sobem ("o Peru daqui a pouco está com PIB maior que o da Argentina, exporta mais que o Chile, portos virados para o Pacífico"); México com crescimento orgânico atrelado aos Estados Unidos; Ucrânia (o último ano da base é anterior à guerra de 2022). A alta renda parece homogênea na dispersão ("G7 e escandinavos"), mas com velocidades diferentes dentro do G7 e da União Europeia (Itália norte e sul).
@@ -158,6 +173,13 @@ A expectativa do professor confirma-se nos dados vigentes: a China não tem catc
 
 1. Em `R/02` ou `R/04`: tabela de dispersão por grupo e ano (n, média, desvio-padrão, IQR, CV) com o escore corrigido de viés; verificar a tendência da dispersão da renda média-alta (regressão do CV ou do IQR no ano, ou teste de homogeneidade de variâncias entre 2013–2016 e 2017–2021), com a ressalva do n; identificar quem abre a distribuição em cada ano (China contra os demais; África do Sul; Ucrânia).
 2. Texto de discussão com evidência contemporânea: Indonésia, Malásia e Peru em ascensão; México atrelado aos Estados Unidos; Ucrânia pré-guerra; China descolada; heterogeneidade dentro da União Europeia e do G7. Cuidado: os escores vêm de fronteiras contemporâneas e não são comparáveis em nível entre anos; comparar dispersões relativas (CV, IQR), não níveis.
+
+**Estado em 04/10/2026.** Item 1 feito (`artigo/16`, seção 4): `dispersao_renda_ano` e `dispersao_renda_tendencia` nas bases com anos suficientes.
+- Nenhuma tendência significativa a 5%.
+- Na renda média-alta, a dispersão sobe na Fase A (p = 0,10) e cai no painel (p = 0,08).
+- Israel é o mínimo da alta renda em quase todos os anos, e África do Sul, Brasil ou Argentina, o da renda média-alta.
+- A abertura de 2018 na renda média-baixa é a entrada das Filipinas.
+- Item 2 (texto com evidência contemporânea) depende do dossiê do S09.
 
 ### S09 — Revisão de literatura por hipótese, evidência contemporânea e periódico-alvo
 
