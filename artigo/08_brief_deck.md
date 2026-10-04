@@ -2,7 +2,9 @@
 
 **Revisão 3, de 28/09/2026.** Substitui as revisões 1 (commit `ae6c878`, que gerou o deck `AI Effiency Analysis.pdf`, 19 páginas, na raiz do repositório) e 2 (commit `91ee83c`, que nunca chegou ao PDF). A revisão 3 incorpora as correções da reanálise crítica (`artigo/12_avaliacao_reanalise.md`, sucessora de `artigo/10`) e a reexecução completa do pipeline em 28/09/2026 (`output/rodar_pipeline.sh tudo`; status em `output/status_execucao.txt`). Todos os números foram conferidos contra as tabelas de `output/tables/`.
 
-Como usar: para **regenerar o deck do zero**, usar as seções 3 e 4; para **editar o deck já gerado**, seguir a seção 2, página a página (o deck atual reflete a revisão 1). Nos dois casos, as sete figuras precisam ser embutidas como imagem.
+Como usar: para **regenerar o deck do zero**, usar as seções 3 e 4; para **editar o deck já gerado**, seguir as seções 2 e 2a, página a página. Nos dois casos, as sete figuras precisam ser embutidas como imagem.
+
+**Revisão 4, de 04/10/2026 (errata da análise crítica 3, `artigo/17` → `artigo/18`).** O deck apresentado em 28/09 (`AI Effiency Analysis.pdf`, 20 páginas) é preservado como registro histórico. A seção 2a lista o que está errado nele e o que o substitui, e as seções 3 e 4 já foram corrigidas no lugar.
 
 ## 1. O que mudou desde a revisão 1 (deck atual)
 
@@ -27,6 +29,8 @@ Como usar: para **regenerar o deck do zero**, usar as seções 3 e 4; para **edi
 | Figuras | nenhuma embutida (zero imagens no PDF) | embutir as sete; fig1, fig3, fig4 e fig6 mudaram de conteúdo; fig2, fig5 e fig7 não | I05 |
 
 ## 2. O que alterar no deck já gerado (`AI Effiency Analysis.pdf`, página a página)
+
+Roteiro da revisão 3 (revisão 1 → revisão 3). Onde ele diverge da errata da seção 2a (revisão 4), vale a seção 2a, em especial nas páginas 11, 12, 14, 15, 16 e 18.
 
 Geral, antes de tudo:
 
@@ -54,6 +58,25 @@ Geral, antes de tudo:
 | 17 | "patentes atribuídas ao escritório de depósito"; três colunas | "famílias de patentes atribuídas ao país de prioridade (primeiro depósito), não ao país do inventor"; nova coluna "Inferência": teste de RTS com tamanho ≈ 0,20 nas duas implementações; intervalos do Malmquist por reamostragem de países (índices fixos); pseudo-valores do ranking condicionais às fronteiras anuais; segundo estágio com escores fixos e sem teste de separabilidade |
 | 18 | "1 Retornos decrescentes e fronteira que recua..."; "3 ... ajustar produtos por qualidade e separar P&D público de privado" | "1 Retornos de escala heterogêneos: Estados Unidos, Japão e Reino Unido em retornos decrescentes, China sobre o raio CRS; o teste global, liberal, não fornece indício contra retornos constantes; a fronteira recua em produtos por dólar durante o boom"; "3 ... usar produtos alternativos (citações, famílias concedidas) e P&D por setor de execução: com fronteira comum, a troca de produtos atenua a associação negativa com instituições de forma distinguível de zero"; próximos passos: acrescentar "inferência de dois estágios para painel e bootstrap de Malmquist" |
 | 19 | bibliografia só com autor e ano | trocar pela lista completa, com título e periódico, do slide 19 na seção 4 (inclui Daraio, Simar e Wilson, 2018, e Simar e Wilson, 1999) |
+
+## 2a. Errata do deck apresentado (revisão 4, 04/10/2026)
+
+Achados de `artigo/17`, com vereditos e correções em `artigo/18`. A conferência foi feita na página renderizada do PDF.
+
+**Antes de tudo: os índices de Malmquist estavam lidos no sentido inverso (A01).** Na orientação a produto, o `Benchmarking` devolve índices em que valor menor que 1 é melhora. O projeto passou a gravar os recíprocos (convenção de Färe et al., 1994: maior que 1 = melhora), e as leituras se invertem:
+- onde se lia "a fronteira recua", a fronteira avança;
+- onde se lia "catch-up", o país se afasta da fronteira.
+
+| Página | Está no deck apresentado | Trocar por | Achado |
+|---|---|---|---|
+| 11 | tabela: alta renda 0,996 / 0,898 / 1,109 [1,007; 1,230]; renda média 1,000 / 0,931 / 1,074 [0,958; 1,262]; todos 0,997 / 0,910 / 1,096 [1,010; 1,197]; "A fronteira domina (H4a), mas recua em produtos por dólar"; "Catch-up da renda média 1,074 [...]"; "β-convergência +0,11 (p = 0,11)"; "Maiores ganhos: Brasil 1,45 · Áustria 1,27 · Polônia 1,25. Maiores perdas: China 0,65 · Hungria 0,81 · Japão 0,82" | tabela: alta renda 1,004 / 1,114 / 0,902 [0,813; 0,993]; renda média 1,000 / 1,074 / 0,931 [0,792; 1,044]; todos 1,003 / 1,099 / 0,913 [0,835; 0,990]; "A fronteira avança (TC 1,10 [1,02; 1,19]) e domina a variância (parcela 0,60); os países, em média, se afastam dela (EC 0,91)"; "Renda média: EC 0,931 [0,792; 1,044], sem catch-up (critério não atendido)"; "β-convergência −0,11 (p = 0,11)"; "Maiores ganhos: China 1,54 · Hungria 1,23 · Japão 1,22 · Estados Unidos 1,21. Maiores perdas: Brasil 0,69 · Áustria 0,79 · Polônia 0,80 · Grécia 0,81"; embutir a fig2 regenerada | A01 |
+| 12 | gráfico da versão anterior ("dependente em (0,1]"; efetividade ≈ −0,137 destacada como significativa) ao lado de uma tabela em log do escore; "(semi-elasticidade)" na nota | embutir a fig4 vigente (`output/figures/fig4_segundo_estagio.png`, dependente = log do escore; efetividade do conjunto −0,58 [−1,31; 0,02], cruzando zero); na nota, trocar "positivo = mais eficiente (semi-elasticidade)" por "positivo = mais eficiente (leitura de sinal; o coeficiente é da média latente da truncada)" | A14, A09 |
+| 14 | H2 "GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82) / a testar com SFA"; H4a "Fronteira domina (parcela 0,60) e recua / apoiada"; H4b "EC média 1,074 [0,958; 1,262]; β +0,11 (p = 0,11)" | H2 "SFA: efeito positivo em patentes e diferença entre canais só nos modelos de painel (diferença 0,12 [0,03; 0,20]); no agrupado, nada distinguível de zero. A DEA M1 × M2 não testa H2: acrescentar insumo nunca reduz o escore / apoiada só nos modelos de painel"; H4a "fronteira avança (TC 1,10) e domina a variância (0,60); os países se afastam (EC 0,91) / apoiada, com a fronteira avançando"; H4b "EC da renda média 0,931 [0,792; 1,044]; β −0,11 (p = 0,11) / critério não atendido" | A01, A12, A03 |
+| 15 | "sem convergência (EC da renda média 0,984 [0,909; 1,062])" | "sem catch-up da renda média (EC 1,016 [0,942; 1,100], critério não atendido), mas ela acompanha a fronteira, enquanto a alta renda se afasta (0,903 [0,875; 0,932]); produtividade cresce (M 1,09 [1,05; 1,13]) porque a fronteira avança (TC 1,17)" | A01 |
+| 16 | "0,75 — Patentes: CSET (país de prioridade) × OCDE (país do inventor) [0,61; 0,85]" | "0,76 — [0,62; 0,86], 299 pares, sem a Índia de 2019 em diante (série quebrada; com a série bruta, 0,75)" | A08 |
+| 18 | "a fronteira recua em produtos por dólar durante o boom" | "a fronteira avança, puxada pela China, e a maioria dos países se afasta dela" | A01 |
+
+O deck corrigido deve ser gerado de novo no Claude Design a partir das seções 3 e 4 (fonte não versionada) e salvo com outro nome, por exemplo `AI Efficiency Analysis - revisado.pdf`. Assim o PDF de 28/09 fica como registro.
 
 ## 3. Instruções para o Claude Design
 
@@ -163,13 +186,13 @@ Geral, antes de tudo:
 
 | Grupo | n | Malmquist | Mudança técnica | Mudança de eficiência [intervalo] |
 |---|---|---|---|---|
-| Alta renda | 10 | 0,996 | 0,898 | 1,109 [1,007; 1,230] |
-| Renda média | 6 | 1,000 | 0,931 | 1,074 [0,958; 1,262] |
-| Todos | 16 | 0,997 | 0,910 | 1,096 [1,010; 1,197] |
+| Alta renda | 10 | 1,004 | 1,114 | 0,902 [0,813; 0,993] |
+| Renda média | 6 | 1,000 | 1,074 | 0,931 [0,792; 1,044] |
+| Todos | 16 | 1,003 | 1,099 | 0,913 [0,835; 0,990] |
 
-- Intervalos por reamostragem de países com índices fixos (descritivos; não propagam a incerteza das fronteiras). Parcela da mudança técnica na variância de log M (covariância rateada): 0,60. A fronteira domina (H4a), mas recua em produtos por dólar durante o boom de investimento.
-- Catch-up da renda média 1,074 [0,958; 1,262]: critério numérico não atendido; a alta renda tem catch-up acima de 1 (1,109 [1,007; 1,230]); β-convergência com a fronteira do painel balanceado +0,11 (p = 0,11): H4b não apoiada. Maiores ganhos: Brasil 1,45, Áustria 1,27, Polônia 1,25; maiores perdas: China 0,65, Hungria 0,81, Japão 0,82.
-- Em palavras simples: a produtividade sobe porque "os campeões avançaram" (todos aprenderam a fazer IA melhor) ou porque "o país se aproximou dos campeões"; o Malmquist separa os dois pedaços; aqui o primeiro domina e quem se aproximou foram, em média, os ricos.
+- Convenção: maior que 1 = melhora (Färe et al., 1994). Intervalos por reamostragem de países com índices fixos (descritivos; não propagam a incerteza das fronteiras). Parcela da mudança técnica na variância de log M (covariância rateada): 0,60. A fronteira avança (TC 1,10 [1,02; 1,19]) e domina (H4a); os países, em média, se afastam dela (EC 0,91 [0,84; 0,99]).
+- Mudança de eficiência da renda média 0,931 [0,792; 1,044]: critério numérico de catch-up não atendido; a alta renda também se afasta (0,902 [0,813; 0,993]); β-convergência com a fronteira do painel balanceado −0,11 (p = 0,11): H4b não apoiada. Maiores ganhos: China 1,54, Hungria 1,23, Japão 1,22, Estados Unidos 1,21; maiores perdas: Brasil 0,69, Áustria 0,79, Polônia 0,80, Grécia 0,81. China, Índia e Grécia estão na fronteira em todos os anos.
+- Em palavras simples: a produtividade de um país muda porque "os campeões avançaram" ou porque ele "se aproximou dos campeões"; o Malmquist separa os dois pedaços; aqui os campeões avançaram (a China puxa a fronteira) e a maioria dos países ficou para trás.
 
 ### Slide 12 — Segundo estágio (H5, H6, H7)
 
@@ -183,7 +206,7 @@ Geral, antes de tudo:
 | H7 patentes (191/36) | log PIB per capita | −0,53 | [−1,80; 0,27] |
 | H7 publicações (191/36) | log PIB per capita | −0,36 | [−0,66; −0,02] |
 
-- Dependente: log do escore corrigido, truncada em 0 (suporte compatível com o escore); positivo = mais eficiente (semi-elasticidade); escores fixos e bootstrap por país, todas as réplicas convergentes.
+- Dependente: log do escore corrigido, normal truncada em 0 (especificação exploratória própria, com suporte compatível com o escore); positivo = mais eficiente, com leitura de sinal (o coeficiente é da média latente da truncada, não um efeito percentual); escores fixos e bootstrap por país, todas as réplicas convergentes. A figura embutida tem de ser a fig4 vigente, em log do escore (a do deck apresentado era a da versão anterior, em escore).
 - Comparações: escore truncado só em 1 (versão anterior) −0,137 [−0,329; −0,000]; algoritmo 2 de Simar-Wilson (Farrell, positivo = menos eficiente) +10,1 [5,4; 15,3]; Tobit −0,116 (p < 0,001). Quatro procedimentos dão o mesmo sinal negativo para as instituições, mas a especificação principal não o distingue de zero; nenhum testa separabilidade, então a leitura é exploratória.
 - Leitura: H5 não apoiada (sinal negativo, não significativo na principal, não robusto ao piso), H6 não apoiada, H7 contrariada. Com produtos em volume, "eficiência" cresce com o tamanho relativo do sistema de IA, não com a qualidade institucional.
 
@@ -197,11 +220,11 @@ Geral, antes de tudo:
 | Hipótese | Evidência | Status |
 |---|---|---|
 | H1 escala | teste global sem indício contra CRS (p = 0,09; tamanho ≈ 0,20); EUA em DRS, China em CRS | sem apoio conclusivo; heterogeneidade por país |
-| H2 insumos por canal | GERD eleva a eficiência média (M1 0,42–0,71 → M2 0,64–0,82) | a testar com SFA |
+| H2 insumos por canal | SFA em log: efeito positivo em patentes e diferença entre canais só nos modelos de painel (0,12 [0,03; 0,20]); no agrupado, nada distinguível de zero; a DEA M1 × M2 não testa H2 (acrescentar insumo nunca reduz o escore) | apoiada só nos modelos de painel |
 | H3a canais | ρ = 0,52 [0,31; 0,69], p(ρ ≥ 0,5) = 0,59 | inconclusiva |
 | H3b metafronteira | TGR média 0,94 > alta 0,62; diferença +0,32 [0,23; 0,40] | não apoiada (sinal contrário) |
-| H4a dinâmica | fronteira domina (parcela 0,60) e recua | apoiada |
-| H4b convergência | EC média 1,074 [0,958; 1,262]; β +0,11 (p = 0,11) | critério não atendido |
+| H4a dinâmica | fronteira avança (TC 1,10) e domina a variância (parcela 0,60); países se afastam (EC 0,91) | apoiada, com a fronteira avançando |
+| H4b convergência | EC da renda média 0,931 [0,792; 1,044]; β −0,11 (p = 0,11) | critério não atendido |
 | H5 instituições | efetividade −0,58 [−1,31; 0,02]; sinal negativo em quatro procedimentos | não apoiada |
 | H6 finanças | coeficientes nulos | não apoiada |
 | H7 desenvolvimento | PIB pc negativo em publicações, nulo em patentes | contrariada |
@@ -210,14 +233,14 @@ Geral, antes de tudo:
 ### Slide 15 — O que muda na versão artigo (painel reconstruído)
 
 - Painel CSET + World Bank: 47 países (com Alemanha, Coreia, Canadá, nórdicos, Rússia), 2016–2024; modelo conjunto 2017–2021 com insumos defasados; 39 a 44 países por ano (204 observações). teste de RTS sem indício contra retornos constantes (S = 0,577, p = 0,44; M1: S = 0,347, p = 0,33; teste com tamanho ≈ 0,20); China, Coreia e Índia em CRS.
-- Resultados preservados: instituições com sinal negativo e significativo (−0,69 [−1,20; −0,21], log do escore, 144 casos completos em 38 países); sem convergência (EC da renda média 0,984 [0,909; 1,062]); canal de patentes mais eficiente na renda média-alta. Diferença: no painel a mudança de eficiência varia mais que a técnica (parcela de TC 0,26), então H4a não vale como dominância.
+- Resultados preservados: instituições com sinal negativo e significativo (−0,69 [−1,20; −0,21], log do escore, 144 casos completos em 38 países); sem catch-up da renda média (EC 1,016 [0,942; 1,100], critério não atendido), embora ela acompanhe a fronteira enquanto a alta renda se afasta (0,903); canal de patentes mais eficiente na renda média-alta. Diferenças: a produtividade cresce (M 1,09 [1,05; 1,13]) porque a fronteira avança (TC 1,17), e a mudança de eficiência varia mais que a técnica (parcela de TC 0,26), então H4a não vale como dominância.
 - **Produtos alternativos (citações e famílias posteriormente concedidas)**: a metafronteira inverte por especificação, confirmado em amostra e fronteira comuns (0,59/0,87 em volume contra 0,94/0,83); Índia, Grécia, Austrália, Malásia e Singapura no topo; a associação com instituições se atenua de forma distinguível de zero (diferença de coeficientes +0,43 [0,05; 0,75]); ranking ρ = 0,78 com a base.
 - P&D executado por ensino superior e governo como insumo: Israel 0,16 → 0,22 (composição da amostra) → 0,47 (insumo); Irlanda 0,20 → 0,38 (composição) → 0,46; a inversão da metafronteira nessa variante é composição da amostra (saem cinco países de renda média e a Arábia Saudita), não o insumo.
 - Nota: apresentar como "próximos passos já executados".
 
 ### Slide 16 — Robustez à fonte dos dados
 
-- Checagens entre fornecedores (bootstrap por país): investimento CSET × Quid ρ = 0,93 (84 países); CSET (VC + PE + fusões) × Preqin (só VC) ρ = 0,83 [0,76; 0,89]; publicações CSET × OECD.AI ρ = 0,95; patentes CSET (país de prioridade) × OCDE (país do inventor) ρ = 0,75 [0,61; 0,85].
+- Checagens entre fornecedores (bootstrap por país): investimento CSET × Quid ρ = 0,93 (84 países); CSET (VC + PE + fusões) × Preqin (só VC) ρ = 0,83 [0,76; 0,89]; publicações CSET × OECD.AI ρ = 0,95; patentes CSET (país de prioridade) × OCDE (país do inventor) ρ = 0,76 [0,62; 0,86] (299 pares, sem a Índia de 2019 em diante, série quebrada; com a série bruta, 0,75).
 - Trocar a fonte do insumo (Preqin) ou das patentes (inventor) mantém a ordem geral dos rankings em amostra e fronteira comuns (ρ = 0,87 e 0,91); as instituições continuam negativas com a Preqin (−1,12 [−1,58; −0,13]) e ficam no limite com patentes por inventor (−0,29 [−0,71; 0,01]); muda posições específicas (a China passa a DRS com patentes por inventor; Estados Unidos sobem ao topo, 0,74) e a correlação entre canais (0,30 com patentes por inventor).
 - Nota: "os fornecedores preservam a ordem geral; a atribuição das patentes e a escolha dos produtos mudam resultados específicos".
 
@@ -230,7 +253,7 @@ Geral, antes de tudo:
 
 ### Slide 18 — Conclusões e próximos passos
 
-- Três mensagens: (1) retornos de escala heterogêneos: Estados Unidos, Japão e Reino Unido em retornos decrescentes, China sobre o raio de produtividade máxima, e o teste global, liberal, não fornece indício contra retornos constantes; a fronteira recua em produtos por dólar durante o boom; (2) os dois canais divergem e o de patentes é o mais sensível a renda e à atribuição das patentes; (3) medir eficiência em IA exige produtos alternativos (citações, famílias concedidas) e P&D por setor de execução: com fronteira comum, a troca de produtos atenua a associação negativa com instituições de forma distinguível de zero; sem isso, "eficiência" confunde-se com intensidade relativa de IA.
+- Três mensagens: (1) retornos de escala heterogêneos: Estados Unidos, Japão e Reino Unido em retornos decrescentes, China sobre o raio de produtividade máxima, e o teste global, liberal, não fornece indício contra retornos constantes; a fronteira avança, puxada pela China, e a maioria dos países se afasta dela; (2) os dois canais divergem e o de patentes é o mais sensível a renda e à atribuição das patentes; (3) medir eficiência em IA exige produtos alternativos (citações, famílias concedidas) e P&D por setor de execução: com fronteira comum, a troca de produtos atenua a associação negativa com instituições de forma distinguível de zero; sem isso, "eficiência" confunde-se com intensidade relativa de IA.
 - Próximos passos do artigo: SFA por canal com classes latentes, teste de separabilidade formal, inferência de dois estágios para painel e bootstrap de Malmquist, matriz de robustez consolidada, manuscrito em português para periódico Qualis.
 - Nota final: agradecer e abrir para perguntas.
 

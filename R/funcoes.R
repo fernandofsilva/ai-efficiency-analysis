@@ -83,6 +83,36 @@ ParaEscala01 <- function(farrell) {
   return(1 / farrell)
 }
 
+ConferirConvencaoMalmquist <- function() {
+  # Exemplo controlado que fixa o sentido dos índices: insumo constante e
+  # produto que dobra. O Benchmarking monta os índices com medidas de
+  # Farrell (na orientação a produto, F >= 1): m = sqrt(e10/e00 * e11/e01),
+  # tc = sqrt(e10/e11 * e00/e01) e ec = e11/e00, de modo que, nessa
+  # orientação, valores MENORES que 1 indicam melhora (aqui, m = tc = 0,5).
+  # Se uma versão futura do pacote mudar a convenção, o script para.
+  x <- matrix(1, 1, 1)
+  m <- Benchmarking::malmq(x, x, X1 = x, Y1 = 2 * x, RTS = "crs",
+                           ORIENTATION = "out")
+  if (abs(m$m - 0.5) > 1e-8 || abs(m$tc - 0.5) > 1e-8 ||
+      abs(m$ec - 1) > 1e-8) {
+    stop("convenção do Malmquist do Benchmarking diferente da esperada")
+  }
+  return(invisible(TRUE))
+}
+
+IndicesMalmquist <- function(malm) {
+  # Índices de Malmquist na convenção de Färe et al. (1994), com distâncias
+  # de Shephard (D = 1/F): MAIOR que 1 = melhora (produtividade cresce,
+  # fronteira avança, país se aproxima da fronteira). São os recíprocos do
+  # que o Benchmarking devolve na orientação a produto (ver
+  # ConferirConvencaoMalmquist). Converter só aqui evita dupla inversão:
+  # quem lê as tabelas gravadas já recebe a convenção adotada.
+  ConferirConvencaoMalmquist()
+  return(data.frame(malmquist = 1 / as.numeric(malm$m),
+                    mudanca_tecnica = 1 / as.numeric(malm$tc),
+                    mudanca_eficiencia = 1 / as.numeric(malm$ec)))
+}
+
 ConfigurarPadronizacao <- function() {
   # Lê a padronização das variáveis da fronteira (insumos e produtos da DEA)
   # das variáveis de ambiente:
@@ -264,13 +294,36 @@ SpearmanComIc <- function(a, b, n_boot = 2000, semente = 2026, grupo = NULL,
   return(saida)
 }
 
+AcrescentarCsv <- function(tab, arquivo) {
+  # Acrescenta linhas a um CSV de registro, criando-o com cabeçalho se não
+  # existir. Se o cabeçalho existente não tiver as mesmas colunas, para em
+  # vez de gravar linhas desalinhadas (o manifesto de execuções ficou assim
+  # entre 28/09 e 04/10/2026, quando id_execucao entrou só nas linhas).
+  if (file.exists(arquivo)) {
+    cabecalho <- names(utils::read.csv(arquivo, nrows = 1,
+                                       check.names = FALSE))
+    if (!identical(cabecalho, names(tab))) {
+      stop("cabeçalho de ", arquivo, " difere das colunas a gravar: ",
+           paste(cabecalho, collapse = ", "))
+    }
+  }
+  utils::write.table(tab, arquivo, sep = ",", row.names = FALSE,
+                     col.names = !file.exists(arquivo),
+                     append = file.exists(arquivo))
+  return(invisible(arquivo))
+}
+
 RegistrarManifesto <- function(script, sufixo, base, status, detalhe = "",
                                arquivo = file.path("output/tables",
                                                    "manifesto_execucoes.csv")) {
   # Registra uma linha por execução (id, script, sufixo, base e seu hash
-  # MD5, horário e status) e, em manifesto_saidas.csv, uma linha por tabela
-  # gravada nesta execução com o MD5 do arquivo, para vincular cada saída à
-  # configuração e à execução que a geraram.
+  # MD5, horário e status); em manifesto_saidas.csv, uma linha por tabela
+  # ou figura gravada nesta execução com o MD5 do arquivo; e, em
+  # manifesto_entradas.csv, uma linha por tabela derivada lida (scripts que
+  # partem das saídas de outros, como o 04 e o 05b), com o MD5 no momento
+  # da leitura. Assim cada saída fica ligada à configuração, à execução e
+  # às versões dos resultados que a geraram. Precisa ser chamada no fim de
+  # cada script: o registro da sessão se perde quando o processo termina.
   config <- ConfigurarPadronizacao()
   if (config$metodo != "nenhuma") {
     detalhe <- paste0(detalhe, if (nzchar(detalhe)) "; " else "",
@@ -287,9 +340,7 @@ RegistrarManifesto <- function(script, sufixo, base, status, detalhe = "",
     insumos = Sys.getenv("INSUMOS", "investimento,gerd"),
     produtos = Sys.getenv("PRODUTOS", "publicacoes,patentes"),
     status = status, detalhe = detalhe, stringsAsFactors = FALSE)
-  utils::write.table(linha, arquivo, sep = ",", row.names = FALSE,
-                     col.names = !file.exists(arquivo),
-                     append = file.exists(arquivo))
+  AcrescentarCsv(linha, arquivo)
   saidas <- .registro_saidas$arquivos
   if (length(saidas) > 0) {
     arquivo_saidas <- file.path(dirname(arquivo), "manifesto_saidas.csv")
@@ -297,10 +348,18 @@ RegistrarManifesto <- function(script, sufixo, base, status, detalhe = "",
                       script = script, sufixo = sufixo, arquivo = saidas,
                       md5 = unname(tools::md5sum(saidas)), status = status,
                       stringsAsFactors = FALSE)
-    utils::write.table(tab, arquivo_saidas, sep = ",", row.names = FALSE,
-                       col.names = !file.exists(arquivo_saidas),
-                       append = file.exists(arquivo_saidas))
+    AcrescentarCsv(tab, arquivo_saidas)
     .registro_saidas$arquivos <- character(0)
+  }
+  entradas <- .registro_saidas$entradas
+  if (length(entradas) > 0) {
+    arquivo_entradas <- file.path(dirname(arquivo), "manifesto_entradas.csv")
+    tab <- data.frame(id_execucao = id_execucao, horario = horario,
+                      script = script, sufixo = sufixo,
+                      arquivo = names(entradas), md5 = unname(entradas),
+                      stringsAsFactors = FALSE)
+    AcrescentarCsv(tab, arquivo_entradas)
+    .registro_saidas$entradas <- character(0)
   }
   return(invisible(linha))
 }
@@ -385,12 +444,19 @@ AjustarTruncada <- function(formula, d, dependente = "log_escore") {
   # Regressão truncada (truncreg) em uma de três parametrizações, com
   # verificação explícita da convergência ANTES de devolver coeficientes:
   #   "log_escore":  dependente = log do escore corrigido, em (-Inf, 0),
-  #                  truncada à direita em 0. É o modelo de Simar e Wilson
-  #                  (2007) aplicado ao logaritmo da medida de Farrell
-  #                  (transformação monótona), com suporte compatível com
-  #                  o escore em (0, 1) e numericamente estável mesmo nos
-  #                  canais com escores próximos de zero; coeficiente
-  #                  positivo = MAIS eficiente (semi-elasticidade);
+  #                  normal truncada à direita em 0. É uma especificação
+  #                  exploratória própria, NÃO o modelo de Simar e Wilson
+  #                  (2007) em outra escala: lá a normal truncada (em 1) é
+  #                  a da medida de Farrell F, e se F tem essa distribuição
+  #                  log(escore) = -log(F) não tem (a transformação muda a
+  #                  densidade). Foi escolhida pelo suporte compatível com
+  #                  o escore em (0, 1) e pela estabilidade numérica mesmo
+  #                  nos canais com escores próximos de zero. Coeficiente
+  #                  positivo = MAIS eficiente; ele se refere à média da
+  #                  normal latente, antes da truncagem, e não é a
+  #                  semi-elasticidade do escore observado (a média
+  #                  condicional inclui a correção da truncagem): ler o
+  #                  sinal, não a magnitude como efeito percentual;
   #   "escore_1lim": dependente = escore em (0, 1], truncada só à direita
   #                  em 1 (suporte (-Inf, 1); especificação das versões
   #                  anteriores, mantida para comparação);
@@ -444,9 +510,26 @@ AjustarTruncada <- function(formula, d, dependente = "log_escore") {
               mensagem = paste(trimws(ajuste$est.stat$message), metodo)))
 }
 
-# Registro das saídas gravadas na sessão (consumido por RegistrarManifesto).
+# Registro das saídas gravadas e das tabelas derivadas lidas na sessão
+# (consumido por RegistrarManifesto).
 .registro_saidas <- new.env()
 .registro_saidas$arquivos <- character(0)
+.registro_saidas$entradas <- character(0)
+
+RegistrarSaida <- function(arquivo) {
+  # Anota um arquivo gravado (tabela ou figura) no registro da sessão.
+  .registro_saidas$arquivos <- unique(c(.registro_saidas$arquivos, arquivo))
+  return(invisible(arquivo))
+}
+
+RegistrarEntrada <- function(arquivo) {
+  # Anota uma tabela lida e o seu MD5 no momento da leitura (a versão dos
+  # resultados que a figura ou a comparação representa).
+  if (file.exists(arquivo)) {
+    .registro_saidas$entradas[arquivo] <- unname(tools::md5sum(arquivo))
+  }
+  return(invisible(arquivo))
+}
 
 SalvarTabela <- function(dados, nome, pasta = "output/tables") {
   # Grava uma tabela em CSV na pasta de saída e anota o arquivo no registro
@@ -454,7 +537,7 @@ SalvarTabela <- function(dados, nome, pasta = "output/tables") {
   dir.create(pasta, showWarnings = FALSE, recursive = TRUE)
   arquivo <- file.path(pasta, paste0(nome, ".csv"))
   utils::write.csv(dados, arquivo, row.names = FALSE)
-  .registro_saidas$arquivos <- unique(c(.registro_saidas$arquivos, arquivo))
+  RegistrarSaida(arquivo)
   return(invisible(dados))
 }
 

@@ -13,7 +13,7 @@
 #   2. sensibilidade a epsilon e verificação numérica da invariância à
 #      escala, com as DEA determinísticas (sem bootstrap) da Fase A e do
 #      painel: unidades originais, escala pura (x / máx, sem translação) e
-#      min-max com epsilon de 0,001 a 0,2.
+#      min-max com epsilon de 1e-9 a 0,2.
 # Uso: PADRONIZACAO=minmax Rscript R/05b_comparacao_padronizacao.R
 #      (depois das execuções com e sem padronização)
 
@@ -24,7 +24,11 @@ if (padronizacao$metodo == "nenhuma") {
   stop("rode com PADRONIZACAO=minmax: o script compara as duas versões")
 }
 sufixo_pad <- padronizacao$sufixo
-epsilons <- c(0.001, 0.01, 0.05, 0.1, 0.2)
+# Os dois valores minúsculos de epsilon mostram o limite da min-max quando
+# o piso some: a correlação de postos com as unidades originais vai a quase
+# 1, mas a diferença absoluta dos escores não vai a zero (a subtração do
+# mínimo continua; A11 de artigo/17).
+epsilons <- c(1e-9, 1e-6, 0.001, 0.01, 0.05, 0.1, 0.2)
 
 execucoes <- data.frame(
   sufixo = c("", "_painel", "_painel_qualidade", "_painel_fonte",
@@ -39,6 +43,7 @@ LerTabelaSe <- function(nome) {
   if (!file.exists(arquivo)) {
     return(NULL)
   }
+  RegistrarEntrada(arquivo)
   return(utils::read.csv(arquivo, stringsAsFactors = FALSE))
 }
 
@@ -368,8 +373,8 @@ for (k in seq_len(nrow(execucoes))) {
   # H5 com as outras dimensões do WGI (S07).
   wgi <- LerPar("segundo_estagio_wgi", s)
   if (!is.null(wgi)) {
-    dimensoes <- c("qualidade_regulatoria", "estado_direito",
-                   "controle_corrupcao", "indice_wgi")
+    dimensoes <- c("efetividade_governo", "qualidade_regulatoria",
+                   "estado_direito", "controle_corrupcao", "indice_wgi")
     FiltrarWgi <- function(t) {
       colunas <- intersect(c("modelo", "termo", "coeficiente", "ic_inf",
                              "ic_sup", "p_boot", "significativo_5pct",
@@ -503,8 +508,10 @@ FiguraRanking <- function(r, rotulo, nome) {
     ggplot2::theme(legend.position = "bottom",
                    panel.grid.minor = ggplot2::element_blank(),
                    panel.grid.major.y = ggplot2::element_blank())
-  ggplot2::ggsave(file.path("output/figures", paste0(nome, ".png")), figura,
-                  width = 8.5, height = 9.5, dpi = 200, bg = "white")
+  arquivo <- file.path("output/figures", paste0(nome, ".png"))
+  ggplot2::ggsave(arquivo, figura, width = 8.5, height = 9.5, dpi = 200,
+                  bg = "white")
+  RegistrarSaida(arquivo)
   Registrar("figura gravada:", nome)
   return(invisible(NULL))
 }
@@ -524,7 +531,11 @@ for (k in which(execucoes$rotulo %in% c("Fase A", "Painel"))) {
 # (cada variável dividida pelo seu máximo) não translada os dados: os
 # escores devem coincidir com os originais até a tolerância do solver, o
 # que separa o efeito numérico da escala do efeito da translação embutida
-# na min-max.
+# na min-max. Reduzir epsilon NÃO leva de volta às unidades originais: no
+# limite fica (x - mín) / (máx - mín), que ainda subtrai o mínimo (a
+# translação permanece), e a orientação a produto não é invariante à
+# translação dos produtos nem sob VRS (A11 de artigo/17). O Malmquist usa
+# a mesma convenção do script 02 (IndicesMalmquist: maior que 1 = melhora).
 SensibilidadeEpsilon <- function(rotulo, arquivo, insumos, produtos,
                                  janela) {
   base <- utils::read.csv(arquivo, stringsAsFactors = FALSE)
@@ -582,8 +593,10 @@ SensibilidadeEpsilon <- function(rotulo, arquivo, insumos, produtos,
                                     Matriz(tr, painel, produtos, 1),
                                     ID = painel$pais, TIME = painel$ano,
                                     RTS = "crs", ORIENTATION = "out")
-    return(list(anual = anual, malm = as.numeric(malm$m),
-                tc = as.numeric(malm$tc), ec = as.numeric(malm$ec)))
+    indices <- IndicesMalmquist(malm)
+    return(list(anual = anual, malm = indices$malmquist,
+                tc = indices$mudanca_tecnica,
+                ec = indices$mudanca_eficiencia))
   }
   resultados <- lapply(transformacoes, Rodar)
   ref <- resultados[[1]]

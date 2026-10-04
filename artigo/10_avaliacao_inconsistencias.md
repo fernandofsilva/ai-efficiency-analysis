@@ -2,6 +2,8 @@
 
 Avaliação feita em 27/09/2026. Cada item foi conferido contra código, tabelas e bases do repositório antes do veredito. Convenções: **Verdadeira** = divergência confirmada; **Verdadeira em parte** = a observação procede, mas a conclusão ou a justificativa do revisor não se sustenta integralmente; **Falsa** = descartada, com o motivo. "Correção" indica a alternativa adotada (a do revisor, ou uma adaptação, com a razão) e "Estado" indica se já foi aplicada nesta rodada (código, reexecução e/ou texto), documentada como limitação ou deixada pendente.
 
+> **Nota de superação (04/10/2026, `artigo/17`, A01; `artigo/18`).** Os índices de Malmquist citados neste documento estão na convenção devolvida pelo `Benchmarking` na orientação a produto, em que **menor que 1 é melhora**, e foram lidos no sentido inverso: "catch-up" era afastamento da fronteira, "fronteira recua" era avanço, e a inclinação de β-convergência tinha o sinal trocado. O texto fica como registro desta rodada; os valores e as leituras vigentes estão em `artigo/05`, `artigo/06` e `artigo/18`.
+
 Resumo dos vereditos: 24 itens, 22 verdadeiras e 2 verdadeiras em parte (I09 e I16); nenhuma falsa. Estado das correções: 22 aplicadas nesta rodada (código, reexecução e/ou texto), 2 aplicadas como rótulo e registradas como limitação metodológica (I07, inferência de dois estágios; I09, validação do teste de RTS) e 1 pendente do usuário (I05, deck). A reanálise de 28/09 (`artigo/11`) e sua avaliação (`artigo/12`) revisam alguns destes pontos. Todas as correções de código foram aplicadas e o pipeline inteiro foi reexecutado (`output/rodar_tudo.sh`; manifesto por execução em `output/tables/manifesto_execucoes.csv`).
 
 | ID | Veredito | Correção adotada | Estado |

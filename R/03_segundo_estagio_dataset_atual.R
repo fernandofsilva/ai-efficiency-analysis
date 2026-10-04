@@ -3,16 +3,23 @@
 # Testes preliminares de H5 (instituições e capacidade de absorção),
 # H6 (finanças de mercado vs bancárias no canal de patentes) e
 # H7 (assimetria por nível de desenvolvimento entre canais).
-# Métodos: regressão truncada sobre log(escore) com bootstrap agrupado por
-# país (especificação principal; parametrizações em escore (0,1] e em
-# Farrell como comparação, todas com verificação de convergência),
+# Métodos: regressão normal truncada sobre log(escore) com bootstrap
+# agrupado por país (especificação principal, exploratória e própria: não
+# equivale ao modelo de Simar e Wilson, 2007, em outra escala; ver
+# AjustarTruncada; parametrizações em escore (0,1] e em Farrell como
+# comparação, todas com verificação de convergência),
 # Simar-Wilson algoritmo 2 (rDEA::dea.env.robust), Tobit comparativo
 # (AER::tobit), Kruskal-Wallis e Mann-Whitney por grupo de renda.
 # Níveis de evidência (S07, comentários da apresentação de 28/09/2026):
 # cada coeficiente com sinal previsto é classificado em significativo a 5%,
 # "bateu na trave" (só o IC 90% exclui zero), só o sinal, ou sinal
 # contrário; a efetividade governamental é trocada, uma de cada vez, pelas
-# outras dimensões do WGI e por um índice composto.
+# outras dimensões do WGI e por um índice composto, todas da mesma cópia do
+# WGI (cache do World Bank).
+# Amostras: as regressões do modelo conjunto usam todas as observações do
+# conjunto; as dos canais, só as observações em que o canal é definido
+# (produto positivo). Uma exclusão do canal de patentes não tira a
+# observação das regressões do conjunto (A06 de artigo/17).
 # Variáveis de ambiente: as do script 02 (BASE_ARQUIVO, SUFIXO_SAIDA,
 # INSUMOS, PRODUTOS, PADRONIZACAO, EPSILON_PADRONIZACAO); as fronteiras dos
 # canais e do algoritmo 2 usam a mesma padronização do script 02.
@@ -158,11 +165,17 @@ boot_pub <- BootCanal(produtos[1])
 names(boot_pub)[2:3] <- c("farrell_bc_pub", "escore_bc_pub")
 boot_pat <- BootCanal(produtos[2])
 names(boot_pat)[2:3] <- c("farrell_bc_pat", "escore_bc_pat")
+# left_join: o escore do canal fica ausente onde o canal não é definido
+# (produto zero), e a observação continua no conjunto. Cada regressão
+# seleciona os casos completos só das variáveis que usa (TruncadaAgrupada).
 dados <- dados |>
-  dplyr::inner_join(boot_pub, by = "id") |>
-  dplyr::inner_join(boot_pat, by = "id") |>
+  dplyr::left_join(boot_pub, by = "id") |>
+  dplyr::left_join(boot_pat, by = "id") |>
   dplyr::mutate(log_escore_bc_pub = log(escore_bc_pub),
                 log_escore_bc_pat = log(escore_bc_pat))
+Registrar("obs. com escore de publicações:", sum(!is.na(dados$escore_bc_pub)),
+          "| de patentes:", sum(!is.na(dados$escore_bc_pat)), "| conjunto:",
+          nrow(dados))
 Salvar(dados[, c("id", "pais", "ano", "grupo_renda", "escore_bc",
                        "escore_bc_pub", "escore_bc_pat")],
              "escores_bc_conjunto_e_canais")
@@ -268,8 +281,9 @@ TruncadaParametrizacoes <- function(formula_log, d, rotulo,
 
 # H5: instituições e capacidade de absorção (modelo conjunto M2) --------------
 # Nota: a variável dependente principal é o log da eficiência corrigida
-# (em (-Inf, 0), truncada em 0): um coeficiente positivo indica MAIOR
-# eficiência (semi-elasticidade do escore).
+# (em (-Inf, 0), normal truncada em 0): um coeficiente positivo indica MAIOR
+# eficiência. O coeficiente se refere à média latente, antes da truncagem:
+# leitura de sinal, não de efeito percentual sobre o escore observado.
 formula_h5 <- log_escore_bc ~ efetividade_governo + alta_tec_export +
   log_comercio + market_cap + credito_privado + ano_f
 h5 <- TruncadaParametrizacoes(formula_h5, dados, "H5 truncada (M2)")
@@ -301,33 +315,63 @@ if ("talento_ia_media_genero_pct" %in% names(dados)) {
 # professor na apresentação) ou da qualidade institucional em geral, a
 # efetividade é trocada, uma de cada vez, por qualidade regulatória, estado
 # de direito, controle da corrupção e um índice composto (média simples das
-# quatro estimativas, que já estão na mesma escala). Na Fase A, qualidade
-# regulatória e estado de direito vêm do cache do World Bank (data/wgi/).
+# quatro estimativas, que já estão na mesma escala).
+# Uma só cópia dos dados (A07 de artigo/17): as quatro dimensões, o índice
+# e a própria efetividade de referência deste bloco vêm todos do cache do
+# World Bank (data/wgi/, API v2, fonte 3), na mesma amostra. Na Fase A, a
+# efetividade e o controle da corrupção do dataset original divergem do
+# cache em todas as observações (até 0,53 na efetividade; não é defasagem
+# de um ano), de modo que misturar as duas cópias confundiria troca de
+# dimensão com troca de fonte. A H5 principal continua com a cópia de cada
+# base (na Fase A, a do dataset original, para manter a replicação), e a
+# tabela wgi_original_vs_cache mostra a diferença entre as cópias. No
+# painel reconstruído as quatro dimensões já vêm do mesmo cache.
 dimensoes_wgi <- c("efetividade_governo", "qualidade_regulatoria",
                    "estado_direito", "controle_corrupcao")
 codigos_wgi <- c(efetividade_governo = "GOV_WGI_GE.EST",
                  qualidade_regulatoria = "GOV_WGI_RQ.EST",
                  estado_direito = "GOV_WGI_RL.EST",
                  controle_corrupcao = "GOV_WGI_CC.EST")
-for (v in setdiff(dimensoes_wgi, names(dados))) {
-  dados <- dplyr::left_join(
-    dados, LerWorldBank(codigos_wgi[[v]], v, pasta = "data/wgi"),
+dados_wgi <- dados[, setdiff(names(dados), dimensoes_wgi)]
+for (v in dimensoes_wgi) {
+  dados_wgi <- dplyr::left_join(
+    dados_wgi, LerWorldBank(codigos_wgi[[v]], v, pasta = "data/wgi"),
     by = c("iso3c", "ano"))
 }
-dados$indice_wgi <- rowMeans(dados[, dimensoes_wgi])
-correlacao_wgi <- stats::cor(dados[, c(dimensoes_wgi, "indice_wgi")],
+dados_wgi$indice_wgi <- rowMeans(dados_wgi[, dimensoes_wgi])
+fonte_wgi <- "cache World Bank (data/wgi), as quatro dimensões da mesma cópia"
+# Diferença entre a cópia da base e a do cache, por dimensão presente nas
+# duas (pela mesma chave país-ano).
+wgi_copias <- do.call(rbind, lapply(intersect(dimensoes_wgi, names(dados)),
+                                    function(v) {
+  original <- dados[[v]]
+  cache <- dados_wgi[[v]][match(dados$id, dados_wgi$id)]
+  ok <- stats::complete.cases(original, cache)
+  dif <- abs(original[ok] - cache[ok])
+  return(data.frame(dimensao = v, observacoes = sum(ok),
+                    diferentes = sum(dif > 1e-6), max_dif_absoluta = max(dif),
+                    mediana_dif_absoluta = stats::median(dif),
+                    correlacao = stats::cor(original[ok], cache[ok])))
+}))
+Salvar(wgi_copias, "wgi_original_vs_cache")
+print(wgi_copias)
+correlacao_wgi <- stats::cor(dados_wgi[, c(dimensoes_wgi, "indice_wgi")],
                              use = "pairwise.complete.obs")
 Salvar(data.frame(dimensao = rownames(correlacao_wgi), correlacao_wgi,
-                  row.names = NULL), "correlacao_wgi")
-h5_wgi <- do.call(rbind, lapply(c(dimensoes_wgi[-1], "indice_wgi"),
+                  fonte = fonte_wgi, row.names = NULL), "correlacao_wgi")
+h5_wgi <- do.call(rbind, lapply(c(dimensoes_wgi, "indice_wgi"),
                                 function(v) {
   formula <- stats::as.formula(paste(
     "log_escore_bc ~", v, "+ alta_tec_export + log_comercio + market_cap +",
     "credito_privado + ano_f"))
-  return(TruncadaAgrupada(formula, dados,
-                          paste("H5 truncada com", v,
-                                "no lugar da efetividade (M2)")))
+  rotulo <- if (v == "efetividade_governo") {
+    "H5 truncada com efetividade_governo do cache WGI (referência do bloco)"
+  } else {
+    paste("H5 truncada com", v, "no lugar da efetividade (M2)")
+  }
+  return(TruncadaAgrupada(formula, dados_wgi, rotulo))
 }))
+h5_wgi$fonte_wgi <- fonte_wgi
 
 # Tobit comparativo (escore em (0, 1], censurado à direita em 1; prática
 # anterior da literatura, mantido só para comparação) -------------------------
@@ -508,16 +552,19 @@ TesteGrupos <- function(variavel, rotulo) {
   # país-ano (linhas repetidas por país) e em médias por país (uma linha
   # por país). Comparar o mesmo teste nas duas unidades isola o efeito da
   # repetição temporal; comparar testes diferentes não.
-  kw <- stats::kruskal.test(dados[[variavel]], factor(dados$grupo_renda))
-  mw <- stats::wilcox.test(dados[[variavel]] ~ dados$grupo_renda2)
-  por_pais <- dados |>
+  # Só as observações em que o escore é definido (nos canais, produto
+  # positivo).
+  d <- dados[!is.na(dados[[variavel]]), ]
+  kw <- stats::kruskal.test(d[[variavel]], factor(d$grupo_renda))
+  mw <- stats::wilcox.test(d[[variavel]] ~ d$grupo_renda2)
+  por_pais <- d |>
     dplyr::group_by(pais, grupo_renda, grupo_renda2) |>
     dplyr::summarise(v = mean(.data[[variavel]]), .groups = "drop")
   kw_pais <- stats::kruskal.test(por_pais$v, factor(por_pais$grupo_renda))
   mw_pais <- stats::wilcox.test(v ~ grupo_renda2, data = por_pais)
-  medias <- tapply(dados[[variavel]], dados$grupo_renda, mean)
+  medias <- tapply(d[[variavel]], d$grupo_renda, mean)
   Media <- function(g) if (g %in% names(medias)) medias[[g]] else NA_real_
-  saida <- data.frame(escore = rotulo,
+  saida <- data.frame(escore = rotulo, n_obs = nrow(d),
                       p_kruskal_3grupos_pais_ano = kw$p.value,
                       p_kruskal_3grupos_medias_pais = kw_pais$p.value,
                       p_mann_whitney_2grupos_pais_ano = mw$p.value,

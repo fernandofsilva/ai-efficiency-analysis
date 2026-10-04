@@ -2,19 +2,31 @@ Warning message:
 `geom_errorbarh()` was deprecated in ggplot2 4.0.0.
 ℹ Please use the `orientation` argument of `geom_errorbar()` instead. 
 `height` was translated to `width`.
-11:33:37 figura gravada: fig1_ranking_m2 
-11:33:37 figura gravada: fig2_malmquist_decomposicao 
-11:33:38 figura gravada: fig3_canais 
+17:00:02 figura gravada: fig1_ranking_m2 
+17:00:02 figura gravada: fig2_malmquist_decomposicao 
+17:00:03 figura gravada: fig3_canais 
 `height` was translated to `width`.
-11:33:38 figura gravada: fig4_segundo_estagio 
-11:33:38 figura gravada: fig5_renda_ano 
-       grupo_renda anos observacoes inclinacao_cv p_inclinacao_cv inclinacao_iqr p_inclinacao_iqr
-1       Alta renda    5         159   -0.04816144      0.08812358     0.03768260       0.05819144
-2 Renda média-alta    5          43   -0.09890011      0.07982349    -0.05824323       0.10174102
-  corte_periodo desvio_mediano_primeira desvio_mediano_segunda p_mann_whitney_desvios
-1          2019               0.1832387              0.1907625              0.5502672
-2          2019               0.1398909              0.1228883              0.9117757
+17:00:03 figura gravada: fig4_segundo_estagio 
+17:00:03 figura gravada: fig5_renda_ano 
+       grupo_renda anos observacoes n_paises paises_nas_duas_metades inclinacao_cv p_inclinacao_cv
+1       Alta renda    5         159       35                      33   -0.04816144      0.08812358
+2 Renda média-alta    5          43       11                       9   -0.09890011      0.07982349
+  inclinacao_iqr p_inclinacao_iqr inclinacao_iqr_relativo p_inclinacao_iqr_relativo
+1     0.03768260       0.05819144             -0.02126075                  0.628644
+2    -0.05824323       0.10174102             -0.29474919                  0.217318
+                    leitura_inclinacoes corte_periodo desvio_mediano_primeira
+1 descritiva (MQO com um ponto por ano)          2019               0.1832387
+2 descritiva (MQO com um ponto por ano)          2019               0.1398909
+  desvio_mediano_segunda dif_desvio_mediano  ic_inf_dif ic_sup_dif p_boot_paises replicas_validas
+1              0.1907625        0.007523742 -0.05483132 0.09034656         0.626             2000
+2              0.1228883       -0.017002549 -0.16178574 0.12176101         0.982             2000
+  p_wilcoxon_pareado_paises
+1                 0.9857443
+2                 0.3432526
+                                                                                            inferencia
+1 bootstrap de países (trajetórias completas), escores fixos; sensibilidade: Wilcoxon pareado por país
+2 bootstrap de países (trajetórias completas), escores fixos; sensibilidade: Wilcoxon pareado por país
 `height` was translated to `width`.
-11:33:38 figura gravada: fig6_estimadores 
-11:33:38 figura gravada: fig7_metafronteira 
-11:33:38 FIM figuras Fase A 
+17:00:10 figura gravada: fig6_estimadores 
+17:00:10 figura gravada: fig7_metafronteira 
+17:00:10 FIM figuras Fase A 

@@ -471,11 +471,54 @@ malm <- Benchmarking::malmquist(mats_p$x, mats_p$y, ID = painel$pais,
                                 TIME = painel$ano, RTS = "crs",
                                 ORIENTATION = "out")
 Registrar("malmquist: componentes", paste(names(malm), collapse = ", "))
+# Convenção (A01 de artigo/17): os índices gravados são os recíprocos dos
+# devolvidos pelo Benchmarking na orientação a produto (IndicesMalmquist),
+# de modo que MAIOR que 1 = melhora: M > 1, produtividade cresce; TC > 1,
+# a fronteira avança; EC > 1, o país se aproxima da fronteira (catch-up).
+# As medidas de Farrell originais (e00: ano anterior contra a fronteira do
+# ano anterior; e11: ano corrente contra a fronteira do ano corrente; e10
+# e e01, as cruzadas) ficam na tabela para conferência, e os escores CRS
+# contemporâneos 1/e00 e 1/e11 permitem ver a posição do país em cada ano.
 tabela_malm <- data.frame(pais = malm$id, ano = malm$time,
-                          malmquist = as.numeric(malm$m),
-                          mudanca_tecnica = as.numeric(malm$tc),
-                          mudanca_eficiencia = as.numeric(malm$ec))
+                          IndicesMalmquist(malm),
+                          escore_crs_anterior = 1 / as.numeric(malm$e00),
+                          escore_crs = 1 / as.numeric(malm$e11),
+                          farrell_e00 = as.numeric(malm$e00),
+                          farrell_e01 = as.numeric(malm$e01),
+                          farrell_e10 = as.numeric(malm$e10),
+                          farrell_e11 = as.numeric(malm$e11))
+# Escores CRS contemporâneos em TODOS os anos da janela, inclusive o
+# primeiro (linha sem índice, em que a biblioteca preenche só e11),
+# conferidos contra uma DEA CRS feita ano a ano no mesmo painel
+# balanceado. É a base da classificação "na fronteira em todos os anos"
+# do script 04 (A02): EC = 1 só quer dizer eficiência constante.
+escores_crs <- tabela_malm[, c("pais", "ano", "escore_crs")]
+for (ano_janela in janela) {
+  no_ano <- painel$ano == ano_janela
+  crs_ano <- CalcularDea(mats_p$x[no_ano, , drop = FALSE],
+                         mats_p$y[no_ano, , drop = FALSE],
+                         painel$pais[no_ano], "crs")
+  linhas <- escores_crs$ano == ano_janela
+  dif <- crs_ano$escore[match(escores_crs$pais[linhas], crs_ano$id)] -
+    escores_crs$escore_crs[linhas]
+  if (any(!is.finite(dif)) || max(abs(dif)) > 1e-6) {
+    stop("escores CRS do Malmquist diferem da DEA anual no ano ",
+         ano_janela)
+  }
+}
+escores_crs <- dplyr::left_join(
+  escores_crs,
+  dplyr::distinct(painel, pais, grupo_renda, grupo_renda2), by = "pais")
+Salvar(escores_crs, "malmquist_escores_crs")
 tabela_malm <- tabela_malm[!is.na(tabela_malm$malmquist), ]
+# Identidades conferidas: M = TC x EC e EC = escore do ano / escore do
+# ano anterior (mesmo painel balanceado).
+if (max(abs(tabela_malm$malmquist - tabela_malm$mudanca_tecnica *
+            tabela_malm$mudanca_eficiencia)) > 1e-8 ||
+    max(abs(tabela_malm$mudanca_eficiencia - tabela_malm$escore_crs /
+            tabela_malm$escore_crs_anterior)) > 1e-8) {
+  stop("identidades do Malmquist não conferem")
+}
 tabela_malm <- dplyr::left_join(
   tabela_malm,
   dplyr::distinct(painel, pais, grupo_renda, grupo_renda2), by = "pais")
@@ -550,9 +593,12 @@ print(resumo_malm)
 # país no primeiro ano da janela, medida contra a MESMA fronteira do painel
 # balanceado usada no Malmquist (componente e00 do primeiro par de anos:
 # Farrell da unidade em t-1 contra a fronteira de t-1; ec = e11/e00 por
-# construção), e não contra a DEA anual com todos os países. Inclinação
-# negativa = quem estava longe se aproxima mais. Regressão MQO descritiva,
-# condicional às fronteiras estimadas.
+# construção), e não contra a DEA anual com todos os países. Com EC na
+# convenção adotada (> 1 = aproximação), inclinação negativa = quem estava
+# longe se aproxima mais. Regressão MQO descritiva, condicional às
+# fronteiras estimadas; parte de uma inclinação negativa é mecânica (o
+# escore é limitado a 1, e quem começa na fronteira não pode se aproximar
+# dela; regressão à média).
 ec_pais <- tabela_malm |>
   dplyr::group_by(pais, grupo_renda2) |>
   dplyr::summarise(log_ec = mean(log(mudanca_eficiencia)), .groups = "drop")

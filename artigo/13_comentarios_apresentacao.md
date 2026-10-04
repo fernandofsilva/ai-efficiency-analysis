@@ -60,14 +60,17 @@
 4. Saídas de H2: elasticidades do investimento privado e do GERD por canal com erro-padrão, teste de razão de verossimilhança da presença de ineficiência e comparação entre canais (critério de H2: elasticidade do investimento privado significativa só em patentes); painel com efeitos de ineficiência (Battese e Coelli, 1995) como extensão.
 5. Classes latentes (`sfaR::sfalcmcross`) como robustez de H3, somente depois que o SFA simples convergir.
 
-**Estado em 04/10/2026.** Executado; resultados em `artigo/15_sfa_canais.md`.
-- O `R/06_sfa_canais.R` roda nas seis bases: Cobb-Douglas meia-normal agrupada (principal), exponencial, translog, painel de Battese e Coelli (1988 e 1992) e duas classes latentes, com bootstrap em blocos de país.
-- Em log, cada ajuste leva menos de meio segundo; 53 dos 60 ajustes têm inferência válida.
-- H2 não se confirma: o critério estrito vale em 2 de 18 combinações de base e modelo, o padrão oposto em 7, e a base do artigo e o controle preferido (P&D público) não dão apoio.
-- O robusto é o P&D: elasticidade de 0,59 a 0,70 em publicações e de 0,94 a 1,41 em patentes, com retornos decrescentes no canal acadêmico e crescentes no tecnológico.
-- No corte agrupado, a ineficiência não é identificada em publicações (assimetria positiva do resíduo nas seis bases).
+**Estado em 04/10/2026, revisto após a análise crítica 3 (`artigo/18`, A03 a A05).** Executado; resultados em `artigo/15_sfa_canais.md`.
+- O `R/06_sfa_canais.R` roda nas seis bases: Cobb-Douglas meia-normal agrupada (principal), exponencial, translog, painel de Battese e Coelli (1988 e 1992) e duas classes latentes, com bootstrap em blocos de país e reinício do otimizador quando ele para sem convergir.
+- Em log, cada ajuste leva menos de meio segundo; 55 dos 60 ajustes têm inferência válida.
+- H2, pela especificidade relativa com direção (efeito em patentes e diferença entre canais, os dois com IC acima de zero):
+  - apoiada em 3 de 18 combinações (modelos de painel da Fase A e, no limite, o agrupado do inventor);
+  - apoio parcial em 2;
+  - não apoiada em 13, entre elas a base do artigo e o controle preferido (P&D público).
+- O robusto é o P&D: elasticidade de 0,59 a 0,70 em publicações e de 0,94 a 1,41 em patentes. Retornos com IC por país: decrescentes no canal acadêmico; no tecnológico, no máximo levemente crescentes.
+- No corte agrupado, a ineficiência não é identificada em publicações (assimetria positiva do resíduo nas seis bases, quase nula no P&D público).
 - As classes latentes ficam identificadas em 4 de 12 ajustes e só na Fase A acompanham a renda.
-- Pendente: o status de H2 entra na decisão do S03.
+- O status de H2 foi decidido no S03: continua como hipótese.
 
 ### S03 — Menos hipóteses; hipótese × pergunta de pesquisa; fechar cada uma na discussão
 
@@ -115,6 +118,8 @@ Pendentes:
 
 **O que foi dito.** O Malmquist apresentado pareceu agregado; "só faltaria separar o que é frontier shift e catch-up, entender os componentes". Expectativas do professor: catch-up menor na China, porque a liderança tecnológica dela é deslocamento de fronteira; Brasil "jogando no lado do catch-up", com frontier shift "bem caidinho", como em um trabalho de doutorado que ele orientou no COPPEAD sobre setores financiados pelo BNDES (autor citado de memória como "Ricardo Calil"), e o caso da FINEP e da indústria de defesa. Sobre renda média com Malmquist melhor que alta renda: "economicamente não é estranho"; os países chegam ao platô ("é possível ficar pobre para sempre; enriquecer para sempre é muito difícil"); quem está na fronteira gasta mais para deslocá-la e com retorno menor; quem está atrás tem mais espaço (o exemplo de JK, "50 anos em 5").
 
+> **Nota de 04/10/2026 (`artigo/17`, A01; `artigo/18`).** A tabela e a leitura abaixo, registradas antes da análise crítica 3, usam os índices do `Benchmarking` no sentido inverso: na orientação a produto, o pacote devolve valores em que **menor que 1 é melhora**. Ficam aqui como registro do que foi lido na época. A leitura corrigida está no "Estado em 04/10/2026" desta seção e em `artigo/05`, seção 7.
+
 **Estado atual.** A decomposição existe: `malmquist_m2.csv` (por país e par de anos), `malmquist_resumo.csv` (por grupo, com intervalos por reamostragem de países e índices fixos) e fig2 (`fig2_malmquist_decomposicao.png`, barras de mudança técnica e de eficiência por país). O slide 11 e a fala, porém, destacaram o índice agregado por grupo e o índice total por país ("maiores ganhos e perdas"). Médias geométricas 2016–2019 por país, calculadas de `malmquist_m2.csv` (M = TC × EC):
 
 | País | M | Mudança técnica (TC) | Mudança de eficiência (EC) | Leitura |
@@ -147,11 +152,12 @@ A expectativa do professor confirma-se nos dados vigentes: a China não tem catc
 3. Discutir a tese do platô para a alta renda e a intuição "quem está na fronteira precisa gastar mais para deslocá-la", ligando a H1 (Estados Unidos e Japão em DRS e com TC < 1).
 4. Citar Moraes e Wanke (2019) com o achado correto (catch-up e financiamento estatal na siderurgia) e, se houver fonte, evidência sobre FINEP e a indústria de defesa; manter a ressalva sobre os intervalos (reamostragem com índices fixos; bootstrap de Simar e Wilson, 1999, pendente).
 
-**Estado em 04/10/2026.** Itens 1 a 4 feitos (`artigo/16`, seção 3; tabela da Fase A em `artigo/05`, seção 7):
+**Estado em 04/10/2026, revisto após a análise crítica 3 (`artigo/18`, A01 e A02).** Itens 1 a 4 feitos (`artigo/16`, seção 3; tabela da Fase A em `artigo/05`, seção 7), agora com os índices na convenção maior que 1 = melhora e com "na fronteira em todos os anos" exigindo escore CRS igual a 1 em todos os anos:
 - `malmquist_por_pais<sufixo>.csv` nas seis bases.
-- China, Índia, Grécia e Argentina sempre na fronteira na Fase A; China, Coreia do Sul, Malásia e Rússia no painel.
-- O Brasil ganha por catch-up nas duas bases.
-- Tese do platô confirmada em parte: quem investe muito perto da fronteira mais a vê recuar, mas o catch-up da renda média não supera o da alta renda.
+- China, Índia e Grécia na fronteira em todos os anos na Fase A; China, Malásia e Coreia do Sul no painel. Argentina (Fase A) e Rússia (painel) saem da lista: o escore delas cai abaixo de 1 em algum ano.
+- **A expectativa do professor para a China se confirma:** ela não tem catch-up (é a fronteira), e seu movimento é deslocamento **positivo** da fronteira, o maior da Fase A (1,54 ao ano).
+- **A expectativa para o Brasil não se confirma:** ele se afasta da fronteira nas duas bases (EC 0,66 na Fase A e 0,88 no painel), em vez de ganhar por catch-up.
+- **Tese do platô não confirmada no Malmquist:** a fronteira avança justamente onde estão os grandes investidores (China, Estados Unidos, Japão), e a maioria dos países fica para trás (EC médio 0,91 na Fase A e 0,93 no painel). Na Fase A, a renda média se afasta quase como a alta renda (0,93 contra 0,90). No painel, ela acompanha a fronteira (1,02) enquanto a alta renda se afasta (0,90), o que lembra a observação do professor de que um Malmquist melhor na renda média "economicamente não é estranho". Ainda assim, o critério de catch-up não é atendido em nenhuma das duas bases.
 - Moraes e Wanke (2019) conferido: efeito negativo do BNDES sobre o catch-up, que os autores chamam de "Mudança Técnica" (atenção à nomenclatura), e nenhum sobre o deslocamento da fronteira.
 - Pendente: tabela no deck (slide 11) e evidência sobre FINEP.
 
@@ -168,8 +174,8 @@ A expectativa do professor confirma-se nos dados vigentes: a China não tem catc
 3. Reavaliar tudo após S01; só então redigir a discussão de H5–H7 (ou das RQs, S03).
 
 **Estado em 04/10/2026.** Itens 1 e 2 feitos (`artigo/16`, seção 2): `R/03` grava p-valor bootstrap, IC 90%, sinal previsto e nível de evidência, e a fig4 mostra os níveis.
-- A efetividade governamental tem sinal contrário em todas as 23 especificações da truncada (12 a 5%, 7 entre 5% e 10%).
-- Qualidade regulatória, estado de direito, controle da corrupção e o índice composto dão o mesmo sinal. Têm correlação de 0,91 a 0,96 com a efetividade, então a capacidade regulatória não se separa da qualidade institucional geral.
+- A efetividade governamental tem sinal contrário em todas as 23 especificações da truncada (13 a 5% e 6 entre 5% e 10%, após a correção da amostra do inventor; `artigo/18`, A06).
+- Qualidade regulatória, estado de direito, controle da corrupção e o índice composto dão o mesmo sinal. Tomadas da mesma cópia dos dados (`artigo/18`, A07), têm correlação de 0,93 a 0,96 com a efetividade, então a capacidade regulatória não se separa da qualidade institucional geral.
 - Exportações de alta tecnologia e pesquisadores têm o sinal previsto sem significância na maior parte das especificações.
 - H6 (crédito) e H7 (patentes) são contrariadas.
 - Item 3: S01 feito; a redação de H5–H7 depende do S03.
@@ -185,9 +191,9 @@ A expectativa do professor confirma-se nos dados vigentes: a China não tem catc
 1. Em `R/02` ou `R/04`: tabela de dispersão por grupo e ano (n, média, desvio-padrão, IQR, CV) com o escore corrigido de viés; verificar a tendência da dispersão da renda média-alta (regressão do CV ou do IQR no ano, ou teste de homogeneidade de variâncias entre 2013–2016 e 2017–2021), com a ressalva do n; identificar quem abre a distribuição em cada ano (China contra os demais; África do Sul; Ucrânia).
 2. Texto de discussão com evidência contemporânea: Indonésia, Malásia e Peru em ascensão; México atrelado aos Estados Unidos; Ucrânia pré-guerra; China descolada; heterogeneidade dentro da União Europeia e do G7. Cuidado: os escores vêm de fronteiras contemporâneas e não são comparáveis em nível entre anos; comparar dispersões relativas (CV, IQR), não níveis.
 
-**Estado em 04/10/2026.** Item 1 feito (`artigo/16`, seção 4): `dispersao_renda_ano` e `dispersao_renda_tendencia` nas bases com anos suficientes.
-- Nenhuma tendência significativa a 5%.
-- Na renda média-alta, a dispersão sobe na Fase A (p = 0,10) e cai no painel (p = 0,08).
+**Estado em 04/10/2026, revisto após a análise crítica 3 (`artigo/18`, A10 e A15).** Item 1 feito (`artigo/16`, seção 4): `dispersao_renda_ano` e `dispersao_renda_tendencia` nas bases com anos suficientes. O IQR é dispersão absoluta, e a tabela traz também o IQR relativo (IQR/mediana). A comparação entre as metades do período usa bootstrap de países, porque os mesmos países aparecem nas duas metades.
+- Nenhuma diferença entre as metades é distinguível de zero.
+- Na renda média-alta, o CV sobe na Fase A e cai no painel, só como descrição de tendência.
 - Israel é o mínimo da alta renda em quase todos os anos, e África do Sul, Brasil ou Argentina, o da renda média-alta.
 - A abertura de 2018 na renda média-baixa é a entrada das Filipinas.
 - Item 2 (texto com evidência contemporânea) depende do dossiê do S09.

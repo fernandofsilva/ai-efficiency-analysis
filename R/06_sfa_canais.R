@@ -18,6 +18,19 @@
 # Diagnósticos gravados: assimetria dos resíduos de MQO (positiva = sem
 # ineficiência identificável numa fronteira de produção, e o SFA recai no
 # MQO), correlação entre os insumos, convergência, iterações e tempo.
+# Convergência (A04 de artigo/17): quando o frontier para sem convergir
+# (código diferente de 1; quase sempre o código 5, "não encontra parâmetros
+# com log-verossimilhança maior que a do passo anterior"), o ajuste é
+# reiniciado do próprio ponto final e só é aceito se então convergir sem
+# perder log-verossimilhança. Vale para o ajuste pontual e para cada réplica
+# do bootstrap: no diagnóstico de 04/10/2026, a maioria das paradas com
+# código 5 já estava no máximo, mas nos modelos de painel algumas estavam
+# longe dele (o reinício ganhou até 83 de log-verossimilhança), de modo que
+# descartar essas réplicas, como antes, não era neutro.
+# Inferência: elasticidades, diferença entre canais e retornos de escala
+# (soma das elasticidades) com IC por bootstrap em blocos de país nos três
+# modelos com bootstrap; o teste de Wald com a hessiana fica só como
+# diagnóstico (supõe observações independentes; A05 de artigo/17).
 # O log torna a escala irrelevante (multiplicar uma variável por uma
 # constante só muda o intercepto); por isso a padronização da DEA (S01) não
 # se aplica aqui.
@@ -73,11 +86,50 @@ PValorLrMisto <- function(lr) {
 
 TesteRetornos <- function(coefs, vcov_m, termos) {
   # Soma das elasticidades (retornos de escala na média) e teste de Wald de
-  # retornos constantes (soma = 1).
+  # retornos constantes (soma = 1) com a covariância da hessiana, que supõe
+  # observações independentes: diagnóstico, não a inferência adotada (essa
+  # vem do bootstrap por país, em BootstrapPais).
   soma <- sum(coefs[termos])
   ep <- sqrt(sum(vcov_m[termos, termos]))
-  return(c(retornos = soma, p_retornos_constantes =
-             2 * stats::pnorm(-abs((soma - 1) / ep))))
+  return(c(retornos = soma, ep_retornos_hessiana = ep,
+           p_retornos_constantes = 2 * stats::pnorm(-abs((soma - 1) / ep))))
+}
+
+SfaFrontier <- function(formula, dados, indice = NULL, tempo = FALSE) {
+  # frontier::sfa agrupado (indice = NULL) ou em painel (indice = colunas
+  # de unidade e ano; tempo = TRUE para a ineficiência variante no tempo de
+  # Battese e Coelli, 1992). Sem convergência (código diferente de 1),
+  # reinicia do próprio ponto final e aceita o novo ajuste se ele convergir
+  # sem perder log-verossimilhança. Devolve o ajuste, com o atributo
+  # "reinicio" (TRUE quando houve nova tentativa), ou o erro capturado.
+  dados_ajuste <- if (is.null(indice)) {
+    dados
+  } else {
+    plm::pdata.frame(dados, index = indice)
+  }
+  Rodar <- function(inicio) {
+    ajuste <- NULL
+    # capture.output: o frontier imprime as próprias tentativas internas.
+    invisible(utils::capture.output(ajuste <- tryCatch(
+      suppressWarnings(frontier::sfa(formula, data = dados_ajuste,
+                                     timeEffect = tempo, startVal = inicio)),
+      error = function(e) e)))
+    return(ajuste)
+  }
+  ajuste <- Rodar(NULL)
+  if (inherits(ajuste, "error")) {
+    return(ajuste)
+  }
+  attr(ajuste, "reinicio") <- FALSE
+  if (ajuste$code != 1) {
+    novo <- Rodar(stats::coef(ajuste))
+    if (!inherits(novo, "error") && novo$code == 1 &&
+        novo$mleLogl >= ajuste$mleLogl - 1e-6) {
+      ajuste <- novo
+    }
+    attr(ajuste, "reinicio") <- TRUE
+  }
+  return(ajuste)
 }
 
 AjustarModelo <- function(d, modelo) {
@@ -97,16 +149,16 @@ AjustarModelo <- function(d, modelo) {
     d$l_pd <- d$l_pd - mean(d$l_pd)
   }
   inicio <- Sys.time()
-  ajuste <- tryCatch(suppressWarnings(switch(
+  ajuste <- switch(
     modelo,
-    exponencial = sfaR::sfacross(formula, data = d, udist = "exponential"),
-    painel_bc88 = frontier::sfa(
-      formula, data = plm::pdata.frame(d, index = c("iso3c", "ano"))),
-    painel_bc92 = frontier::sfa(
-      formula, data = plm::pdata.frame(d, index = c("iso3c", "ano")),
-      timeEffect = TRUE),
-    frontier::sfa(formula, data = d))),
-    error = function(e) e)
+    exponencial = tryCatch(
+      suppressWarnings(sfaR::sfacross(formula, data = d,
+                                      udist = "exponential")),
+      error = function(e) e),
+    painel_bc88 = SfaFrontier(formula, d, indice = c("iso3c", "ano")),
+    painel_bc92 = SfaFrontier(formula, d, indice = c("iso3c", "ano"),
+                              tempo = TRUE),
+    SfaFrontier(formula, d))
   segundos <- as.numeric(difftime(Sys.time(), inicio, units = "secs"))
   linha <- data.frame(modelo = modelo, n_obs = nrow(d),
                       n_paises = length(unique(d$pais)),
@@ -114,6 +166,7 @@ AjustarModelo <- function(d, modelo) {
   if (inherits(ajuste, "error")) {
     linha$convergiu <- FALSE
     linha$inferencia_valida <- FALSE
+    linha$reinicio <- FALSE
     linha$mensagem <- conditionMessage(ajuste)
     return(linha)
   }
@@ -126,10 +179,12 @@ AjustarModelo <- function(d, modelo) {
   # variância da ineficiência a zero, a hessiana degenera e o sfaR ainda
   # informa "successful convergence"; essas linhas não são interpretadas.
   ep_finitos <- all(is.finite(tab[c("l_inv", "l_pd"), 2]))
+  reinicio <- isTRUE(attr(ajuste, "reinicio"))
   if (inherits(ajuste, "frontier")) {
     convergiu <- ajuste$code == 1
     gradiente_finito <- TRUE
-    mensagem <- paste("frontier, código", ajuste$code)
+    mensagem <- paste0("frontier, código ", ajuste$code,
+                       if (reinicio) " (após reinício do ponto final)")
     iteracoes <- ajuste$nIter
     loglik <- ajuste$mleLogl
     lr <- lmtest::lrtest(ajuste)
@@ -159,7 +214,9 @@ AjustarModelo <- function(d, modelo) {
   linha$ep_pd <- unname(tab["l_pd", 2])
   linha$p_pd <- unname(tab["l_pd", 4])
   linha$retornos <- unname(retornos["retornos"])
-  linha$p_retornos_constantes <- unname(retornos["p_retornos_constantes"])
+  linha$ep_retornos_hessiana <- unname(retornos["ep_retornos_hessiana"])
+  linha$p_retornos_constantes_wald_hessiana <- unname(
+    retornos["p_retornos_constantes"])
   linha$gamma <- gamma
   linha$eta_tempo <- eta
   linha$lr_ineficiencia <- estatistica_lr
@@ -168,29 +225,32 @@ AjustarModelo <- function(d, modelo) {
   linha$loglik <- loglik
   linha$convergiu <- convergiu
   linha$inferencia_valida <- convergiu && ep_finitos && gradiente_finito
+  linha$reinicio <- reinicio
   linha$iteracoes <- iteracoes
   linha$mensagem <- mensagem
   return(linha)
 }
 
 AjustarRapido <- function(dados, modelo) {
-  # Ajuste usado no bootstrap: devolve só as elasticidades (NA sem
-  # convergência). Nos modelos de painel, a unidade é a cópia do país.
+  # Ajuste usado no bootstrap: devolve as elasticidades (NA sem
+  # convergência, mesmo depois do reinício) e se houve reinício. Nos modelos
+  # de painel, a unidade é a cópia do país.
   formula <- l_y ~ l_inv + l_pd + ano_f
   dados$ano_f <- droplevels(dados$ano_f)
-  s <- tryCatch(suppressWarnings(switch(
+  s <- switch(
     modelo,
-    painel_bc88 = frontier::sfa(
-      formula, data = plm::pdata.frame(dados, index = c("unidade", "ano"))),
-    painel_bc92 = frontier::sfa(
-      formula, data = plm::pdata.frame(dados, index = c("unidade", "ano")),
-      timeEffect = TRUE),
-    frontier::sfa(formula, data = dados))),
-    error = function(e) NULL)
-  if (is.null(s) || s$code != 1) {
-    return(c(NA_real_, NA_real_))
+    painel_bc88 = SfaFrontier(formula, dados, indice = c("unidade", "ano")),
+    painel_bc92 = SfaFrontier(formula, dados, indice = c("unidade", "ano"),
+                              tempo = TRUE),
+    SfaFrontier(formula, dados))
+  if (inherits(s, "error")) {
+    return(c(NA_real_, NA_real_, 0))
   }
-  return(unname(stats::coef(s)[c("l_inv", "l_pd")]))
+  reinicio <- as.numeric(isTRUE(attr(s, "reinicio")))
+  if (s$code != 1) {
+    return(c(NA_real_, NA_real_, reinicio))
+  }
+  return(c(unname(stats::coef(s)[c("l_inv", "l_pd")]), reinicio))
 }
 
 BootstrapPais <- function(n_boot, modelo) {
@@ -199,7 +259,10 @@ BootstrapPais <- function(n_boot, modelo) {
   # supõe observações independentes, e o mesmo país aparece em vários
   # anos. Os dois canais são ajustados no MESMO sorteio de países, o que dá
   # também o IC da diferença entre as elasticidades do investimento
-  # (patentes - publicações), o teste da especificidade relativa de H2. Nos
+  # (patentes - publicações), o teste da especificidade relativa de H2, e o
+  # IC dos retornos de escala de cada canal (soma das duas elasticidades na
+  # MESMA réplica, o que preserva a covariância entre elas; somar os
+  # limites dos IC individuais seria errado). Nos
   # modelos de painel, cada país sorteado recebe um identificador próprio
   # (o mesmo país sorteado duas vezes vira duas unidades). Réplicas sem
   # convergência são descartadas e contadas. Os sorteios são feitos antes,
@@ -228,12 +291,13 @@ BootstrapPais <- function(n_boot, modelo) {
   lista <- parallel::mclapply(sorteios, Replica, mc.cores = n_nucleos,
                               mc.preschedule = FALSE)
   replicas <- vapply(lista, function(r) {
-    if (!is.numeric(r) || length(r) != 4) return(rep(NA_real_, 4))
+    if (!is.numeric(r) || length(r) != 6) return(rep(NA_real_, 6))
     return(r)
-  }, numeric(4))
+  }, numeric(6))
   rownames(replicas) <- c("publicacoes.l_inv", "publicacoes.l_pd",
-                          "patentes.l_inv", "patentes.l_pd")
-  Resumo <- function(v, canal, termo) {
+                          "publicacoes.reinicio", "patentes.l_inv",
+                          "patentes.l_pd", "patentes.reinicio")
+  Resumo <- function(v, canal, termo, reinicios) {
     v <- v[is.finite(v)]
     Q <- function(p) {
       if (length(v) < 20) return(NA_real_)
@@ -244,15 +308,25 @@ BootstrapPais <- function(n_boot, modelo) {
                       ic90_inf = Q(0.05), ic90_sup = Q(0.95),
                       replicas_tentadas = n_boot,
                       replicas_convergentes = length(v),
+                      replicas_com_reinicio = sum(reinicios, na.rm = TRUE),
                       stringsAsFactors = FALSE))
   }
+  pub_reinicio <- replicas["publicacoes.reinicio", ]
+  pat_reinicio <- replicas["patentes.reinicio", ]
   return(rbind(
-    Resumo(replicas["publicacoes.l_inv", ], "publicacoes", "l_inv"),
-    Resumo(replicas["publicacoes.l_pd", ], "publicacoes", "l_pd"),
-    Resumo(replicas["patentes.l_inv", ], "patentes", "l_inv"),
-    Resumo(replicas["patentes.l_pd", ], "patentes", "l_pd"),
+    Resumo(replicas["publicacoes.l_inv", ], "publicacoes", "l_inv",
+           pub_reinicio),
+    Resumo(replicas["publicacoes.l_pd", ], "publicacoes", "l_pd",
+           pub_reinicio),
+    Resumo(replicas["publicacoes.l_inv", ] + replicas["publicacoes.l_pd", ],
+           "publicacoes", "retornos", pub_reinicio),
+    Resumo(replicas["patentes.l_inv", ], "patentes", "l_inv", pat_reinicio),
+    Resumo(replicas["patentes.l_pd", ], "patentes", "l_pd", pat_reinicio),
+    Resumo(replicas["patentes.l_inv", ] + replicas["patentes.l_pd", ],
+           "patentes", "retornos", pat_reinicio),
     Resumo(replicas["patentes.l_inv", ] - replicas["publicacoes.l_inv", ],
-           "patentes - publicacoes", "l_inv")))
+           "patentes - publicacoes", "l_inv",
+           pmax(pub_reinicio, pat_reinicio))))
 }
 
 # Ajustes por canal -------------------------------------------------------
@@ -294,40 +368,101 @@ rownames(bootstrap) <- NULL
 Salvar(bootstrap, "sfa_canais_bootstrap")
 
 # Veredito de H2 por modelo (IC 95% por bootstrap em blocos de país) -----
-# Critério estrito (artigo/01): elasticidade do investimento significativa
-# só em patentes. Especificidade relativa: elasticidade em patentes maior
-# que em publicações (IC da diferença acima de zero).
-Ic <- function(m, canal) {
+# Alvo (A03 de artigo/17): especificidade relativa com a direção prevista.
+# H2 é "apoiada" quando (i) a elasticidade do investimento em patentes tem
+# IC 95% acima de zero E (ii) a diferença patentes - publicações também tem
+# IC 95% acima de zero. Ser significativo num canal e não no outro não é
+# teste da diferença (Gelman e Stern, 2006), e um IC de publicações que
+# contém zero não demonstra efeito nulo: sem margem de equivalência
+# definida antes dos resultados, o texto diz "não distinguível de zero". O
+# padrão de significância de cada canal fica na tabela só como descrição.
+# Antes de qualquer veredito (A04 de artigo/17): ajuste pontual válido nos
+# dois canais (convergência, erros-padrão finitos) e pelo menos 90% de
+# réplicas convergentes na diferença (mesmo limiar de alerta do segundo
+# estágio); sem isso, a combinação é "não estimável" ou "inconclusiva" e
+# sai do denominador dos vereditos. Ausência de IC nunca vira "sem efeito".
+minimo_replicas <- 0.9
+Ic <- function(m, canal, termo = "l_inv") {
   return(bootstrap[bootstrap$modelo == m & bootstrap$canal == canal &
-                     bootstrap$termo == "l_inv", ])
+                     bootstrap$termo == termo, ])
 }
 Ponto <- function(m, canal, coluna = "elasticidade_inv") {
   return(resultados[[coluna]][resultados$modelo == m &
                                 resultados$canal == canal])
 }
-Significativo <- function(ic) {
-  # Sem IC (réplicas insuficientes) conta como não significativo.
-  return(isTRUE(ic$ic_inf > 0 | ic$ic_sup < 0))
+Sinal <- function(ic) {
+  # Leitura descritiva de um IC 95%.
+  if (nrow(ic) != 1 || is.na(ic$ic_inf)) return("sem IC")
+  if (ic$ic_inf > 0) return("positiva")
+  if (ic$ic_sup < 0) return("negativa")
+  return("não distinguível de zero")
+}
+EstadoH2 <- function(m, dif) {
+  for (canal in names(canais)) {
+    valido <- Ponto(m, canal, "inferencia_valida")
+    if (!isTRUE(valido)) {
+      return(paste0("não estimável (ajuste pontual sem inferência válida em ",
+                    canal, ": ", Ponto(m, canal, "mensagem"), ")"))
+    }
+  }
+  if (nrow(dif) != 1 || is.na(dif$ic_inf) ||
+      dif$replicas_convergentes < minimo_replicas * n_boot_sfa) {
+    return(sprintf(
+      "inconclusivo (réplicas convergentes %d de %d, abaixo de %d%%)",
+      if (nrow(dif) == 1) as.integer(dif$replicas_convergentes) else 0L,
+      as.integer(n_boot_sfa), as.integer(round(100 * minimo_replicas))))
+  }
+  return("estimável")
+}
+VereditoH2 <- function(pat, dif) {
+  pat_positiva <- pat$ic_inf > 0
+  dif_positiva <- dif$ic_inf > 0
+  if (pat_positiva && dif_positiva) return("apoiada")
+  if (dif$ic_sup < 0) {
+    return("contrariada (elasticidade maior em publicações)")
+  }
+  if (pat$ic_sup < 0) {
+    return("contrariada (elasticidade negativa em patentes)")
+  }
+  if (pat_positiva) {
+    return(paste("apoio parcial (efeito positivo em patentes; diferença",
+                 "entre canais não distinguível de zero)"))
+  }
+  if (dif_positiva) {
+    return(paste("apoio parcial (diferença positiva entre canais; efeito",
+                 "em patentes não distinguível de zero)"))
+  }
+  return(paste("não apoiada (efeito em patentes e diferença entre canais",
+               "não distinguíveis de zero)"))
 }
 h2 <- do.call(rbind, lapply(modelos_boot, function(m) {
   pub <- Ic(m, "publicacoes")
   pat <- Ic(m, "patentes")
   dif <- Ic(m, "patentes - publicacoes")
-  sig_pub <- Significativo(pub)
-  sig_pat <- Significativo(pat)
-  veredito <- if (sig_pat && !sig_pub) {
-    "apoiada"
-  } else if (!sig_pat && sig_pub) {
-    "contrariada (efeito só em publicações)"
-  } else if (!sig_pat && !sig_pub) {
-    "não apoiada (sem efeito nos dois canais)"
+  estado <- EstadoH2(m, dif)
+  veredito <- if (estado == "estimável") {
+    VereditoH2(pat, dif)
   } else {
-    "não apoiada (efeito nos dois canais)"
+    sub(" \\(.*$", "", estado)
+  }
+  if (startsWith(estado, "não estimável")) {
+    # Réplicas que convergem não validam um ponto original sem inferência
+    # válida: os intervalos não são mostrados.
+    Vazio <- function(ic) {
+      ic[1, c("ic_inf", "ic_sup")] <- NA_real_
+      return(ic)
+    }
+    pub <- Vazio(pub)
+    pat <- Vazio(pat)
+    dif <- Vazio(dif)
   }
   return(data.frame(
     modelo = m,
     n_obs_publicacoes = Ponto(m, "publicacoes", "n_obs"),
     n_obs_patentes = Ponto(m, "patentes", "n_obs"),
+    inferencia_valida_publicacoes = Ponto(m, "publicacoes",
+                                          "inferencia_valida"),
+    inferencia_valida_patentes = Ponto(m, "patentes", "inferencia_valida"),
     inv_publicacoes = Ponto(m, "publicacoes"),
     ic_inf_publicacoes = pub$ic_inf, ic_sup_publicacoes = pub$ic_sup,
     inv_patentes = Ponto(m, "patentes"),
@@ -336,11 +471,70 @@ h2 <- do.call(rbind, lapply(modelos_boot, function(m) {
     ic_inf_diferenca = dif$ic_inf, ic_sup_diferenca = dif$ic_sup,
     replicas_tentadas = n_boot_sfa,
     replicas_convergentes_diferenca = dif$replicas_convergentes,
-    veredito_estrito = veredito,
+    replicas_com_reinicio_diferenca = dif$replicas_com_reinicio,
+    estado = estado,
+    veredito = veredito,
+    efeito_publicacoes = Sinal(pub),
+    efeito_patentes = Sinal(pat),
     especificidade_relativa = isTRUE(dif$ic_inf > 0),
     stringsAsFactors = FALSE))
 }))
 Salvar(h2, "sfa_h2")
+
+# Retornos de escala por canal (A05 de artigo/17) ---------------------------
+# Soma das elasticidades (retornos na média). Nos modelos com bootstrap, o
+# IC vem da soma calculada em cada réplica (bootstrap por país, com o mesmo
+# controle de validade de H2); nos demais (exponencial e translog), só há o
+# Wald da hessiana, que supõe observações independentes: a coluna
+# inferencia_retornos diz qual é qual. Retornos só são classificados como
+# decrescentes ou crescentes quando o IC 95% exclui 1.
+ClassificarRetornos <- function(inf, sup) {
+  if (is.na(inf) || is.na(sup)) return("sem IC")
+  if (sup < 1) return("decrescentes (IC 95% abaixo de 1)")
+  if (inf > 1) return("crescentes (IC 95% acima de 1)")
+  return("não distinguíveis de constantes (IC 95% contém 1)")
+}
+retornos <- do.call(rbind, lapply(seq_len(nrow(resultados)), function(i) {
+  r <- resultados[i, ]
+  linha <- data.frame(
+    canal = r$canal, modelo = r$modelo, retornos = r$retornos,
+    inferencia_valida = r$inferencia_valida,
+    p_retornos_constantes_wald_hessiana =
+      r$p_retornos_constantes_wald_hessiana,
+    ic_inf = NA_real_, ic_sup = NA_real_, ic90_inf = NA_real_,
+    ic90_sup = NA_real_, replicas_convergentes = NA_integer_,
+    inferencia_retornos = NA_character_, classificacao = NA_character_,
+    stringsAsFactors = FALSE)
+  if (!isTRUE(r$inferencia_valida)) {
+    linha$inferencia_retornos <- "nenhuma (ajuste pontual inválido)"
+    linha$classificacao <- "não estimável"
+    return(linha)
+  }
+  if (r$modelo %in% modelos_boot) {
+    b <- Ic(r$modelo, r$canal, "retornos")
+    linha$ic_inf <- b$ic_inf
+    linha$ic_sup <- b$ic_sup
+    linha$ic90_inf <- b$ic90_inf
+    linha$ic90_sup <- b$ic90_sup
+    linha$replicas_convergentes <- b$replicas_convergentes
+    linha$inferencia_retornos <- "bootstrap em blocos de país"
+    linha$classificacao <- if (b$replicas_convergentes <
+                               minimo_replicas * n_boot_sfa) {
+      "inconclusivo (réplicas insuficientes)"
+    } else {
+      ClassificarRetornos(b$ic_inf, b$ic_sup)
+    }
+  } else {
+    z <- stats::qnorm(0.975)
+    linha$ic_inf <- r$retornos - z * r$ep_retornos_hessiana
+    linha$ic_sup <- r$retornos + z * r$ep_retornos_hessiana
+    linha$inferencia_retornos <- paste("Wald da hessiana (sem bootstrap;",
+                                       "supõe observações independentes)")
+    linha$classificacao <- ClassificarRetornos(linha$ic_inf, linha$ic_sup)
+  }
+  return(linha)
+}))
+Salvar(retornos, "sfa_retornos")
 
 # Classes latentes (exploratório; robustez de H3) -------------------------
 # SFA de duas classes (sfaR::sfalcmcross): cada classe tem a sua fronteira,
@@ -421,11 +615,14 @@ Formatar <- function(t) {
 print(Formatar(as.data.frame(resultados[, c(
   "canal", "modelo", "elasticidade_inv", "p_inv", "elasticidade_pd",
   "retornos", "gamma", "p_lr_ineficiencia", "inferencia_valida",
-  "segundos")])))
+  "reinicio", "segundos")])))
 print(Formatar(h2[, c("modelo", "inv_publicacoes", "ic_inf_publicacoes",
                       "ic_sup_publicacoes", "inv_patentes",
                       "ic_inf_patentes", "ic_sup_patentes", "diferenca",
                       "ic_inf_diferenca", "ic_sup_diferenca")]))
-print(h2[, c("modelo", "veredito_estrito", "especificidade_relativa")])
+print(h2[, c("modelo", "estado", "veredito", "efeito_publicacoes",
+              "efeito_patentes", "replicas_convergentes_diferenca")])
+print(retornos[, c("canal", "modelo", "retornos", "ic_inf", "ic_sup",
+                   "inferencia_retornos", "classificacao")])
 RegistrarManifesto("06_sfa_canais.R", sufixo, arquivo_base, "ok")
 Registrar("FIM SFA por canal")

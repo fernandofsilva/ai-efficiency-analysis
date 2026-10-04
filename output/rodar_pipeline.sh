@@ -15,13 +15,18 @@
 #   bases (Fase A, painel e variantes) e é pulado com PADRONIZACAO=minmax.
 # - Modo estagio2: refaz só o segundo estágio e as figuras (03 -> 04) nas seis
 #   bases, sobre as fronteiras já gravadas pelo 02 (o 02 não muda).
-# Uso: zsh output/rodar_pipeline.sh [faseA|painel|variantes|rts|sfa|estagio2|validacao|padronizacao|tudo]
+# - Modo cadeias: refaz a cadeia inteira (02 -> 03 -> 04) nas seis bases, sem
+#   as comparações em amostra comum (05), que não leem o Malmquist nem o
+#   segundo estágio.
+# Uso: zsh output/rodar_pipeline.sh [faseA|painel|variantes|cadeias|rts|sfa|estagio2|validacao|padronizacao|tudo]
 #      PADRONIZACAO=minmax zsh output/rodar_pipeline.sh tudo
 set -u
 cd "$(dirname "$0")/.." || exit 1
 export PADRONIZACAO=${PADRONIZACAO:-nenhuma}
 PAD=$(Rscript -e 'source("R/funcoes.R"); cat(ConfigurarPadronizacao()$sufixo)') || exit 2
-STATUS=output/status_execucao$PAD.txt
+# STATUS_ARQUIVO permite rodar dois modos ao mesmo tempo sem que um apague o
+# status do outro (ex.: cadeias e sfa em paralelo).
+STATUS=${STATUS_ARQUIVO:-output/status_execucao$PAD.txt}
 MODO=${1:-tudo}
 FALHAS=0
 : > "$STATUS"
@@ -127,6 +132,7 @@ case "$MODO" in
   validacao) validacao ;;
   sfa) sfa ;;
   estagio2) SO_ESTAGIO2=1; fase_a; painel_base; variantes ;;
+  cadeias) fase_a; painel_base; variantes ;;
   padronizacao) padronizacao ;;
   tudo) fase_a; painel_base; variantes; comparacoes; rts; sfa; validacao; padronizacao ;;
   *) echo "modo desconhecido: $MODO"; exit 2 ;;

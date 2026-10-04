@@ -7,6 +7,11 @@
 #                                           acumulados (Quid), habilidades;
 #   data/processed/oecd_ai_publicacoes.csv  parcela mundial de publicações;
 #   checagens cruzadas com o CSET em output/tables e output/figures.
+# As checagens usam as séries do CSET com o mesmo tratamento de qualidade
+# da análise principal (R/11): em patentes, a coluna tratada `patentes`,
+# sem os anos incompletos e sem a Índia de 2019 em diante (série quebrada);
+# a comparação com a série bruta fica separada e identificada (A08 de
+# artigo/17). Tabelas e figuras entram no manifesto de execução.
 # Uso: Rscript R/12_import_fontes_alternativas.R (após R/11)
 
 source("R/00_setup.R")
@@ -244,6 +249,7 @@ fig8 <- ggplot2::ggplot(
   ggplot2::theme_minimal(base_size = 13)
 ggplot2::ggsave("output/figures/fig8_investimento_cset_vs_quid.png", fig8,
                 width = 9, height = 7, dpi = 200, bg = "white")
+RegistrarSaida("output/figures/fig8_investimento_cset_vs_quid.png")
 
 # 4b. Publicações: parcela mundial CSET vs OECD.AI (OpenAlex) para as
 # economias exportadas, 2016-2024.
@@ -273,21 +279,36 @@ resumo_pub <- checagem_pub |>
 SalvarTabela(resumo_pub, "checagem_publicacoes_resumo")
 print(as.data.frame(resumo_pub))
 # 4c. Patentes: CSET (pedidos, escritório de depósito) vs OCDE (famílias
-# IP5, país do inventor), 2016-2021.
+# IP5, país do inventor), 2016-2021. Comparação principal com a coluna
+# tratada (NA nos anos incompletos e na Índia a partir de 2019); a série
+# bruta entra só como sensibilidade identificada na tabela de Spearman.
 if (!is.null(oecd_pat)) {
-  cset_pat <- cset |>
-    dplyr::filter(ano >= 2016, ano <= 2021,
-                  patentes_pedidos_completo %in% TRUE) |>
-    dplyr::select(iso3c, ano, patentes_cset = patentes_pedidos)
-  checagem_pat <- oecd_pat |>
-    dplyr::filter(!ano_incompleto) |>
-    dplyr::inner_join(cset_pat, by = c("iso3c", "ano")) |>
-    dplyr::filter(patentes_cset > 0 | patentes_inventor > 0)
+  ParesPatentes <- function(coluna) {
+    cset_pat <- cset |>
+      dplyr::filter(ano >= 2016, ano <= 2021,
+                    patentes_pedidos_completo %in% TRUE,
+                    !is.na(.data[[coluna]])) |>
+      dplyr::select(iso3c, ano, patentes_cset = dplyr::all_of(coluna),
+                    patentes_suspeitas)
+    return(oecd_pat |>
+             dplyr::filter(!ano_incompleto) |>
+             dplyr::inner_join(cset_pat, by = c("iso3c", "ano")) |>
+             dplyr::filter(patentes_cset > 0 | patentes_inventor > 0))
+  }
+  checagem_pat <- ParesPatentes("patentes")
+  if (any(checagem_pat$patentes_suspeitas)) {
+    stop("checagem de patentes com observações marcadas como suspeitas")
+  }
+  checagem_bruta <- ParesPatentes("patentes_pedidos")
   rho_pat <- SpearmanComIc(checagem_pat$patentes_cset,
                            checagem_pat$patentes_inventor,
                            grupo = checagem_pat$iso3c)
-  Registrar("Patentes CSET x OCDE (país-ano):",
-            paste(round(rho_pat, 3), collapse = " "))
+  rho_bruta <- SpearmanComIc(checagem_bruta$patentes_cset,
+                             checagem_bruta$patentes_inventor,
+                             grupo = checagem_bruta$iso3c)
+  Registrar("Patentes CSET x OCDE (país-ano, série tratada):",
+            paste(round(rho_pat, 3), collapse = " "), "| série bruta:",
+            paste(round(rho_bruta, 3), collapse = " "))
   SalvarTabela(checagem_pat, "checagem_patentes_cset_vs_oecd")
   resumo_pat <- checagem_pat |>
     dplyr::group_by(iso3c) |>
@@ -298,7 +319,11 @@ if (!is.null(oecd_pat)) {
   rho_pat_pais <- SpearmanComIc(resumo_pat$cset, resumo_pat$oecd_ip5)
   resumo_pat$rho_pais <- rho_pat_pais["rho"]
   SalvarTabela(resumo_pat, "checagem_patentes_resumo")
-  SalvarTabela(as.data.frame(t(rho_pat)), "checagem_patentes_spearman")
+  SalvarTabela(data.frame(
+    serie_cset = c("tratada (principal)",
+                   "bruta (inclui Índia 2019-2021, suspeita)"),
+    rbind(rho_pat, rho_bruta), row.names = NULL),
+    "checagem_patentes_spearman")
   fig9 <- ggplot2::ggplot(
     resumo_pat, ggplot2::aes(x = oecd_ip5 + 1, y = cset + 1, label = iso3c)) +
     ggplot2::geom_abline(slope = 1, intercept = 0, linetype = 3,
@@ -318,6 +343,7 @@ if (!is.null(oecd_pat)) {
     ggplot2::theme_minimal(base_size = 13)
   ggplot2::ggsave("output/figures/fig9_patentes_cset_vs_oecd.png", fig9,
                   width = 9, height = 7, dpi = 200, bg = "white")
+  RegistrarSaida("output/figures/fig9_patentes_cset_vs_oecd.png")
   print(as.data.frame(utils::head(resumo_pat, 12)))
 }
 # 4d. Investimento por país-ano: CSET (estimado, Crunchbase) vs OECD.AI
@@ -371,6 +397,10 @@ if (!is.null(oecd_vc)) {
     ggplot2::theme_minimal(base_size = 13)
   ggplot2::ggsave("output/figures/fig10_investimento_cset_vs_preqin.png",
                   fig10, width = 9, height = 7, dpi = 200, bg = "white")
+  RegistrarSaida("output/figures/fig10_investimento_cset_vs_preqin.png")
   print(as.data.frame(utils::head(resumo_vc, 12)))
 }
+RegistrarManifesto("12_import_fontes_alternativas.R", "",
+                   "data/processed/cset_long.csv", "ok",
+                   detalhe = "fontes em data/ai_index e data/oecd-ai")
 Registrar("FIM importação de fontes alternativas")

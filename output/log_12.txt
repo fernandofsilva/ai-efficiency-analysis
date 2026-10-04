@@ -1,15 +1,15 @@
-17:21:48 ai_index_pais_ano.csv: 431 linhas, 48 países, 2014 - 2024 
-17:21:48 ai_index_transversal.csv: 91 países 
-17:21:48 oecd_ai_publicacoes.csv: 243 linhas, 9 economias 
-17:21:48 oecd_ai_patentes.csv: 1300 linhas, 100 países; último ano 2022 marcado como incompleto 
-17:21:48 oecd_ai_vc.csv: 1021 linhas, 114 países, 2012 - 2026 | zeros: 160 
-17:21:48 Spearman CSET x Quid (investimento acumulado): 0.926 0.874 0.955 84 NA 
+16:15:52 ai_index_pais_ano.csv: 431 linhas, 48 países, 2014 - 2024 
+16:15:52 ai_index_transversal.csv: 91 países 
+16:15:52 oecd_ai_publicacoes.csv: 243 linhas, 9 economias 
+16:15:52 oecd_ai_patentes.csv: 1300 linhas, 100 países; último ano 2022 marcado como incompleto 
+16:15:52 oecd_ai_vc.csv: 1021 linhas, 114 países, 2012 - 2026 | zeros: 160 
+16:15:52 Spearman CSET x Quid (investimento acumulado): 0.926 0.874 0.955 84 NA 
 Warning messages:
 1: In ggplot2::scale_y_log10() :
   log-10 transformation introduced infinite values.
 2: In ggplot2::scale_y_log10() :
   log-10 transformation introduced infinite values.
-17:21:49 Publicações CSET x OECD.AI: Spearman 0.953 0.795 0.989 81 9 | Pearson 0.99 
+16:15:53 Publicações CSET x OECD.AI: Spearman 0.953 0.795 0.989 81 9 | Pearson 0.99 
   iso3c anos share_cset share_oecd     razao
 1   CAN    9   2.387499   1.757677 1.3583259
 2   CHN    9  21.921593  25.038678 0.8755092
@@ -20,21 +20,21 @@ Warning messages:
 7   JPN    9   3.701525   3.993477 0.9268928
 8   KOR    9   2.425699   2.278637 1.0645395
 9   USA    9  14.654267  14.170868 1.0341122
-17:21:50 Patentes CSET x OCDE (país-ano): 0.753 0.612 0.852 302 63 
+16:15:54 Patentes CSET x OCDE (país-ano, série tratada): 0.763 0.623 0.862 299 63 | série bruta: 0.753 0.612 0.852 302 63 
    iso3c anos        cset  oecd_ip5 razao_cset_oecd  rho_pais
-1    USA    6 13579.33333 3186.9113       4.2609699 0.8357231
-2    JPN    6  3629.83333 2573.9072       1.4102425 0.8357231
-3    CHN    6 44746.00000 2450.9273      18.2567634 0.8357231
-4    KOR    6  5693.50000 1399.6381       4.0678371 0.8357231
-5    DEU    6   807.83333  623.3951       1.2958609 0.8357231
-6    TWN    6   422.00000  328.1791       1.2858834 0.8357231
-7    GBR    6   388.50000  317.2605       1.2245458 0.8357231
-8    IND    6   120.50000  302.7052       0.3980771 0.8357231
-9    CAN    6   693.33333  273.7533       2.5326940 0.8357231
-10   FRA    6   207.83333  234.5869       0.8859545 0.8357231
-11   ISR    6    20.16667  198.2556       0.1017205 0.8357231
-12   NLD    6    19.16667  136.5601       0.1403533 0.8357231
-17:21:50 Investimento CSET x Preqin (país-ano): 0.833 0.757 0.887 513 83 
+1    USA    6 13579.33333 3186.9113       4.2609699 0.8378862
+2    JPN    6  3629.83333 2573.9072       1.4102425 0.8378862
+3    CHN    6 44746.00000 2450.9273      18.2567634 0.8378862
+4    KOR    6  5693.50000 1399.6381       4.0678371 0.8378862
+5    DEU    6   807.83333  623.3951       1.2958609 0.8378862
+6    TWN    6   422.00000  328.1791       1.2858834 0.8378862
+7    GBR    6   388.50000  317.2605       1.2245458 0.8378862
+8    CAN    6   693.33333  273.7533       2.5326940 0.8378862
+9    FRA    6   207.83333  234.5869       0.8859545 0.8378862
+10   IND    3   231.00000  209.0988       1.1047409 0.8378862
+11   ISR    6    20.16667  198.2556       0.1017205 0.8378862
+12   NLD    6    19.16667  136.5601       0.1403533 0.8378862
+16:15:55 Investimento CSET x Preqin (país-ano): 0.833 0.757 0.887 513 83 
    iso3c anos   cset_bi preqin_bi razao_cset_preqin  rho_pais
 1    USA    8 83.745460 67.479240         1.2410552 0.8438799
 2    CHN    8 11.497510 32.789009         0.3506513 0.8438799
@@ -48,4 +48,4 @@ Warning messages:
 10   SWE    8  3.384809  1.505729         2.2479544 0.8438799
 11   JPN    8  1.183615  1.445220         0.8189863 0.8438799
 12   SGP    8  1.848491  1.209642         1.5281311 0.8438799
-17:21:51 FIM importação de fontes alternativas 
+16:15:56 FIM importação de fontes alternativas 

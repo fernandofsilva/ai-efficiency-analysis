@@ -21,12 +21,12 @@
 20   Fase A                                               TGR médio, Renda média   0.9447795994
 21   Fase A                          diferença de TGR médio (renda média - alta)   0.3216439693
 22   Fase A                                 p Mann-Whitney unilateral (país-ano)   1.0000000000
-23   Fase A                                  malmquist (média geométrica, todos)   0.9972949385
-24   Fase A                            mudanca_tecnica (média geométrica, todos)   0.9102821299
-25   Fase A                         mudanca_eficiencia (média geométrica, todos)   1.0955888353
-26   Fase A                             mudança de eficiência, renda média (H4b)   1.0741074042
+23   Fase A                                  malmquist (média geométrica, todos)   1.0027123987
+24   Fase A                            mudanca_tecnica (média geométrica, todos)   1.0985605091
+25   Fase A                         mudanca_eficiencia (média geométrica, todos)   0.9127511780
+26   Fase A                             mudança de eficiência, renda média (H4b)   0.9310055922
 27   Fase A                                parcela de TC (rateio simétrico, H4a)   0.5985451755
-28   Fase A                                       beta-convergência (inclinação)   0.1057067297
+28   Fase A                                       beta-convergência (inclinação)  -0.1057067297
 29   Fase A                                                p-valor, M2, H0 = crs   0.0909090909
 30   Fase A                                                p-valor, M2, H0 = drs   0.9560000000
 31   Fase A                                                p-valor, M1, H0 = crs   0.1158841159
@@ -65,12 +65,12 @@
 64   Painel                                               TGR médio, Renda média   0.9316434997
 65   Painel                          diferença de TGR médio (renda média - alta)   0.3251664765
 66   Painel                                 p Mann-Whitney unilateral (país-ano)   1.0000000000
-67   Painel                                  malmquist (média geométrica, todos)   0.9206825097
-68   Painel                            mudanca_tecnica (média geométrica, todos)   0.8520192353
-69   Painel                         mudanca_eficiencia (média geométrica, todos)   1.0805888782
-70   Painel                             mudança de eficiência, renda média (H4b)   0.9842035282
+67   Painel                                  malmquist (média geométrica, todos)   1.0861507517
+68   Painel                            mudanca_tecnica (média geométrica, todos)   1.1736824223
+69   Painel                         mudanca_eficiencia (média geométrica, todos)   0.9254213329
+70   Painel                             mudança de eficiência, renda média (H4b)   1.0160500052
 71   Painel                                parcela de TC (rateio simétrico, H4a)   0.2612475629
-72   Painel                                       beta-convergência (inclinação)   0.0014153335
+72   Painel                                       beta-convergência (inclinação)  -0.0014153335
 73   Painel                                                p-valor, M2, H0 = crs   0.4356333677
 74   Painel                                                p-valor, M2, H0 = drs   0.9661885246
 75   Painel                                                p-valor, M1, H0 = crs   0.3263263263
@@ -110,12 +110,12 @@
 20   0.99464019212         NA
 21   0.26500949166         NA
 22   1.00000000000         NA
-23   0.96162661345         NA
-24   0.84556493094         NA
-25   1.13725933782         NA
-26   1.09216271313         NA
+23   1.03990466363         NA
+24   1.18264128916         NA
+25   0.87930691509         NA
+26   0.91561448489         NA
 27   0.67698733863         NA
-28  -0.09256879107         NA
+28   0.09256879107         NA
 29   0.00099900100         NA
 30   0.00099900100         NA
 31   0.00099900100         NA
@@ -154,12 +154,12 @@
 64   0.98170983044         NA
 65   0.23722186017         NA
 66   1.00000000000         NA
-67   0.94280430757         NA
-68   0.87565407395         NA
-69   1.07668580051         NA
-70   1.06325753253         NA
+67   1.06066549757         NA
+68   1.14200348032         NA
+69   0.92877606404         NA
+70   0.94050591640         NA
 71   0.14723885033         NA
-72  -0.02894028535         NA
+72   0.02894028535         NA
 73   0.00100100100         NA
 74   0.00100401606         NA
 75   0.00099900100         NA
@@ -176,9 +176,15 @@
 86   0.82079485304         NA
 87   0.93750332818         NA
 88              NA 64.2857143
-12:35:17 figura gravada: fig11_ranking_padronizacao_minmax 
-12:35:17 figura gravada: fig11_ranking_padronizacao_painel_minmax 
-12:35:17 sensibilidade a epsilon e invariância à escala... 
+16:44:21 figura gravada: fig11_ranking_padronizacao_minmax 
+16:44:22 figura gravada: fig11_ranking_padronizacao_painel_minmax 
+16:44:22 sensibilidade a epsilon e invariância à escala... 
+Period  2 
+Period  3 
+Period  4 
+Period  2 
+Period  3 
+Period  4 
 Period  2 
 Period  3 
 Period  4 
@@ -228,34 +234,50 @@ Period  2
 Period  3 
 Period  4 
 Period  5 
-     base         transformacao epsilon          max_dif_vrs spearman_vrs_pais_ano
-1  Fase A    unidades originais      NA 0.000000000000000000             1.0000000
-2  Fase A escala pura (x / máx)      NA 0.000000000001488143             1.0000000
-3  Fase A               min-max   0.001 0.510730805623781592             0.9476562
-4  Fase A               min-max   0.010 0.762330139210921076             0.8419659
-5  Fase A               min-max   0.050 0.831492712549594337             0.8066931
-6  Fase A               min-max   0.100 0.857897933521076572             0.8008689
-7  Fase A               min-max   0.200 0.881057556808038433             0.7981961
-8  Painel    unidades originais      NA 0.000000000000000000             1.0000000
-9  Painel escala pura (x / máx)      NA 0.000000000001269762             1.0000000
-10 Painel               min-max   0.001 0.725613669677491413             0.9274710
-11 Painel               min-max   0.010 0.762590590852885386             0.7818429
-12 Painel               min-max   0.050 0.826260256088008349             0.6608229
-13 Painel               min-max   0.100 0.843015124561633855             0.6244406
-14 Painel               min-max   0.200 0.885475106549778013             0.6030988
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+Period  2 
+Period  3 
+Period  4 
+Period  5 
+     base         transformacao     epsilon          max_dif_vrs spearman_vrs_pais_ano
+1  Fase A    unidades originais          NA 0.000000000000000000             1.0000000
+2  Fase A escala pura (x / máx)          NA 0.000000000001488143             1.0000000
+3  Fase A               min-max 0.000000001 0.352986116796305927             0.9959156
+4  Fase A               min-max 0.000001000 0.352885567717632909             0.9959156
+5  Fase A               min-max 0.001000000 0.510730805623781592             0.9476562
+6  Fase A               min-max 0.010000000 0.762330139210921076             0.8419659
+7  Fase A               min-max 0.050000000 0.831492712549594337             0.8066931
+8  Fase A               min-max 0.100000000 0.857897933521076572             0.8008689
+9  Fase A               min-max 0.200000000 0.881057556808038433             0.7981961
+10 Painel    unidades originais          NA 0.000000000000000000             1.0000000
+11 Painel escala pura (x / máx)          NA 0.000000000001269762             1.0000000
+12 Painel               min-max 0.000000001 0.160768791094122121             0.9949056
+13 Painel               min-max 0.000001000 0.160667748409898614             0.9949314
+14 Painel               min-max 0.001000000 0.725613669677491413             0.9274710
+15 Painel               min-max 0.010000000 0.762590590852885386             0.7818429
+16 Painel               min-max 0.050000000 0.826260256088008349             0.6608229
+17 Painel               min-max 0.100000000 0.843015124561633855             0.6244406
+18 Painel               min-max 0.200000000 0.885475106549778013             0.6030988
    spearman_ranking_vrs   crs_pct  drs_pct rho_canais mudanca_tecnica
-1             1.0000000 19.895288 71.20419  0.5229863       0.9102821
-2             1.0000000 19.895288 71.20419  0.5229863       0.9102821
-3             0.9408867 26.701571 34.03141  0.3926576       0.8428449
-4             0.7635468 20.942408 23.56021  0.4591950       0.8455649
-5             0.6834327 17.801047 23.03665  0.5374087       0.8930977
-6             0.6766917 17.801047 23.03665  0.5508426       0.9134841
-7             0.6735805 18.848168 21.98953  0.5556189       0.9385921
-8             1.0000000 12.254902 67.64706  0.4823141       0.8520192
-9             1.0000000 12.254902 67.64706  0.4822913       0.8520192
-10            0.9466464 11.274510 53.92157  0.2971012       0.8447072
-11            0.8356196 11.274510 32.84314  0.3427760       0.8756541
-12            0.7421050  4.901961 10.29412  0.4734880       0.8868451
-13            0.7143191  4.901961 10.29412  0.5190506       0.8826204
-14            0.6941218  4.901961 10.29412  0.5473690       0.8936302
-12:35:18 FIM comparação com e sem padronização 
+1             1.0000000 19.895288 71.20419  0.5229863        1.098561
+2             1.0000000 19.895288 71.20419  0.5229863        1.098561
+3             0.9953332 19.895288 71.20419  0.5244416        1.095020
+4             0.9953332 19.895288 71.20419  0.5184488        1.094491
+5             0.9408867 26.701571 34.03141  0.3926576        1.186458
+6             0.7635468 20.942408 23.56021  0.4591950        1.182641
+7             0.6834327 17.801047 23.03665  0.5374087        1.119698
+8             0.6766917 17.801047 23.03665  0.5508426        1.094710
+9             0.6735805 18.848168 21.98953  0.5556189        1.065426
+10            1.0000000 12.254902 67.64706  0.4823141        1.173682
+11            1.0000000 12.254902 67.64706  0.4822913        1.173682
+12            0.9945129 12.745098 78.43137  0.4668210        1.183085
+13            0.9948631 13.235294 77.94118  0.4646530        1.182997
+14            0.9466464 11.274510 53.92157  0.2971012        1.183842
+15            0.8356196 11.274510 32.84314  0.3427760        1.142003
+16            0.7421050  4.901961 10.29412  0.4734880        1.127593
+17            0.7143191  4.901961 10.29412  0.5190506        1.132990
+18            0.6941218  4.901961 10.29412  0.5473690        1.119031
+16:44:23 FIM comparação com e sem padronização 

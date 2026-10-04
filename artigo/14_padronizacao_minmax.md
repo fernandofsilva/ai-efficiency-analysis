@@ -95,7 +95,7 @@ O topo muda bastante, como já se esperava: os postos do topo não se distinguia
 
 A discussão de H1 deve usar as unidades originais.
 
-**Malmquist (S06).** As médias gerais mantêm a regressão técnica (TC < 1): 0,91 → 0,85 na Fase A e 0,85 → 0,88 no painel. A decomposição por país muda muito: o Spearman do índice M por país entre versões é 0,33 na Fase A e 0,42 no painel, e o de TC no painel é 0,04. Como o Malmquist é CRS, vale a leitura em unidades originais. O único traço que coincide é China e Índia com mudança de eficiência igual a 1 (sobre a fronteira em todos os anos). O Brasil continua ganhando por aproximação da fronteira (EC 1,52 → 1,25), mas com min-max a fronteira não fica parada (TC 0,96 → 0,75).
+**Malmquist (S06; números na convenção corrigida em 04/10/2026, maior que 1 = melhora, `artigo/18`, A01).** As médias gerais mantêm o avanço da fronteira (TC > 1): 1,10 → 1,18 na Fase A e 1,17 → 1,14 no painel. Mantêm também o afastamento médio dos países (EC < 1): 0,91 → 0,88 e 0,93 → 0,93. A decomposição por país muda muito: o Spearman do índice M por país entre versões é 0,33 na Fase A e 0,42 no painel, e o de TC no painel é 0,04. Como o Malmquist é CRS, vale a leitura em unidades originais. O único traço que coincide é a China na fronteira em todos os anos, nas duas versões e nas duas bases (com a Índia, na Fase A). O Brasil se afasta da fronteira nas duas versões (EC 0,66 → 0,80 na Fase A), e com min-max a fronteira avança mais no seu ponto (TC 1,05 → 1,33).
 
 **Segundo estágio (S07).** Truncada sobre log(escore), coeficiente e IC 95% (positivo = mais eficiente):
 
@@ -115,7 +115,7 @@ Somando todos os termos de todas as execuções, 139 de 188 coeficientes mantêm
 | Variante | Spearman entre rankings | Base 5 em comum | H3a: ρ canais | H3b: TGR renda média − alta | H5: efetividade |
 |---|---|---|---|---|---|
 | Qualidade | 0,79 | 2 | 0,42 → 0,42 | −0,11 [−0,21; −0,02] → −0,04 [−0,14; 0,02] | −0,22 → −0,39 (n.s. nas duas) |
-| Patentes por inventor | 0,83 | 4 | 0,30 → 0,47 | +0,21 → +0,16 | −0,29 (n.s.) → −0,27 (sig.) |
+| Patentes por inventor | 0,83 | 4 | 0,30 → 0,47 | +0,21 → +0,16 | −0,30 (sig.) → −0,28 (sig.); antes de A06, −0,29 (n.s.) → −0,27 |
 | Preqin | 0,62 | 3 | 0,55 → 0,34 | +0,07 → +0,06 (n.s. nas duas) | −1,12 → −0,56 (sig. nas duas) |
 | P&D público | 0,72 | 2 | 0,55 → 0,44 | −0,10 [−0,20; 0,01] → +0,04 [−0,02; 0,11] | −0,38 → −0,25 (sig. nas duas) |
 
@@ -133,6 +133,8 @@ DEA determinística (sem bootstrap), mesma amostra. Spearman em relação às un
 |---|---|---|---|---|---|---|
 | Unidades originais | 1 | 71 / 9 | 0,52 | 1 | 68 / 20 | 0,48 |
 | Escala pura (x / máx) | 1 | 71 / 9 | 0,52 | 1 | 68 / 20 | 0,48 |
+| Min-max, ε = 10⁻⁹ | 0,995 | 71 / 9 | 0,52 | 0,995 | 78 / 9 | 0,47 |
+| Min-max, ε = 10⁻⁶ | 0,995 | 71 / 9 | 0,52 | 0,995 | 78 / 9 | 0,47 |
 | Min-max, ε = 0,001 | 0,94 | 34 / 39 | 0,39 | 0,95 | 54 / 35 | 0,30 |
 | Min-max, ε = 0,01 | 0,76 | 24 / 55 | 0,46 | 0,84 | 33 / 56 | 0,34 |
 | Min-max, ε = 0,05 | 0,68 | 23 / 59 | 0,54 | 0,74 | 10 / 85 | 0,47 |
@@ -141,7 +143,17 @@ DEA determinística (sem bootstrap), mesma amostra. Spearman em relação às un
 
 As próprias conclusões da versão min-max dependem de ε. No painel, a correlação entre canais é 0,34 com ε = 0,01 (apoiaria H3a) e 0,52 com ε = 0,1 (não apoiaria). Conforme ε cresce, a base do ranking passa a ser ocupada pelas grandes economias (Estados Unidos, Reino Unido, França, Alemanha, Japão), porque a constante somada aos produtos só deixa longe da fronteira quem tem produção grande. Israel continua entre os cinco últimos em todos os casos, menos no painel com ε = 0,2.
 
-Com ε → 0, a min-max VRS se aproxima da versão original (Spearman 0,94–0,95 com ε = 0,001). Nesse limite, porém, a unidade de menor investimento fica com insumo próximo de zero e vira eficiente por construção nos modelos CRS.
+**O limite ε → 0 não recupera as unidades originais** (revisto em 04/10/2026, `artigo/18`, A11; a versão anterior desta seção dizia o contrário). Quando ε some, a fórmula vira (x − mín)/(máx − mín): a subtração do mínimo continua, e a DEA orientada a produto não é invariante à translação dos produtos, nem sob VRS. Os postos ficam quase iguais aos originais, mas os escores não:
+
+| ε | Fase A: maior diferença absoluta do escore VRS | Fase A: Spearman país-ano | Painel: maior diferença absoluta | Painel: Spearman país-ano |
+|---|---|---|---|---|
+| 10⁻⁹ | 0,353 | 0,996 | 0,161 | 0,995 |
+| 10⁻⁶ | 0,353 | 0,996 | 0,161 | 0,995 |
+| 0,001 | 0,511 | 0,948 | 0,726 | 0,927 |
+| 0,01 | 0,762 | 0,842 | 0,763 | 0,782 |
+| 0,2 | 0,881 | 0,798 | 0,885 | 0,603 |
+
+Nos modelos CRS, além disso, a unidade de menor investimento fica com insumo próximo de zero e vira eficiente por construção; no painel, a parcela de país-ano em retornos decrescentes vai de 68% para 78% mesmo com ε = 10⁻⁹. A escala pura (x/máx) é a única transformação que reproduz os escores (diferença abaixo de 2 × 10⁻¹²).
 
 ## 7. Leitura e decisão
 
@@ -162,7 +174,7 @@ Com ε → 0, a min-max VRS se aproxima da versão original (Spearman 0,94–0,9
 
 **Decisão do autor (04/10/2026):** unidades originais como especificação principal; a min-max (ε = 0,01) entra como verificação de robustez dos resultados VRS (proposição R4 do `artigo/01`), com as tabelas das seções 4 a 7a. Os motivos:
 1. A preocupação levantada na aula, de que escalas muito diferentes atrapalham na prática, foi testada e não se confirma nesta base: a mudança de escala pura reproduz tudo.
-2. A min-max acrescenta uma translação arbitrária, cujo tamanho depende de ε e dos dois maiores países.
+2. A min-max acrescenta uma translação arbitrária, cujo tamanho depende de ε e dos dois maiores países, e que não desaparece quando ε tende a zero (seção 6).
 3. Com min-max, retornos de escala e Malmquist perdem o sentido econômico, o que obrigaria a misturar especificações entre as hipóteses, e o próprio professor recomendou não misturar transformações.
 4. É a prática padrão em DEA, apoiada na literatura sobre invariância a unidades e a translação (Ali e Seiford, 1990; Lovell e Pastor, 1995; Pastor, 1996).
 
@@ -172,11 +184,11 @@ Com ε → 0, a min-max VRS se aproxima da versão original (Spearman 0,94–0,9
 
 O segundo estágio e as figuras da versão min-max foram refeitos com os níveis de evidência do S07 e as dimensões alternativas do WGI. A execução foi `PADRONIZACAO=minmax zsh output/rodar_pipeline.sh estagio2`, sem falhas; os coeficientes min-max são idênticos aos anteriores. O `R/05b` passou a comparar também o nível de evidência e o H5 com as outras dimensões do WGI.
 
-Dos 105 coeficientes com expectativa (truncada sobre log do escore e dimensões do WGI, seis bases), 64 têm o mesmo nível de evidência nas duas versões. A concordância é de 18% na Fase A, 64% no painel e de 57% a 71% nas variantes.
+Dos 111 coeficientes com expectativa (truncada sobre log do escore e as cinco medidas do bloco WGI, seis bases), 69 têm o mesmo nível de evidência nas duas versões. Desde 04/10/2026, o bloco WGI usa uma só cópia dos dados e inclui a efetividade dessa cópia (`artigo/18`, A07); antes eram 105 e 64. Só na truncada, a concordância é de 18% na Fase A, 64% no painel e de 57% a 71% nas variantes.
 
 | Termo | Unidades originais | Min-max | Leitura |
 |---|---|---|---|
-| Efetividade governamental (E5) | contrário em todas as bases; 5% no painel, na Preqin e no P&D público; 5–10% na Fase A e no inventor | contrário em todas as bases; 5% em cinco delas, 5–10% na qualidade | sinal robusto; significância um pouco maior com min-max |
+| Efetividade governamental (E5) | contrário em todas as bases; 5% no painel, no inventor, na Preqin e no P&D público; 5–10% na Fase A | contrário em todas as bases; 5% em cinco delas, 5–10% na qualidade | sinal robusto; significância um pouco maior com min-max |
 | Índice composto do WGI (E5) | contrário; 5% em cinco bases | contrário; 5% em cinco bases | robusto |
 | Pesquisadores por milhão (E5) | esperado (+); 5% no inventor e no P&D público | contrário (−) em quatro bases, sem significância | não robusto |
 | Crédito privado, patentes (E6) | contrário (+) e significativo no painel, na Preqin e no P&D público | ≈ 0, compatível com a expectativa | não robusto |

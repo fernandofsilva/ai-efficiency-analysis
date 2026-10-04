@@ -1,9 +1,15 @@
-12:31:54 obs. no segundo estágio: 184 | com pesquisadores: 165 
-12:31:54 bootstrap dos canais... 
-12:33:06 Simar-Wilson algoritmo 2 (L1 = 50 , L2 = 500 )... 
-12:33:06 obs. no Simar-Wilson alg. 2: 128 
-12:33:15 dea.env.robust: componentes delta_hat, beta_hat, sigma_hat, bias, delta_hat_hat, delta_ci_low, delta_ci_high, delta_ci_kneip_low, delta_ci_kneip_high, delta_hat_hat_used, beta_hat_hat, sigma_hat_hat, Zbeta_hat_hat, beta_hat_hat_star, sigma_hat_hat_star, beta_ci, sigma_ci 
-12:33:15 faixa de delta corrigido: 1.05 a 3.394 
+16:36:33 obs. no segundo estágio: 184 | com pesquisadores: 165 
+16:36:33 bootstrap dos canais... 
+16:36:37 obs. com escore de publicações: 184 | de patentes: 184 | conjunto: 184 
+               dimensao observacoes diferentes max_dif_absoluta mediana_dif_absoluta correlacao
+1   efetividade_governo         184          0                0                    0          1
+2 qualidade_regulatoria         184          0                0                    0          1
+3        estado_direito         184          0                0                    0          1
+4    controle_corrupcao         184          0                0                    0          1
+16:38:09 Simar-Wilson algoritmo 2 (L1 = 50 , L2 = 500 )... 
+16:38:09 obs. no Simar-Wilson alg. 2: 128 
+16:38:22 dea.env.robust: componentes delta_hat, beta_hat, sigma_hat, bias, delta_hat_hat, delta_ci_low, delta_ci_high, delta_ci_kneip_low, delta_ci_kneip_high, delta_hat_hat_used, beta_hat_hat, sigma_hat_hat, Zbeta_hat_hat, beta_hat_hat_star, sigma_hat_hat_star, beta_ci, sigma_ci 
+16:38:22 faixa de delta corrigido: 1.05 a 3.394 
                                   modelo               termo  coeficiente       ic_inf       ic_sup
 1  H5 Simar-Wilson alg. 2 (rDEA, pooled)         (Intercept)  3.285808827  1.570968506  5.094630418
 2  H5 Simar-Wilson alg. 2 (rDEA, pooled) efetividade_governo  1.209392916  0.653118667  1.783042482
@@ -37,16 +43,18 @@
 8                                 <NA> agrupada, casos completos de contexto          2026
 9                                 <NA> agrupada, casos completos de contexto          2026
 10                                <NA> agrupada, casos completos de contexto          2026
-                                                               modelo                 termo
-2  H5 truncada com qualidade_regulatoria no lugar da efetividade (M2) qualidade_regulatoria
-13        H5 truncada com estado_direito no lugar da efetividade (M2)        estado_direito
-24    H5 truncada com controle_corrupcao no lugar da efetividade (M2)    controle_corrupcao
-35            H5 truncada com indice_wgi no lugar da efetividade (M2)            indice_wgi
+                                                                   modelo                 termo
+2  H5 truncada com efetividade_governo do cache WGI (referência do bloco)   efetividade_governo
+13     H5 truncada com qualidade_regulatoria no lugar da efetividade (M2) qualidade_regulatoria
+24            H5 truncada com estado_direito no lugar da efetividade (M2)        estado_direito
+35        H5 truncada com controle_corrupcao no lugar da efetividade (M2)    controle_corrupcao
+46                H5 truncada com indice_wgi no lugar da efetividade (M2)            indice_wgi
    coeficiente     ic_inf      ic_sup      p_boot                     nivel_evidencia
-2   -0.2417965 -0.4018350 -0.09828556 0.000000000 sinal contrário, significativo (5%)
-13  -0.1796401 -0.3550183 -0.02613478 0.013333333 sinal contrário, significativo (5%)
-24  -0.1907049 -0.2911276 -0.07871537 0.006666667 sinal contrário, significativo (5%)
-35  -0.2278206 -0.3673715 -0.08401556 0.006666667 sinal contrário, significativo (5%)
+2   -0.2501778 -0.3942211 -0.07244321 0.006666667 sinal contrário, significativo (5%)
+13  -0.2417965 -0.4018350 -0.09828556 0.000000000 sinal contrário, significativo (5%)
+24  -0.1796401 -0.3550183 -0.02613478 0.013333333 sinal contrário, significativo (5%)
+35  -0.1907049 -0.2911276 -0.07871537 0.006666667 sinal contrário, significativo (5%)
+46  -0.2278206 -0.3673715 -0.08401556 0.006666667 sinal contrário, significativo (5%)
                                                           modelo               termo  coeficiente
 1                                               H5 truncada (M2)         (Intercept) -0.666102838
 2                                               H5 truncada (M2) efetividade_governo -0.250177848
@@ -194,10 +202,10 @@
 134                   300
 135                   300
 140                   300
-                  escore p_kruskal_3grupos_pais_ano p_kruskal_3grupos_medias_pais
-1       conjunto M2 (bc)               0.0828990527                    0.33197547
-2 canal publicações (bc)               0.6885883955                    0.94475409
-3    canal patentes (bc)               0.0001319752                    0.05234506
+                  escore n_obs p_kruskal_3grupos_pais_ano p_kruskal_3grupos_medias_pais
+1       conjunto M2 (bc)   184               0.0828990527                    0.33197547
+2 canal publicações (bc)   184               0.6885883955                    0.94475409
+3    canal patentes (bc)   184               0.0001319752                    0.05234506
   p_mann_whitney_2grupos_pais_ano p_mann_whitney_2grupos_medias_pais n_paises media_alta
 1                    0.0832414335                         0.34850373       41  0.6812777
 2                    0.6900076596                         0.95948054       41  0.6253782
@@ -214,4 +222,4 @@ rho3          market_cap -0.3497452 -0.5860868 -0.05997354
 rho4     credito_privado -0.2756808 -0.4927325 -0.03577685
 rho5          log_pib_pc -0.4257710 -0.6544764 -0.12955111
 rho6          pd_pct_pib -0.4639749 -0.6397627 -0.22899969
-12:34:58 FIM segundo estágio Fase A 
+16:40:23 FIM segundo estágio Fase A 

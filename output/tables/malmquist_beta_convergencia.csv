@@ -1,3 +1,3 @@
 "termo","coeficiente","ep","p_valor","n_paises","eficiencia_inicial"
-"(Intercept)",0.148237616823383,0.0537359345231649,0.0153820235449234,16,"CRS do painel balanceado (e00 do Malmquist)"
-"log(escore_crs)",0.105706729653593,0.0627415469332051,0.114179830021935,16,"CRS do painel balanceado (e00 do Malmquist)"
+"(Intercept)",-0.148237616823383,0.0537359345231649,0.0153820235449234,16,"CRS do painel balanceado (e00 do Malmquist)"
+"log(escore_crs)",-0.105706729653593,0.0627415469332051,0.114179830021935,16,"CRS do painel balanceado (e00 do Malmquist)"

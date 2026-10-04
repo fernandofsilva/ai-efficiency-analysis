@@ -1,14 +1,20 @@
-2026-10-04 12:16:04 INICIO modo=estagio2 padronizacao=minmax sufixo=_minmax
-12:19:10 OK FASE A 03 segundo estágio
-12:19:12 OK FASE A 04 figuras
-12:22:39 OK PAINEL 03 segundo estágio
-12:22:41 OK PAINEL 04 figuras
-12:25:18 OK QUALIDADE 03 segundo estágio
-12:25:20 OK QUALIDADE 04 figuras
-12:28:25 OK FONTE 03 segundo estágio
-12:28:27 OK FONTE 04 figuras
-12:31:51 OK PREQIN 03 segundo estágio
-12:31:53 OK PREQIN 04 figuras
-12:34:58 OK PUBLICO 03 segundo estágio
-12:35:01 OK PUBLICO 04 figuras
-2026-10-04 12:35:01 FIM modo=estagio2 falhas=0
+2026-10-04 16:14:37 INICIO modo=cadeias padronizacao=minmax sufixo=_minmax
+16:14:59 OK FASE A 02 fronteiras
+16:18:39 OK FASE A 03 segundo estágio
+16:18:46 OK FASE A 04 figuras
+16:19:11 OK PAINEL 02 fronteiras
+16:23:35 OK PAINEL 03 segundo estágio
+16:23:45 OK PAINEL 04 figuras
+16:24:03 OK QUALIDADE 02 fronteiras
+16:27:09 OK QUALIDADE 03 segundo estágio
+16:27:11 OK QUALIDADE 04 figuras
+16:27:40 OK FONTE 02 fronteiras
+16:31:06 OK FONTE 03 segundo estágio
+16:31:15 OK FONTE 04 figuras
+16:31:42 OK PREQIN 02 fronteiras
+16:36:01 OK PREQIN 03 segundo estágio
+16:36:11 OK PREQIN 04 figuras
+16:36:33 OK PUBLICO 02 fronteiras
+16:40:23 OK PUBLICO 03 segundo estágio
+16:40:32 OK PUBLICO 04 figuras
+2026-10-04 16:40:32 FIM modo=cadeias falhas=0

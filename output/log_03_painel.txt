@@ -1,9 +1,15 @@
-11:30:29 obs. no segundo estágio: 204 | com pesquisadores: 172 
-11:30:29 bootstrap dos canais... 
-11:31:44 Simar-Wilson algoritmo 2 (L1 = 50 , L2 = 500 )... 
-11:31:44 obs. no Simar-Wilson alg. 2: 144 
-11:31:52 dea.env.robust: componentes delta_hat, beta_hat, sigma_hat, bias, delta_hat_hat, delta_ci_low, delta_ci_high, delta_ci_kneip_low, delta_ci_kneip_high, delta_hat_hat_used, beta_hat_hat, sigma_hat_hat, Zbeta_hat_hat, beta_hat_hat_star, sigma_hat_hat_star, beta_ci, sigma_ci 
-11:31:52 faixa de delta corrigido: 1.158 a 18.947 
+16:18:37 obs. no segundo estágio: 204 | com pesquisadores: 172 
+16:18:37 bootstrap dos canais... 
+16:18:42 obs. com escore de publicações: 204 | de patentes: 204 | conjunto: 204 
+               dimensao observacoes diferentes max_dif_absoluta mediana_dif_absoluta correlacao
+1   efetividade_governo         204          0                0                    0          1
+2 qualidade_regulatoria         204          0                0                    0          1
+3        estado_direito         204          0                0                    0          1
+4    controle_corrupcao         204          0                0                    0          1
+16:20:18 Simar-Wilson algoritmo 2 (L1 = 50 , L2 = 500 )... 
+16:20:18 obs. no Simar-Wilson alg. 2: 144 
+16:20:33 dea.env.robust: componentes delta_hat, beta_hat, sigma_hat, bias, delta_hat_hat, delta_ci_low, delta_ci_high, delta_ci_kneip_low, delta_ci_kneip_high, delta_hat_hat_used, beta_hat_hat, sigma_hat_hat, Zbeta_hat_hat, beta_hat_hat_star, sigma_hat_hat_star, beta_ci, sigma_ci 
+16:20:33 faixa de delta corrigido: 1.158 a 18.947 
                                   modelo               termo coeficiente       ic_inf      ic_sup
 1  H5 Simar-Wilson alg. 2 (rDEA, pooled)         (Intercept) 30.25607386  13.94375012 47.64446939
 2  H5 Simar-Wilson alg. 2 (rDEA, pooled) efetividade_governo 17.14339344   8.10552710 25.50931001
@@ -37,18 +43,20 @@
 8                                 <NA> agrupada, casos completos de contexto          2026
 9                                 <NA> agrupada, casos completos de contexto          2026
 10                                <NA> agrupada, casos completos de contexto          2026
-11:32:07 modelo não estimado: H6 truncada (canal patentes) ( farrell ) truncreg sem convergência (BFGS, NR, BHHH) 
-11:33:00 atenção: H7 canal patentes ( farrell ) réplicas convergentes 228 de 300 
-                                                               modelo                 termo
-2  H5 truncada com qualidade_regulatoria no lugar da efetividade (M2) qualidade_regulatoria
-13        H5 truncada com estado_direito no lugar da efetividade (M2)        estado_direito
-24    H5 truncada com controle_corrupcao no lugar da efetividade (M2)    controle_corrupcao
-35            H5 truncada com indice_wgi no lugar da efetividade (M2)            indice_wgi
+16:20:51 modelo não estimado: H6 truncada (canal patentes) ( farrell ) truncreg sem convergência (BFGS, NR, BHHH) 
+16:21:53 atenção: H7 canal patentes ( farrell ) réplicas convergentes 228 de 300 
+                                                                   modelo                 termo
+2  H5 truncada com efetividade_governo do cache WGI (referência do bloco)   efetividade_governo
+13     H5 truncada com qualidade_regulatoria no lugar da efetividade (M2) qualidade_regulatoria
+24            H5 truncada com estado_direito no lugar da efetividade (M2)        estado_direito
+35        H5 truncada com controle_corrupcao no lugar da efetividade (M2)    controle_corrupcao
+46                H5 truncada com indice_wgi no lugar da efetividade (M2)            indice_wgi
    coeficiente     ic_inf     ic_sup p_boot                     nivel_evidencia
-2   -0.7063773 -1.2512133 -0.2723764      0 sinal contrário, significativo (5%)
-13  -0.5051145 -1.0173471 -0.1479709      0 sinal contrário, significativo (5%)
-24  -0.5076504 -0.9507026 -0.2030353      0 sinal contrário, significativo (5%)
-35  -0.6305414 -1.1652821 -0.2392274      0 sinal contrário, significativo (5%)
+2   -0.6863188 -1.2006628 -0.2077653      0 sinal contrário, significativo (5%)
+13  -0.7063773 -1.2512133 -0.2723764      0 sinal contrário, significativo (5%)
+24  -0.5051145 -1.0173471 -0.1479709      0 sinal contrário, significativo (5%)
+35  -0.5076504 -0.9507026 -0.2030353      0 sinal contrário, significativo (5%)
+46  -0.6305414 -1.1652821 -0.2392274      0 sinal contrário, significativo (5%)
                                                           modelo               termo  coeficiente
 1                                               H5 truncada (M2)         (Intercept) -2.001959732
 2                                               H5 truncada (M2) efetividade_governo -0.686318751
@@ -196,10 +204,10 @@
 134                   300
 135                   300
 140                   300
-                  escore p_kruskal_3grupos_pais_ano p_kruskal_3grupos_medias_pais
-1       conjunto M2 (bc)               0.1155244345                    0.29667599
-2 canal publicações (bc)               0.2405119267                    0.34862035
-3    canal patentes (bc)               0.0002444093                    0.03967211
+                  escore n_obs p_kruskal_3grupos_pais_ano p_kruskal_3grupos_medias_pais
+1       conjunto M2 (bc)   204               0.1155244345                    0.29667599
+2 canal publicações (bc)   204               0.2405119267                    0.34862035
+3    canal patentes (bc)   204               0.0002444093                    0.03967211
   p_mann_whitney_2grupos_pais_ano p_mann_whitney_2grupos_medias_pais n_paises media_alta
 1                    0.0738282421                         0.18619258       47  0.4648748
 2                    0.2525768377                         0.31577332       47  0.4469758
@@ -216,4 +224,4 @@ rho3          market_cap  0.07210115 -0.1666155  0.32315878
 rho4     credito_privado -0.04235944 -0.2762858  0.20753702
 rho5          log_pib_pc -0.30196832 -0.5130824 -0.06144776
 rho6          pd_pct_pib -0.23250895 -0.4382996  0.02100884
-11:33:36 FIM segundo estágio Fase A 
+16:22:37 FIM segundo estágio Fase A 

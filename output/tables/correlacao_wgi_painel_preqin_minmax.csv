@@ -1,6 +1,6 @@
-"dimensao","efetividade_governo","qualidade_regulatoria","estado_direito","controle_corrupcao","indice_wgi"
-"efetividade_governo",1,0.949929296125324,0.950918212436064,0.956569227938653,0.979327545587992
-"qualidade_regulatoria",0.949929296125324,1,0.954455412645008,0.959320942012561,0.98136765856575
-"estado_direito",0.950918212436064,0.954455412645008,1,0.960543379443854,0.984060952001538
-"controle_corrupcao",0.956569227938653,0.959320942012561,0.960543379443854,1,0.987282463044635
-"indice_wgi",0.979327545587992,0.98136765856575,0.984060952001538,0.987282463044635,1
+"dimensao","efetividade_governo","qualidade_regulatoria","estado_direito","controle_corrupcao","indice_wgi","fonte"
+"efetividade_governo",1,0.949929296125324,0.950918212436064,0.956569227938653,0.979327545587992,"cache World Bank (data/wgi), as quatro dimensões da mesma cópia"
+"qualidade_regulatoria",0.949929296125324,1,0.954455412645008,0.959320942012561,0.98136765856575,"cache World Bank (data/wgi), as quatro dimensões da mesma cópia"
+"estado_direito",0.950918212436064,0.954455412645008,1,0.960543379443854,0.984060952001538,"cache World Bank (data/wgi), as quatro dimensões da mesma cópia"
+"controle_corrupcao",0.956569227938653,0.959320942012561,0.960543379443854,1,0.987282463044635,"cache World Bank (data/wgi), as quatro dimensões da mesma cópia"
+"indice_wgi",0.979327545587992,0.98136765856575,0.984060952001538,0.987282463044635,1,"cache World Bank (data/wgi), as quatro dimensões da mesma cópia"

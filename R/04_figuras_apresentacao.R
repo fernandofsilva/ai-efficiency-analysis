@@ -5,7 +5,9 @@
 # e ano, comparação de estimadores. Tabelas derivadas (comentários da
 # apresentação de 28/09/2026): Malmquist por país com a leitura de cada
 # componente (S06) e dispersão do escore por grupo de renda e ano, com
-# testes de tendência (S08).
+# comparação entre metades do período por bootstrap de países (S08).
+# Tabelas lidas (com MD5), tabelas e figuras gravadas entram no manifesto
+# de execução (RegistrarManifesto, no fim).
 # Uso: Rscript R/04_figuras_apresentacao.R (após os scripts 02 e 03)
 
 source("R/00_setup.R")
@@ -21,18 +23,19 @@ nota_padronizacao <- if (padronizacao$metodo == "nenhuma") {
 }
 
 LerTabela <- function(nome) {
-  return(utils::read.csv(file.path("output/tables",
-                                   paste0(nome, sufixo, ".csv")),
-                         stringsAsFactors = FALSE))
+  arquivo <- file.path("output/tables", paste0(nome, sufixo, ".csv"))
+  RegistrarEntrada(arquivo)
+  return(utils::read.csv(arquivo, stringsAsFactors = FALSE))
 }
 
 SalvarFigura <- function(grafico, nome, largura = 9, altura = 6) {
   if (!is.null(nota_padronizacao)) {
     grafico <- grafico + ggplot2::labs(caption = nota_padronizacao)
   }
-  ggplot2::ggsave(file.path("output/figures", paste0(nome, sufixo, ".png")),
-                  grafico, width = largura, height = altura, dpi = 200,
-                  bg = "white")
+  arquivo <- file.path("output/figures", paste0(nome, sufixo, ".png"))
+  ggplot2::ggsave(arquivo, grafico, width = largura, height = altura,
+                  dpi = 200, bg = "white")
+  RegistrarSaida(arquivo)
   Registrar("figura gravada:", nome)
   return(invisible(NULL))
 }
@@ -99,32 +102,52 @@ fig2 <- ggplot2::ggplot(
 SalvarFigura(fig2, "fig2_malmquist_decomposicao", 9, 7)
 
 # 2b. Malmquist por país: deslocamento da fronteira x catch-up (S06) --------
-# Médias geométricas por país; a leitura usa faixas de 5% em torno de 1 para
-# a mudança técnica (TC: a fronteira avança, fica estável ou recua) e para a
-# mudança de eficiência (EC: o país se aproxima da fronteira, fica estável
-# ou se afasta). EC igual a 1 em todos os pares de anos indica país sobre a
-# fronteira CRS em todos os anos: todo o movimento é da própria fronteira.
+# Médias geométricas por país dos índices na convenção do script 02 (maior
+# que 1 = melhora); a leitura usa faixas de 5% em torno de 1 para a mudança
+# técnica (TC: a fronteira avança, fica estável ou recua) e para a mudança
+# de eficiência (EC: o país se aproxima da fronteira, fica estável ou se
+# afasta). "Na fronteira em todos os anos" exige escore CRS contemporâneo
+# igual a 1 (tolerância 1e-6) em TODOS os anos do painel balanceado,
+# inclusive o primeiro: só então todo o movimento do país é o da própria
+# fronteira. EC = 1 em cada transição não basta (só indica eficiência
+# constante, que pode ser 0,5 todo ano), e uma média geométrica de EC igual
+# a 1 menos ainda (A02 de artigo/17). Os nomes distinguem os índices anuais
+# (tabela malmquist_m2) das médias por país (sufixo _media_geom).
 Faixa <- function(x, acima, estavel, abaixo) {
   return(ifelse(x > 1.05, acima, ifelse(x < 0.95, abaixo, estavel)))
 }
+tolerancia_fronteira <- 1e-6
+posicao_crs <- LerTabela("malmquist_escores_crs") |>
+  dplyr::arrange(pais, ano) |>
+  dplyr::group_by(pais) |>
+  dplyr::summarise(
+    anos_com_escore = sum(!is.na(escore_crs)),
+    escore_crs_inicial = dplyr::first(escore_crs),
+    escore_crs_final = dplyr::last(escore_crs),
+    escore_crs_minimo = min(escore_crs),
+    sempre_na_fronteira = !anyNA(escore_crs) &&
+      all(escore_crs >= 1 - tolerancia_fronteira),
+    .groups = "drop")
 malm_por_pais <- malm |>
   dplyr::group_by(pais, grupo_renda2) |>
   dplyr::summarise(
     pares_de_anos = dplyr::n(),
-    malmquist = MediaGeometrica(malmquist),
-    mudanca_tecnica = MediaGeometrica(mudanca_tecnica),
-    mudanca_eficiencia = MediaGeometrica(mudanca_eficiencia),
-    sempre_na_fronteira = all(abs(mudanca_eficiencia - 1) < 1e-6),
+    malmquist_media_geom = MediaGeometrica(malmquist),
+    mudanca_tecnica_media_geom = MediaGeometrica(mudanca_tecnica),
+    mudanca_eficiencia_media_geom = MediaGeometrica(mudanca_eficiencia),
     .groups = "drop") |>
+  dplyr::left_join(posicao_crs, by = "pais") |>
   dplyr::mutate(
-    fronteira = Faixa(mudanca_tecnica, "avança", "estável", "recua"),
-    eficiencia_relativa = Faixa(mudanca_eficiencia, "catch-up", "estável",
-                                "se afasta"),
+    fronteira = Faixa(mudanca_tecnica_media_geom, "avança", "estável",
+                      "recua"),
+    eficiencia_relativa = Faixa(mudanca_eficiencia_media_geom, "catch-up",
+                                "estável", "se afasta"),
     leitura = ifelse(sempre_na_fronteira,
-                     "na fronteira: só deslocamento da fronteira",
+                     paste("na fronteira em todos os anos: só",
+                           "deslocamento da fronteira"),
                      paste0(eficiencia_relativa, "; fronteira ",
                             fronteira))) |>
-  dplyr::arrange(dplyr::desc(malmquist))
+  dplyr::arrange(dplyr::desc(malmquist_media_geom))
 SalvarTabela(malm_por_pais, paste0("malmquist_por_pais", sufixo))
 
 # 3. Canais: acadêmico x tecnológico -------------------------------------------
@@ -230,47 +253,104 @@ SalvarFigura(fig5, "fig5_renda_ano", 10, 6)
 
 # 5b. Dispersão do escore por grupo de renda e ano (S08) -------------------
 # Escore corrigido de viés. As fronteiras são anuais (contemporâneas): o
-# nível do escore não se compara entre anos, só a dispersão relativa
-# (coeficiente de variação, IQR). Em cada grupo e ano, também quem fica nos
-# extremos (quem "abre" a distribuição).
+# nível do escore não se compara entre anos, e a dispersão também não é
+# automaticamente comparável, porque uma fronteira nova pode mudar os
+# escores de forma não proporcional (A15 de artigo/17). As medidas
+# descrevem a dispersão observada em cada referência anual: IQR é
+# dispersão ABSOLUTA do escore (multiplicar todos os escores por c
+# multiplica o IQR por c); CV (desvio-padrão / média) e IQR relativo (IQR
+# / mediana) são relativas ao centro da distribuição e não mudam com essa
+# multiplicação. Em cada grupo e ano, também quem fica nos extremos (quem
+# "abre" a distribuição).
 dispersao <- boot_m2 |>
   dplyr::group_by(grupo_renda, ano) |>
   dplyr::summarise(
     n = dplyr::n(), media = mean(escore_bc),
+    mediana = stats::median(escore_bc),
     desvio_padrao = if (dplyr::n() > 1) stats::sd(escore_bc) else NA_real_,
     iqr = stats::IQR(escore_bc), minimo = min(escore_bc),
     pais_minimo = pais[which.min(escore_bc)], maximo = max(escore_bc),
     pais_maximo = pais[which.max(escore_bc)], .groups = "drop") |>
-  dplyr::mutate(cv = desvio_padrao / media)
+  dplyr::mutate(cv = desvio_padrao / media, iqr_relativo = iqr / mediana)
 SalvarTabela(dispersao, paste0("dispersao_renda_ano", sufixo))
 # Tendência da dispersão por grupo (anos com pelo menos 3 países; com menos
-# de 4 anos assim o grupo fica de fora): inclinação do CV e do IQR no ano
-# (MQO descritivo) e comparação dos desvios absolutos em relação à mediana
-# de cada ano entre a primeira e a segunda metade do período (Mann-Whitney,
-# versão não paramétrica do teste de Brown-Forsythe). n pequeno e
-# composição variável: leitura exploratória.
+# de 4 anos assim o grupo fica de fora), com dois objetos distintos:
+#   - inclinação do CV, do IQR e do IQR relativo no ano: MQO com um ponto
+#     por ano (4 a 9 anos), só descrição de tendência (sem significância,
+#     isso não prova estabilidade);
+#   - alvo inferencial: diferença do desvio absoluto mediano em relação à
+#     mediana de cada ano entre a segunda e a primeira metade do período.
+#     Os mesmos países aparecem nas duas metades (A10 de artigo/17): o IC e
+#     o p-valor vêm de reamostrar PAÍSES (trajetórias completas, todos os
+#     anos juntos), recalculando em cada réplica as medianas anuais e os
+#     desvios; os escores ficam fixos, então o resultado é condicional às
+#     fronteiras anuais estimadas. Sensibilidade pareada: Wilcoxon de
+#     postos sinalizados sobre o desvio médio de cada país em cada metade,
+#     só com os países presentes nas duas.
+n_boot_dispersao <- 2000
+DesvioMedianoMetades <- function(d) {
+  # Desvio absoluto em relação à mediana do ano; devolve as medianas desses
+  # desvios na primeira e na segunda metade.
+  d$desvio <- abs(d$escore_bc - stats::ave(d$escore_bc, d$ano,
+                                           FUN = stats::median))
+  return(c(primeira = stats::median(d$desvio[d$periodo == "primeira"]),
+           segunda = stats::median(d$desvio[d$periodo == "segunda"])))
+}
 TendenciaDispersao <- function(g) {
   d <- boot_m2[boot_m2$grupo_renda == g, ]
   por_ano <- dispersao[dispersao$grupo_renda == g & dispersao$n >= 3, ]
   if (nrow(por_ano) < 4) return(NULL)
   d <- d[d$ano %in% por_ano$ano, ]
-  d$desvio <- abs(d$escore_bc - stats::ave(d$escore_bc, d$ano,
-                                           FUN = stats::median))
   corte <- stats::median(por_ano$ano)
   d$periodo <- ifelse(d$ano <= corte, "primeira", "segunda")
-  cv <- summary(stats::lm(cv ~ ano, data = por_ano))$coefficients
-  iqr <- summary(stats::lm(iqr ~ ano, data = por_ano))$coefficients
-  mw <- stats::wilcox.test(desvio ~ periodo, data = d, exact = FALSE)
+  Inclinacao <- function(coluna) {
+    return(summary(stats::lm(stats::as.formula(paste(coluna, "~ ano")),
+                             data = por_ano))$coefficients["ano", ])
+  }
+  cv <- Inclinacao("cv")
+  iqr <- Inclinacao("iqr")
+  iqr_rel <- Inclinacao("iqr_relativo")
+  ponto <- DesvioMedianoMetades(d)
+  paises <- unique(d$pais)
+  set.seed(semente)
+  reps <- replicate(n_boot_dispersao, {
+    escolhidos <- sample(paises, replace = TRUE)
+    db <- do.call(rbind, lapply(escolhidos, function(p) d[d$pais == p, ]))
+    m <- DesvioMedianoMetades(db)
+    unname(m["segunda"] - m["primeira"])
+  })
+  reps <- reps[is.finite(reps)]
+  # Sensibilidade pareada: desvio médio por país em cada metade.
+  d$desvio <- abs(d$escore_bc - stats::ave(d$escore_bc, d$ano,
+                                           FUN = stats::median))
+  por_pais <- d |>
+    dplyr::group_by(pais, periodo) |>
+    dplyr::summarise(desvio = mean(desvio), .groups = "drop") |>
+    tidyr::pivot_wider(names_from = periodo, values_from = desvio) |>
+    dplyr::filter(!is.na(primeira), !is.na(segunda))
+  pareado <- stats::wilcox.test(por_pais$segunda, por_pais$primeira,
+                                paired = TRUE, exact = FALSE)
   return(data.frame(
-    grupo_renda = g, anos = nrow(por_ano),
-    observacoes = nrow(d), inclinacao_cv = cv["ano", 1],
-    p_inclinacao_cv = cv["ano", 4], inclinacao_iqr = iqr["ano", 1],
-    p_inclinacao_iqr = iqr["ano", 4], corte_periodo = corte,
-    desvio_mediano_primeira = stats::median(d$desvio[d$periodo ==
-                                                       "primeira"]),
-    desvio_mediano_segunda = stats::median(d$desvio[d$periodo ==
-                                                      "segunda"]),
-    p_mann_whitney_desvios = mw$p.value, stringsAsFactors = FALSE))
+    grupo_renda = g, anos = nrow(por_ano), observacoes = nrow(d),
+    n_paises = length(paises), paises_nas_duas_metades = nrow(por_pais),
+    inclinacao_cv = cv[1], p_inclinacao_cv = cv[4],
+    inclinacao_iqr = iqr[1], p_inclinacao_iqr = iqr[4],
+    inclinacao_iqr_relativo = iqr_rel[1],
+    p_inclinacao_iqr_relativo = iqr_rel[4],
+    leitura_inclinacoes = "descritiva (MQO com um ponto por ano)",
+    corte_periodo = corte,
+    desvio_mediano_primeira = unname(ponto["primeira"]),
+    desvio_mediano_segunda = unname(ponto["segunda"]),
+    dif_desvio_mediano = unname(ponto["segunda"] - ponto["primeira"]),
+    ic_inf_dif = unname(stats::quantile(reps, 0.025)),
+    ic_sup_dif = unname(stats::quantile(reps, 0.975)),
+    p_boot_paises = min(1, 2 * min(mean(reps <= 0), mean(reps >= 0))),
+    replicas_validas = length(reps),
+    p_wilcoxon_pareado_paises = pareado$p.value,
+    inferencia = paste("bootstrap de países (trajetórias completas),",
+                       "escores fixos; sensibilidade: Wilcoxon pareado",
+                       "por país"),
+    stringsAsFactors = FALSE, row.names = NULL))
 }
 tendencia <- do.call(rbind, lapply(sort(unique(boot_m2$grupo_renda)),
                                    TendenciaDispersao))
@@ -303,4 +383,7 @@ fig7 <- ggplot2::ggplot(meta, ggplot2::aes(x = grupo, y = tgr, fill = grupo)) +
                                periodo, ", M2)")) +
   tema
 SalvarFigura(fig7, "fig7_metafronteira", 7, 5)
+RegistrarManifesto("04_figuras_apresentacao.R", sufixo,
+                   Sys.getenv("BASE_ARQUIVO", "data/processed/base_atual.csv"),
+                   "ok", detalhe = "tabelas lidas em manifesto_entradas.csv")
 Registrar("FIM figuras Fase A")

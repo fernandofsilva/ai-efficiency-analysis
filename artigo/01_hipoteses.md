@@ -51,7 +51,7 @@ A hipótese assume a primeira, mas o desenho permite identificar a segunda. A li
 **Teste.**
 - Teste de retornos de escala com bootstrap (Simar e Wilson, 2002), rotina própria sobre `Benchmarking` com a mesma construção da implementação de referência (`rDEA::rts.test`, estatística 4.6, banda de Silverman): H0 de retornos constantes e, em seguida, H0 de retornos não crescentes.
 - Eficiência de escala como razão entre escores CRS e VRS, e direção dos retornos comparando modelos DRS e IRS, país a país.
-- Como evidência paramétrica complementar, a soma das elasticidades da fronteira estocástica por canal (`artigo/15`).
+- Como evidência paramétrica complementar, a soma das elasticidades da fronteira estocástica por canal, com IC por bootstrap em blocos de país calculado na própria réplica (`artigo/15`; `artigo/18`, A05).
 
 O tamanho do teste foi medido por simulação nas duas implementações (`R/02c`): ambas rejeitam retornos constantes verdadeiros em cerca de 20% das amostras ao nível nominal de 5%, com 40 ou 191 unidades. Os p-valores são, portanto, diagnósticos exploratórios, sem controle do erro tipo I. Os retornos de escala só têm leitura econômica nas unidades originais: a padronização min-max desloca a origem (`artigo/14`).
 
@@ -62,7 +62,9 @@ O tamanho do teste foi medido por simulação nas duas implementações (`R/02c`
 **Situação em 04/10/2026 (fechamento na discussão: S04).** Sem apoio conclusivo:
 - o teste global não dá indício contra retornos constantes (Fase A p = 0,09; painel p = 0,44);
 - Estados Unidos e Reino Unido estão em retornos decrescentes, a China em constantes e a Índia alterna;
-- no SFA, os retornos são decrescentes no canal de publicações e crescentes no de patentes.
+- no SFA, com IC por bootstrap de país (`artigo/18`, A05):
+  - os retornos são decrescentes no canal de publicações em todas as bases e modelos (limite superior de 0,70 a 0,89);
+  - no de patentes, crescentes em 12 de 18 combinações, mas com o limite inferior colado em 1, e não distinguíveis de constantes na Fase A.
 
 ### H2 — Especificidade dos insumos por canal de produção
 
@@ -81,16 +83,24 @@ A lacuna atacada é a separação, por canal de produção, do papel do capital 
 - robustez: ineficiência exponencial, translog e painel (Battese e Coelli, 1988 e 1992);
 - elasticidades com intervalos por bootstrap em blocos de país;
 - testes de razão de verossimilhança da presença de ineficiência;
-- diferença entre canais estimada no mesmo sorteio.
+- diferença entre canais estimada no mesmo sorteio;
+- reinício do otimizador quando o ajuste para sem convergir, e veredito só com ajuste pontual válido nos dois canais e pelo menos 90% de réplicas convergentes (`artigo/18`, A04).
 
-Complementarmente, a DEA com e sem GERD (M1 × M2).
+A comparação da DEA com e sem GERD (M1 × M2) **não** testa H2. Na DEA orientada a produto, acrescentar um insumo nunca reduz o escore, seja ele relevante ou não; é uma propriedade do método (`artigo/18`, A12).
 
-**Critério.** Estrito: elasticidade do investimento privado significativa apenas no canal de patentes. Especificidade relativa: elasticidade maior em patentes que em publicações, com o IC da diferença acima de zero.
+**Critério.** H2 afirma especificidade com direção. Ela é **apoiada** quando:
+1. a elasticidade do investimento privado em patentes tem IC 95% acima de zero; **e**
+2. a diferença patentes − publicações também tem IC 95% acima de zero.
 
-**Situação em 04/10/2026.** Não apoiada:
-- o critério estrito vale em 2 de 18 combinações de base e modelo, e o padrão oposto (efeito só em publicações) em 7;
-- a especificidade relativa aparece só nos modelos de painel da Fase A;
-- o P&D é o insumo que importa nos dois canais.
+Só uma das duas condições é "apoio parcial". Ser significativo num canal e não no outro não testa a diferença entre eles (Gelman e Stern, 2006). Um IC de publicações que contém zero não demonstra efeito nulo: sem uma margem de equivalência fixada antes dos resultados, o texto diz "não distinguível de zero" (`artigo/18`, A03).
+
+**Situação em 04/10/2026, revista após a análise crítica 3 (`artigo/18`).** Apoio fraco e localizado; não apoiada na base do artigo:
+- **Placar nas 18 combinações de base e modelo:**
+  - apoiada em 3: os dois modelos de painel da Fase A e, no limite, o agrupado da variante por inventor, cujo IC da diferença exclui zero em 17 de 20 sementes;
+  - apoio parcial em 2: os modelos de painel da variante de qualidade, com efeito em patentes, sem diferença entre canais;
+  - não apoiada em 13: todas as do painel base e todas as com o P&D público como controle.
+- **Nenhuma combinação contraria H2.** Os sete casos antes chamados de "efeito só em publicações" não têm diferença distinguível entre canais.
+- **O P&D é o insumo que importa nos dois canais.**
 
 ### H3 — Divergência entre canais e heterogeneidade tecnológica
 
@@ -135,6 +145,8 @@ A lacuna atacada é a comparação dos dois canais, e da tecnologia por grupo de
 
 **Por que é pergunta, e não hipótese.** Os intervalos do índice de Malmquist são descritivos: a reamostragem de países com os índices fixos não propaga a incerteza da estimação das fronteiras, e o bootstrap de Malmquist de Simar e Wilson (1999) não foi implementado. Não há, portanto, teste capaz de refutar uma predição.
 
+**Convenção.** Índice maior que 1 = melhora: M > 1, a produtividade cresce; TC > 1, a fronteira avança; EC > 1, o país se aproxima da fronteira (catch-up). É a convenção de Färe et al. (1994), com distâncias de Shephard. Na orientação a produto, o pacote `Benchmarking` devolve os recíprocos, e o `R/02` converte. As versões anteriores deste documento liam os índices no sentido inverso (`artigo/17`, A01).
+
 **Expectativa da literatura (guia de leitura, não critério de teste).** Difusão internacional do conhecimento e convergência (Färe et al., 1994; Barro e Sala-i-Martin, 1992):
 - o progresso técnico em IA (aprendizagem profunda, ferramentas abertas, queda do custo de computação) desloca a fronteira para todos;
 - quem está longe dela tem mais a aprender e se aproxima mais rápido.
@@ -143,18 +155,27 @@ Em palavras simples, a produtividade de um país pode subir porque os campeões 
 - parcela da mudança técnica na variância de log M acima de 0,5, com a covariância rateada simetricamente;
 - mudança de eficiência média da renda média acima de 1, com o intervalo por reamostragem excluindo 1.
 
-**Cuidado metodológico.** Uma fronteira que parece recuar quando medida com fluxos anuais de capital de risco reflete o crescimento explosivo do denominador: no dataset original, a mediana do investimento cresceu cerca de 26 vezes entre 2013 e 2021, e a de publicações apenas 1,4 vez. Por isso o insumo entra defasado e o Malmquist é calculado sob retornos constantes, evitando distâncias intertemporais inviáveis sob retornos variáveis. Pela mesma razão de origem, o Malmquist só tem leitura nas unidades originais (`artigo/14`).
+**Cuidado metodológico.** O insumo cresce muito mais depressa que os produtos: no dataset original, a mediana do investimento cresceu cerca de 26 vezes entre 2013 e 2021, e a de publicações apenas 1,4 vez. Isso pesa sobretudo na posição de cada país em relação à fronteira, que é definida pelos melhores, e não necessariamente na própria fronteira. Por isso o insumo entra defasado e o Malmquist é calculado sob retornos constantes, evitando distâncias intertemporais inviáveis sob retornos variáveis. Pela mesma razão de origem, o Malmquist só tem leitura nas unidades originais (`artigo/14`).
 
 **Como responder.**
 - Índice de Malmquist com decomposição em mudança de eficiência e mudança técnica no painel balanceado (2016–2019 no dataset original; 2017–2021 no painel reconstruído).
-- Leitura país a país (`malmquist_por_pais`, S06).
-- β-convergência: regressão da mudança de eficiência média no escore CRS inicial medido contra a mesma fronteira do painel balanceado (MQO descritivo).
+- Leitura país a país (`malmquist_por_pais`, S06). "Na fronteira em todos os anos" exige escore CRS contemporâneo igual a 1 em todos os anos da janela (`malmquist_escores_crs`): EC = 1 só quer dizer eficiência constante (`artigo/18`, A02).
+- β-convergência: regressão da mudança de eficiência média no escore CRS inicial medido contra a mesma fronteira do painel balanceado (MQO descritivo). Parte de uma inclinação negativa é mecânica: o escore é limitado a 1, e quem começa na fronteira não pode se aproximar dela.
 
-**Situação em 04/10/2026.**
-- A fronteira recua em produtos por dólar, e a maior parte dos países melhora a posição relativa porque a fronteira desce até eles.
-- A mudança técnica domina a variância só na Fase A (parcela 0,60; 0,26 no painel).
-- O catch-up da renda média não supera o da alta renda.
-- China, Índia, Grécia e Argentina (Fase A) só se movem com a fronteira; o Brasil ganha por catch-up (`artigo/16`).
+**Situação em 04/10/2026, revista após a análise crítica 3 (convenção corrigida; `artigo/18`, A01 e A02).**
+- **A fronteira avança** em todas as bases: TC de 1,10 na Fase A, 1,17 no painel e de 1,03 a 1,16 nas variantes, com intervalos acima de 1.
+- **A maioria dos países se afasta dela:** EC de 0,91 na Fase A e 0,93 no painel. Exceções:
+  - inventor (1,02) e P&D público (1,04), em que os países, em média, se aproximam;
+  - nessas duas bases, a fronteira avança pouco.
+- **Produtividade:** estável na Fase A (M 1,00) e crescente no painel (1,09 [1,05; 1,13]).
+- **Variância:** a mudança técnica domina só na Fase A (parcela 0,60; 0,26 no painel).
+- **Renda média:** não atende ao critério de catch-up em nenhuma base. Na Preqin, ela se afasta (0,964 [0,924; 0,999]). No ponto, porém, sai-se melhor que a alta renda em todas as bases (por exemplo, painel 1,02 contra 0,90).
+- **β-convergência negativa** (na direção de convergência) em cinco das seis bases, significativa no inventor e no P&D público. É descritiva e, em parte, mecânica.
+- **Por país:**
+  - China, Índia e Grécia (Fase A) e China, Malásia e Coreia do Sul (painel) estão na fronteira em todos os anos;
+  - a China tem o maior avanço da Fase A (1,54 ao ano);
+  - o Brasil se afasta da fronteira (EC 0,66 na Fase A e 0,88 no painel; `artigo/16`).
+- **Leitura anterior:** dizia o contrário (fronteira recuando, catch-up generalizado e Brasil ganhando por catch-up), porque os índices do `Benchmarking` eram lidos no sentido inverso.
 
 ### RQ2 — Determinantes da eficiência (antigas H5, H6 e H7)
 
@@ -163,7 +184,7 @@ Em palavras simples, a produtividade de um país pode subir porque os campeões 
 **Por que é pergunta, e não hipótese.** O segundo estágio é exploratório:
 - a condição de separabilidade (Daraio, Simar e Wilson, 2018) não é testada;
 - os escores são tratados como fixos;
-- as variáveis de contexto são correlacionadas entre si (as quatro dimensões do WGI têm correlação de 0,91 a 0,96, e o PIB per capita, de cerca de 0,8 com elas).
+- as variáveis de contexto são correlacionadas entre si (as quatro dimensões do WGI, tomadas da mesma cópia dos dados, têm correlação de 0,93 a 0,96, e o PIB per capita, de cerca de 0,8 com elas).
 
 As associações são descritas com níveis de evidência, sem tratamento de teste de hipótese.
 
@@ -173,14 +194,14 @@ As associações são descritas com níveis de evidência, sem tratamento de tes
 - **E7 (desenvolvimento; antiga H7):** PIB per capita positivo no canal de patentes e não positivo no de publicações, por extensão de Holý e Šafr (2018) à IA.
 
 **Como responder.**
-- Especificação principal: regressão truncada sobre o logaritmo do escore corrigido de viés (log s em (−∞, 0), truncada em 0), com escores fixos, bootstrap agrupado por país e verificação de convergência do ajuste pontual e de cada réplica. É o modelo de Simar e Wilson (2007) aplicado ao logaritmo da medida de Farrell, com suporte compatível com o escore.
+- Especificação principal: regressão normal truncada sobre o logaritmo do escore corrigido de viés (log s em (−∞, 0), truncada em 0), com escores fixos, bootstrap agrupado por país e verificação de convergência do ajuste pontual e de cada réplica. É uma especificação exploratória própria, escolhida pelo suporte compatível com o escore e pela estabilidade numérica. Não é o modelo de Simar e Wilson (2007) em outra escala: lá a normal truncada é a da medida de Farrell, e se ela tem essa distribuição, o log do escore não tem. O coeficiente se refere à média latente antes da truncagem; a leitura é de sinal, sem efeito percentual sobre o escore (`artigo/18`, A09).
 - Comparações: algoritmo 2 de Simar e Wilson (2007) e Tobit.
-- Dimensões alternativas do WGI no lugar da efetividade.
+- Dimensões alternativas do WGI no lugar da efetividade, todas da mesma cópia dos dados (cache do World Bank), inclusive a efetividade de referência (`artigo/18`, A07).
 - Níveis de evidência por coeficiente: significativo a 5%, "bateu na trave" (5–10%), só o sinal, ou sinal contrário (`artigo/16`, seção 2).
 - Kruskal-Wallis e Mann-Whitney por grupo de renda em cada canal.
 
-**Situação em 04/10/2026.**
-- **Instituições:** sinal contrário ao esperado em todas as 23 especificações (12 significativas a 5%), igual em todas as dimensões do WGI. Isso é coerente com sistemas de P&D grandes e ricos que produzem menos IA por dólar, e não com governança que "atrapalha".
+**Situação em 04/10/2026, revista após a análise crítica 3 (`artigo/18`).**
+- **Instituições:** sinal contrário ao esperado em todas as 23 especificações (13 significativas a 5%), igual em todas as dimensões do WGI tomadas da mesma cópia dos dados. Isso é coerente com sistemas de P&D grandes e ricos que produzem menos IA por dólar, e não com governança que "atrapalha".
 - **Pesquisadores e exportações de alta tecnologia:** sinal esperado, raramente significativo.
 - **Crédito no canal de patentes:** positivo, contra E6.
 - **PIB per capita:** negativo em patentes (contra E7) e em publicações (compatível com E7).
@@ -199,10 +220,10 @@ Reportadas como resultados, não como hipóteses:
 | | Método principal | Função em R | Critério ou referência de leitura |
 |---|---|---|---|
 | H1 retornos de escala | Teste de RTS com bootstrap (tamanho ≈ 0,20 por simulação); SE = CRS/VRS por país; soma das elasticidades do SFA | `TesteRtsBootstrap` (rotina própria alinhada a `rDEA::rts.test`), `Benchmarking::dea`, `frontier::sfa` | indício contra CRS (p < 0,05, teste liberal); SE < 0,8 nos grandes |
-| H2 insumos por canal | SFA em log por canal, seis bases, bootstrap por país; DEA com/sem GERD | `frontier::sfa`, `sfaR::sfacross` | elasticidade só em patentes (estrito); diferença patentes − publicações > 0 (relativo) |
+| H2 insumos por canal | SFA em log por canal, seis bases, bootstrap por país, com reinício e controle de validade | `frontier::sfa`, `sfaR::sfacross` | elasticidade em patentes > 0 **e** diferença patentes − publicações > 0 (IC 95%) |
 | H3 canais e metafronteira | DEA por canal; TGR por grupo de renda (Mann-Whitney e diferença de médias por blocos de país); classes latentes | `Benchmarking::dea`, `wilcox.test`, `sfaR::sfalcmcross` | p(ρ ≥ 0,5) < 0,05; TGR média < alta (postos e média) |
-| RQ1 dinâmica | Malmquist CRS, painel balanceado, por grupo e por país; intervalos por reamostragem de países (descritivos) | `Benchmarking::malmquist` | parcela de TC > 0,5; EC > 1 na renda média (referências descritivas) |
-| RQ2 determinantes | Truncada sobre log(escore), escores fixos, bootstrap por país; algoritmo 2; Tobit; dimensões do WGI; Kruskal-Wallis e Mann-Whitney por renda | `truncreg::truncreg`, `rDEA::dea.env.robust`, `AER::tobit` | níveis de evidência em relação às expectativas E5–E7 (exploratório) |
+| RQ1 dinâmica | Malmquist CRS, painel balanceado, por grupo e por país, convenção > 1 = melhora; intervalos por reamostragem de países (descritivos) | `Benchmarking::malmquist` (índices invertidos por `IndicesMalmquist`) | parcela de TC > 0,5; EC > 1 na renda média (referências descritivas) |
+| RQ2 determinantes | Normal truncada sobre log(escore) (especificação própria), escores fixos, bootstrap por país; algoritmo 2; Tobit; dimensões do WGI de uma só cópia; Kruskal-Wallis e Mann-Whitney por renda | `truncreg::truncreg`, `rDEA::dea.env.robust`, `AER::tobit` | níveis de evidência em relação às expectativas E5–E7 (exploratório); leitura de sinal |
 
 ## Referências
 
@@ -225,6 +246,7 @@ Marcadas com (S09): dados bibliográficos e conteúdo a conferir na revisão por
 - Ernst, E.; Mishra, S. (2021). AI Efficiency Index: identifying regulatory and policy constraints for resilient national AI ecosystems. *SSRN Working Paper* 3800783.
 - Färe, R.; Grosskopf, S.; Norris, M.; Zhang, Z. (1994). Productivity growth, technical progress, and efficiency change in industrialized countries. *American Economic Review*, 84(1), 66–83.
 - Furman, J. L.; Porter, M. E.; Stern, S. (2002). The determinants of national innovative capacity. *Research Policy*, 31(6), 899–933.
+- Gelman, A.; Stern, H. (2006). The difference between "significant" and "not significant" is not itself statistically significant. *The American Statistician*, 60(4), 328–331.
 - Greene, W. (2005). Reconsidering heterogeneity in panel data estimators of the stochastic frontier model. *Journal of Econometrics*, 126(2), 269–303.
 - Griliches, Z. (1979). Issues in assessing the contribution of research and development to productivity growth. *Bell Journal of Economics*, 10(1), 92–116.
 - Guan, J.; Chen, K. (2012). Modeling the relative efficiency of national innovation systems. *Research Policy*, 41(1), 102–115. (S09)
