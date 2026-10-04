@@ -34,7 +34,7 @@ Nas sessões de laboratório, o programa pede que o aluno escolha uma base próp
 | Variáveis contextuais e testes não paramétricos | feitos (Kruskal-Wallis e Mann-Whitney, `R/03`); o material de aula usa também Kolmogorov-Smirnov |
 | Teste de separabilidade de Daraio e Simar | **não feito** (já pendente no `artigo/07`) |
 | Tobit e regressão truncada com bootstrap | feitos (`R/03`) |
-| Apresentação em PowerPoint | apresentada como PDF gerado no Claude Design; a nova versão (errata no `artigo/08`, seção 2a) pode ser exportada em `.pptx` |
+| Apresentação em PowerPoint | apresentada como PDF gerado no Claude Design; o brief da revisão 5 (`artigo/08`) gera o deck atualizado, a exportar em `.pptx` e PDF |
 
 ## 2. Sessão 1 (14/09/2026)
 

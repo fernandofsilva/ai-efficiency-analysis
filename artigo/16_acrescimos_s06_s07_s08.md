@@ -177,7 +177,7 @@ Nenhuma diferença entre as metades é distinguível de zero. A variante de qual
    - slide 11: tabela do Malmquist por país, na convenção corrigida;
    - slide 12: níveis de evidência e a fig4 vigente (a do deck apresentado era a da versão anterior);
    - slide 13: nota da fig5 revista com a seção 4.
-   Errata e roteiro no `artigo/08`, seção 2a.
+   Errata e roteiro no `artigo/08`, seção 2a (desde a revisão 5 do brief, seção 2).
 2. **S03:** com os níveis de evidência, H5 tem sinal contrário robusto na efetividade (e em todo o WGI), H6 é contrariada no crédito e H7 em patentes. Esses resultados entram na decisão de quais pontos ficam como hipóteses e quais viram perguntas de pesquisa.
 3. **S09:** dossiê de evidência contemporânea para as discussões do S04 (H1 por país), do S05 (perfis do ranking), do S06 (platô) e do S08 (heterogeneidade da renda média-alta), além de ler na íntegra Moraes e Wanke (2019) antes de citar.
 4. **Opcional:** indicador de restrição regulatória menos colinear com o WGI (por exemplo, índices de regulação de produtos da OCDE) para testar a leitura do professor.

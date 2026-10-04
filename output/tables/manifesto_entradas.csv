@@ -392,3 +392,4 @@
 "04_figuras_apresentacao_painel_publico_minmax@20261004170123","2026-10-04 17:01:23","04_figuras_apresentacao.R","_painel_publico_minmax","output/tables/segundo_estagio_truncada_painel_publico_minmax.csv","beb1f91e1f4ddff2f87ed3cfdfded557"
 "04_figuras_apresentacao_painel_publico_minmax@20261004170123","2026-10-04 17:01:23","04_figuras_apresentacao.R","_painel_publico_minmax","output/tables/spearman_estimadores_m2_painel_publico_minmax.csv","2b8d04c6edd3a7005ff7952e211e91d4"
 "04_figuras_apresentacao_painel_publico_minmax@20261004170123","2026-10-04 17:01:23","04_figuras_apresentacao.R","_painel_publico_minmax","output/tables/metafronteira_renda_m2_painel_publico_minmax.csv","7cf37bb17e546027726ea32826fdea26"
+"07_tabelas_manuscrito_painel@20261004182134","2026-10-04 18:21:34","07_tabelas_manuscrito.R","_painel","output/tables/dea_ano_m2_painel.csv","8da2da2fa32e496701a370cd2721ae1f"

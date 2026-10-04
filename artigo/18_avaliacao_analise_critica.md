@@ -257,7 +257,7 @@ A declaração do `artigo/07` de que o PDF tinha as sete figuras da revisão 3 t
 
 O que foi feito:
 1. **fig4 conferida.** A fig4 vigente (`output/figures/fig4_segundo_estagio.png`) está em log do escore, e a efetividade do modelo conjunto da Fase A cruza zero, como na tabela do slide. Nesta rodada ela não mudou: o segundo estágio da Fase A não mudou.
-2. **Errata slide a slide no `artigo/08` (seção 2a).** O slide 12 deve trocar a imagem pela fig4 vigente e retirar "(semi-elasticidade)", por A09. Os slides 11, 14, 15 e 18 devem inverter a leitura do Malmquist (A01), o 14 deve trocar a evidência de H2 (A12) e o 16, o número da checagem de patentes (A08). As seções 3 e 4 do brief foram corrigidas no lugar.
+2. **Errata slide a slide no `artigo/08` (seção 2a; desde a revisão 5 do brief, seção 2).** O slide 12 deve trocar a imagem pela fig4 vigente e retirar "(semi-elasticidade)", por A09. Os slides 11, 14, 15 e 18 devem inverter a leitura do Malmquist (A01), o 14 deve trocar a evidência de H2 (A12) e o 16, o número da checagem de patentes (A08). As seções 3 e 4 do brief foram corrigidas no lugar.
 3. **artigo/07 corrigido.** A declaração do `artigo/07` foi corrigida, e o PDF histórico ficou intocado.
 
 O deck corrigido depende de o autor regenerá-lo no Claude Design com o brief revisto.
@@ -299,7 +299,7 @@ O deck corrigido depende de o autor regenerá-lo no Claude Design com o brief re
 
 ## Pendências e estado das entregas
 
-1. **Deck (A14):** gerar de novo no Claude Design com a errata da seção 2a do `artigo/08` (fonte não versionada). O PDF de 28/09 fica como registro.
+1. **Deck (A14):** gerar de novo no Claude Design com a errata da seção 2a do `artigo/08` (desde a revisão 5 do brief, seção 2; fonte não versionada). O PDF de 28/09 fica como registro.
 2. **Página do comparativo min-max (feito):** atualizada e republicada no mesmo endereço (versão 2), com o Malmquist na convenção correta, as contagens do segundo estágio e o limite de ε. Continua privada até ser compartilhada pelo menu Share.
 3. **Malmquist (opcional, mas com peso maior agora):** o bootstrap de Simar e Wilson (1999). A RQ1 mudou de sentido, e os intervalos atuais seguem descritivos (reamostragem de países com índices fixos).
 4. **Opcionais registrados:**

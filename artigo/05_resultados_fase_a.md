@@ -14,7 +14,7 @@ Base para a apresentação. Todos os números vêm de `output/tables/` (scripts 
 
 | Modelo | Insumos | Produtos | Papel |
 |---|---|---|---|
-| M1 | investimento privado em IA | publicações, patentes | replicação de Ernst e Mishra (2021) |
+| M1 | investimento privado em IA | publicações, patentes | comparação sem o P&D; não replica Ernst e Mishra (2021), que usam três insumos (cursos *online* de IA, investimento em empresas de IA e contratações em IA) e outros produtos (corrigido em 04/10/2026, `artigo/20`) |
 | M2 (base) | investimento privado em IA, GERD | publicações, patentes | resultados principais |
 | Canal acadêmico | idem M2 | publicações | H2, H3, H7 |
 | Canal tecnológico | idem M2 | patentes | H2, H3, H6, H7 |

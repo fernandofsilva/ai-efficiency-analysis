@@ -162,7 +162,7 @@ Achados de `artigo/17`, com vereditos e correções em `artigo/18`. A conferênc
 
 ### Slide 7 — Método
 
-- **Modelos.** M1 (insumo único: investimento; replicação de Ernst e Mishra) e M2 (investimento + GERD; base). Canais separados: só publicações e só patentes.
+- **Modelos.** M1 (insumo único: investimento; comparação sem o P&D) e M2 (investimento + GERD; base). Canais separados: só publicações e só patentes.
 - **Fronteiras.**
   - Contemporâneas por ano (16 a 27 países por ano), orientação a produto, CRS, VRS e NIRS.
   - Fronteira agrupada só para supereficiência, metafronteira, teste de retornos de escala e algoritmo 2.

@@ -1523,3 +1523,5 @@
 "06_sfa_canais_painel_publico@20261004170420","2026-10-04 17:04:20","06_sfa_canais.R","_painel_publico","output/tables/sfa_h2_painel_publico.csv","bd747ca65f5f2f1b61b26649a32673d0","ok"
 "06_sfa_canais_painel_publico@20261004170420","2026-10-04 17:04:20","06_sfa_canais.R","_painel_publico","output/tables/sfa_retornos_painel_publico.csv","dd28213d1faec51a8f9ce5c97998ed80","ok"
 "06_sfa_canais_painel_publico@20261004170420","2026-10-04 17:04:20","06_sfa_canais.R","_painel_publico","output/tables/sfa_classes_latentes_painel_publico.csv","ab70c65a4995e8371d4293496011b358","ok"
+"07_tabelas_manuscrito_painel@20261004182134","2026-10-04 18:21:34","07_tabelas_manuscrito.R","_painel","output/tables/manuscrito_descritiva_painel.csv","527e2587aeb9a3fea88be002403579cb","ok"
+"07_tabelas_manuscrito_painel@20261004182134","2026-10-04 18:21:34","07_tabelas_manuscrito.R","_painel","output/tables/manuscrito_medianas_ano_painel.csv","d50312e6dc11e4757313fffe75f0e831","ok"

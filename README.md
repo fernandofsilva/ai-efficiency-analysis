@@ -62,11 +62,12 @@ BASE_ARQUIVO=data/processed/painel_ia.csv SUFIXO_SAIDA=_painel \
 INSUMOS=investimento_l1,gerd_l1 JANELA_MALMQUIST=2017,2021 \
   Rscript R/02_fronteiras_dataset_atual.R
 # idem para R/03_... e R/04_... com as mesmas variáveis de ambiente
+Rscript R/07_tabelas_manuscrito.R      # tabelas descritivas do manuscrito (amostra da DEA do painel)
 ```
 
 Os scripts 02, 03 e 04 são parametrizados por variáveis de ambiente (`BASE_ARQUIVO`, `SUFIXO_SAIDA`, `INSUMOS`, `PRODUTOS`, `JANELA_MALMQUIST`), de modo que o mesmo pipeline roda nas duas bases; as saídas da Fase B levam o sufixo `_painel`. A variante ajustada por qualidade (produtos `citacoes_ok` e `patentes_concedidas_ok`, janela 2017–2019) usa o sufixo `_painel_qualidade`; a variante de fonte alternativa (patentes por país do inventor, OCDE: `PRODUTOS=publicacoes,patentes_inventor`) usa `_painel_fonte`; a variante com VC da Preqin como insumo (`INSUMOS=investimento_preqin_l1,gerd_l1`) usa `_painel_preqin`. O teste de retornos de escala aceita `N_REP_RTS` e `SUFIXO_SAIDA`; o SFA por canal (`R/06`) aceita as mesmas variáveis de base, insumos e produtos e `N_BOOT_SFA` (réplicas do bootstrap por país, padrão 300). Para executar tudo com propagação de falhas, use `zsh output/rodar_pipeline.sh tudo` (modos `faseA`, `painel`, `variantes`, `cadeias`, `rts`, `sfa`, `estagio2`, `validacao`, `padronizacao`; `estagio2` refaz só o segundo estágio e as figuras; `cadeias` refaz 02 → 03 → 04 nas seis bases, sem o 05). O status de cada etapa fica em `output/status_execucao.txt`; `STATUS_ARQUIVO` muda o arquivo, para rodar dois modos ao mesmo tempo.
 
-**Manifesto de execução.** Os scripts de análise e de checagem (`02`, `02b`, `02c`, `03`, `04`, `05`, `05b`, `06` e `12`) registram cada execução em `output/tables/manifesto_execucoes.csv`, com a base, o seu MD5, as variáveis da execução e o status. Cada tabela e cada figura gravada vai para `manifesto_saidas.csv`, com o MD5. As tabelas derivadas que o `04` e o `05b` leem vão para `manifesto_entradas.csv`, com o MD5 no momento da leitura, o que liga cada figura à versão dos resultados que ela mostra. Os scripts de preparação e importação (`01`, `10`, `11`, `13` a `16`) não entram no manifesto: eles gravam as bases em `data/`, cuja proveniência está em `data/README.md` e em `artigo/02_dados_externos.md`.
+**Manifesto de execução.** Os scripts de análise e de checagem (`02`, `02b`, `02c`, `03`, `04`, `05`, `05b`, `06`, `07` e `12`) registram cada execução em `output/tables/manifesto_execucoes.csv`, com a base, o seu MD5, as variáveis da execução e o status. Cada tabela e cada figura gravada vai para `manifesto_saidas.csv`, com o MD5. As tabelas derivadas que o `04`, o `05b` e o `07` leem vão para `manifesto_entradas.csv`, com o MD5 no momento da leitura, o que liga cada figura à versão dos resultados que ela mostra. Os scripts de preparação e importação (`01`, `10`, `11`, `13` a `16`) não entram no manifesto: eles gravam as bases em `data/`, cuja proveniência está em `data/README.md` e em `artigo/02_dados_externos.md`.
 
 Padronização das variáveis da fronteira (S01): os scripts 02, 02b, 03, 04 e 05 aceitam `PADRONIZACAO=minmax` (padrão `nenhuma`, unidades originais) e `EPSILON_PADRONIZACAO` (padrão 0,01). Com min-max, insumos e produtos vão para [ε, 1] com mínimo e máximo da amostra completa (todos os anos), a seleção de amostra continua nas unidades originais e todas as saídas ganham o sufixo `_minmax`. `PADRONIZACAO=minmax zsh output/rodar_pipeline.sh tudo` refaz tudo nessa versão (status em `output/status_execucao_minmax.txt`) e termina com `R/05b_comparacao_padronizacao.R`, que compara as duas versões e mede a sensibilidade a ε.
 
@@ -78,7 +79,7 @@ Padronização das variáveis da fronteira (S01): os scripts 02, 02b, 03, 04 e 0
 - `artigo/05_resultados_fase_a.md` — resultados preliminares para a apresentação (dataset original).
 - `artigo/06_resultados_painel.md` — resultados no painel reconstruído, variantes (qualidade, fontes alternativas, P&D público) e checagens entre fornecedores.
 - `artigo/07_registro_de_trabalho.md` — registro de tudo o que foi feito e guia de retomada (ler primeiro em nova sessão).
-- `artigo/08_brief_deck.md` — brief slide a slide para montar a apresentação no Claude Design.
+- `artigo/08_brief_deck.md` — brief slide a slide para montar a apresentação no Claude Design (revisão 5: deck atualizado após 28/09/2026, com a errata do deck apresentado).
 - `artigo/09_analise_critica_inconsistencias.md` — revisão crítica externa (24 pontos).
 - `artigo/10_avaliacao_inconsistencias.md` — veredito, correção adotada e estado de cada ponto, com os resultados após a reexecução.
 - `artigo/11_reanalise_critica_inconsistencias.md` — segunda revisão crítica externa (13 achados e 2 pendências).
@@ -90,6 +91,7 @@ Padronização das variáveis da fronteira (S01): os scripts 02, 02b, 03, 04 e 0
 - `artigo/17_analise_critica_inconsistencias.md` — terceira revisão crítica (15 achados, entre eles o sentido invertido do Malmquist).
 - `artigo/18_avaliacao_analise_critica.md` — veredito, correção adotada e estado de cada achado da terceira revisão, com a reexecução de 04/10/2026.
 - `artigo/19_orientacoes_sessoes_1_2.md` — orientações dos laboratórios de 14 e 21/09/2026 e exigências do programa da disciplina, trazidas do repositório anterior ([investimentos_ia](https://github.com/fernandofsilva/investimentos_ia)), com a situação de cada uma aqui e as pendências.
+- `artigo/20_manuscrito.md` — rascunho do manuscrito em português (04/10/2026), com o painel reconstruído como base principal e a base original como replicação. As pendências antes da submissão estão nas notas de trabalho, no topo do arquivo.
 
 **Convenção do Malmquist.** As tabelas `malmquist_*` usam índice maior que 1 = melhora (Färe et al., 1994): M > 1, a produtividade cresce; TC > 1, a fronteira avança; EC > 1, o país se aproxima da fronteira. Na orientação a produto, o `Benchmarking` devolve os recíprocos, e `IndicesMalmquist` (em `R/funcoes.R`) faz a conversão.
 

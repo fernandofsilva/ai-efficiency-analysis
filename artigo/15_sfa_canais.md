@@ -112,7 +112,7 @@ Ponto e IC 95% por bootstrap em blocos de país; veredito pelo critério de espe
 - **Inventor, agrupado.** Já era "apoiada" pelo critério antigo, sem o IC da diferença excluir zero ([−0,001; 0,277]). Agora o IC exclui zero por uma margem mínima ([0,0008; 0,277]), porque as réplicas antes descartadas voltaram. O resultado é sensível ao sorteio: com 20 sementes, o limite inferior fica acima de zero em 17 (de −0,009 a 0,036), e o efeito em patentes, em todas. É apoio no limite.
 - **Preqin, agrupado.** Fica fora por pouco (limite inferior da diferença −0,003; patentes −0,01).
 
-**Leitura.** Quando o investimento privado tem efeito, ele é pequeno: elasticidade de 0,02 a 0,21 nos casos significativos, contra 0,6 a 1,4 do P&D.
+**Leitura.** Quando o investimento privado tem efeito, ele é pequeno: elasticidade de 0,01 a 0,21 nos casos significativos, contra 0,6 a 1,4 do P&D.
 - **Especificações mais próximas de H2 no painel.** Com o P&D público como controle, não há efeito em patentes em nenhum modelo. Com as famílias de patentes por país do inventor, o agrupado dá apoio no limite, e os modelos de painel, nenhum.
 - **Fase A.** Os sinais de especificidade (dados de 2013–2021, investimento sem defasagem) não se repetem no painel (2017–2021, investimento defasado em um ano).
 - **Publicações.** Onde o efeito em publicações não é distinguível de zero, isso não demonstra efeito nulo: nenhuma margem de equivalência foi fixada antes dos resultados.
